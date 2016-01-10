@@ -6,7 +6,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{921FB5AF-80AA-CDD1-BDEB-78B9A12CC6A2}</ProjectGuid>
+    <ProjectGuid>{2B8AC915-75F6-8676-C28E-CFCCDD3A5BBE}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -45,11 +45,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\CharacterSelect\CharacterSelectCT.cs" />
+     <Compile Include="Assets\CharacterSelect\CharacterSelectEQ.cs" />
+     <Compile Include="Assets\CharacterSelect\CharacterSelectJH.cs" />
+     <Compile Include="Assets\CharacterSelect\CharacterSelectSM.cs" />
      <Compile Include="Assets\Scripts\ChangeStartScene.cs" />
-     <Compile Include="Assets\Scripts\CharacterSelectCT.cs" />
-     <Compile Include="Assets\Scripts\CharacterSelectEQ.cs" />
-     <Compile Include="Assets\Scripts\CharacterSelectJH.cs" />
-     <Compile Include="Assets\Scripts\CharacterSelectSM.cs" />
      <Compile Include="Assets\Scripts\DecideCharacter.cs" />
      <Compile Include="Assets\Scripts\Moving.cs" />
      <Compile Include="Assets\Scripts\OutButton.cs" />
