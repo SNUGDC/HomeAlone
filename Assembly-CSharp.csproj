@@ -49,11 +49,13 @@
      <Compile Include="Assets\CharacterSelect\CharacterSelectEQ.cs" />
      <Compile Include="Assets\CharacterSelect\CharacterSelectJH.cs" />
      <Compile Include="Assets\CharacterSelect\CharacterSelectSM.cs" />
+     <Compile Include="Assets\ObjectInteratctionTest.cs" />
      <Compile Include="Assets\Scripts\ChangeStartScene.cs" />
      <Compile Include="Assets\Scripts\DecideCharacter.cs" />
      <Compile Include="Assets\Scripts\Moving.cs" />
      <Compile Include="Assets\Scripts\OutButton.cs" />
      <Compile Include="Assets\Scripts\Talking.cs" />
+     <Compile Include="Assets\ShowValueofSlider.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

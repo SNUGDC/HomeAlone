@@ -15,13 +15,10 @@ public class Talking : MonoBehaviour
 	{
 		balloon.GetComponent<SpriteRenderer> ().enabled = !balloon.GetComponent<SpriteRenderer> ().enabled;
 		istalking = !istalking;
-		Debug.Log ("Change");
 	}
 
 	void OnMouseDown()
 	{
-		Debug.Log("mouse");
-
 		if (balloon.GetComponent<SpriteRenderer> () != null && istalking == false)
 		{
 			ChangeRendererState ();
