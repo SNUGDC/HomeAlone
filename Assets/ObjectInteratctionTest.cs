@@ -52,14 +52,14 @@ public class ObjectInteratctionTest : MonoBehaviour
 
     bool CheckGauge()
     {
-        if (Gauge.value > MinGauge)
+        if (Gauge.value >= MinGauge)
             return true;
         else return false;
     }
 
     bool CheckRemainCost()
     {
-        if (RemainCost.value > Cost)
+        if (RemainCost.value >= Cost)
             return true;
         else return false;
     }
