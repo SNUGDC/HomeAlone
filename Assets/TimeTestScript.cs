@@ -6,10 +6,16 @@ using System;
 public class TimeTestScript : MonoBehaviour
 {
     public Slider slider;
+    public int DeltaTime;
 
     DateTime SysTime;
     DateTime UpdatedTime;
-    TimeSpan Delta = new TimeSpan(0,0,30);
+    TimeSpan Delta;
+
+    void Start()
+    {
+        Delta = new TimeSpan(0, 0, DeltaTime);
+    }
 
     void Update()
     {
