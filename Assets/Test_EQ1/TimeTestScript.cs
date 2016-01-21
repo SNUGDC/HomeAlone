@@ -5,15 +5,16 @@ using System;
 
 public class TimeTestScript : MonoBehaviour
 {
-    public Slider slider;
     public int DeltaTime;
 
+    Slider slider;
     DateTime SysTime;
     DateTime UpdatedTime;
     TimeSpan Delta;
 
     void Start()
     {
+        slider = GetComponent<Slider>();
         Delta = new TimeSpan(0, 0, DeltaTime);
     }
 
@@ -21,12 +22,11 @@ public class TimeTestScript : MonoBehaviour
     {
         SysTime = System.DateTime.Now;
         IncreaseValue();
-        TimeOver();
     }
 
     void IncreaseValue()
     {
-        if (slider.value != 10 && TimeOver())
+        if (slider.value < slider.maxValue && TimeOver())
         {
             slider.value = slider.value + 1;
             UpdatedTime = SysTime;
