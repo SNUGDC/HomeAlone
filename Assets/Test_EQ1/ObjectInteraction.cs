@@ -6,10 +6,9 @@ public class ObjectInteraction : MonoBehaviour
 {
     public Slider Gauge;
 
-    public float Cost;
+    public float[] Cost;
     public float MinGauge;
-    public Sprite Clean;
-    public Sprite Dirty;
+    public Sprite[] Object;
 
     public Slider RemainCost;
 
@@ -53,19 +52,20 @@ public class ObjectInteraction : MonoBehaviour
     void ChangeSprite()
     {
         if (CheckGauge())
-            GetComponent<SpriteRenderer>().sprite = Dirty;
-        else GetComponent<SpriteRenderer>().sprite = Clean;
+            GetComponent<SpriteRenderer>().sprite = Object[0];
+        else GetComponent<SpriteRenderer>().sprite = Object[1];
     }
 
     bool CheckRemainCost()
     {
-        if (RemainCost.value >= Cost)
+        if (RemainCost.value >= Cost[1])
             return true;
         else return false;
     }
 
     void UseCost()
     {
-        RemainCost.value = RemainCost.value - Cost;
+        RemainCost.value = RemainCost.value - Cost[1];
     }
 }
+
