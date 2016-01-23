@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class ObjectInteraction : MonoBehaviour
 {
-    public Slider Gauge;
+    public Slider DirtyGauge;
 
     public float[] Cost;
     public float MinGauge;
@@ -39,14 +39,14 @@ public class ObjectInteraction : MonoBehaviour
 
     bool CheckGauge()
     {
-        if (Gauge.value >= MinGauge)
+        if (DirtyGauge.value >= MinGauge)
             return true;
         else return false;
     }
 
     void DecreaseGauge()
     {
-        Gauge.value = 0;
+        DirtyGauge.value = 0;
     }
 
     void ChangeSprite()
