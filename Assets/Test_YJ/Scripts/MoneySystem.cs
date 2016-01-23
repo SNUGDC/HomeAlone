@@ -17,7 +17,7 @@ public class MoneySystem : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		money = 0;
+		money = PlayerPrefs.GetInt("money");
 		MoneyIn = false;
 		MoneyOut = false;
 		income = 0;
@@ -36,6 +36,10 @@ public class MoneySystem : MonoBehaviour {
 		MoneyIn = true;
 		income = +100000;
 		remainder = money;
+		save ();
 	}
 		
+	void save(){
+		PlayerPrefs.SetInt ("money", money);
+	}
 }
