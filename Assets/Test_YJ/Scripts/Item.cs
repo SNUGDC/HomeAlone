@@ -8,7 +8,6 @@ public class Item : MoneySystem {
 	public string ItemName;
 	public GameObject SetActiveObject;
 
-//	public Text Remainder;
 
 	public Item(int ItemPrice, string ItemName){
 		this.ItemPrice=ItemPrice;
@@ -33,13 +32,10 @@ public class Item : MoneySystem {
 
 	// Use this for initialization
 	void Start () {
-		
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
-//		Remainder.text = money.ToString();
 	}
-
-
 }
