@@ -1,0 +1,14 @@
+﻿<Properties StartupItem="Assembly-CSharp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="../../Downloads/HomeAlone-ricegood/Assets/Scripts/MenuButtons.cs">
+    <Files>
+      <File FileName="Assets/Test_EQ1/TimeTestScript.cs" Line="28" Column="6" />
+      <File FileName="../../Downloads/HomeAlone-ricegood/Assets/Scripts/CashBook.cs" Line="9" Column="14" />
+      <File FileName="../../Downloads/HomeAlone-ricegood/Assets/Scripts/MenuButtons.cs" Line="8" Column="2" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
