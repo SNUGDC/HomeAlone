@@ -7,10 +7,12 @@ public class ObjectInteraction : MonoBehaviour
     public Slider DirtyGauge;
 
     public float[] Cost;
-    public float MinGauge;
+    public float[] MinDirtyGauge;
     public Sprite[] ObjectImage;
 
     public Slider RemainCost;
+
+    private int s;
 
     void Update()
     {
@@ -19,7 +21,11 @@ public class ObjectInteraction : MonoBehaviour
 
     void OnMouseDown()
     {
-        if (CheckGauge())
+        if (s == 0)
+        {
+            Debug.Log("It looks clean");
+        }
+        else
         {
             if (CheckRemainCost())
             {
@@ -31,17 +37,19 @@ public class ObjectInteraction : MonoBehaviour
                 Debug.Log("I'm tired");
             }
         }
-        else
-        {
-            Debug.Log("It looks clean");
-        }
     }
 
-    bool CheckGauge()
+    int CheckGauge()
     {
-        if (DirtyGauge.value >= MinGauge)
-            return true;
-        else return false;
+        if (MinDirtyGauge[0] == DirtyGauge.value)
+            return 0;
+        else if (MinDirtyGauge[1] >= DirtyGauge.value)
+            return 1;
+        else if (MinDirtyGauge[2] >= DirtyGauge.value)
+            return 2;
+        else if (MinDirtyGauge[3] >= DirtyGauge.value)
+            return 3;
+        else return 4;
     }
 
     void DecreaseGauge()
@@ -51,21 +59,19 @@ public class ObjectInteraction : MonoBehaviour
 
     void ChangeSprite()
     {
-        if (CheckGauge())
-            GetComponent<SpriteRenderer>().sprite = ObjectImage[0];
-        else GetComponent<SpriteRenderer>().sprite = ObjectImage[1];
+        GetComponent<SpriteRenderer>().sprite = ObjectImage[s];
     }
 
     bool CheckRemainCost()
     {
-        if (RemainCost.value >= Cost[1])
+        if (RemainCost.value >= Cost[s])
             return true;
         else return false;
     }
 
     void UseCost()
     {
-        RemainCost.value = RemainCost.value - Cost[1];
+        RemainCost.value = RemainCost.value - Cost[s];
     }
 }
 
