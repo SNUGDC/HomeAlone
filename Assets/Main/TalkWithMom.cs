@@ -5,8 +5,7 @@ using UnityEngine.UI;
 public class TalkWithMom : MonoBehaviour
 {
     public GameObject MomImage;
-    public GameObject PanelCollider;
-    public Image MomPanel;
+    public GameObject MomPanel;
 
     private bool ReadyToChangeText;
     private bool WillMomTalk = true;
@@ -26,21 +25,21 @@ public class TalkWithMom : MonoBehaviour
         if (WillMomTalk)
         {
             MomImage.GetComponent<SpriteRenderer>().enabled = true;
-            PanelCollider.GetComponent<BoxCollider>().enabled = true;
-            MomPanel.enabled = true;
+            MomPanel.GetComponent<SpriteRenderer>().enabled = true;
+            MomPanel.GetComponent<BoxCollider2D>().enabled = true;
         }
     }
 
     void Update()
     {
-        ReadyToChangeText = PanelCollider.GetComponent<ReadyToChangeText>().IsOKToChangeText;
+        ReadyToChangeText = MomPanel.GetComponent<ReadyToChangeText>().IsOKToChangeText;
 
         if (CurrentLine > 4)
         {
             WillMomTalk = false;
             MomImage.GetComponent<SpriteRenderer>().enabled = false;
-            PanelCollider.GetComponent<BoxCollider>().enabled = false;
-            MomPanel.enabled = false;
+            MomPanel.GetComponent<SpriteRenderer>().enabled = false;
+            MomPanel.GetComponent<BoxCollider2D>().enabled = false;
         }
 
         if (ReadyToChangeText)
@@ -52,7 +51,7 @@ public class TalkWithMom : MonoBehaviour
     void ChangeText(int CurrentLine)
     {
         value.text = talkline[CurrentLine];
-        PanelCollider.GetComponent<ReadyToChangeText>().IsOKToChangeText = false;
+        MomPanel.GetComponent<ReadyToChangeText>().IsOKToChangeText = false;
         this.CurrentLine++;
     }
 }
