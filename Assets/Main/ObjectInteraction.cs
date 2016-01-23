@@ -16,7 +16,9 @@ public class ObjectInteraction : MonoBehaviour
 
     void Update()
     {
+        s = CheckGauge();
         ChangeSprite();
+        Debug.Log(s);
     }
 
     void OnMouseDown()
@@ -47,9 +49,7 @@ public class ObjectInteraction : MonoBehaviour
             return 1;
         else if (MinDirtyGauge[2] >= DirtyGauge.value)
             return 2;
-        else if (MinDirtyGauge[3] >= DirtyGauge.value)
-            return 3;
-        else return 4;
+        else return 3;
     }
 
     void DecreaseGauge()
