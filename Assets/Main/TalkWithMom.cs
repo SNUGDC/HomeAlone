@@ -7,9 +7,9 @@ public class TalkWithMom : MonoBehaviour
     public GameObject MomImage;
     public GameObject MomPanel;
 
-    public bool ReadyToChangeText;
-    public int WillMomTalk;
-    public int CurrentLine = 0;
+    private bool ReadyToChangeText;
+    private int WillMomTalk;
+    private int CurrentLine = 0;
 
     string[] talkline = { "우리 딸, 방에는 도착했니? 우리 딸은 알아서 잘 하겠지만 그래도 걱정되네.",
                           "옆에서 챙겨줄 사람이 없으니까 일정관리를 잘해야해. 그렇다고 너무 공부만 하진 말구",
