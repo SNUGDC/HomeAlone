@@ -4,18 +4,25 @@ using UnityEngine.UI;
 
 public class ObjectInteraction : MonoBehaviour
 {
-    public Slider DirtyGauge;
-
     public float[] Cost;
     public float[] MinDirtyGauge;
     public Sprite[] ObjectImage;
 
-    public Slider RemainCost;
+    public int DirtyGauge;
+    public int RemainCost;
 
     private int s;
+    private string VariableName;
+
+    void Start()
+    {
+        VariableName = GetComponent<DirtyTimer>().VariableName;
+    }
 
     void Update()
     {
+        DirtyGauge = GetComponent<DirtyTimer>().DirtyGauge;
+        RemainCost = PlayerPrefs.GetInt("RemainCost");
         s = CheckGauge();
         ChangeSprite();
     }
@@ -42,18 +49,19 @@ public class ObjectInteraction : MonoBehaviour
 
     int CheckGauge()
     {
-        if (MinDirtyGauge[0] == DirtyGauge.value)
+        if (MinDirtyGauge[0] == DirtyGauge)
             return 0;
-        else if (MinDirtyGauge[1] >= DirtyGauge.value)
+        else if (MinDirtyGauge[1] >= DirtyGauge)
             return 1;
-        else if (MinDirtyGauge[2] >= DirtyGauge.value)
+        else if (MinDirtyGauge[2] >= DirtyGauge)
             return 2;
         else return 3;
     }
 
     void DecreaseGauge()
     {
-        DirtyGauge.value = 0;
+        DirtyGauge = 0;
+        Save(DirtyGauge);
     }
 
     void ChangeSprite()
@@ -63,14 +71,20 @@ public class ObjectInteraction : MonoBehaviour
 
     bool CheckRemainCost()
     {
-        if (RemainCost.value >= Cost[s])
+        if (RemainCost >= Cost[s])
             return true;
         else return false;
     }
 
     void UseCost()
     {
-        RemainCost.value = RemainCost.value - Cost[s];
+        RemainCost = RemainCost - (int)Cost[s];
+        PlayerPrefs.SetInt("RemainCost", RemainCost);
+    }
+
+    void Save(int var)
+    {
+        PlayerPrefs.SetInt(VariableName, var);
     }
 }
 

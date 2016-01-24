@@ -1,21 +1,20 @@
 ﻿using UnityEngine;
 using System.Collections;
-using UnityEngine.UI;
 using System;
 
 public class DirtyTimer : MonoBehaviour
 {
     public int DeltaTime;
+    public int DirtyGauge = 0;
+    public int DirtyGaugeMax = 10;
+    public string VariableName;
 
-    Slider slider;
     DateTime SysTime;
     DateTime UpdatedTime;
     TimeSpan Delta;
 
     void Start()
     {
-        slider = GetComponent<Slider>();
-        slider.value = 0;
         Delta = new TimeSpan(0, 0, DeltaTime);
     }
 
@@ -23,14 +22,16 @@ public class DirtyTimer : MonoBehaviour
     {
         SysTime = System.DateTime.Now;
         IncreaseValue();
+        Load();
     }
 
     void IncreaseValue()
     {
-        if (slider.value < slider.maxValue && TimeOver())
+        if (DirtyGauge < DirtyGaugeMax && TimeOver())
         {
-            slider.value = slider.value + 1;
+            DirtyGauge = DirtyGauge + 1;
             UpdatedTime = SysTime;
+            Save();
         }
     }
 
@@ -41,5 +42,15 @@ public class DirtyTimer : MonoBehaviour
             return true;
         }
         else return false;
+    }
+
+    void Save()
+    {
+        PlayerPrefs.SetInt(VariableName, DirtyGauge);
+    }
+
+    void Load()
+    {
+        DirtyGauge = PlayerPrefs.GetInt(VariableName);
     }
 }
