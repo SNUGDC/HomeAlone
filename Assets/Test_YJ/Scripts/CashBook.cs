@@ -8,23 +8,28 @@ public class CashBook : MoneySystem {
 	public Text[] IncomeArray;
 	public Text[] OutcomeArray;
 	public Text[] RemainderArray;
-//	string[] SavedContents, SavedIncome,SavedOutcome,SavedRemainder;
+
+	string[] SavedContents = {"SC1","SC2","SC3","SC4","SC5","SC6"};
+	string[] SavedIncome = {"SI1","SI2","SI3","SI4","SI5","SI6"};
+	string[] SavedOutcome = {"SO1","SO2","SO3","SO4","SO5","SO6"};
+	string[] SavedRemainder = {"SR1","SR2","SR3","SR4","SR5","SR6"};
+
+
 
 	// Use this for initialization
 	void Start () {
 		for (int i = 0; i < 6; i++) {
-//			ContentsArray[i].text = PlayerPrefs.GetString (SavedContents[i]);
-//			IncomeArray[i].text = PlayerPrefs.GetString (SavedIncome[i]);
-//			OutcomeArray[i].text = PlayerPrefs.GetString (SavedOutcome[i]);
-//			RemainderArray[i].text = PlayerPrefs.GetString (SavedRemainder[i]);
+			ContentsArray[i].text = PlayerPrefs.GetString (SavedContents[i]);
+			IncomeArray[i].text = PlayerPrefs.GetString (SavedIncome[i]);
+			OutcomeArray[i].text = PlayerPrefs.GetString (SavedOutcome[i]);
+			RemainderArray[i].text = PlayerPrefs.GetString (SavedRemainder[i]);
 		}
 	}
 
 	// Update is called once per frame
 	void Update () {
 		WriteCashBook ();
-		Remainder.text = money.ToString();
-//		save ();
+		save ();
 	}
 
 	void WriteCashBook(){
@@ -60,8 +65,7 @@ public class CashBook : MoneySystem {
 		b.text = a.text;
 		a.text = temp;
 	}
-
-	/*
+		
 	public void save(){
 		for (int i = 0; i < 6; i++) {
 			PlayerPrefs.SetString (SavedContents[i],ContentsArray[i].text);
@@ -70,5 +74,13 @@ public class CashBook : MoneySystem {
 			PlayerPrefs.SetString (SavedRemainder[i],RemainderArray[i].text);
 		}
 	}
-	*/
+
+	public void CashbookReset(){
+		for (int i = 0; i < 6; i++) {
+			ContentsArray[i].text = "";
+			IncomeArray[i].text = "";
+			OutcomeArray[i].text = "";
+			RemainderArray[i].text = "";
+		}
+	}
 }
