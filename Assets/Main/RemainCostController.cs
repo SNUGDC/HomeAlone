@@ -14,7 +14,6 @@ public class RemainCostController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Debug.Log("눌리긴하냐");
             RemainCost = RemainCost + 1;
             Save();
         }    
