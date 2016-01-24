@@ -22,8 +22,11 @@ public class TalkWithMom : MonoBehaviour
 
     void Start()
     {
-        WillMomTalk = PlayerPrefs.GetInt("WillMomTalk");
-        WillMomTalk = 1;
+        if (PlayerPrefs.HasKey("WillMomTalk"))
+        {
+            WillMomTalk = PlayerPrefs.GetInt("WillMomTalk");
+        }
+        else WillMomTalk = 1;
     }
 
     void Update()
@@ -44,6 +47,8 @@ public class TalkWithMom : MonoBehaviour
         {
             ChangeText(CurrentLine);
         }
+
+        Save();
     }
 
     void ChangeText(int CurrentLine)
@@ -60,7 +65,7 @@ public class TalkWithMom : MonoBehaviour
             MomPanel.GetComponent<BoxCollider2D>().enabled = a;
     }
 
-    void save()
+    void Save()
     {
         PlayerPrefs.SetInt("WillMomTalk", WillMomTalk);
     }
