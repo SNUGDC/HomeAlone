@@ -18,7 +18,6 @@ public class ObjectInteraction : MonoBehaviour
     {
         s = CheckGauge();
         ChangeSprite();
-        Debug.Log(s);
     }
 
     void OnMouseDown()
