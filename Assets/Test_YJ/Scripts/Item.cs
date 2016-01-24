@@ -21,7 +21,7 @@ public class Item : MoneySystem {
 			ContentsName = ItemName;
 			outcome = -ItemPrice;
 			remainder = money;
-			SetActiveObject.SetActive (true);
+			SetActiveObject.GetComponent<Image>().enabled = true;
 		}
 
 		else {
@@ -34,8 +34,9 @@ public class Item : MoneySystem {
 	void Start () {
 
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
+
 	}
 }

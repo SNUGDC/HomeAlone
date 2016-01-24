@@ -28,6 +28,7 @@ public class MoneySystem : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		Remainder.text = money.ToString();
+		save ();
 	}
 
 	public void Deposit () {
@@ -41,5 +42,9 @@ public class MoneySystem : MonoBehaviour {
 		
 	void save(){
 		PlayerPrefs.SetInt ("money", money);
+	}
+
+	public void reset(){
+		money = 0;
 	}
 }
