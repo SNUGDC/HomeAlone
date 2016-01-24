@@ -16,6 +16,8 @@ public class DirtyTimer : MonoBehaviour
     void Start()
     {
         Delta = new TimeSpan(0, 0, DeltaTime);
+        UpdatedTime = SysTime;
+        Load();
     }
 
     void Update()
