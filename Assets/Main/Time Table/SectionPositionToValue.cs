@@ -30,40 +30,47 @@ public class SectionPositionToValue : MonoBehaviour
 
     void WhatISValue()
     {
-        if (SectionPosition.x > 5.625)
-            s = 16;
-        else if (SectionPosition.x > 4.875)
-            s = 15;
-        else if (SectionPosition.x > 4.125)
-            s = 14;
-        else if (SectionPosition.x > 3.375)
-            s = 13;
-        else if (SectionPosition.x > 2.625)
-            s = 12;
-        else if (SectionPosition.x > 1.875)
-            s = 11;
-        else if (SectionPosition.x > 1.125)
-            s = 10;
-        else if (SectionPosition.x > 0.375)
-            s = 9;
-        else if (SectionPosition.x > -0.375)
-            s = 8;
-        else if (SectionPosition.x > -1.125)
-            s = 7;
-        else if (SectionPosition.x > -1.875)
-            s = 6;
-        else if (SectionPosition.x > -2.625)
-            s = 5;
-        else if (SectionPosition.x > -3.375)
-            s = 4;
-        else if (SectionPosition.x > -4.125)
-            s = 3;
-        else if (SectionPosition.x > -4.875)
-            s = 2;
-        else if (SectionPosition.x > -5.625)
-            s = 1;
-        else if (SectionPosition.x > -6.375)
-            s = 0;
+        if (NextS < s)
+        {
+            s = NextS;
+        }
+        else
+        {
+            if (SectionPosition.x > 5.625)
+                s = 16;
+            else if (SectionPosition.x > 4.875)
+                s = 15;
+            else if (SectionPosition.x > 4.125)
+                s = 14;
+            else if (SectionPosition.x > 3.375)
+                s = 13;
+            else if (SectionPosition.x > 2.625)
+                s = 12;
+            else if (SectionPosition.x > 1.875)
+                s = 11;
+            else if (SectionPosition.x > 1.125)
+                s = 10;
+            else if (SectionPosition.x > 0.375)
+                s = 9;
+            else if (SectionPosition.x > -0.375)
+                s = 8;
+            else if (SectionPosition.x > -1.125)
+                s = 7;
+            else if (SectionPosition.x > -1.875)
+                s = 6;
+            else if (SectionPosition.x > -2.625)
+                s = 5;
+            else if (SectionPosition.x > -3.375)
+                s = 4;
+            else if (SectionPosition.x > -4.125)
+                s = 3;
+            else if (SectionPosition.x > -4.875)
+                s = 2;
+            else if (SectionPosition.x > -5.625)
+                s = 1;
+            else if (SectionPosition.x > -6.375)
+                s = 0;
+        }
     }
 
     void CorrectPosition()
