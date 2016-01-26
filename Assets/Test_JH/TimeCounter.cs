@@ -1,37 +1,34 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System;
 
 public class TimeCounter : MonoBehaviour
 {
     public float Gametime = 0;
-    public GameObject Timer;
+    public string CurrentTime;
+    Func<string> value;
     public Text TimerText;
     public delegate void GetTime(int Time);
-    int Day = 0, Hour = 0, Min = 0;
+    int Month = 3, Day = 2, Hour = 0, Min = 0;
 
     void Start ()
     {   
         //check the code is running well
         Gametime = Time.time;
-        Debug.Log(Gametime);
     }
 
     void Update ()
     {
         Gametime += Time.deltaTime * 3;
         SetTime();
+        ShowCurrentTime(() => CurrentTime);
+        TimerText.text = value();
     }
     
-    //Test Method. whenever the code is complete, this method will be trashed
-    public void PresentTime()
+    public void ShowCurrentTime(Func<String> value)
     {
-        Debug.Log(Gametime);
-    }
-
-    public void GetTimeTextFromUI()
-    {
-
+        this.value = value;
     }
 
     public void SetTime()
@@ -56,6 +53,53 @@ public class TimeCounter : MonoBehaviour
             Day = Day +1 ;
         }
 
-        Debug.Log("Day : " + Day + "Time :" + Hour + ":" + Min +":"+ Sec);
+        GetMonthandDay();
+
+        CurrentTime = "Month : " + Month + "  Day : " + Day + "  Time :" + Hour + ":" + Min;
+
+        Debug.Log(CurrentTime + ":" + Sec);
+    }
+
+    public void GetMonthandDay()
+    {
+        if (Month < 8 && Month % 2 != 0)
+        {
+            MonthWith31Days();
+        }
+        else if (Month < 8 && Month % 2 == 0)
+        {
+            MonthWith30Days();
+        }
+
+        else if (Month % 2 != 0)
+        {
+            MonthWith30Days();
+        }
+
+        else
+        {
+            MonthWith31Days();
+        }
+
+        if (Month > 12)
+            Month = 1;
+    }
+
+    public void MonthWith30Days()
+    {
+        if (Day > 30)
+        {
+            Day = 0;
+            ++Month;
+        }
+    }   
+
+    public void MonthWith31Days()
+    {
+        if (Day > 31)
+        {
+            Day = 0;
+            ++Month;
+        }
     }
 }
