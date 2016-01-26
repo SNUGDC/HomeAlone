@@ -36,11 +36,9 @@ public class TalkWithMom : MonoBehaviour
         if (WillMomTalk == 1)
         {
             TalkAble(true);
-            Debug.Log("이건되냐?");
 
             if (ReadyToChangeText)
             {
-                Debug.Log("텍스트 바꿈");
                 ChangeText(CurrentLine);
             }
         }
