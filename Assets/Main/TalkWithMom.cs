@@ -31,21 +31,24 @@ public class TalkWithMom : MonoBehaviour
 
     void Update()
     {
+        ReadyToChangeText = MomPanel.GetComponent<ReadyToChangeText>().IsOKToChangeText;
+
         if (WillMomTalk == 1)
         {
             TalkAble(true);
+            Debug.Log("이건되냐?");
+
+            if (ReadyToChangeText)
+            {
+                Debug.Log("텍스트 바꿈");
+                ChangeText(CurrentLine);
+            }
         }
-        ReadyToChangeText = MomPanel.GetComponent<ReadyToChangeText>().IsOKToChangeText;
 
         if (CurrentLine > 4)
         {
             WillMomTalk = 0;
             TalkAble(false);
-        }
-
-        if (ReadyToChangeText)
-        {
-            ChangeText(CurrentLine);
         }
 
         Save();
