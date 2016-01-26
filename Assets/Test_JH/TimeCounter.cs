@@ -8,8 +8,9 @@ public class TimeCounter : MonoBehaviour
     public GameObject Timer;
     public Text TimerText;
     public delegate void GetTime(int Time);
-	
-	void Start ()
+    int Day = 0, Hour = 0, Min = 0;
+
+    void Start ()
     {   
         //check the code is running well
         Gametime = Time.time;
@@ -19,7 +20,7 @@ public class TimeCounter : MonoBehaviour
     void Update ()
     {
         Gametime += Time.deltaTime * 3;
-        SetTime(Gametime);
+        SetTime();
     }
     
     //Test Method. whenever the code is complete, this method will be trashed
@@ -33,27 +34,26 @@ public class TimeCounter : MonoBehaviour
 
     }
 
-    public void SetTime(float Gametime)
+    public void SetTime()
     {
-        float Sec=Gametime;
-        int Day = 0, Hour = 0, Min = 0;
+        float Sec = Gametime;
 
         if (Sec >= 60)
         {
             Gametime = 0;
-            Min++;
+            Min = Min+1;
         }
 
         if (Min >= 60)
         {
             Min = 0;
-            Hour++;
+            Hour = Hour +1;
         }
 
         if (Hour >= 24)
         {
             Hour = 0;
-            Day++;
+            Day = Day +1 ;
         }
 
         Debug.Log("Day : " + Day + "Time :" + Hour + ":" + Min +":"+ Sec);
