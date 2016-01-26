@@ -4,12 +4,15 @@ using System.Collections;
 public class SectionPositionToValue : MonoBehaviour
 {
     public int s;
+    public GameObject NextSection;
 
     private Vector3 SectionPosition;
+    public int NextS;
 
 
     void Update()
     {
+        NextS = NextSection.GetComponent<SectionPositionToValue>().s;
         SectionPosition = transform.position;
         ErrorCheck();
 
@@ -113,7 +116,7 @@ public class SectionPositionToValue : MonoBehaviour
             transform.position = new Vector3((float)4.5, 0, 0);
             break;
         case 15:
-            transform.position = new Vector3((float)-5.25, 0, 0);
+            transform.position = new Vector3((float)5.25, 0, 0);
             break;
         case 16:
             transform.position = new Vector3(6, 0, 0);
