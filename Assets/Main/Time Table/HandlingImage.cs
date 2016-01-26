@@ -4,6 +4,7 @@ using System.Collections;
 public class HandlingImage : MonoBehaviour
 {
     public GameObject[] ValueShower;
+    public GameObject Section;
     public int Right;
 
     private int Left = 0;
@@ -12,6 +13,7 @@ public class HandlingImage : MonoBehaviour
     {
         ErrorChecker();
 
+        Right = Section.GetComponent<SectionPositionToValue>().s;
         transform.position = new Vector3((ValueShower[Left].GetComponent<Transform>().position.x + ValueShower[Right].GetComponent<Transform>().position.x) / 2, 0, 0);
         transform.localScale = new Vector3((float)7.5*(Right - Left), 1, 1);
     }
