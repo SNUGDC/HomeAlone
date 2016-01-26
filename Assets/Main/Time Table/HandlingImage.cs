@@ -19,8 +19,8 @@ public class HandlingImage : MonoBehaviour
     void ErrorChecker()
     {
         if (Right > 16)
-        {
             Right = 16;
-        }
+        else if (Right < 0)
+            Right = 0;
     }
 }
