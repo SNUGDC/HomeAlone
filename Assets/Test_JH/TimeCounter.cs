@@ -5,12 +5,13 @@ using System;
 
 public class TimeCounter : MonoBehaviour
 {
-    public float Gametime = 0;
-    public string CurrentTime;
+    private float Gametime = 0;
+    private string CurrentTime;
     Func<string> value;
+    public int Month = 3, Day = 2, Hour = 0, Min = 0;
     public Text TimerText;
     public delegate void GetTime(int Time);
-    int Month = 3, Day = 2, Hour = 0, Min = 0;
+    public float TimeFasterValue;
 
     void Start ()
     {   
@@ -20,7 +21,7 @@ public class TimeCounter : MonoBehaviour
 
     void Update ()
     {
-        Gametime += Time.deltaTime * 3;
+        Gametime += Time.deltaTime * TimeFasterValue;
         SetTime();
         ShowCurrentTime(() => CurrentTime);
         TimerText.text = value();
@@ -89,7 +90,7 @@ public class TimeCounter : MonoBehaviour
     {
         if (Day > 30)
         {
-            Day = 0;
+            Day = 1;
             ++Month;
         }
     }   
@@ -98,7 +99,7 @@ public class TimeCounter : MonoBehaviour
     {
         if (Day > 31)
         {
-            Day = 0;
+            Day = 1;
             ++Month;
         }
     }
