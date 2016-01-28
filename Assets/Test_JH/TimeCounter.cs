@@ -5,26 +5,27 @@ using System;
 
 public class TimeCounter : MonoBehaviour
 {
-    private float Gametime = 0;
+    public Text TimerText;
+    private float GameSec = 0;
     private string CurrentTime;
     Func<string> value;
     public int Month = 3, Day = 2, Hour = 0, Min = 0;
-    public Text TimerText;
     public delegate void GetTime(int Time);
     public float TimeFasterValue;
 
     void Start ()
     {   
         //check the code is running well
-        Gametime = Time.time;
+        GameSec = Time.time;
     }
 
     void Update ()
     {
-        Gametime += Time.deltaTime * TimeFasterValue;
-        SetTime();
+        GameSec += Time.deltaTime * TimeFasterValue;
+        SetCurrentTime();
         ShowCurrentTime(() => CurrentTime);
         TimerText.text = value();
+        Debug.Log(Gametime);
     }
     
     public void ShowCurrentTime(Func<String> value)
@@ -32,36 +33,18 @@ public class TimeCounter : MonoBehaviour
         this.value = value;
     }
 
-    public void SetTime()
+    public void SetCurrentTime()
     {
-        float Sec = Gametime;
-
-        if (Sec >= 60)
-        {
-            Gametime = 0;
-            Min = Min+1;
-        }
-
-        if (Min >= 60)
-        {
-            Min = 0;
-            Hour = Hour +1;
-        }
-
-        if (Hour >= 24)
-        {
-            Hour = 0;
-            Day = Day +1 ;
-        }
-
-        GetMonthandDay();
-
+        SetMonthandDay();
+        SetHourandMin();
         CurrentTime = "Month : " + Month + "  Day : " + Day + "  Time :" + Hour + ":" + Min;
-
-        Debug.Log(CurrentTime + ":" + Sec);
+<<<<<<< HEAD
+=======
+        Debug.Log(CurrentTime + ":" + GameSec);
+>>>>>>> origin/master
     }
 
-    public void GetMonthandDay()
+    public void SetMonthandDay()
     {
         if (Month < 8 && Month % 2 != 0)
         {
@@ -71,19 +54,39 @@ public class TimeCounter : MonoBehaviour
         {
             MonthWith30Days();
         }
-
         else if (Month % 2 != 0)
         {
             MonthWith30Days();
         }
-
         else
         {
             MonthWith31Days();
         }
-
         if (Month > 12)
             Month = 1;
+    }
+
+    public void SetHourandMin()
+    {
+        float Sec = GameSec;
+
+        if (Sec >= 60)
+        {
+            GameSec = 0;
+            ++Min;
+        }
+
+        if (Min >= 60)
+        {
+            Min = 0;
+            ++Hour;
+        }
+
+        if (Hour >= 24)
+        {
+            Hour = 0;
+            ++Day;
+        }
     }
 
     public void MonthWith30Days()
