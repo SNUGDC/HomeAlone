@@ -16,7 +16,7 @@ public class Character : MonoBehaviour
 
     void Start()
     {
-        _jsondata = File.ReadAllText(Application.dataPath + "/Data/Character.json");
+       // _jsondata = File.ReadAllText(Application.dataPath + "/Data/Character.json");
         _characterdata = JsonMapper.ToObject(_jsondata);
     }
 
