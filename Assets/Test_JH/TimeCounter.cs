@@ -25,7 +25,6 @@ public class TimeCounter : MonoBehaviour
         SetCurrentTime();
         ShowCurrentTime(() => CurrentTime);
         TimerText.text = value();
-        Debug.Log(Gametime);
     }
     
     public void ShowCurrentTime(Func<String> value)
@@ -38,10 +37,7 @@ public class TimeCounter : MonoBehaviour
         SetMonthandDay();
         SetHourandMin();
         CurrentTime = "Month : " + Month + "  Day : " + Day + "  Time :" + Hour + ":" + Min;
-<<<<<<< HEAD
-=======
         Debug.Log(CurrentTime + ":" + GameSec);
->>>>>>> origin/master
     }
 
     public void SetMonthandDay()
