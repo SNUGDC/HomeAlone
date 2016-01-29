@@ -5,6 +5,8 @@ public class SectionPositionToValue : MonoBehaviour
 {
     public int s;
     public GameObject NextSection;
+    public float YPosition;
+    public float ZPosition;
 
     private Vector3 SectionPosition;
     public int NextS;
@@ -78,55 +80,55 @@ public class SectionPositionToValue : MonoBehaviour
         switch (s)
         {
         case 0:
-            transform.position = new Vector3(-6, 0, 0);
+            transform.position = new Vector3(-6, YPosition, ZPosition);
             break;
         case 1:
-            transform.position = new Vector3((float)-5.25, 0, 0);
+            transform.position = new Vector3((float)-5.25, YPosition, ZPosition);
             break;
         case 2:
-            transform.position = new Vector3((float)-4.5, 0, 0);
+            transform.position = new Vector3((float)-4.5, YPosition, ZPosition);
             break;
         case 3:
-            transform.position = new Vector3((float)-3.75, 0, 0);
+            transform.position = new Vector3((float)-3.75, YPosition, ZPosition);
             break;
         case 4:
-            transform.position = new Vector3(-3, 0, 0);
+            transform.position = new Vector3(-3, YPosition, ZPosition);
             break;
         case 5:
-            transform.position = new Vector3((float)-2.25, 0, 0);
+            transform.position = new Vector3((float)-2.25, YPosition, ZPosition);
             break;
         case 6:
-            transform.position = new Vector3((float)-1.5, 0, 0);
+            transform.position = new Vector3((float)-1.5, YPosition, ZPosition);
             break;
         case 7:
-            transform.position = new Vector3((float)-0.75, 0, 0);
+            transform.position = new Vector3((float)-0.75, YPosition, ZPosition);
             break;
         case 8:
-            transform.position = new Vector3(0, 0, 0);
+            transform.position = new Vector3(0, YPosition, ZPosition);
             break;
         case 9:
-            transform.position = new Vector3((float)0.75, 0, 0);
+            transform.position = new Vector3((float)0.75, YPosition, ZPosition);
             break;
         case 10:
-            transform.position = new Vector3((float)1.5, 0, 0);
+            transform.position = new Vector3((float)1.5, YPosition, ZPosition);
             break;
         case 11:
-            transform.position = new Vector3((float)2.25, 0, 0);
+            transform.position = new Vector3((float)2.25, YPosition, ZPosition);
             break;
         case 12:
-            transform.position = new Vector3(3, 0, 0);
+            transform.position = new Vector3(3, YPosition, ZPosition);
             break;
         case 13:
-            transform.position = new Vector3((float)3.75, 0, 0);
+            transform.position = new Vector3((float)3.75, YPosition, ZPosition);
             break;
         case 14:
-            transform.position = new Vector3((float)4.5, 0, 0);
+            transform.position = new Vector3((float)4.5, YPosition, ZPosition);
             break;
         case 15:
-            transform.position = new Vector3((float)5.25, 0, 0);
+            transform.position = new Vector3((float)5.25, YPosition, ZPosition);
             break;
         case 16:
-            transform.position = new Vector3(6, 0, 0);
+            transform.position = new Vector3(6, YPosition, ZPosition);
             break;
         default:
             Debug.Log("뭔가 잘못되었다!!");
