@@ -7,6 +7,7 @@ public class ObjectInteraction : MonoBehaviour
     public float[] Cost;
     public float[] MinDirtyGauge;
     public Sprite[] ObjectImage;
+    public GameObject NotEnoughCost_Panel;
 
     public int DirtyGauge;
     public int RemainCost;
@@ -14,9 +15,15 @@ public class ObjectInteraction : MonoBehaviour
     private int s;
     private string VariableName;
 
+    void Awake()
+    {
+        NotEnoughCost_Panel = GameObject.Find("NotEnoughCost_Panel");
+    }
+
     void Start()
     {
         VariableName = GetComponent<DirtyTimer>().VariableName;
+        NotEnoughCost_Panel.SetActive(false);
     }
 
     void Update()
@@ -42,7 +49,7 @@ public class ObjectInteraction : MonoBehaviour
             }
             else
             {
-                Debug.Log("I'm tired");
+                NotEnoughCost_Panel.SetActive(true);
             }
         }
     }
