@@ -102,4 +102,9 @@ public class TimeCounter : MonoBehaviour
             ++Month;
         }
     }
+
+    public void GetGameTime()
+    {
+
+    }
 }
