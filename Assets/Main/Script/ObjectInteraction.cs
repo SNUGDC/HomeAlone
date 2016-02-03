@@ -8,6 +8,7 @@ public class ObjectInteraction : MonoBehaviour
     public float[] MinDirtyGauge;
     public Sprite[] ObjectImage;
     public GameObject NotEnoughCost_Panel;
+    private GameObject Player;
 
     public int DirtyGauge;
     public int RemainCost;
@@ -18,13 +19,13 @@ public class ObjectInteraction : MonoBehaviour
     void Awake()
     {
         NotEnoughCost_Panel = GameObject.Find("NotEnoughCost_Panel");
+        Player = GameObject.Find("Player");
     }
 
     void Start()
     {
         VariableName = GetComponent<DirtyTimer>().VariableName;
         NotEnoughCost_Panel.SetActive(false);
-        Debug.Log(RemainCost);
         PlayerPrefs.SetInt("RemainCost", RemainCost);
     }
 
@@ -34,12 +35,16 @@ public class ObjectInteraction : MonoBehaviour
         RemainCost = PlayerPrefs.GetInt("RemainCost");
         s = CheckGauge();
         ChangeSprite();
-        Debug.Log(RemainCost);
     }
 
     void OnMouseDown()
     {
-        if (s == 0)
+        if (Player.transform.position == new Vector3(-4,2,0))
+        {
+            Debug.Log("You can't do that Now.");
+        }
+
+        else if (s == 0)
         {
             Debug.Log("It looks clean");
             return;
