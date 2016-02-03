@@ -3,7 +3,6 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class CashBook : MoneySystem {
-	// 어레이로...
 	public Text[] ContentsArray;
 	public Text[] IncomeArray;
 	public Text[] OutcomeArray;
