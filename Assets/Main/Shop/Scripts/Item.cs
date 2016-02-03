@@ -7,6 +7,7 @@ public class Item : MoneySystem {
 	public int ItemPrice;
 	public string ItemName;
 	public GameObject SetActiveObject;
+	public GameObject BoughtImage;
 
 
 	public Item(int ItemPrice, string ItemName){
@@ -16,12 +17,20 @@ public class Item : MoneySystem {
 
 	public void Buy(){
 		if (money >= ItemPrice) {
-			money = money - ItemPrice;
-			MoneyOut = true;
-			ContentsName = ItemName;
-			outcome = -ItemPrice;
-			remainder = money;
-			SetActiveObject.GetComponent<Image>().enabled = true;
+			if (SetActiveObject.activeSelf == false) {
+				money = money - ItemPrice;
+				MoneyOut = true;
+				ContentsName = ItemName;
+				outcome = -ItemPrice;
+				remainder = money;
+				//SetActiveObject.GetComponent<Image> ().enabled = true;
+				SetActiveObject.SetActive(true);
+				BoughtImage.SetActive (true);
+				Debug.Log ("Buy!");
+			}
+			else {
+				Debug.Log ("You already have one!");
+			}
 		}
 
 		else {
@@ -32,7 +41,9 @@ public class Item : MoneySystem {
 
 	// Use this for initialization
 	void Start () {
-
+		if (SetActiveObject.activeSelf == true) {
+			BoughtImage.SetActive (true);
+		}
 	}
 
 	// Update is called once per frame

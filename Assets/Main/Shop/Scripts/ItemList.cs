@@ -18,19 +18,22 @@ public class ItemList : MonoBehaviour {
 
 	void save(){
 		for (int i = 0; i < ItemArray.Length; i++) {
-			PlayerPrefs.SetString(SavedItemArray[i],ItemArray[i].GetComponent<Image>().enabled.ToString());
+			//PlayerPrefs.SetString(SavedItemArray[i],ItemArray[i].GetComponent<Image>().enabled.ToString());
+			PlayerPrefs.SetString(SavedItemArray[i],ItemArray[i].activeSelf.ToString());
 		}
 	}
 
 	void load(){
 		for (int i = 0; i < ItemArray.Length; i++) {
-			ItemArray[i].GetComponent<Image> ().enabled = (PlayerPrefs.GetString (SavedItemArray[i]) == "True");
+			//ItemArray[i].GetComponent<Image> ().enabled = (PlayerPrefs.GetString (SavedItemArray[i]) == "True");
+			ItemArray[i].SetActive((PlayerPrefs.GetString (SavedItemArray[i]) == "True"));
 		}
 	}
 
 	public void reset(){
 		for (int i = 0; i < ItemArray.Length; i++) {
-			ItemArray[i].GetComponent<Image> ().enabled = false;
+			//ItemArray[i].GetComponent<Image> ().enabled = false;
+			ItemArray[i].SetActive(false);
 		}
 	}
 }

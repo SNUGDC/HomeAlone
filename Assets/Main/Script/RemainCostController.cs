@@ -15,6 +15,7 @@ public class RemainCostController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             RemainCost = RemainCost + 1;
+			MoneySystem.money += 100000;
             Save();
         }    
     }
