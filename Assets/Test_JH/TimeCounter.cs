@@ -6,7 +6,7 @@ using System;
 public class TimeCounter : MonoBehaviour
 {
     public Text TimerText;
-    private float GameSec = 0;
+    public float GameSec = 0;
     private string CurrentTime;
     Func<string> value;
     public int Month = 3, Day = 2, Hour = 0, Min = 0;
@@ -37,7 +37,6 @@ public class TimeCounter : MonoBehaviour
         SetMonthandDay();
         SetHourandMin();
         CurrentTime = "Month : " + Month + "  Day : " + Day + "  Time :" + Hour + ":" + Min;
-        Debug.Log(CurrentTime + ":" + GameSec);
     }
 
     public void SetMonthandDay()
