@@ -24,6 +24,8 @@ public class ObjectInteraction : MonoBehaviour
     {
         VariableName = GetComponent<DirtyTimer>().VariableName;
         NotEnoughCost_Panel.SetActive(false);
+        Debug.Log(RemainCost);
+        PlayerPrefs.SetInt("RemainCost", RemainCost);
     }
 
     void Update()
@@ -32,6 +34,7 @@ public class ObjectInteraction : MonoBehaviour
         RemainCost = PlayerPrefs.GetInt("RemainCost");
         s = CheckGauge();
         ChangeSprite();
+        Debug.Log(RemainCost);
     }
 
     void OnMouseDown()
@@ -39,19 +42,20 @@ public class ObjectInteraction : MonoBehaviour
         if (s == 0)
         {
             Debug.Log("It looks clean");
+            return;
+        }
+        else if (CheckRemainCost())
+        {
+            DecreaseGauge();
+            UseCost();
+            return;
         }
         else
         {
-            if (CheckRemainCost())
-            {
-                DecreaseGauge();
-                UseCost();
-            }
-            else
-            {
-                NotEnoughCost_Panel.SetActive(true);
-            }
+        NotEnoughCost_Panel.SetActive(true);
+            return;
         }
+        
     }
 
     int CheckGauge()
@@ -80,7 +84,7 @@ public class ObjectInteraction : MonoBehaviour
     {
         if (RemainCost >= Cost[s])
             return true;
-        else return false;
+        return false;
     }
 
     void UseCost()
