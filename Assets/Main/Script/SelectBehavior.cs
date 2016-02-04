@@ -8,7 +8,7 @@ public class SelectBehavior : MonoBehaviour
     private GameObject Desk;
     private float StartTime;
     private float ElapseTime;
-    public int LeisureTime;
+    public static int LeisureTime;
 
     void Awake()
     {
@@ -18,6 +18,7 @@ public class SelectBehavior : MonoBehaviour
 
 	void Start ()
     {
+		LeisureTime = PlayerPrefs.GetInt("LeisureTime");
         Select_Panel.SetActive(false);
     }
 
@@ -34,6 +35,7 @@ public class SelectBehavior : MonoBehaviour
                 Debug.Log(LeisureTime);
             }
         }
+		save ();
 	}
 
     public void StudyInfrontDesk()
@@ -51,4 +53,9 @@ public class SelectBehavior : MonoBehaviour
     {
         Select_Panel.SetActive(true);
     }
+
+	void save(){
+		PlayerPrefs.SetInt ("LeisureTime", LeisureTime);
+	}
+
 }
