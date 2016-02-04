@@ -26,7 +26,7 @@ public class ObjectInteraction : MonoBehaviour
     {
         VariableName = GetComponent<DirtyTimer>().VariableName;
         NotEnoughCost_Panel.SetActive(false);
-        PlayerPrefs.SetInt("RemainCost", RemainCost);
+        RemainCost = PlayerPrefs.GetInt("RemainCost");
     }
 
     void Update()
