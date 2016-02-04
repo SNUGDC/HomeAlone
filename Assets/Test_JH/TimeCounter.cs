@@ -17,6 +17,10 @@ public class TimeCounter : MonoBehaviour
     {   
         //check the code is running well
         GameSec = Time.time;
+        Month = PlayerPrefs.GetInt("Month");
+        Day = PlayerPrefs.GetInt("Day");
+        Hour = PlayerPrefs.GetInt("Hour");
+        Min = PlayerPrefs.GetInt("Min");
     }
 
     void Update ()
@@ -25,6 +29,7 @@ public class TimeCounter : MonoBehaviour
         SetCurrentTime();
         ShowCurrentTime(() => CurrentTime);
         TimerText.text = value();
+        Save();
     }
     
     public void ShowCurrentTime(Func<String> value)
@@ -105,5 +110,13 @@ public class TimeCounter : MonoBehaviour
     public void GetGameTime()
     {
 
+    }
+
+    void Save()
+    {
+        PlayerPrefs.SetInt("Month", Month);
+        PlayerPrefs.SetInt("Day", Day);
+        PlayerPrefs.SetInt("Hour", Hour);
+        PlayerPrefs.SetInt("Min", Min);
     }
 }
