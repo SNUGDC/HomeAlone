@@ -13,6 +13,7 @@ public class CreateDust : MonoBehaviour
 
     void Start()
     {
+        SysTime = System.DateTime.Now;
         Delta = new TimeSpan(0, 0, DeltaTime);
         UpdatedTime = SysTime;
     }
