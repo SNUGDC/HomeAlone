@@ -37,7 +37,7 @@ public class CreateDust : MonoBehaviour
         k = UnityEngine.Random.Range(1, 5);
         SysTime = System.DateTime.Now;
 
-        if (TimeOver())
+        if (TimeOver() && DustAmount < 20)
         {
             UpdatedTime = SysTime;
 

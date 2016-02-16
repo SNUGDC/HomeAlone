@@ -14,7 +14,12 @@ public class TimeCounter : MonoBehaviour
     public float TimeFasterValue;
 
     void Start ()
-    {   
+    {
+        Month = 3;
+        Day = 2;
+        Hour = 0;
+        Min = 0;
+        Save();
         //check the code is running well
         GameSec = Time.time;
         Month = PlayerPrefs.GetInt("Month");
@@ -105,11 +110,6 @@ public class TimeCounter : MonoBehaviour
             Day = 1;
             ++Month;
         }
-    }
-
-    public void GetGameTime()
-    {
-
     }
 
     void Save()
