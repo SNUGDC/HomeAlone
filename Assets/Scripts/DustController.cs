@@ -4,6 +4,7 @@ using System.Collections;
 public class DustController : MonoBehaviour
 {
     public GameObject ObjectEXP;
+    public AudioClip ClickDust;
 
     Renderer DustRend;
     Renderer EXPRend;
@@ -24,6 +25,7 @@ public class DustController : MonoBehaviour
         DustAmount = DustAmount - 1;
         MoneySystem.money += 100;
         PlayerPrefs.SetInt("DustAmount", DustAmount);
+        GetComponent<AudioSource>().PlayOneShot(ClickDust);
         Destroy(gameObject, 1);
     }
 

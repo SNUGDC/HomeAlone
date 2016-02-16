@@ -4,6 +4,7 @@ using System.Collections;
 public class BigDustController : MonoBehaviour
 {
     public GameObject EXP;
+    public AudioClip ClickBigDust;
 
     Renderer DustRend;
     Renderer EXPRend;
@@ -40,6 +41,7 @@ public class BigDustController : MonoBehaviour
         BigDustAmount = BigDustAmount - 1;
         MoneySystem.money += 1;
         PlayerPrefs.SetInt("BigDustAmount", BigDustAmount);
+        GetComponent<AudioSource>().PlayOneShot(ClickBigDust);
         Destroy(gameObject, 1);
     }
 
