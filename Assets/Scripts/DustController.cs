@@ -7,6 +7,7 @@ public class DustController : MonoBehaviour
 
     Renderer DustRend;
     Renderer EXPRend;
+    int DustAmount;
 
     void Start()
     {
@@ -20,6 +21,9 @@ public class DustController : MonoBehaviour
         DustRend.enabled = false;
         EXPRend.enabled = true;
         EXPEffect();
+        DustAmount = PlayerPrefs.GetInt("DustAmount");
+        DustAmount = DustAmount - 1;
+        PlayerPrefs.SetInt("DustAmount", DustAmount);
         Destroy(gameObject, 1);
     }
 
