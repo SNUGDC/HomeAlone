@@ -58,4 +58,20 @@ public class Friend : MonoBehaviour {
 		if (IntVisitCount >= 100)
 			red.enabled=true;
 	}
+
+	public void EpisodeEnabled1(GameObject ep){
+		if (IntVisitCount >= 3)
+			ep.SetActive (true);
+	}
+
+	public void EpisodeEnabled2(GameObject ep){
+		if (IntVisitCount >= 10)
+			ep.SetActive (true);
+	}
+
+	public void EpisodeEnabled3(GameObject ep){
+		if (IntVisitCount >= 100)
+			ep.SetActive (true);
+	}
+
 }

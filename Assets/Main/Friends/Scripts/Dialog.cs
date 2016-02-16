@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class Dialog : MonoBehaviour {
-	private static string[] conversation;
+	private static string[] conversation = null;
 	public Text myText;
 	public GameObject ThisEventMessage;
 	int LineNumber;
@@ -22,12 +22,13 @@ public class Dialog : MonoBehaviour {
 
 	public void OnMouseDown(){
 		LineNumber++;
-		if (LineNumber < conversation.Length) {
-			myText.text = conversation[LineNumber];
-		}
-		else {
-			ThisEventMessage.SetActive (false);
-			LineNumber = 0;
+		if (conversation != null) {
+			if (LineNumber < conversation.Length) {
+				myText.text = conversation [LineNumber];
+			} else {
+				ThisEventMessage.SetActive (false);
+				LineNumber = 0;
+			}
 		}
 	}
 }
