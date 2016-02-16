@@ -6,7 +6,7 @@ public class TalkBalloon : MonoBehaviour {
 	public string[] Text;
 	public int[] TextProbability;	// same size to Text & SUM is 100
 	public Text PanelText;
-	private int RandomNumber;
+	private int RandomNumber, saveNumber;
 
 	// Use this for initialization
 	void Start () {
@@ -19,8 +19,14 @@ public class TalkBalloon : MonoBehaviour {
 	}
 
 	public void SendTextToPanel(){
-		if (RandomNumber < (TextProbability [0]))
-			;
+		saveNumber = RandomNumber;
+		if (saveNumber <= TextProbability [0])
+			PanelText.text = Text[0];
+
+		else for (int i = 1; i < TextProbability.Length; i++) {
+				if ( (TextProbability [i-1] < saveNumber) && (saveNumber <= TextProbability [i]))
+				PanelText.text = Text[i];
+		}
 
 	}
 }

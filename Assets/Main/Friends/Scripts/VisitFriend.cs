@@ -5,6 +5,7 @@ using System;
 
 public class VisitFriend : MonoBehaviour {
 	public GameObject FriendImage;
+	public GameObject TalkBalloonImage;
 	public string FriendNameVisit;
 	public Text VisitCounter;
 	public int VisitProbability;
@@ -19,7 +20,7 @@ public class VisitFriend : MonoBehaviour {
 
 	void Start () {
 		Delta = new TimeSpan(0, 0, 5);		// friends visit,back per 5 second 
-		Delta2 = new TimeSpan (0, 0, 5);	// save during 1 minute.
+		Delta2 = new TimeSpan (0, 1, 0);	// save during 1 minute.
 		SysTime = System.DateTime.Now;
 		UpdatedTime = SysTime;
 
@@ -71,6 +72,7 @@ public class VisitFriend : MonoBehaviour {
 		if (FriendList.VisitorNum < FriendList.MaxVisitorNum) {
 			if (UnityEngine.Random.Range (1, 100) <= VisitProbability) {
 				FriendImage.SetActive (true);
+				TalkBalloonImage.SetActive (true);
 				FriendList.VisitorNum++;
 				VisitNumber++;
 				VisitCounter.text = VisitNumber.ToString();
