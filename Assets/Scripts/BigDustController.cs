@@ -1,13 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class DustController : MonoBehaviour
+public class BigDustController : MonoBehaviour
 {
     public GameObject EXP;
 
     Renderer DustRend;
     Renderer EXPRend;
-    int DustAmount;
+
+    int BigDustAmount;
+    public int MouseDownTime = 0;
 
     void Start()
     {
@@ -15,14 +17,27 @@ public class DustController : MonoBehaviour
         EXPRend = EXP.GetComponent<Renderer>();
     }
 
+    void Update()
+    {
+        if(MouseDownTime > 49)
+        {
+            DestroyFunction();
+        }
+    }
+
     void OnMouseDown()
+    {
+        MouseDownTime = MouseDownTime + 1;
+    }
+
+    void DestroyFunction()
     {
         DustRend.enabled = false;
         EXPRend.enabled = true;
         EXPEffect();
-        DustAmount = PlayerPrefs.GetInt("DustAmount");
-        DustAmount = DustAmount - 1;
-        PlayerPrefs.SetInt("DustAmount", DustAmount);
+        BigDustAmount = PlayerPrefs.GetInt("BigDustAmount");
+        BigDustAmount = BigDustAmount - 1;
+        PlayerPrefs.SetInt("BigDustAmount", BigDustAmount);
         Destroy(gameObject, 1);
     }
 
