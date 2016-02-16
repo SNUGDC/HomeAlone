@@ -6,6 +6,10 @@ public class QuitApplication : MonoBehaviour
 {
     public GameObject UI_Quit;
 
+	void start(){
+		// screen direction fix
+		Screen.orientation = ScreenOrientation.Landscape;
+	}
     void Update()
     {
         if (Input.GetKey("escape"))
