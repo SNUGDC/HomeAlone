@@ -31,6 +31,7 @@ public class Friend : MonoBehaviour {
 		switch(IntVisitCount){
 		case 0:
 			QuestionBox.SetActive (true);
+			myButton.enabled = false;
 			break;
 		default:
 			QuestionBox.SetActive (false);
@@ -66,7 +67,11 @@ public class Friend : MonoBehaviour {
 		if (IntVisitCount >= 100)
 			red.enabled=true;
 	}
-
+	/*
+	public void SendVisitingToEp(Episode ep){
+		ep.SetVisiting (IntVisitCount);
+	}
+*/
 	/*
 	public void Episode(string[] dialog){
 		Dialog (dialog, Dialog_Text);

@@ -1,0 +1,38 @@
+﻿using UnityEngine;
+using UnityEngine.UI;
+using System.Collections;
+
+public class Episode : MonoBehaviour {
+	public Friend friend;
+	public Text TitleText;
+	public string[] conversation;
+	public int NeedVisiting;
+	public Text dialogText;
+//	private static int visiting;
+
+	private Image myImage;
+	private Button myButton;
+
+	void Start () {
+		myImage = GetComponent<Image>();
+		myButton = GetComponent<Button>();
+	}
+	
+
+	void Update () {
+		if (friend.IntVisitCount >= NeedVisiting){
+			myImage.enabled = true;
+			myButton.enabled = true;
+			TitleText.enabled = true;
+		}
+	}
+
+	public void SendText(){
+		Dialog.AssignText (conversation);
+		dialogText.text = conversation [0];
+	}
+
+//	public void SetVisiting(int n){
+//		visiting = n;
+//	}
+}
