@@ -18,11 +18,17 @@ public class ClockManager : MonoBehaviour
     public GameObject Hour2;
     public GameObject Min1;
     public GameObject Min2;
+    public GameObject Day1;
+    public GameObject Day2;
+    public GameObject Month1;
+    public GameObject Month2;
 
     void Update()
     {
         ShowMinNumber();
         ShowHourNumber();
+        ShowDayNumber();
+        ShowMonthNumber();
     }
 
     void ShowMinNumber()
@@ -137,6 +143,112 @@ public class ClockManager : MonoBehaviour
                 break;
             case 9:
                 Hour2.GetComponent<SpriteRenderer>().sprite = Number9;
+                break;
+        }
+    }
+    void ShowDayNumber()
+    {
+        int k = PlayerPrefs.GetInt("Day");
+        int day2 = k % 10;
+        int day1 = k / 10;
+
+        switch (day1)
+        {
+            case 0:
+                Day1.GetComponent<SpriteRenderer>().sprite = Number0;
+                break;
+            case 1:
+                Day1.GetComponent<SpriteRenderer>().sprite = Number1;
+                break;
+            case 2:
+                Day1.GetComponent<SpriteRenderer>().sprite = Number2;
+                break;
+            case 3:
+                Day1.GetComponent<SpriteRenderer>().sprite = Number3;
+                break;
+        }
+
+        switch (day2)
+        {
+            case 0:
+                Day2.GetComponent<SpriteRenderer>().sprite = Number0;
+                break;
+            case 1:
+                Day2.GetComponent<SpriteRenderer>().sprite = Number1;
+                break;
+            case 2:
+                Day2.GetComponent<SpriteRenderer>().sprite = Number2;
+                break;
+            case 3:
+                Day2.GetComponent<SpriteRenderer>().sprite = Number3;
+                break;
+            case 4:
+                Day2.GetComponent<SpriteRenderer>().sprite = Number4;
+                break;
+            case 5:
+                Day2.GetComponent<SpriteRenderer>().sprite = Number5;
+                break;
+            case 6:
+                Day2.GetComponent<SpriteRenderer>().sprite = Number6;
+                break;
+            case 7:
+                Day2.GetComponent<SpriteRenderer>().sprite = Number7;
+                break;
+            case 8:
+                Day2.GetComponent<SpriteRenderer>().sprite = Number8;
+                break;
+            case 9:
+                Day2.GetComponent<SpriteRenderer>().sprite = Number9;
+                break;
+        }
+    }
+    void ShowMonthNumber()
+    {
+        int k = PlayerPrefs.GetInt("Month");
+        int month2 = k % 10;
+        int month1 = k / 10;
+
+        switch (month1)
+        {
+            case 0:
+                Month1.GetComponent<SpriteRenderer>().sprite = Number0;
+                break;
+            case 1:
+                Month1.GetComponent<SpriteRenderer>().sprite = Number1;
+                break;
+        }
+
+        switch (month2)
+        {
+            case 0:
+                Month2.GetComponent<SpriteRenderer>().sprite = Number0;
+                break;
+            case 1:
+                Month2.GetComponent<SpriteRenderer>().sprite = Number1;
+                break;
+            case 2:
+                Month2.GetComponent<SpriteRenderer>().sprite = Number2;
+                break;
+            case 3:
+                Month2.GetComponent<SpriteRenderer>().sprite = Number3;
+                break;
+            case 4:
+                Month2.GetComponent<SpriteRenderer>().sprite = Number4;
+                break;
+            case 5:
+                Month2.GetComponent<SpriteRenderer>().sprite = Number5;
+                break;
+            case 6:
+                Month2.GetComponent<SpriteRenderer>().sprite = Number6;
+                break;
+            case 7:
+                Month2.GetComponent<SpriteRenderer>().sprite = Number7;
+                break;
+            case 8:
+                Month2.GetComponent<SpriteRenderer>().sprite = Number8;
+                break;
+            case 9:
+                Month2.GetComponent<SpriteRenderer>().sprite = Number9;
                 break;
         }
     }
