@@ -15,21 +15,14 @@ public class TimeCounter : MonoBehaviour
 
     void Start ()
     {
-        Month = 3;
-        Day = 2;
-        Hour = 0;
-        Min = 0;
-        Save();
         //check the code is running well
         GameSec = Time.time;
-        Month = PlayerPrefs.GetInt("Month");
-        Day = PlayerPrefs.GetInt("Day");
-        Hour = PlayerPrefs.GetInt("Hour");
-        Min = PlayerPrefs.GetInt("Min");
+        Load();
     }
 
     void Update ()
     {
+        Load();
         GameSec += Time.deltaTime * TimeFasterValue;
         SetCurrentTime();
         ShowCurrentTime(() => CurrentTime);
@@ -118,5 +111,13 @@ public class TimeCounter : MonoBehaviour
         PlayerPrefs.SetInt("Day", Day);
         PlayerPrefs.SetInt("Hour", Hour);
         PlayerPrefs.SetInt("Min", Min);
+    }
+
+    void Load()
+    {
+        Month = PlayerPrefs.GetInt("Month");
+        Day = PlayerPrefs.GetInt("Day");
+        Hour = PlayerPrefs.GetInt("Hour");
+        Min = PlayerPrefs.GetInt("Min");
     }
 }
