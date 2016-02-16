@@ -8,7 +8,6 @@ public class DustController : MonoBehaviour
     Renderer DustRend;
     Renderer EXPRend;
     int DustAmount;
-    int EXP;
 
     void Start()
     {
@@ -22,11 +21,9 @@ public class DustController : MonoBehaviour
         EXPRend.enabled = true;
         EXPEffect();
         DustAmount = PlayerPrefs.GetInt("DustAmount");
-        EXP = PlayerPrefs.GetInt("Money");
         DustAmount = DustAmount - 1;
-        EXP = EXP + 100;
+        MoneySystem.money += 100;
         PlayerPrefs.SetInt("DustAmount", DustAmount);
-        PlayerPrefs.SetInt("Money", EXP);
         Destroy(gameObject, 1);
     }
 

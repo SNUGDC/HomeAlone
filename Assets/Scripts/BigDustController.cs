@@ -22,6 +22,7 @@ public class BigDustController : MonoBehaviour
         if(MouseDownTime > 49)
         {
             DestroyFunction();
+            MouseDownTime = 1;
         }
     }
 
@@ -37,6 +38,7 @@ public class BigDustController : MonoBehaviour
         EXPEffect();
         BigDustAmount = PlayerPrefs.GetInt("BigDustAmount");
         BigDustAmount = BigDustAmount - 1;
+        MoneySystem.money += 1;
         PlayerPrefs.SetInt("BigDustAmount", BigDustAmount);
         Destroy(gameObject, 1);
     }
