@@ -15,6 +15,7 @@ public class TimeCounter : MonoBehaviour
 
     void Start ()
     {
+        Save();
         //check the code is running well
         GameSec = Time.time;
         Load();
