@@ -4,12 +4,17 @@ using System;
 
 public class CreateDust : MonoBehaviour
 {
-    public GameObject Dust;
+    public GameObject Dust1;
+    public GameObject Dust2;
+    public GameObject Dust3;
+    public GameObject Dust4;
+    public GameObject Dust5;
     public int DeltaTime;
 
     DateTime SysTime;
     DateTime UpdatedTime;
     TimeSpan Delta;
+    int k;
 
     void Start()
     {
@@ -20,11 +25,33 @@ public class CreateDust : MonoBehaviour
 
     void Update()
     {
+        k = UnityEngine.Random.Range(1, 5);
         SysTime = System.DateTime.Now;
         if (TimeOver())
         {
-            Instantiate(Dust);
             UpdatedTime = SysTime;
+
+            switch(k)
+            {
+                case 1:
+                    Instantiate(Dust1);
+                    break;
+                case 2:
+                    Instantiate(Dust2);
+                    break;
+                case 3:
+                    Instantiate(Dust3);
+                    break;
+                case 4:
+                    Instantiate(Dust4);
+                    break;
+                case 5:
+                    Instantiate(Dust5);
+                    break;
+                default:
+                    Instantiate(Dust1);
+                    break;
+            }
         }
     }
 
