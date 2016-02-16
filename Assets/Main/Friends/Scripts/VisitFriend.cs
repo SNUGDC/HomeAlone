@@ -10,19 +10,21 @@ public class VisitFriend : MonoBehaviour {
 	public int VisitProbability;
 	public int BackProbability;
 	int VisitNumber;
-	string LoadTime;
+//	string LoadTime;
 
-	DateTime SysTime, LoadDateTime;
+	DateTime SysTime;
+//	DateTime LoadDateTime;
 	DateTime UpdatedTime;
 	TimeSpan Delta, Delta2;
 
 	void Start () {
 		Delta = new TimeSpan(0, 0, 5);		// friends visit,back per 5 second 
-		Delta2 = new TimeSpan (0, 1, 0);	// save during 1 minute.
+		Delta2 = new TimeSpan (0, 0, 5);	// save during 1 minute.
 		SysTime = System.DateTime.Now;
 		UpdatedTime = SysTime;
 
 		//load
+		/*
 		if (PlayerPrefs.HasKey ("FriendTimer")) {
 			LoadTime = PlayerPrefs.GetString ("FriendTimer");
 			LoadDateTime = System.DateTime.Parse (LoadTime);
@@ -33,6 +35,15 @@ public class VisitFriend : MonoBehaviour {
 				else
 					back ();
 			}
+		}
+		*/
+
+		if (TimeCheck.TimeOver (Delta2)) {
+			Debug.Log ("TimeOver!!");
+			if (FriendImage.activeSelf == false)
+				visit ();
+			else
+				back ();
 		}
 
 		if (PlayerPrefs.HasKey (FriendNameVisit)) {
@@ -51,7 +62,7 @@ public class VisitFriend : MonoBehaviour {
 		}
 
 		//save
-		PlayerPrefs.SetString("FriendTimer", SysTime.ToString());
+/////**		PlayerPrefs.SetString("FriendTimer", SysTime.ToString());
 		PlayerPrefs.SetString (FriendNameVisit, VisitCounter.text);
 	}
 
