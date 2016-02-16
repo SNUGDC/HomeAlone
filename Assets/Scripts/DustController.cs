@@ -3,16 +3,17 @@ using System.Collections;
 
 public class DustController : MonoBehaviour
 {
-    public GameObject EXP;
+    public GameObject ObjectEXP;
 
     Renderer DustRend;
     Renderer EXPRend;
     int DustAmount;
+    int EXP;
 
     void Start()
     {
         DustRend = GetComponent<Renderer>();
-        EXPRend = EXP.GetComponent<Renderer>();
+        EXPRend = ObjectEXP.GetComponent<Renderer>();
     }
 
     void OnMouseDown()
@@ -21,13 +22,16 @@ public class DustController : MonoBehaviour
         EXPRend.enabled = true;
         EXPEffect();
         DustAmount = PlayerPrefs.GetInt("DustAmount");
+        EXP = PlayerPrefs.GetInt("EXP");
         DustAmount = DustAmount - 1;
+        EXP = EXP + 100;
         PlayerPrefs.SetInt("DustAmount", DustAmount);
+        PlayerPrefs.SetInt("EXP", EXP);
         Destroy(gameObject, 1);
     }
 
     void EXPEffect()
     {
-        EXP.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 1);
+        ObjectEXP.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 1);
     }
 }
