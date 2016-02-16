@@ -22,11 +22,11 @@ public class DustController : MonoBehaviour
         EXPRend.enabled = true;
         EXPEffect();
         DustAmount = PlayerPrefs.GetInt("DustAmount");
-        EXP = PlayerPrefs.GetInt("EXP");
+        EXP = PlayerPrefs.GetInt("Money");
         DustAmount = DustAmount - 1;
         EXP = EXP + 100;
         PlayerPrefs.SetInt("DustAmount", DustAmount);
-        PlayerPrefs.SetInt("EXP", EXP);
+        PlayerPrefs.SetInt("Money", EXP);
         Destroy(gameObject, 1);
     }
 
