@@ -8,6 +8,6 @@ public class FromStart : MonoBehaviour
     {
         PlayerPrefs.DeleteAll();
 
-        SceneManager.LoadScene("Main_EQ1");
+        SceneManager.LoadScene("Main");
     }
 }
