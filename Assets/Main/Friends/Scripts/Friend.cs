@@ -7,10 +7,10 @@ public class Friend : MonoBehaviour {
 	public GameObject QuestionBox;
 	public GameObject[] heart;
 	public int IntVisitCount;
-
+	private Button myButton;
 	// Use this for initialization
 	void Start () {
-
+		myButton = GetComponent<Button>();
 	}
 
 	// Update is called once per frame
@@ -26,6 +26,7 @@ public class Friend : MonoBehaviour {
 			break;
 		default:
 			QuestionBox.SetActive (false);
+			myButton.enabled = true;
 			if (IntVisitCount >= 3)
 				heart [0].SetActive (true);
 			if (IntVisitCount >= 10)
@@ -34,5 +35,27 @@ public class Friend : MonoBehaviour {
 				heart [2].SetActive (true);
 			break;
 		}
+	}
+
+	public void SendVisitNumber(Text Counter){
+		Counter.text = IntVisitCount.ToString ();
+	}
+
+	public void HeartToRed1(Image red){
+		red.enabled=false;
+		if (IntVisitCount >= 3)
+			red.enabled=true;
+	}
+
+	public void HeartToRed2(Image red){
+		red.enabled=false;
+		if (IntVisitCount >= 10)
+			red.enabled=true;
+	}
+
+	public void HeartToRed3(Image red){
+		red.enabled=false;
+		if (IntVisitCount >= 100)
+			red.enabled=true;
 	}
 }
