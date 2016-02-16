@@ -40,6 +40,7 @@ public class VisitFriend : MonoBehaviour {
 
 		if (TimeCheck.TimeOver (Delta2)) {
 			Debug.Log ("TimeOver!!");
+			Debug.Log (TimeCheck.OFFtime());
 			if (FriendImage.activeSelf == false)
 				visit ();
 			else
