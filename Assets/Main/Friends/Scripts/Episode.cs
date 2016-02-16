@@ -8,7 +8,6 @@ public class Episode : MonoBehaviour {
 	public string[] conversation;
 	public int NeedVisiting;
 	public Text dialogText;
-//	private static int visiting;
 
 	private Image myImage;
 	private Button myButton;
@@ -31,8 +30,4 @@ public class Episode : MonoBehaviour {
 		Dialog.AssignText (conversation);
 		dialogText.text = conversation [0];
 	}
-
-//	public void SetVisiting(int n){
-//		visiting = n;
-//	}
 }

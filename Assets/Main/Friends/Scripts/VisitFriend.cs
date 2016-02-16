@@ -17,8 +17,8 @@ public class VisitFriend : MonoBehaviour {
 	TimeSpan Delta, Delta2;
 
 	void Start () {
-		Delta = new TimeSpan(0, 0, 5);
-		Delta2 = new TimeSpan (0, 1, 0);
+		Delta = new TimeSpan(0, 0, 5);		// friends visit,back per 5 second 
+		Delta2 = new TimeSpan (0, 1, 0);	// save during 1 minute.
 		SysTime = System.DateTime.Now;
 		UpdatedTime = SysTime;
 
