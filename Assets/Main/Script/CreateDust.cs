@@ -10,11 +10,14 @@ public class CreateDust : MonoBehaviour
     public GameObject Dust4;
     public GameObject Dust5;
     public int DeltaTime;
+    public int MaxDust;
 
     DateTime SysTime;
     DateTime UpdatedTime;
     TimeSpan Delta;
-    public int DustAmount;
+    TimeSpan TimeGap;
+
+    int DustAmount;
     int k;
 
     void Start()
@@ -24,10 +27,23 @@ public class CreateDust : MonoBehaviour
         UpdatedTime = SysTime;
 
         LoadDust();
-        for(int i = 0; i < DustAmount; i++)
+        Debug.Log(DustAmount);
+
+        TimeGap = TimeCheck.OFFtime();
+
+        for (TimeSpan Gap = TimeGap; Gap > new TimeSpan(0,0,0) && DustAmount <= MaxDust; Gap -= new TimeSpan(0,0,4))
+        {
+            DustAmount = DustAmount + 1;
+            Debug.Log("Loop");
+        }
+        Debug.Log(DustAmount);
+
+        for (int i = 0; i < DustAmount; i++)
         {
             Instantiate(Dust1);
         }
+
+        SaveDust();
     }
 
     void Update()
@@ -37,7 +53,7 @@ public class CreateDust : MonoBehaviour
         k = UnityEngine.Random.Range(1, 5);
         SysTime = System.DateTime.Now;
 
-        if (TimeOver() && DustAmount < 20)
+        if (TimeOver() && DustAmount < MaxDust)
         {
             UpdatedTime = SysTime;
 

@@ -38,7 +38,7 @@ public class BigDustController : MonoBehaviour
         EXPRend.enabled = true;
         EXPEffect();
         BigDustAmount = PlayerPrefs.GetInt("BigDustAmount");
-        BigDustAmount = BigDustAmount - 1;
+        BigDustAmount = 0;
         MoneySystem.money += 1;
         PlayerPrefs.SetInt("BigDustAmount", BigDustAmount);
         GetComponent<AudioSource>().PlayOneShot(ClickBigDust);

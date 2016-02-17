@@ -6,15 +6,24 @@ public class CreateBigDust : MonoBehaviour
 {
     public GameObject BigDust;
 
+    int BigDustAmount;
     TimeSpan TimeGap;
-    String TimeGapString;
 
     void Start()
     {
+        BigDustAmount = PlayerPrefs.GetInt("BigDustAmount");
         TimeGap = TimeCheck.OFFtime();
         Debug.Log(TimeGap);
 
-        if(TimeGap > new TimeSpan(0,3,0))
+        if (TimeGap < new TimeSpan(0, 3, 0) && BigDustAmount < 1)
+        {
+            BigDustAmount = 0;
+        }
+        else
+        {
             Instantiate(BigDust);
+            BigDustAmount = 1;
+        }
+        PlayerPrefs.SetInt("BigDustAmount", BigDustAmount);
     }
 }
