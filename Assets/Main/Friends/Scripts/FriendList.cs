@@ -10,8 +10,6 @@ public class FriendList : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		load ();
-		Debug.Log (MaxVisitorNum);
-		Debug.Log (VisitorNum);
 	}
 
 	// Update is called once per frame

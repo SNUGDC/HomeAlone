@@ -20,7 +20,6 @@ public class VisitFriend : MonoBehaviour {
 	TimeSpan Delta, Delta2;
 
 	void Start () {
-		Debug.Log("start");
 		Delta = new TimeSpan(0, 0, 5);		// friends visit,back per 5 second 
 		Delta2 = new TimeSpan (0, 0, 5);	// save during 1 minute.
 		SysTime = System.DateTime.Now;
@@ -32,13 +31,14 @@ public class VisitFriend : MonoBehaviour {
 		}
 
 		if (TimeCheck.TimeOver (Delta2)) {
-			if (FriendImage.GetComponent<Image>().enabled == false && ItemCheck()) {
+			if (FriendImage.GetComponent<Image> ().enabled == false && ItemCheck ()) {
 				visit ();
-			} else
+			} else if(FriendImage.GetComponent<Image> ().enabled) {
 				back ();
+			}
 		}
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 		SysTime = System.DateTime.Now;
@@ -97,6 +97,7 @@ public class VisitFriend : MonoBehaviour {
 
 	bool ItemCheck(){
 		for (int i = 0; i < VisitItem.Length; i++) {
+			VisitItem [i].GetComponent<Item> ().load ();
 			if (VisitItem [i].GetComponent<Item> ().BoughtNumber > 0) {
 				n = i;
 				return true;
