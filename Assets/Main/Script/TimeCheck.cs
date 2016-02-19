@@ -27,10 +27,15 @@ public class TimeCheck : MonoBehaviour {
 	}
 
 	public static bool TimeOver(TimeSpan Delta){
-		if (SysTime - LoadDateTime > Delta)
+		if (SysTime - LoadDateTime > Delta) {
+			Debug.Log (SysTime);
+			Debug.Log (LoadDateTime);
 			return true;
-		else
+		} else {
+			Debug.Log (SysTime);
+			Debug.Log (LoadDateTime);
 			return false;
+		}
 	}
 
 	public static TimeSpan OFFtime(){

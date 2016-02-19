@@ -10,6 +10,8 @@ public class FriendList : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		load ();
+		Debug.Log (MaxVisitorNum);
+		Debug.Log (VisitorNum);
 	}
 
 	// Update is called once per frame
@@ -20,6 +22,7 @@ public class FriendList : MonoBehaviour {
 	void save(){
 		for (int i = 0; i < FriendArray.Length; i++) {
 			PlayerPrefs.SetString(FriendName[i],FriendArray[i].activeSelf.ToString());
+			PlayerPrefs.SetString(FriendName[i] + "image",FriendArray[i].GetComponent<Image>().enabled.ToString());
 			PlayerPrefs.SetString(TalkBalloonName[i],TalkBalloonArray[i].activeSelf.ToString());
 		}
 		PlayerPrefs.SetInt("MaxVisitorNum", MaxVisitorNum);
@@ -29,6 +32,7 @@ public class FriendList : MonoBehaviour {
 	void load(){
 		for (int i = 0; i < FriendArray.Length; i++) {
 			FriendArray[i].SetActive((PlayerPrefs.GetString (FriendName[i]) == "True"));
+			FriendArray[i].GetComponent<Image>().enabled = ((PlayerPrefs.GetString (FriendName[i] + "image") == "True"));
 			TalkBalloonArray[i].SetActive((PlayerPrefs.GetString (TalkBalloonName[i]) == "True"));
 		}
 		if (PlayerPrefs.HasKey ("MaxVisitorNum"))

@@ -4,7 +4,7 @@ using System.Collections;
 using System;
 
 public class VisitFriend : MonoBehaviour {
-	public GameObject FriendImage;
+	public Image FriendImage;
 	public GameObject TalkBalloonImage;
 	public string FriendNameVisit;
 	public Text VisitCounter;
@@ -19,25 +19,12 @@ public class VisitFriend : MonoBehaviour {
 	TimeSpan Delta, Delta2;
 
 	void Start () {
+		Debug.Log("start");
 		Delta = new TimeSpan(0, 0, 5);		// friends visit,back per 5 second 
 		Delta2 = new TimeSpan (0, 0, 5);	// save during 1 minute.
 		SysTime = System.DateTime.Now;
 		UpdatedTime = SysTime;
 
-		//load
-		/*
-		if (PlayerPrefs.HasKey ("FriendTimer")) {
-			LoadTime = PlayerPrefs.GetString ("FriendTimer");
-			LoadDateTime = System.DateTime.Parse (LoadTime);
-
-			if (SysTime - LoadDateTime > Delta2) {
-				if (FriendImage.activeSelf == false)
-					visit ();
-				else
-					back ();
-			}
-		}
-		*/
 		if (PlayerPrefs.HasKey (FriendNameVisit)) {
 			VisitCounter.text = PlayerPrefs.GetString (FriendNameVisit);
 			VisitNumber = IntParseFast(VisitCounter.text);
@@ -45,7 +32,7 @@ public class VisitFriend : MonoBehaviour {
 
 		if (TimeCheck.TimeOver (Delta2)) {
 			Debug.Log ("TimeOver!!");
-			if (FriendImage.activeSelf == false) {
+			if (FriendImage.GetComponent<Image>().enabled == false) {
 				visit ();
 			} else
 			{
@@ -58,8 +45,8 @@ public class VisitFriend : MonoBehaviour {
 		SysTime = System.DateTime.Now;
 		if (TimeOver ()) {
 			UpdatedTime = SysTime;
-			if (FriendImage.activeSelf == false) visit ();
-			else if (FriendImage.activeSelf == true) back ();
+			if (FriendImage.GetComponent<Image>().enabled == false) visit ();
+			else if (FriendImage.GetComponent<Image>().enabled) back ();
 		}
 
 		//save
@@ -69,8 +56,10 @@ public class VisitFriend : MonoBehaviour {
 
 	void visit(){
 		if (FriendList.VisitorNum < FriendList.MaxVisitorNum) {
+			Debug.Log("visit excute");
 			if (UnityEngine.Random.Range (1, 100) <= VisitProbability) {
-				FriendImage.SetActive (true);
+				Debug.Log("visit true");
+				FriendImage.GetComponent<Image>().enabled = true;
 				TalkBalloonImage.SetActive (true);
 				FriendList.VisitorNum++;
 				VisitNumber++;
@@ -81,7 +70,8 @@ public class VisitFriend : MonoBehaviour {
 
 	void back(){
 		if (UnityEngine.Random.Range (1, 100) <= BackProbability) {
-			FriendImage.SetActive (false);
+			FriendImage.GetComponent<Image>().enabled = false;
+			TalkBalloonImage.SetActive (false);
 			FriendList.VisitorNum--;
 		}
 	}

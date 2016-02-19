@@ -33,6 +33,7 @@ public class TalkBalloon : MonoBehaviour {
 					PanelText.text = Text [i];
 					IsAlreadyShow [i] = true;
 					save ();
+					break;
 				}
 		}
 
