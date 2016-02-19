@@ -92,7 +92,8 @@ public class ClockManager : MonoBehaviour
                 Min2.GetComponent<SpriteRenderer>().sprite = Number9;
                 break;
         }
-    }
+
+	}
     void ShowHourNumber()
     {
         int k = PlayerPrefs.GetInt("Hour");
@@ -145,6 +146,7 @@ public class ClockManager : MonoBehaviour
                 Hour2.GetComponent<SpriteRenderer>().sprite = Number9;
                 break;
         }
+
     }
     void ShowDayNumber()
     {
@@ -251,5 +253,6 @@ public class ClockManager : MonoBehaviour
                 Month2.GetComponent<SpriteRenderer>().sprite = Number9;
                 break;
         }
+
     }
 }

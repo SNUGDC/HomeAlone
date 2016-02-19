@@ -11,9 +11,11 @@ public class BigDustController : MonoBehaviour
 
     int BigDustAmount;
     public int MouseDownTime = 0;
+	public static int BigDustCatch;
 
     void Start()
     {
+		BigDustCatch = PlayerPrefs.GetInt ("BigDustCatch");
         DustRend = GetComponent<Renderer>();
         EXPRend = EXP.GetComponent<Renderer>();
     }
@@ -39,8 +41,10 @@ public class BigDustController : MonoBehaviour
         EXPEffect();
         BigDustAmount = PlayerPrefs.GetInt("BigDustAmount");
         BigDustAmount = 0;
-        MoneySystem.money += 1;
+        MoneySystem.money += 1000;
+		BigDustCatch++;
         PlayerPrefs.SetInt("BigDustAmount", BigDustAmount);
+		PlayerPrefs.SetInt("BigDustCatch", BigDustCatch);
         GetComponent<AudioSource>().PlayOneShot(ClickBigDust);
         Destroy(gameObject, 1);
     }

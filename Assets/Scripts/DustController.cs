@@ -9,9 +9,11 @@ public class DustController : MonoBehaviour
     Renderer DustRend;
     Renderer EXPRend;
     int DustAmount;
+	public static int DefaultDustCatch;
 
     void Start()
     {
+		DefaultDustCatch = PlayerPrefs.GetInt ("DefaultDustCatch");
         DustRend = GetComponent<Renderer>();
         EXPRend = ObjectEXP.GetComponent<Renderer>();
     }
@@ -24,7 +26,9 @@ public class DustController : MonoBehaviour
         DustAmount = PlayerPrefs.GetInt("DustAmount");
         DustAmount = DustAmount - 1;
         MoneySystem.money += 100;
+		DefaultDustCatch++;
         PlayerPrefs.SetInt("DustAmount", DustAmount);
+		PlayerPrefs.SetInt("DefaultDustCatch", DefaultDustCatch);
         GetComponent<AudioSource>().PlayOneShot(ClickDust);
         Destroy(gameObject, 1);
     }
