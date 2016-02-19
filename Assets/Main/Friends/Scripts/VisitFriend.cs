@@ -20,7 +20,7 @@ public class VisitFriend : MonoBehaviour {
 
 	void Start () {
 		Delta = new TimeSpan(0, 0, 5);		// friends visit,back per 5 second 
-		Delta2 = new TimeSpan (0, 1, 0);	// save during 1 minute.
+		Delta2 = new TimeSpan (0, 0, 5);	// save during 1 minute.
 		SysTime = System.DateTime.Now;
 		UpdatedTime = SysTime;
 
@@ -38,19 +38,18 @@ public class VisitFriend : MonoBehaviour {
 			}
 		}
 		*/
-
-		if (TimeCheck.TimeOver (Delta2)) {
-			Debug.Log ("TimeOver!!");
-			Debug.Log (TimeCheck.OFFtime());
-			if (FriendImage.activeSelf == false)
-				visit ();
-			else
-				back ();
-		}
-
 		if (PlayerPrefs.HasKey (FriendNameVisit)) {
 			VisitCounter.text = PlayerPrefs.GetString (FriendNameVisit);
 			VisitNumber = IntParseFast(VisitCounter.text);
+		}
+
+		if (TimeCheck.TimeOver (Delta2)) {
+			Debug.Log ("TimeOver!!");
+			if (FriendImage.activeSelf == false) {
+				visit ();
+			} else
+			{
+				back ();}
 		}
 	}
 	

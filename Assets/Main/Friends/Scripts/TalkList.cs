@@ -34,7 +34,6 @@ public class TalkList : MonoBehaviour {
 			if (IsSaved [i]) {
 				ButtonTextList [i].text = TalkBalloon.GetComponent<TalkBalloon> ().TextSubject [i];
 				ButtonList [i].enabled = true;
-				Debug.Log ("Saved");
 			}
 		}
 	}

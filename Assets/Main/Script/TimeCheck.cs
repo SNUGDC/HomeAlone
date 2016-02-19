@@ -18,10 +18,6 @@ public class TimeCheck : MonoBehaviour {
 			LoadDateTime = System.DateTime.Parse (LoadTime);
 		} else
 			LoadDateTime = SysTime;
-
-		Debug.Log(SysTime);
-		Debug.Log(LoadDateTime);
-		Debug.Log(SysTime - LoadDateTime);
 	}
 	
 	// Update is called once per frame
