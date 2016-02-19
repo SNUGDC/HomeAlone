@@ -9,26 +9,23 @@ public class Item : MonoBehaviour {
 	public int BoughtNumber = 0;
 	public GameObject SetActiveObject;
 	public GameObject BoughtImage;
+	public Text HavingNumber;
 
 	public void Buy(){
 		if (MoneySystem.money >= ItemPrice) {
-			if (BoughtNumber == 0) {
 				MoneySystem.money = MoneySystem.money - ItemPrice;
 				MoneySystem.MoneyOut = true;
-				MoneySystem.ContentsName = ItemName;
-				MoneySystem.outcome = -ItemPrice;
+//				MoneySystem.ContentsName = ItemName;
+//				MoneySystem.outcome = -ItemPrice;
 				MoneySystem.remainder = MoneySystem.money;
 				//SetActiveObject.GetComponent<Image> ().enabled = true;
 				SetActiveObject.SetActive(true);
 				BoughtImage.SetActive (true);
 				BoughtNumber++;
+				HavingNumber.text = BoughtNumber + "개 보유";
 				save ();
 				Debug.Log ("Buy!");
 			}
-			else {
-				Debug.Log ("You already have one!");
-			}
-		}
 
 		else {
 			Debug.Log ("Be short of money");
@@ -39,6 +36,7 @@ public class Item : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		load ();
+		Debug.Log (ItemName + "Start");
 		if (BoughtNumber > 0)
 			BoughtImage.SetActive (true);
 	}
@@ -47,11 +45,13 @@ public class Item : MonoBehaviour {
 	void Update () {
 	}
 
-	void save(){
+	public void save(){
 		PlayerPrefs.SetInt(ItemName + "BoughtNumber",BoughtNumber);
+		PlayerPrefs.SetString (ItemName + "HavingNumber",HavingNumber.text);
 	}
 
-	void load(){
+	public void load(){
 		BoughtNumber = PlayerPrefs.GetInt (ItemName + "BoughtNumber");
+		HavingNumber.text = PlayerPrefs.GetString (ItemName + "HavingNumber");
 	}
 }

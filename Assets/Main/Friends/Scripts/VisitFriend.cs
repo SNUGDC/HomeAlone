@@ -8,9 +8,10 @@ public class VisitFriend : MonoBehaviour {
 	public GameObject TalkBalloonImage;
 	public string FriendNameVisit;
 	public Text VisitCounter;
+	public GameObject[] VisitItem;
 	public int VisitProbability;
 	public int BackProbability;
-	int VisitNumber;
+	int VisitNumber, n;
 //	string LoadTime;
 
 	DateTime SysTime;
@@ -31,12 +32,10 @@ public class VisitFriend : MonoBehaviour {
 		}
 
 		if (TimeCheck.TimeOver (Delta2)) {
-			Debug.Log ("TimeOver!!");
-			if (FriendImage.GetComponent<Image>().enabled == false) {
+			if (FriendImage.GetComponent<Image>().enabled == false && ItemCheck()) {
 				visit ();
 			} else
-			{
-				back ();}
+				back ();
 		}
 	}
 	
@@ -45,24 +44,24 @@ public class VisitFriend : MonoBehaviour {
 		SysTime = System.DateTime.Now;
 		if (TimeOver ()) {
 			UpdatedTime = SysTime;
-			if (FriendImage.GetComponent<Image>().enabled == false) visit ();
+			if ((FriendImage.GetComponent<Image>().enabled == false) && ItemCheck()) visit ();
 			else if (FriendImage.GetComponent<Image>().enabled) back ();
 		}
 
 		//save
-/////**		PlayerPrefs.SetString("FriendTimer", SysTime.ToString());
 		PlayerPrefs.SetString (FriendNameVisit, VisitCounter.text);
 	}
 
 	void visit(){
 		if (FriendList.VisitorNum < FriendList.MaxVisitorNum) {
-			Debug.Log("visit excute");
 			if (UnityEngine.Random.Range (1, 100) <= VisitProbability) {
-				Debug.Log("visit true");
 				FriendImage.GetComponent<Image>().enabled = true;
 				TalkBalloonImage.SetActive (true);
 				FriendList.VisitorNum++;
 				VisitNumber++;
+				VisitItem[n].GetComponent<Item> ().BoughtNumber--;
+				VisitItem[n].GetComponent<Item>().HavingNumber.text = VisitItem[n].GetComponent<Item>().BoughtNumber + "개 보유";
+				VisitItem [n].GetComponent<Item> ().save ();
 				VisitCounter.text = VisitNumber.ToString();
 			}
 		}
@@ -94,5 +93,15 @@ public class VisitFriend : MonoBehaviour {
 			result = 10 * result + (letter - 48);
 		}
 		return result;
+	}
+
+	bool ItemCheck(){
+		for (int i = 0; i < VisitItem.Length; i++) {
+			if (VisitItem [i].GetComponent<Item> ().BoughtNumber > 0) {
+				n = i;
+				return true;
+			};
+		}
+		return false;
 	}
 }
