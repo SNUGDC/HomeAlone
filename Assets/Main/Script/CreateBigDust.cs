@@ -15,7 +15,7 @@ public class CreateBigDust : MonoBehaviour
         TimeGap = TimeCheck.OFFtime();
         Debug.Log(TimeGap);
 
-        if (TimeGap < new TimeSpan(0, 3, 0) && BigDustAmount < 1)
+        if (TimeGap < new TimeSpan(8, 0, 0) && BigDustAmount < 1)
         {
             BigDustAmount = 0;
         }

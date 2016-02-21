@@ -9,7 +9,7 @@ public class CreateDust : MonoBehaviour
     public GameObject Dust3;
     public GameObject Dust4;
     public GameObject Dust5;
-    public int DeltaTime;
+    public int DustRespawnTimeGap;
     public int MaxDust;
 
     DateTime SysTime;
@@ -23,7 +23,7 @@ public class CreateDust : MonoBehaviour
     void Start()
     {
         SysTime = System.DateTime.Now;
-        Delta = new TimeSpan(0, 0, DeltaTime);
+        Delta = new TimeSpan(0, 0, DustRespawnTimeGap);
         UpdatedTime = SysTime;
 
         LoadDust();
