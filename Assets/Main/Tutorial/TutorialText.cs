@@ -5,15 +5,17 @@ using UnityEngine.UI;
 public class TutorialText : MonoBehaviour
 {
     public Text text;
+    public GameObject button;
 
-    private int ClickedTime = 0;
+    public static int ClickedTime = 0;
 
     void Update()
     {
         switch(ClickedTime)
         {
             case 0:
-                text.text = "291호 맞나요? ";
+                button.SetActive(true);
+                text.text = "291호 맞나요?";
                 break;
             case 1:
                 text.text = "안녕..! 나 카멜레온이야... 문 좀 열어줘...";
@@ -28,19 +30,21 @@ public class TutorialText : MonoBehaviour
                 text.text = "근데 구석에 먼지가 좀 쌓여있는 것 같아... 청소 좀 해야겠다... ";
                 break;
             case 5:
-                text.text = "";
+                TutorialDustController.OrderNow = 1;
+                button.SetActive(false);
                 break;
             case 6:
                 text.text = "채광도 좋고, 마트도 가까이 있고... 집 되게 잘 얻었구나...";
                 break;
-            case 7:
-                text.text = "";
-                break;
             case 8:
+                button.SetActive(true);
                 text.text = "참... 오는 길에 딸기우유 사 왔어... 너 줄게...";
                 break;
             case 9:
                 text.text = "난 이만 가볼께... 다음에 또 놀러올게... 안녕...";
+                break;
+            default:
+                button.SetActive(false);
                 break;
         }
     }
@@ -48,5 +52,10 @@ public class TutorialText : MonoBehaviour
     public void IsClicked()
     {
         ClickedTime = ClickedTime + 1;
+    }
+
+    public static int ReturnClickedTime()
+    {
+        return ClickedTime;
     }
 }
