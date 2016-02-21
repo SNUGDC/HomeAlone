@@ -16,13 +16,12 @@ public class VisitFriend : MonoBehaviour {
 	int VisitNumber, n;
 	string myPos;
 
-	Vector3 posBed1 = new Vector3(190,240,0);
-	Vector3 posBed2 = new Vector3(270,210,0);
-	Vector3 posFloor1 = new Vector3(290,255,0);
-	Vector3 posFloor2 = new Vector3(480,200,0);
-	Vector3 posDesk = new Vector3(360,290,0);
-	Vector3 posLaundry = new Vector3(345,90,0);
-	Vector3 pos;
+	public static Vector3 posBed1 = new Vector3(190,240,0);
+//	Vector3 posBed2 = new Vector3(270,210,0);
+	public static Vector3 posFloor1 = new Vector3(290,255,0);
+	public static Vector3 posFloor2 = new Vector3(480,200,0);
+	public static Vector3 posDesk = new Vector3(360,290,0);
+	public static Vector3 posLaundry = new Vector3(345,90,0);
 
 
 	DateTime SysTime;
@@ -36,15 +35,14 @@ public class VisitFriend : MonoBehaviour {
 		UpdatedTime = SysTime;
 
 		load ();
-		Debug.Log (FriendNameVisit + " : " + myPos);
 		switch (myPos) {
 		case("bed1"):
 			ThisObject.transform.position = posBed1;
 			break;
 
-		case("bed2"):
-			ThisObject.transform.position = posBed2;
-			break;
+//		case("bed2"):
+//			ThisObject.transform.position = posBed2;
+//			break;
 
 		case("floor1"):
 			ThisObject.transform.position = posFloor1;
@@ -103,17 +101,18 @@ public class VisitFriend : MonoBehaviour {
 						FriendList.bed1 = true;
 						myPos = "bed1";
 						EnableImage ();
+						player.playerPos();
 					}
 					break;
 
-				case("bed2"):
-					if (!FriendList.bed2) {
-						ThisObject.transform.position = posBed2;
-						FriendList.bed2 = true;
-						myPos = "bed2";
-						EnableImage ();
-					}
-					break;
+//				case("bed2"):
+//					if (!FriendList.bed2) {
+//						ThisObject.transform.position = posBed2;
+//						FriendList.bed2 = true;
+//						myPos = "bed2";
+//						EnableImage ();
+//					}
+//					break;
 
 				case("floor1"):
 					if (!FriendList.floor1) {
@@ -121,6 +120,7 @@ public class VisitFriend : MonoBehaviour {
 						ThisObject.transform.position = posFloor1;
 						myPos = "floor1";
 						EnableImage ();
+						player.playerPos();
 					}
 					break;
 
@@ -130,6 +130,7 @@ public class VisitFriend : MonoBehaviour {
 						FriendList.floor2 = true;
 						myPos = "floor2";
 						EnableImage ();
+						player.playerPos();
 					}
 					break;
 
@@ -139,6 +140,7 @@ public class VisitFriend : MonoBehaviour {
 						FriendList.desk = true;
 						myPos = "desk";
 						EnableImage ();
+						player.playerPos();
 					}
 					break;
 
@@ -148,6 +150,7 @@ public class VisitFriend : MonoBehaviour {
 						FriendList.laundry = true;
 						myPos = "laundry";
 						EnableImage ();
+						player.playerPos();
 					}
 					break;
 				}
@@ -163,9 +166,9 @@ public class VisitFriend : MonoBehaviour {
 				FriendList.bed1 = false;
 				break;
 
-			case("bed2"):
-				FriendList.bed2 = false;
-				break;
+//			case("bed2"):
+//				FriendList.bed2 = false;
+//				break;
 
 			case("floor1"):
 				FriendList.floor1 = false;
@@ -226,7 +229,7 @@ public class VisitFriend : MonoBehaviour {
 	void save(){
 		PlayerPrefs.SetString(FriendNameVisit + "myPos", myPos);
 		PlayerPrefs.SetString("bed1",FriendList.bed1.ToString());
-		PlayerPrefs.SetString("bed2",FriendList.bed2.ToString());
+//		PlayerPrefs.SetString("bed2",FriendList.bed2.ToString());
 		PlayerPrefs.SetString("floor1",FriendList.floor1.ToString());
 		PlayerPrefs.SetString("floor2",FriendList.floor2.ToString());
 		PlayerPrefs.SetString("desk",FriendList.desk.ToString());
@@ -237,7 +240,7 @@ public class VisitFriend : MonoBehaviour {
 		if(PlayerPrefs.HasKey(FriendNameVisit + "myPos"))
 			myPos = PlayerPrefs.GetString (FriendNameVisit + "myPos");
 		FriendList.bed1 = (PlayerPrefs.GetString("bed1") == "True");
-		FriendList.bed2 = (PlayerPrefs.GetString("bed2") == "True");
+//		FriendList.bed2 = (PlayerPrefs.GetString("bed2") == "True");
 		FriendList.floor1 = (PlayerPrefs.GetString("floor1") == "True");
 		FriendList.floor2 = (PlayerPrefs.GetString("floor2") == "True");
 		FriendList.desk = (PlayerPrefs.GetString("desk") == "True");
@@ -245,9 +248,7 @@ public class VisitFriend : MonoBehaviour {
 	}
 
 	void EnableImage(){
-		Debug.Log(myPos);
-		pos = ThisObject.transform.position;
-		Debug.Log (pos);
+		Debug.Log (FriendNameVisit + " : " + myPos);
 		FriendImage.GetComponent<Image>().enabled = true;
 		TalkBalloonImage.SetActive (true);
 		FriendList.VisitorNum++;
