@@ -20,6 +20,7 @@ public class player : MonoBehaviour {
 		switch (myPos) {
 		case("bed2"):
 			playerObject.transform.position = posBed2;
+                Debug.Log("GotoSleep");
 			break;
 
 		case("floor1"):

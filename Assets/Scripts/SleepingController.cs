@@ -5,11 +5,21 @@ public class SleepingController : MonoBehaviour
 {
     public int SleepPercent;
 
-    void Start()
+    int RandomNumber;
+
+    void Awake()
     {
-        if(Random.Range(0,7) <= SleepPercent)
+        RandomNumber = Random.Range(0, 100);
+
+        if (RandomNumber <= SleepPercent)
         {
-            Debug.Log("Player is Sleeping");
+            PlayerPrefs.SetString("PlayerPos", "bed1");
+            Debug.Log("Sleep!");
+        }
+        else
+        {
+            PlayerPrefs.SetString("PlayerPos", "floor1");
+            Debug.Log("Floor1");
         }
     }
 }

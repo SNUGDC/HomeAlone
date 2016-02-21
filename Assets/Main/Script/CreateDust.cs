@@ -27,16 +27,13 @@ public class CreateDust : MonoBehaviour
         UpdatedTime = SysTime;
 
         LoadDust();
-        Debug.Log(DustAmount);
 
         TimeGap = TimeCheck.OFFtime();
 
         for (TimeSpan Gap = TimeGap; Gap > new TimeSpan(0,0,0) && DustAmount <= MaxDust; Gap -= new TimeSpan(0,0,4))
         {
             DustAmount = DustAmount + 1;
-            Debug.Log("Loop");
         }
-        Debug.Log(DustAmount);
 
         for (int i = 0; i < DustAmount; i++)
         {
