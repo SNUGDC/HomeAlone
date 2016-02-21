@@ -38,6 +38,7 @@ public class TutorialDustController : MonoBehaviour
             Arrow.SetActive(false);
             EXPEffect();
             GetComponent<AudioSource>().PlayOneShot(ClickDust);
+            MoneySystem.money += 100;
             FinishCleaningDust();
             Destroy(gameObject, 1);
         }

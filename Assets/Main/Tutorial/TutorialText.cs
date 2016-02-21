@@ -6,6 +6,7 @@ public class TutorialText : MonoBehaviour
 {
     public Text text;
     public GameObject button;
+    public GameObject MenuButton;
 
     public static int ClickedTime = 0;
 
@@ -36,8 +37,12 @@ public class TutorialText : MonoBehaviour
             case 6:
                 text.text = "채광도 좋고, 마트도 가까이 있고... 집 되게 잘 얻었구나...";
                 break;
+            case 7:
+                MenuButton.SetActive(true);
+                button.SetActive(false);
+                break;
             case 8:
-                button.SetActive(true);
+                MenuButton.SetActive(false);
                 text.text = "참... 오는 길에 딸기우유 사 왔어... 너 줄게...";
                 break;
             case 9:
@@ -52,10 +57,5 @@ public class TutorialText : MonoBehaviour
     public void IsClicked()
     {
         ClickedTime = ClickedTime + 1;
-    }
-
-    public static int ReturnClickedTime()
-    {
-        return ClickedTime;
     }
 }
