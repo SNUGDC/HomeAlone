@@ -41,7 +41,9 @@ public class FriendList : MonoBehaviour {
 		VisitorNum = PlayerPrefs.GetInt ("VisitorNum");;
 	}
 
-	public void IncreaseMaxVisitor(){
-		MaxVisitorNum++;
+	public void IncreaseMaxVisitor(int value){
+		if(MoneySystem.money>=value)
+			MaxVisitorNum++;
+		Debug.Log ("MaxVisitorNum : " + MaxVisitorNum);
 	}
 }

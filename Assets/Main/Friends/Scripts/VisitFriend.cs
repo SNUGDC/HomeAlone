@@ -16,12 +16,12 @@ public class VisitFriend : MonoBehaviour {
 	int VisitNumber, n;
 	string myPos;
 
-	public static Vector3 posBed1 = new Vector3(190,240,0);
+	public static Vector3 posBed1 = new Vector3(170,220,0);
 //	Vector3 posBed2 = new Vector3(270,210,0);
-	public static Vector3 posFloor1 = new Vector3(290,255,0);
-	public static Vector3 posFloor2 = new Vector3(480,200,0);
-	public static Vector3 posDesk = new Vector3(360,290,0);
-	public static Vector3 posLaundry = new Vector3(345,90,0);
+	public static Vector3 posFloor1 = new Vector3(270,235,0);
+	public static Vector3 posFloor2 = new Vector3(460,180,0);
+	public static Vector3 posDesk = new Vector3(340,270,0);
+	public static Vector3 posLaundry = new Vector3(325,70,0);
 
 
 	DateTime SysTime;
