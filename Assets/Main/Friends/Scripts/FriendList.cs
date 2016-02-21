@@ -6,6 +6,7 @@ public class FriendList : MonoBehaviour {
 	public GameObject[] FriendArray, TalkBalloonArray;
 	public string[] FriendName, TalkBalloonName;
 	public static int MaxVisitorNum, VisitorNum;
+	public static bool bed1, bed2, floor1, floor2, desk, laundry;
 
 	// Use this for initialization
 	void Start () {

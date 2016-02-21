@@ -4,26 +4,66 @@ using System.Collections;
 using System;
 
 public class VisitFriend : MonoBehaviour {
+	public GameObject ThisObject;
 	public Image FriendImage;
 	public GameObject TalkBalloonImage;
 	public string FriendNameVisit;
 	public Text VisitCounter;
 	public GameObject[] VisitItem;
+	public string[] Seat;
 	public int VisitProbability;
 	public int BackProbability;
 	int VisitNumber, n;
-//	string LoadTime;
+	string myPos;
+
+	Vector3 posBed1 = new Vector3(190,240,0);
+	Vector3 posBed2 = new Vector3(270,210,0);
+	Vector3 posFloor1 = new Vector3(290,255,0);
+	Vector3 posFloor2 = new Vector3(480,200,0);
+	Vector3 posDesk = new Vector3(360,290,0);
+	Vector3 posLaundry = new Vector3(345,90,0);
+	Vector3 pos;
+
 
 	DateTime SysTime;
-//	DateTime LoadDateTime;
 	DateTime UpdatedTime;
 	TimeSpan Delta, Delta2;
 
 	void Start () {
-		Delta = new TimeSpan(0, 0, 10);		// friends visit,back per 5 second 
+		Delta = new TimeSpan(0, 0, 5);		// friends visit,back per 5 second 
 		Delta2 = new TimeSpan (0, 0, 5);	// save during 1 minute.
 		SysTime = System.DateTime.Now;
 		UpdatedTime = SysTime;
+
+		load ();
+		Debug.Log (FriendNameVisit + " : " + myPos);
+		switch (myPos) {
+		case("bed1"):
+			ThisObject.transform.position = posBed1;
+			break;
+
+		case("bed2"):
+			ThisObject.transform.position = posBed2;
+			break;
+
+		case("floor1"):
+			ThisObject.transform.position = posFloor1;
+			break;
+
+		case("floor2"):
+			ThisObject.transform.position = posFloor2;
+			break;
+
+		case("desk"):
+			ThisObject.transform.position = posDesk;
+			break;
+
+		case("laundry"):
+			ThisObject.transform.position = posLaundry;
+			break;
+		}
+
+
 
 		if (PlayerPrefs.HasKey (FriendNameVisit)) {
 			VisitCounter.text = PlayerPrefs.GetString (FriendNameVisit);
@@ -55,24 +95,101 @@ public class VisitFriend : MonoBehaviour {
 	void visit(){
 		if (FriendList.VisitorNum < FriendList.MaxVisitorNum) {
 			if (UnityEngine.Random.Range (1, 100) <= VisitProbability) {
-				FriendImage.GetComponent<Image>().enabled = true;
-				TalkBalloonImage.SetActive (true);
-				FriendList.VisitorNum++;
-				VisitNumber++;
-				VisitItem[n].GetComponent<Item> ().BoughtNumber--;
-				VisitItem[n].GetComponent<Item>().HavingNumber.text = VisitItem[n].GetComponent<Item>().BoughtNumber + "개 보유";
-				VisitItem [n].GetComponent<Item> ().save ();
-				VisitCounter.text = VisitNumber.ToString();
+				
+				switch(Seat[UnityEngine.Random.Range(0,Seat.Length)]){
+				case("bed1"):
+					if (!FriendList.bed1) {
+						ThisObject.transform.position = posBed1;
+						FriendList.bed1 = true;
+						myPos = "bed1";
+						EnableImage ();
+					}
+					break;
+
+				case("bed2"):
+					if (!FriendList.bed2) {
+						ThisObject.transform.position = posBed2;
+						FriendList.bed2 = true;
+						myPos = "bed2";
+						EnableImage ();
+					}
+					break;
+
+				case("floor1"):
+					if (!FriendList.floor1) {
+						FriendList.floor1 = true;
+						ThisObject.transform.position = posFloor1;
+						myPos = "floor1";
+						EnableImage ();
+					}
+					break;
+
+				case("floor2"):
+					if (!FriendList.floor2) {
+						ThisObject.transform.position = posFloor2;
+						FriendList.floor2 = true;
+						myPos = "floor2";
+						EnableImage ();
+					}
+					break;
+
+				case("desk"):
+					if (!FriendList.desk) {
+						ThisObject.transform.position = posDesk;
+						FriendList.desk = true;
+						myPos = "desk";
+						EnableImage ();
+					}
+					break;
+
+				case("laundry"):
+					if (!FriendList.laundry) {
+						ThisObject.transform.position = posLaundry;
+						FriendList.laundry = true;
+						myPos = "laundry";
+						EnableImage ();
+					}
+					break;
+				}
 			}
 		}
+		save ();
 	}
 
 	void back(){
 		if (UnityEngine.Random.Range (1, 100) <= BackProbability) {
+			switch (myPos) {
+			case("bed1"):
+				FriendList.bed1 = false;
+				break;
+
+			case("bed2"):
+				FriendList.bed2 = false;
+				break;
+
+			case("floor1"):
+				FriendList.floor1 = false;
+				break;
+
+			case("floor2"):
+				FriendList.floor2 = false;
+				break;
+
+			case("desk"):
+				FriendList.desk = false;
+				break;
+
+			case("laundry"):
+				FriendList.laundry = false;
+				break;
+			}
+
 			FriendImage.GetComponent<Image>().enabled = false;
 			TalkBalloonImage.SetActive (false);
 			FriendList.VisitorNum--;
 		}
+
+		save ();
 	}
 
 	bool TimeOver()
@@ -104,5 +221,40 @@ public class VisitFriend : MonoBehaviour {
 			};
 		}
 		return false;
+	}
+
+	void save(){
+		PlayerPrefs.SetString(FriendNameVisit + "myPos", myPos);
+		PlayerPrefs.SetString("bed1",FriendList.bed1.ToString());
+		PlayerPrefs.SetString("bed2",FriendList.bed2.ToString());
+		PlayerPrefs.SetString("floor1",FriendList.floor1.ToString());
+		PlayerPrefs.SetString("floor2",FriendList.floor2.ToString());
+		PlayerPrefs.SetString("desk",FriendList.desk.ToString());
+		PlayerPrefs.SetString("laundry",FriendList.laundry.ToString());
+	}
+
+	void load(){
+		if(PlayerPrefs.HasKey(FriendNameVisit + "myPos"))
+			myPos = PlayerPrefs.GetString (FriendNameVisit + "myPos");
+		FriendList.bed1 = (PlayerPrefs.GetString("bed1") == "True");
+		FriendList.bed2 = (PlayerPrefs.GetString("bed2") == "True");
+		FriendList.floor1 = (PlayerPrefs.GetString("floor1") == "True");
+		FriendList.floor2 = (PlayerPrefs.GetString("floor2") == "True");
+		FriendList.desk = (PlayerPrefs.GetString("desk") == "True");
+		FriendList.laundry = (PlayerPrefs.GetString("laundry") == "True");
+	}
+
+	void EnableImage(){
+		Debug.Log(myPos);
+		pos = ThisObject.transform.position;
+		Debug.Log (pos);
+		FriendImage.GetComponent<Image>().enabled = true;
+		TalkBalloonImage.SetActive (true);
+		FriendList.VisitorNum++;
+		VisitNumber++;
+		VisitItem[n].GetComponent<Item> ().BoughtNumber--;
+		VisitItem[n].GetComponent<Item>().HavingNumber.text = VisitItem[n].GetComponent<Item>().BoughtNumber + "개 보유";
+		VisitItem [n].GetComponent<Item> ().save ();
+		VisitCounter.text = VisitNumber.ToString();
 	}
 }
