@@ -52,46 +52,46 @@ public class player : MonoBehaviour {
 			myPos = "bed2";
 			Debug.Log ("****PlayerPos : " + myPos);
 		}
+
 		else {
 			switch (n) {
-			case(1):
+			case 1:
 				if (!FriendList.desk) {
 					playerObject.transform.position = VisitFriend.posDesk;
 					FriendList.desk = true;		
 					myPos = "desk";
 					Debug.Log ("****PlayerPos : " + myPos);
-				}
+				} else
+					defaultOption ();
 				break;
 			
-			case(2):
+			case 2:
 				if (!FriendList.floor1) {
 					playerObject.transform.position = VisitFriend.posFloor1;
 					FriendList.floor1 = true;		
 					myPos = "floor1";
 					Debug.Log ("****PlayerPos : " + myPos);
-				}
+				} else
+					defaultOption ();
 				break;
 
-			case(3):
+			case 3:
 				if (!FriendList.floor2) {
 					playerObject.transform.position = VisitFriend.posFloor2;
 					FriendList.floor2 = true;		
 					myPos = "floor2";
 					Debug.Log ("****PlayerPos : " + myPos);
-				}
+				} else
+					defaultOption ();
 				break;
 
 			default:
-				if (!FriendList.desk) {
-					playerObject.transform.position = VisitFriend.posDesk;
-					FriendList.desk = true;		
-					myPos = "desk";
-					Debug.Log ("****PlayerPos : " + myPos);
-				}
+				defaultOption();
 				break;
-			}
-		}
 
+			}
+			Debug.Log ("switch");
+		}
 		PlayerPrefs.SetString ("PlayerPos", myPos);
 	}
 
@@ -108,6 +108,16 @@ public class player : MonoBehaviour {
 		case("floor2"):
 			FriendList.floor2 = false;
 			break;
+		}
+	}
+
+	static void defaultOption(){
+		Debug.Log ("Default");
+		if (!FriendList.desk) {
+			playerObject.transform.position = VisitFriend.posDesk;
+			FriendList.desk = true;		
+			myPos = "desk";
+			Debug.Log ("****PlayerPos : " + myPos);
 		}
 	}
 }
