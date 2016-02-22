@@ -11,12 +11,13 @@ public class VisitFriend : MonoBehaviour {
 	public Text VisitCounter;
 	public GameObject[] VisitItem;
 	public string[] Seat;
+	public Image[] SeatImage;
 	public int VisitProbability;
 	public int BackProbability;
-	int VisitNumber, n;
+	int VisitNumber, n, posNumber;
 	string myPos;
 
-	public static Vector3 posBed1 = new Vector3(-4,0,0);
+	public static Vector3 posBed1 = new Vector3(-5,0,0);
 //	Vector3 posBed2 = new Vector3(270,210,0);
 	public static Vector3 posFloor1 = new Vector3(-2,1,0);
 	public static Vector3 posFloor2 = new Vector3(2,-1,0);
@@ -37,6 +38,7 @@ public class VisitFriend : MonoBehaviour {
 		load ();
 		switch (myPos) {
 		case("bed1"):
+			FriendImage.sprite = SeatImage [posNumber].sprite;
 			ThisObject.transform.position = posBed1;
 			break;
 
@@ -45,18 +47,22 @@ public class VisitFriend : MonoBehaviour {
 //			break;
 
 		case("floor1"):
+			FriendImage.sprite = SeatImage [posNumber].sprite;
 			ThisObject.transform.position = posFloor1;
 			break;
 
 		case("floor2"):
+			FriendImage.sprite = SeatImage [posNumber].sprite;
 			ThisObject.transform.position = posFloor2;
 			break;
 
 		case("desk"):
+			FriendImage.sprite = SeatImage [posNumber].sprite;
 			ThisObject.transform.position = posDesk;
 			break;
 
 		case("laundry"):
+			FriendImage.sprite = SeatImage [posNumber].sprite;
 			ThisObject.transform.position = posLaundry;
 			break;
 		}
@@ -93,15 +99,17 @@ public class VisitFriend : MonoBehaviour {
 	void visit(){
 		if (FriendList.VisitorNum < FriendList.MaxVisitorNum) {
 			if (UnityEngine.Random.Range (1, 100) <= VisitProbability) {
-				
-				switch(Seat[UnityEngine.Random.Range(0,Seat.Length)]){
+				int i = UnityEngine.Random.Range (0, Seat.Length);
+				switch(Seat[i]){
 				case("bed1"):
 					if (!FriendList.bed1) {
 						ThisObject.transform.position = posBed1;
 						FriendList.bed1 = true;
 						myPos = "bed1";
+						FriendImage.sprite = SeatImage [i].sprite;
 						EnableImage ();
 						player.playerPos();
+						posNumber = i;
 					}
 					break;
 
@@ -119,8 +127,10 @@ public class VisitFriend : MonoBehaviour {
 						FriendList.floor1 = true;
 						ThisObject.transform.position = posFloor1;
 						myPos = "floor1";
+						FriendImage.sprite = SeatImage [i].sprite;
 						EnableImage ();
 						player.playerPos();
+						posNumber = i;
 					}
 					break;
 
@@ -129,8 +139,10 @@ public class VisitFriend : MonoBehaviour {
 						ThisObject.transform.position = posFloor2;
 						FriendList.floor2 = true;
 						myPos = "floor2";
+						FriendImage.sprite = SeatImage [i].sprite;
 						EnableImage ();
 						player.playerPos();
+						posNumber = i;
 					}
 					break;
 
@@ -139,8 +151,10 @@ public class VisitFriend : MonoBehaviour {
 						ThisObject.transform.position = posDesk;
 						FriendList.desk = true;
 						myPos = "desk";
+						FriendImage.sprite = SeatImage [i].sprite;
 						EnableImage ();
 						player.playerPos();
+						posNumber = i;
 					}
 					break;
 
@@ -149,8 +163,10 @@ public class VisitFriend : MonoBehaviour {
 						ThisObject.transform.position = posLaundry;
 						FriendList.laundry = true;
 						myPos = "laundry";
+						FriendImage.sprite = SeatImage [i].sprite;
 						EnableImage ();
 						player.playerPos();
+						posNumber = i;
 					}
 					break;
 				}
@@ -227,6 +243,7 @@ public class VisitFriend : MonoBehaviour {
 	}
 
 	void save(){
+		PlayerPrefs.SetInt (FriendNameVisit + "posNumber" , posNumber);
 		PlayerPrefs.SetString(FriendNameVisit + "myPos", myPos);
 		PlayerPrefs.SetString("bed1",FriendList.bed1.ToString());
 //		PlayerPrefs.SetString("bed2",FriendList.bed2.ToString());
@@ -237,6 +254,7 @@ public class VisitFriend : MonoBehaviour {
 	}
 
 	void load(){
+		posNumber = PlayerPrefs.GetInt (FriendNameVisit + "posNumber");
 		if(PlayerPrefs.HasKey(FriendNameVisit + "myPos"))
 			myPos = PlayerPrefs.GetString (FriendNameVisit + "myPos");
 		FriendList.bed1 = (PlayerPrefs.GetString("bed1") == "True");
