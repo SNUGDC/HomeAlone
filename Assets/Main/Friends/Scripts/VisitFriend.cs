@@ -24,10 +24,18 @@ public class VisitFriend : MonoBehaviour {
 	public static Vector3 posDesk = new Vector3(0,1,0);
 	public static Vector3 posLaundry = new Vector3(0,-2,0);
 
+	public GameObject table;
+	public static GameObject sheep, bear;
 
 	DateTime SysTime;
 	DateTime UpdatedTime;
 	TimeSpan Delta, Delta2;
+
+	void Awake()
+	{
+		sheep = GameObject.Find ("Sheep_f");
+		bear = GameObject.Find ("bear_f");
+	}
 
 	void Start () {
 		Delta = new TimeSpan(0, 0, 2);		// friends visit,back per 5 second 
@@ -97,9 +105,14 @@ public class VisitFriend : MonoBehaviour {
 	}
 
 	void visit(){
-		if (FriendList.VisitorNum < FriendList.MaxVisitorNum) {
+		if ((ThisObject.GetComponent<VisitFriend>().FriendNameVisit == "snakeVisit" && FriendList.VisitorNum == 0) || ThisObject.GetComponent<VisitFriend>().FriendNameVisit != "snakeVisit") {
 			if (UnityEngine.Random.Range (1, 100) <= VisitProbability) {
 				int i = UnityEngine.Random.Range (0, Seat.Length);
+				if (ThisObject.GetComponent<VisitFriend> ().FriendNameVisit == "lionVisit" && IsPartyTime())
+					i = 0;
+				else if (ThisObject.GetComponent<VisitFriend> ().FriendNameVisit == "lionVisit")
+					i = 1;
+				
 				switch(Seat[i]){
 				case("bed1"):
 					if (!FriendList.bed1) {
@@ -168,6 +181,10 @@ public class VisitFriend : MonoBehaviour {
 						player.playerPos();
 						posNumber = i;
 					}
+					break;
+				
+				default:
+					Debug.Log ("NULL!");
 					break;
 				}
 			}
@@ -275,5 +292,9 @@ public class VisitFriend : MonoBehaviour {
 		VisitItem[n].GetComponent<Item>().HavingNumber.text = VisitItem[n].GetComponent<Item>().BoughtNumber + "개 보유";
 		VisitItem [n].GetComponent<Item> ().save ();
 		VisitCounter.text = VisitNumber.ToString();
+	}
+
+	bool IsPartyTime(){
+		return table.activeSelf && bear.GetComponent<Image>().enabled && sheep.GetComponent<Image>().enabled;
 	}
 }

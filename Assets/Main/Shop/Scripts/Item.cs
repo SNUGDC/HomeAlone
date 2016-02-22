@@ -36,7 +36,6 @@ public class Item : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		load ();
-		Debug.Log (ItemName + "Start");
 		if (BoughtNumber > 0)
 			BoughtImage.SetActive (true);
 	}

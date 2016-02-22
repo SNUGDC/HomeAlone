@@ -5,8 +5,8 @@ using System.Collections;
 public class player : MonoBehaviour {
 //	static Vector3 posBed2 = new Vector3(-2,0,0);
 	public static GameObject playerObject;
-	public static GameObject bed2,floor1, floor2, desk;
-	static string myPos;
+	public static GameObject bed1, bed2,floor1, floor2, desk;
+	public static string myPos;
 //	static int posNumber;
 
 	// Use this for initialization
@@ -14,6 +14,7 @@ public class player : MonoBehaviour {
 	void Awake()
 	{
 		playerObject = GameObject.Find("Player");
+		bed1 = GameObject.Find("player_bed1");
 		bed2 = GameObject.Find("player_bed2");
 		floor1 = GameObject.Find("player_floor1");
 		floor2 = GameObject.Find("player_floor2");
@@ -26,12 +27,16 @@ public class player : MonoBehaviour {
 //			posNumber = PlayerPrefs.GetInt ("PlayerPosNumber");
 		
 		switch (myPos) {
+		case("bed1"):
+			playerObject.GetComponent<Image> ().enabled = false;
+			bed1.GetComponent<Image> ().enabled = true;
+			break;
+
 		case("bed2"):
 //			posNumber = 0;
 			playerObject.GetComponent<Image> ().enabled = false;
 			bed2.GetComponent<Image> ().enabled = true;
 //			playerObject.transform.position = posBed2;
-                Debug.Log("GotoSleep");
 			break;
 
 		case("floor1"):
@@ -128,6 +133,11 @@ public class player : MonoBehaviour {
 
 	static void PlayerPosChange(){
 		switch (myPos) {
+		case("bed1"):
+			FriendList.bed1 = false;
+			bed1.GetComponent<Image> ().enabled = false;
+			break;
+
 		case("bed2"):
 			bed2.GetComponent<Image> ().enabled = false;
 			break;
