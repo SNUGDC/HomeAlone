@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class player : MonoBehaviour {
-	static Vector3 posBed2 = new Vector3(240,210,0);
+	static Vector3 posBed2 = new Vector3(-2,0,0);
 	public static GameObject playerObject;
 	static string myPos;
 

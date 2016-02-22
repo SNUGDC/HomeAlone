@@ -16,12 +16,12 @@ public class VisitFriend : MonoBehaviour {
 	int VisitNumber, n;
 	string myPos;
 
-	public static Vector3 posBed1 = new Vector3(170,220,0);
+	public static Vector3 posBed1 = new Vector3(-4,0,0);
 //	Vector3 posBed2 = new Vector3(270,210,0);
-	public static Vector3 posFloor1 = new Vector3(270,235,0);
-	public static Vector3 posFloor2 = new Vector3(460,180,0);
-	public static Vector3 posDesk = new Vector3(340,270,0);
-	public static Vector3 posLaundry = new Vector3(325,70,0);
+	public static Vector3 posFloor1 = new Vector3(-2,1,0);
+	public static Vector3 posFloor2 = new Vector3(2,-1,0);
+	public static Vector3 posDesk = new Vector3(0,1,0);
+	public static Vector3 posLaundry = new Vector3(0,-2,0);
 
 
 	DateTime SysTime;
@@ -29,7 +29,7 @@ public class VisitFriend : MonoBehaviour {
 	TimeSpan Delta, Delta2;
 
 	void Start () {
-		Delta = new TimeSpan(0, 0, 5);		// friends visit,back per 5 second 
+		Delta = new TimeSpan(0, 0, 2);		// friends visit,back per 5 second 
 		Delta2 = new TimeSpan (0, 0, 5);	// save during 1 minute.
 		SysTime = System.DateTime.Now;
 		UpdatedTime = SysTime;

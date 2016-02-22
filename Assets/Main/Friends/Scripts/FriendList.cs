@@ -34,10 +34,10 @@ public class FriendList : MonoBehaviour {
 			FriendArray[i].GetComponent<Image>().enabled = ((PlayerPrefs.GetString (FriendName[i] + "image") == "True"));
 			TalkBalloonArray[i].SetActive((PlayerPrefs.GetString (TalkBalloonName[i]) == "True"));
 		}
-		if (PlayerPrefs.HasKey ("MaxVisitorNum"))
-			MaxVisitorNum = PlayerPrefs.GetInt ("MaxVisitorNum");
-		else
-			MaxVisitorNum = 1;
+//		if (PlayerPrefs.HasKey ("MaxVisitorNum"))
+//			MaxVisitorNum = PlayerPrefs.GetInt ("MaxVisitorNum");
+//		else
+			MaxVisitorNum = 10;
 		VisitorNum = PlayerPrefs.GetInt ("VisitorNum");;
 	}
 
