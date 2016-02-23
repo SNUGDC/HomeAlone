@@ -9,7 +9,6 @@ public class MenuArrowController : MonoBehaviour
     void Update()
     {
         MenuArrow.SetActive(false);
-        button.SetActive(true);
-        TutorialText.ClickedTime = 8;
+        TutorialText.ClickedTime = 9;
     }
 }

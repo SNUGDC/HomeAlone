@@ -1,12 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class TutorialText : MonoBehaviour
 {
     public Text text;
     public GameObject button;
     public GameObject MenuButton;
+    public GameObject MenuText; 
 
     public static int ClickedTime = 0;
 
@@ -39,17 +41,19 @@ public class TutorialText : MonoBehaviour
                 break;
             case 7:
                 MenuButton.SetActive(true);
+                MenuText.SetActive(true);
                 button.SetActive(false);
-                break;
-            case 8:
-                text.text = "(집안일을 하며 모은 Exp로 물건을 구입할 수 있어요)";
                 break;
             case 9:
                 MenuButton.SetActive(false);
+                MenuText.SetActive(false);
                 text.text = "참... 오는 길에 딸기우유 사 왔어... 너 줄게...";
                 break;
             case 10:
                 text.text = "난 이만 가볼께... 다음에 또 놀러올게... 안녕...";
+                break;
+            case 11:
+                SceneManager.LoadScene("Main");
                 break;
             default:
                 button.SetActive(false);
