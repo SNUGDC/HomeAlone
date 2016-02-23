@@ -25,7 +25,7 @@ public class VisitFriend : MonoBehaviour {
 	public static Vector3 posLaundry = new Vector3(0,-2,0);
 
 	public GameObject table;
-	public static GameObject sheep, bear;
+	public static GameObject snake, sheep, bear;
 
 	DateTime SysTime;
 	DateTime UpdatedTime;
@@ -33,17 +33,22 @@ public class VisitFriend : MonoBehaviour {
 
 	void Awake()
 	{
+		snake = GameObject.Find ("snake_f");
 		sheep = GameObject.Find ("Sheep_f");
 		bear = GameObject.Find ("bear_f");
+
+
+		Debug.Log ("load");
+		load ();
 	}
 
 	void Start () {
+		Debug.Log ("Visit Start");
 		Delta = new TimeSpan(0, 0, 2);		// friends visit,back per 5 second 
 		Delta2 = new TimeSpan (0, 0, 5);	// save during 1 minute.
 		SysTime = System.DateTime.Now;
 		UpdatedTime = SysTime;
 
-		load ();
 		switch (myPos) {
 		case("bed1"):
 			FriendImage.sprite = SeatImage [posNumber].sprite;
@@ -85,8 +90,10 @@ public class VisitFriend : MonoBehaviour {
 		if (TimeCheck.TimeOver (Delta2)) {
 			if (FriendImage.GetComponent<Image> ().enabled == false && ItemCheck ()) {
 				visit ();
+				Debug.Log ("tryvisit");
 			} else if(FriendImage.GetComponent<Image> ().enabled) {
 				back ();
+				Debug.Log ("tryback");
 			}
 		}
 	}
@@ -105,7 +112,7 @@ public class VisitFriend : MonoBehaviour {
 	}
 
 	void visit(){
-		if ((ThisObject.GetComponent<VisitFriend>().FriendNameVisit == "snakeVisit" && FriendList.VisitorNum == 0) || ThisObject.GetComponent<VisitFriend>().FriendNameVisit != "snakeVisit") {
+		if (snakeOK()) {
 			if (UnityEngine.Random.Range (1, 100) <= VisitProbability) {
 				int i = UnityEngine.Random.Range (0, Seat.Length);
 				if (ThisObject.GetComponent<VisitFriend> ().FriendNameVisit == "lionVisit" && IsPartyTime())
@@ -117,6 +124,7 @@ public class VisitFriend : MonoBehaviour {
 				case("bed1"):
 					if (!FriendList.bed1) {
 						ThisObject.transform.position = posBed1;
+						Debug.Log ("bed1 true");
 						FriendList.bed1 = true;
 						myPos = "bed1";
 						FriendImage.sprite = SeatImage [i].sprite;
@@ -137,6 +145,7 @@ public class VisitFriend : MonoBehaviour {
 
 				case("floor1"):
 					if (!FriendList.floor1) {
+						Debug.Log ("floor1 true");
 						FriendList.floor1 = true;
 						ThisObject.transform.position = posFloor1;
 						myPos = "floor1";
@@ -150,6 +159,7 @@ public class VisitFriend : MonoBehaviour {
 				case("floor2"):
 					if (!FriendList.floor2) {
 						ThisObject.transform.position = posFloor2;
+						Debug.Log ("floor2 true");
 						FriendList.floor2 = true;
 						myPos = "floor2";
 						FriendImage.sprite = SeatImage [i].sprite;
@@ -162,6 +172,7 @@ public class VisitFriend : MonoBehaviour {
 				case("desk"):
 					if (!FriendList.desk) {
 						ThisObject.transform.position = posDesk;
+						Debug.Log ("desk true");
 						FriendList.desk = true;
 						myPos = "desk";
 						FriendImage.sprite = SeatImage [i].sprite;
@@ -174,6 +185,7 @@ public class VisitFriend : MonoBehaviour {
 				case("laundry"):
 					if (!FriendList.laundry) {
 						ThisObject.transform.position = posLaundry;
+						Debug.Log ("laundry true");
 						FriendList.laundry = true;
 						myPos = "laundry";
 						FriendImage.sprite = SeatImage [i].sprite;
@@ -197,6 +209,7 @@ public class VisitFriend : MonoBehaviour {
 			switch (myPos) {
 			case("bed1"):
 				FriendList.bed1 = false;
+				disableImage ();
 				break;
 
 //			case("bed2"):
@@ -205,24 +218,24 @@ public class VisitFriend : MonoBehaviour {
 
 			case("floor1"):
 				FriendList.floor1 = false;
+				disableImage ();
 				break;
 
 			case("floor2"):
 				FriendList.floor2 = false;
+				disableImage ();
 				break;
 
 			case("desk"):
 				FriendList.desk = false;
+				disableImage ();
 				break;
 
 			case("laundry"):
 				FriendList.laundry = false;
+				disableImage ();
 				break;
 			}
-
-			FriendImage.GetComponent<Image>().enabled = false;
-			TalkBalloonImage.SetActive (false);
-			FriendList.VisitorNum--;
 		}
 
 		save ();
@@ -288,13 +301,31 @@ public class VisitFriend : MonoBehaviour {
 		TalkBalloonImage.SetActive (true);
 		FriendList.VisitorNum++;
 		VisitNumber++;
+		Debug.Log (FriendList.VisitorNum);
 		VisitItem[n].GetComponent<Item> ().BoughtNumber--;
 		VisitItem[n].GetComponent<Item>().HavingNumber.text = VisitItem[n].GetComponent<Item>().BoughtNumber + "개 보유";
 		VisitItem [n].GetComponent<Item> ().save ();
 		VisitCounter.text = VisitNumber.ToString();
 	}
 
+	void disableImage(){
+		Debug.Log (FriendNameVisit + "back");
+		FriendImage.GetComponent<Image>().enabled = false;
+		TalkBalloonImage.SetActive (false);
+		FriendList.VisitorNum--;
+	}
+
+	bool snakeOK(){
+		if (snake != null)
+			return (ThisObject.GetComponent<VisitFriend> ().FriendNameVisit == "snakeVisit" && FriendList.VisitorNum == 0) || ((!snake.GetComponent<Image> ().enabled) && ThisObject.GetComponent<VisitFriend> ().FriendNameVisit != "snakeVisit");
+		else
+			return true;
+	}
+
 	bool IsPartyTime(){
-		return table.activeSelf && bear.GetComponent<Image>().enabled && sheep.GetComponent<Image>().enabled;
+		if (bear != null && sheep != null)
+			return table.activeSelf && bear.GetComponent<Image> ().enabled && sheep.GetComponent<Image> ().enabled;
+		else
+			return false;
 	}
 }

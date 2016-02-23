@@ -22,10 +22,19 @@ public class player : MonoBehaviour {
 	}
 
 	void Start () {
+		int temp = Random.Range (1, 100);
+
 		if(PlayerPrefs.HasKey("PlayerPos"))
 			myPos = PlayerPrefs.GetString ("PlayerPos");
 //			posNumber = PlayerPrefs.GetInt ("PlayerPosNumber");
-		
+
+		/*
+		if (temp < 50 && !FriendList.bed1 && !Friend) {
+			PlayerPosChange ();
+			myPos = "bed1";
+		}
+		*/
+
 		switch (myPos) {
 		case("bed1"):
 			playerObject.GetComponent<Image> ().enabled = false;
@@ -57,7 +66,7 @@ public class player : MonoBehaviour {
 //			playerObject.transform.position = VisitFriend.posDesk;
 			break;
 		}
-
+		FriendList.showBool ();
 	}
 	
 	// Update is called once per frame
@@ -129,6 +138,8 @@ public class player : MonoBehaviour {
 		}
 		PlayerPrefs.SetString ("PlayerPos", myPos);
 //		PlayerPrefs.SetInt ("PlayerPosNumber", posNumber);
+
+		FriendList.showBool ();
 	}
 
 	static void PlayerPosChange(){

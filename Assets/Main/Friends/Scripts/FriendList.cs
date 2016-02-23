@@ -46,4 +46,13 @@ public class FriendList : MonoBehaviour {
 			MaxVisitorNum++;
 		Debug.Log ("MaxVisitorNum : " + MaxVisitorNum);
 	}
+
+	public static void showBool(){
+		Debug.Log ("bed1 : " + bed1);
+		Debug.Log ("bed2 : " + bed2);
+		Debug.Log ("floor1 : " + floor1);
+		Debug.Log ("floor2 : " + floor2);
+		Debug.Log ("desk : " + desk);
+		Debug.Log ("laundry : " + laundry);
+	}
 }
