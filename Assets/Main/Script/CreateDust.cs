@@ -30,14 +30,35 @@ public class CreateDust : MonoBehaviour
 
         TimeGap = TimeCheck.OFFtime();
 
-        for (TimeSpan Gap = TimeGap; Gap > new TimeSpan(0,0,0) && DustAmount <= MaxDust; Gap -= new TimeSpan(0,0,4))
+        for (TimeSpan Gap = TimeGap; Gap >= Delta && DustAmount <= MaxDust; Gap -= Delta)
         {
             DustAmount = DustAmount + 1;
         }
 
-        for (int i = 0; i < DustAmount; i++)
+        for (int i = 0; i <= DustAmount; i++)
         {
-            Instantiate(Dust1);
+            int a = i % 5;
+            switch (a)
+            {
+                case 0:
+                    Instantiate(Dust1);
+                    break;
+                case 1:
+                    Instantiate(Dust2);
+                    break;
+                case 2:
+                    Instantiate(Dust3);
+                    break;
+                case 3:
+                    Instantiate(Dust4);
+                    break;
+                case 4:
+                    Instantiate(Dust5);
+                    break;
+                default:
+                    Instantiate(Dust1);
+                    break;
+            }
         }
 
         SaveDust();
