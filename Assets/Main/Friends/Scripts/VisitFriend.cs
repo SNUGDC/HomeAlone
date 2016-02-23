@@ -24,7 +24,7 @@ public class VisitFriend : MonoBehaviour {
 	public static Vector3 posDesk = new Vector3(0,1,0);
 	public static Vector3 posLaundry = new Vector3(0,-2,0);
 
-	public GameObject table;
+	public GameObject table,crocobed,crocodesk;
 	public static GameObject snake, sheep, bear;
 
 	DateTime SysTime;
@@ -52,8 +52,12 @@ public class VisitFriend : MonoBehaviour {
 
 			switch (myPos) {
 			case("bed1"):
-				FriendImage.sprite = SeatImage [posNumber].sprite;
-				ThisObject.transform.position = posBed1;
+				if (ThisObject.GetComponent<VisitFriend> ().FriendNameVisit == "crocodileVisit")
+					crocobed.SetActive (true);
+				else {
+					FriendImage.sprite = SeatImage [posNumber].sprite;
+					ThisObject.transform.position = posBed1;
+				}
 				break;
 
 //		case("bed2"):
@@ -71,8 +75,12 @@ public class VisitFriend : MonoBehaviour {
 				break;
 
 			case("desk"):
-				FriendImage.sprite = SeatImage [posNumber].sprite;
-				ThisObject.transform.position = posDesk;
+				if (ThisObject.GetComponent<VisitFriend> ().FriendNameVisit == "crocodileVisit")
+					crocodesk.SetActive (true);
+				else {
+					FriendImage.sprite = SeatImage [posNumber].sprite;
+					ThisObject.transform.position = posDesk;
+				}
 				break;
 
 			case("laundry"):
@@ -129,14 +137,24 @@ public class VisitFriend : MonoBehaviour {
 				switch(Seat[i]){
 				case("bed1"):
 					if (!FriendList.bed1) {
-						ThisObject.transform.position = posBed1;
-						Debug.Log ("bed1 true");
-						FriendList.bed1 = true;
-						myPos = "bed1";
-						FriendImage.sprite = SeatImage [i].sprite;
-						EnableImage ();
-						player.playerPos();
-						posNumber = i;
+						if (ThisObject.GetComponent<VisitFriend> ().FriendNameVisit == "crocodileVisit") {
+							Debug.Log ("bed1 true");
+							FriendList.bed1 = true;
+							myPos = "bed1";
+							EnableImage ();
+							crocobed.SetActive (true);
+							player.playerPos ();
+							posNumber = i;
+						} else {
+							ThisObject.transform.position = posBed1;
+							Debug.Log ("bed1 true");
+							FriendList.bed1 = true;
+							myPos = "bed1";
+							FriendImage.sprite = SeatImage [i].sprite;
+							EnableImage ();
+							player.playerPos ();
+							posNumber = i;
+						}
 					}
 					break;
 
@@ -177,14 +195,24 @@ public class VisitFriend : MonoBehaviour {
 
 				case("desk"):
 					if (!FriendList.desk) {
-						ThisObject.transform.position = posDesk;
-						Debug.Log ("desk true");
-						FriendList.desk = true;
-						myPos = "desk";
-						FriendImage.sprite = SeatImage [i].sprite;
-						EnableImage ();
-						player.playerPos();
-						posNumber = i;
+						if (ThisObject.GetComponent<VisitFriend> ().FriendNameVisit == "crocodileVisit") {
+							Debug.Log ("desk true");
+							FriendList.desk = true;
+							myPos = "desk";
+							EnableImage ();
+							crocodesk.SetActive (true);
+							player.playerPos ();
+							posNumber = i;
+						} else {
+							ThisObject.transform.position = posDesk;
+							Debug.Log ("desk true");
+							FriendList.desk = true;
+							myPos = "desk";
+							FriendImage.sprite = SeatImage [i].sprite;
+							EnableImage ();
+							player.playerPos ();
+							posNumber = i;
+						}
 					}
 					break;
 
@@ -214,6 +242,8 @@ public class VisitFriend : MonoBehaviour {
 		if (UnityEngine.Random.Range (1, 100) <= BackProbability) {
 			switch (myPos) {
 			case("bed1"):
+				if (crocobed.activeSelf)
+					crocobed.SetActive (false);
 				FriendList.bed1 = false;
 				disableImage ();
 				break;
@@ -233,6 +263,8 @@ public class VisitFriend : MonoBehaviour {
 				break;
 
 			case("desk"):
+				if (crocodesk.activeSelf)
+					crocodesk.SetActive (false);
 				FriendList.desk = false;
 				disableImage ();
 				break;
@@ -315,6 +347,7 @@ public class VisitFriend : MonoBehaviour {
 	}
 
 	void disableImage(){
+		myPos = "";
 		Debug.Log (FriendNameVisit + "back");
 		FriendImage.GetComponent<Image>().enabled = false;
 		TalkBalloonImage.SetActive (false);
