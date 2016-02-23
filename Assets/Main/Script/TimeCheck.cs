@@ -9,7 +9,7 @@ public class TimeCheck : MonoBehaviour {
 	public static TimeSpan Deltazero;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		SysTime = System.DateTime.Now;
 		UpdateTime = SysTime;
 		Deltazero = new TimeSpan (0, 0, 0);
@@ -28,6 +28,7 @@ public class TimeCheck : MonoBehaviour {
 
 	public static bool TimeOver(TimeSpan Delta){
 		if (SysTime - LoadDateTime > Delta) {
+			Debug.Log( SysTime - LoadDateTime);
 			return true;
 		} else {
 			return false;
