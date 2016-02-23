@@ -22,6 +22,8 @@ public class ClockManager : MonoBehaviour
     public GameObject Day2;
     public GameObject Month1;
     public GameObject Month2;
+    public GameObject Year1;
+    public GameObject Year2;
 
     void Update()
     {
@@ -29,6 +31,7 @@ public class ClockManager : MonoBehaviour
         ShowHourNumber();
         ShowDayNumber();
         ShowMonthNumber();
+        ShowYearNumber();
     }
 
     void ShowMinNumber()
@@ -253,6 +256,55 @@ public class ClockManager : MonoBehaviour
                 Month2.GetComponent<SpriteRenderer>().sprite = Number9;
                 break;
         }
+    }
+    void ShowYearNumber()
+    {
+        int k = PlayerPrefs.GetInt("Year");
+        int year2 = k % 10;
+        int year1 = k / 10;
 
+        switch (year1)
+        {
+            case 1:
+                Month1.GetComponent<SpriteRenderer>().sprite = Number1;
+                break;
+            case 2:
+                Month1.GetComponent<SpriteRenderer>().sprite = Number2;
+                break;
+        }
+
+        switch (year2)
+        {
+            case 0:
+                Month2.GetComponent<SpriteRenderer>().sprite = Number0;
+                break;
+            case 1:
+                Month2.GetComponent<SpriteRenderer>().sprite = Number1;
+                break;
+            case 2:
+                Month2.GetComponent<SpriteRenderer>().sprite = Number2;
+                break;
+            case 3:
+                Month2.GetComponent<SpriteRenderer>().sprite = Number3;
+                break;
+            case 4:
+                Month2.GetComponent<SpriteRenderer>().sprite = Number4;
+                break;
+            case 5:
+                Month2.GetComponent<SpriteRenderer>().sprite = Number5;
+                break;
+            case 6:
+                Month2.GetComponent<SpriteRenderer>().sprite = Number6;
+                break;
+            case 7:
+                Month2.GetComponent<SpriteRenderer>().sprite = Number7;
+                break;
+            case 8:
+                Month2.GetComponent<SpriteRenderer>().sprite = Number8;
+                break;
+            case 9:
+                Month2.GetComponent<SpriteRenderer>().sprite = Number9;
+                break;
+        }
     }
 }
