@@ -7,6 +7,7 @@ public class FriendList : MonoBehaviour {
 	public string[] FriendName, TalkBalloonName;
 	public static int MaxVisitorNum, VisitorNum;
 	public static bool bed1, bed2, floor1, floor2, desk, laundry;
+	public static bool Sleeping;
 
 	// Use this for initialization
 	void Start () {
@@ -31,8 +32,10 @@ public class FriendList : MonoBehaviour {
 	void load(){
 		for (int i = 0; i < FriendArray.Length; i++) {
 			FriendArray[i].SetActive((PlayerPrefs.GetString (FriendName[i]) == "True"));
-			FriendArray[i].GetComponent<Image>().enabled = ((PlayerPrefs.GetString (FriendName[i] + "image") == "True"));
-			TalkBalloonArray[i].SetActive((PlayerPrefs.GetString (TalkBalloonName[i]) == "True"));
+			if (!FriendList.Sleeping) {
+				FriendArray [i].GetComponent<Image> ().enabled = ((PlayerPrefs.GetString (FriendName [i] + "image") == "True"));
+				TalkBalloonArray [i].SetActive ((PlayerPrefs.GetString (TalkBalloonName [i]) == "True"));
+			}
 		}
 //		if (PlayerPrefs.HasKey ("MaxVisitorNum"))
 //			MaxVisitorNum = PlayerPrefs.GetInt ("MaxVisitorNum");

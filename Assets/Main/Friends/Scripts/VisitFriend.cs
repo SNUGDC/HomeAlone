@@ -43,72 +43,78 @@ public class VisitFriend : MonoBehaviour {
 	}
 
 	void Start () {
-		Debug.Log ("Visit Start");
-		Delta = new TimeSpan(0, 0, 2);		// friends visit,back per 5 second 
-		Delta2 = new TimeSpan (0, 0, 5);	// save during 1 minute.
-		SysTime = System.DateTime.Now;
-		UpdatedTime = SysTime;
+		if (!FriendList.Sleeping) {
+			Debug.Log ("Visit Start");
+			Delta = new TimeSpan (0, 0, 2);		// friends visit,back per 5 second 
+			Delta2 = new TimeSpan (0, 0, 5);	// save during 1 minute.
+			SysTime = System.DateTime.Now;
+			UpdatedTime = SysTime;
 
-		switch (myPos) {
-		case("bed1"):
-			FriendImage.sprite = SeatImage [posNumber].sprite;
-			ThisObject.transform.position = posBed1;
-			break;
+			switch (myPos) {
+			case("bed1"):
+				FriendImage.sprite = SeatImage [posNumber].sprite;
+				ThisObject.transform.position = posBed1;
+				break;
 
 //		case("bed2"):
 //			ThisObject.transform.position = posBed2;
 //			break;
 
-		case("floor1"):
-			FriendImage.sprite = SeatImage [posNumber].sprite;
-			ThisObject.transform.position = posFloor1;
-			break;
+			case("floor1"):
+				FriendImage.sprite = SeatImage [posNumber].sprite;
+				ThisObject.transform.position = posFloor1;
+				break;
 
-		case("floor2"):
-			FriendImage.sprite = SeatImage [posNumber].sprite;
-			ThisObject.transform.position = posFloor2;
-			break;
+			case("floor2"):
+				FriendImage.sprite = SeatImage [posNumber].sprite;
+				ThisObject.transform.position = posFloor2;
+				break;
 
-		case("desk"):
-			FriendImage.sprite = SeatImage [posNumber].sprite;
-			ThisObject.transform.position = posDesk;
-			break;
+			case("desk"):
+				FriendImage.sprite = SeatImage [posNumber].sprite;
+				ThisObject.transform.position = posDesk;
+				break;
 
-		case("laundry"):
-			FriendImage.sprite = SeatImage [posNumber].sprite;
-			ThisObject.transform.position = posLaundry;
-			break;
-		}
+			case("laundry"):
+				FriendImage.sprite = SeatImage [posNumber].sprite;
+				ThisObject.transform.position = posLaundry;
+				break;
+			}
 
 
 
-		if (PlayerPrefs.HasKey (FriendNameVisit)) {
-			VisitCounter.text = PlayerPrefs.GetString (FriendNameVisit);
-			VisitNumber = IntParseFast(VisitCounter.text);
-		}
+			if (PlayerPrefs.HasKey (FriendNameVisit)) {
+				VisitCounter.text = PlayerPrefs.GetString (FriendNameVisit);
+				VisitNumber = IntParseFast (VisitCounter.text);
+			}
 
-		if (TimeCheck.TimeOver (Delta2)) {
-			if (FriendImage.GetComponent<Image> ().enabled == false && ItemCheck ()) {
-				visit ();
-				Debug.Log ("tryvisit");
-			} else if(FriendImage.GetComponent<Image> ().enabled) {
-				back ();
-				Debug.Log ("tryback");
+			if (TimeCheck.TimeOver (Delta2)) {
+				if (FriendImage.GetComponent<Image> ().enabled == false && ItemCheck ()) {
+					visit ();
+					Debug.Log ("tryvisit");
+				} else if (FriendImage.GetComponent<Image> ().enabled) {
+					back ();
+					Debug.Log ("tryback");
+				}
 			}
 		}
 	}
 
 	// Update is called once per frame
 	void Update () {
-		SysTime = System.DateTime.Now;
-		if (TimeOver ()) {
-			UpdatedTime = SysTime;
-			if ((FriendImage.GetComponent<Image>().enabled == false) && ItemCheck()) visit ();
-			else if (FriendImage.GetComponent<Image>().enabled) back ();
-		}
+		if (!FriendList.Sleeping) {
+			SysTime = System.DateTime.Now;
+			if (TimeOver ()) {
+				UpdatedTime = SysTime;
+				if ((FriendImage.GetComponent<Image> ().enabled == false) && ItemCheck ())
+					visit ();
+				else if (FriendImage.GetComponent<Image> ().enabled)
+					back ();
+			}
 
-		//save
-		PlayerPrefs.SetString (FriendNameVisit, VisitCounter.text);
+			//save
+			PlayerPrefs.SetString (FriendNameVisit, VisitCounter.text);
+		}
 	}
 
 	void visit(){
