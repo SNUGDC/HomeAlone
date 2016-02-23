@@ -7,18 +7,23 @@ public class TimeCounter : MonoBehaviour
 {
     public Text TimerText;
     public float GameSec = 0;
-    private string CurrentTime;
-    Func<string> value;
-    public int Month = 3, Day = 2, Hour = 0, Min = 0;
+    public int Year, Month, Day, Hour, Min;
     public delegate void GetTime(int Time);
     public float TimeFasterValue;
 
     void Start ()
     {
-        Save();
-        //check the code is running well
+        if (PlayerPrefs.HasKey("Min"))
+            Load();
+        else
+        {
+            PlayerPrefs.SetInt("Year", 16);
+            PlayerPrefs.SetInt("Month", 3);
+            PlayerPrefs.SetInt("Day", 2);
+            PlayerPrefs.SetInt("Hour", 9);
+            PlayerPrefs.SetInt("Min", 0);
+        }
         GameSec = Time.time;
-        Load();
     }
 
     void Update ()
@@ -26,21 +31,13 @@ public class TimeCounter : MonoBehaviour
         Load();
         GameSec += Time.deltaTime * TimeFasterValue;
         SetCurrentTime();
-        ShowCurrentTime(() => CurrentTime);
-        TimerText.text = value();
         Save();
-    }
-    
-    public void ShowCurrentTime(Func<String> value)
-    {
-        this.value = value;
     }
 
     public void SetCurrentTime()
     {
         SetMonthandDay();
         SetHourandMin();
-        CurrentTime = "Month : " + Month + "  Day : " + Day + "  Time :" + Hour + ":" + Min;
     }
 
     public void SetMonthandDay()
@@ -62,7 +59,10 @@ public class TimeCounter : MonoBehaviour
             MonthWith31Days();
         }
         if (Month > 12)
+        {
             Month = 1;
+            ++Year;
+        }
     }
 
     public void SetHourandMin()
@@ -108,6 +108,7 @@ public class TimeCounter : MonoBehaviour
 
     void Save()
     {
+        PlayerPrefs.SetInt("Year", Year);
         PlayerPrefs.SetInt("Month", Month);
         PlayerPrefs.SetInt("Day", Day);
         PlayerPrefs.SetInt("Hour", Hour);
@@ -116,6 +117,7 @@ public class TimeCounter : MonoBehaviour
 
     void Load()
     {
+        Year = PlayerPrefs.GetInt("Year");
         Month = PlayerPrefs.GetInt("Month");
         Day = PlayerPrefs.GetInt("Day");
         Hour = PlayerPrefs.GetInt("Hour");
