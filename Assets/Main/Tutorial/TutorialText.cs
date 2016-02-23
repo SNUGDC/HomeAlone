@@ -8,7 +8,7 @@ public class TutorialText : MonoBehaviour
     public Text text;
     public GameObject button;
     public GameObject MenuButton;
-    public GameObject MenuText; 
+
 
     public static int ClickedTime = 0;
 
@@ -18,6 +18,7 @@ public class TutorialText : MonoBehaviour
         {
             case 0:
                 button.SetActive(true);
+                GetComponent<Text>().fontSize = 70;
                 text.text = "291호 맞나요?";
                 break;
             case 1:
@@ -41,12 +42,12 @@ public class TutorialText : MonoBehaviour
                 break;
             case 7:
                 MenuButton.SetActive(true);
-                MenuText.SetActive(true);
+//                MenuText.SetActive(true);
                 button.SetActive(false);
                 break;
             case 9:
                 MenuButton.SetActive(false);
-                MenuText.SetActive(false);
+ //               MenuText.SetActive(false);
                 text.text = "참... 오는 길에 딸기우유 사 왔어... 너 줄게...";
                 break;
             case 10:

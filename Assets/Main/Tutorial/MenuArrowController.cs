@@ -4,7 +4,6 @@ using System.Collections;
 public class MenuArrowController : MonoBehaviour
 {
     public GameObject MenuArrow;
-    public GameObject button;
 
     void Update()
     {
