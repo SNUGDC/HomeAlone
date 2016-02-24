@@ -14,7 +14,8 @@ public class VisitFriend : MonoBehaviour {
 	public Image[] SeatImage;
 	public int VisitProbability;
 	public int BackProbability;
-	int VisitNumber, n, posNumber;
+	public int VisitNumber;
+	int n, posNumber;
 	public string myPos;
 
 	public static Vector3 posBed1 = new Vector3(-5,0,0);

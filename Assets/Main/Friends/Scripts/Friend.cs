@@ -27,11 +27,11 @@ public class Friend : MonoBehaviour {
 		default:
 			QuestionBox.SetActive (false);
 			myButton.enabled = true;
-			if (IntVisitCount >= 3)
+			if (IntVisitCount >= 1)
 				heart [0].SetActive (true);
 			if (IntVisitCount >= 10)
 				heart [1].SetActive (true);
-			if (IntVisitCount >= 100)
+			if (IntVisitCount >= 40)
 				heart [2].SetActive (true);
 			break;
 		}
@@ -43,7 +43,7 @@ public class Friend : MonoBehaviour {
 
 	public void HeartToRed1(Image red){
 		red.enabled=false;
-		if (IntVisitCount >= 3)
+		if (IntVisitCount >= 1)
 			red.enabled=true;
 	}
 
@@ -55,12 +55,12 @@ public class Friend : MonoBehaviour {
 
 	public void HeartToRed3(Image red){
 		red.enabled=false;
-		if (IntVisitCount >= 100)
+		if (IntVisitCount >= 40)
 			red.enabled=true;
 	}
 
 	public void EpisodeEnabled1(GameObject ep){
-		if (IntVisitCount >= 3)
+		if (IntVisitCount >= 1)
 			ep.SetActive (true);
 	}
 
@@ -70,7 +70,7 @@ public class Friend : MonoBehaviour {
 	}
 
 	public void EpisodeEnabled3(GameObject ep){
-		if (IntVisitCount >= 100)
+		if (IntVisitCount >= 40)
 			ep.SetActive (true);
 	}
 
