@@ -7,6 +7,7 @@ public class player : MonoBehaviour {
 	public static GameObject playerObject;
 	public static GameObject bed1, bed2,floor1, floor2, desk;
 	public static string myPos;
+	public GameObject LaundryItem, LaundryImage;
 //	static int posNumber;
 
 	// Use this for initialization
@@ -103,6 +104,10 @@ public class player : MonoBehaviour {
 			PlayerPrefs.SetString("floor2",FriendList.floor2.ToString());
 			PlayerPrefs.SetString("desk",FriendList.desk.ToString());
 			PlayerPrefs.SetString("laundry",FriendList.laundry.ToString());
+
+			// after party, laundry setactive
+			if (LaundryItem.GetComponent<Item> ().BoughtNumber > 0)
+				LaundryImage.SetActive (true);
 		}
 		else {
 			if (PlayerPrefs.HasKey ("PlayerPos"))
