@@ -8,7 +8,6 @@ public class SheepEventText : MonoBehaviour
     public Text text;
     public GameObject button;
     public GameObject Sheep_Normal;
-    public GameObject Sheep_Cook;
     public GameObject Sheep_CantCook;
     public GameObject SheepForText;
 
@@ -38,78 +37,45 @@ public class SheepEventText : MonoBehaviour
                 text.text = "그럼 먼저 냄비에 물을 받아서...";
                 break;
             case 4:
+                SpriteEnabled(Sheep_CantCook, true);
                 SpriteEnabled(Sheep_Normal, false);
-                SpriteEnabled(Sheep_Cook, true);
                 button.SetActive(false);
                 break;
             case 5:
-                SpriteEnabled(Sheep_Cook, false);
-                SpriteEnabled(Sheep_CantCook, true);
-                button.SetActive(false);
-                break;
-            case 6:
                 text.text = "(냄비를 향해 손을 뻗으나 키가 작아서 손잡이가 닿질 않는듯 하다)";
                 break;
-            case 7:
+            case 6:
                 button.SetActive(false);
                 break;
+            case 7:
+                text.text = "냄ㅂ...";
+                break;
             case 8:
-                SpriteEnabled(Sheep_Cook, true);
-                SpriteEnabled(Sheep_CantCook, false);
                 button.SetActive(false);
                 break;
             case 9:
-                text.text = "냄ㅂ...";
+                text.text = "냄비..냄비에...";
                 break;
             case 10:
-                button.SetActive(false);
+                text.text = "물을..받아야...하는데...";
                 break;
             case 11:
-                SpriteEnabled(Sheep_Cook, false);
-                SpriteEnabled(Sheep_CantCook, true);
                 button.SetActive(false);
                 break;
             case 12:
-                text.text = "냄비..냄비에...";
+                text.text = ".......";
                 break;
             case 13:
-                text.text = "물을..받아야...하는데...";
+                text.text = "마트 갔다올게.";
                 break;
             case 14:
+                SpriteEnabled(Sheep_CantCook, false);
                 button.SetActive(false);
                 break;
             case 15:
-                SpriteEnabled(Sheep_Cook, true);
-                SpriteEnabled(Sheep_CantCook, false);
-                button.SetActive(false);
-                break;
-            case 16:
-                SpriteEnabled(Sheep_Cook, false);
-                SpriteEnabled(Sheep_CantCook, true);
-                button.SetActive(false);
-                break;
-            case 17:
-                text.text = ".......";
-                break;
-            case 18:
-                button.SetActive(false);
-                break;
-            case 19:
-                SpriteEnabled(Sheep_Cook, true);
-                SpriteEnabled(Sheep_CantCook, false);
-                button.SetActive(false);
-                break;
-            case 20:
-                text.text = "마트 갔다올게.";
-                break;
-            case 21:
-                SpriteEnabled(Sheep_Cook, false);
-                button.SetActive(false);
-                break;
-            case 22:
                 text.text = "결국 인스턴트 떡볶이를 먹을 수 밖에 없었다...";
                 break;
-            case 23:
+            case 16:
                 SceneManager.LoadScene("Main");
                 break;
             default:
