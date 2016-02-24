@@ -2,13 +2,14 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class Episode : MonoBehaviour {
+public class EventEpisode : MonoBehaviour {
 	public string[] conversation;
 	public Text dialogText;
 
 	void Start () {
+		SendText ();
 	}
-	
+
 
 	void Update () {
 	}

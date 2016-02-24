@@ -1,12 +1,14 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class banana : MonoBehaviour {
-	public GameObject VisitFriend,ShopItem,  buyButton, QuestionBox, PopUp, PopUpClose;
+	public GameObject VisitFriend, ShopItem,  buyButton, QuestionBox, PopUp, PopUpClose;
+	public Image Croco;
 	public Text PopUpText;
 	public int openVisitCount;
-	bool IsAlreadyOpen;
+	bool IsAlreadyOpen, IsAlreadyShow;
 
 	// Use this for initialization
 
@@ -16,6 +18,13 @@ public class banana : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+		//soda event
+		ShopItem.GetComponent<Item> ().load();
+		if (ShopItem.GetComponent<Item> ().haveItem() && Croco.enabled && !IsAlreadyShow) {
+			IsAlreadyShow = true;
+			SceneManager.LoadScene ("Crocodile Event");
+		}
+
 		if (VisitFriend.GetComponent<VisitFriend> ().VisitNumber >= openVisitCount) {
 			ShopItem.GetComponent<Button> ().enabled = true;
 			buyButton.GetComponent<Button> ().enabled = true;
@@ -32,9 +41,15 @@ public class banana : MonoBehaviour {
 
 	void save(){
 		PlayerPrefs.SetString("bananaOPEN",IsAlreadyOpen.ToString());
+		PlayerPrefs.SetString ("CrocoEvent",IsAlreadyShow.ToString());
 	}
 
 	void load(){
+		if(PlayerPrefs.HasKey("CrocoEvent"))
+			IsAlreadyShow = (PlayerPrefs.GetString ("CrocoEvent") == "True");
+		else
+			IsAlreadyShow = false;
+		
 		if(PlayerPrefs.HasKey("bananaOPEN"))
 			IsAlreadyOpen = (PlayerPrefs.GetString ("bananaOPEN") == "True");
 	}

@@ -337,6 +337,17 @@ public class VisitFriend : MonoBehaviour {
 		return false;
 	}
 
+	public int levelCheck(){
+		if ((1 <= VisitNumber) && (VisitNumber < 10))
+			return 1;
+		else if ((10 <= VisitNumber) && (VisitNumber < 40))
+			return 2;
+		else if (40 <= VisitNumber)
+			return 3;
+		else
+			return 0;
+	}
+
 	void save(){
 		PlayerPrefs.SetInt (FriendNameVisit + "posNumber" , posNumber);
 		PlayerPrefs.SetString(FriendNameVisit + "myPos", myPos);

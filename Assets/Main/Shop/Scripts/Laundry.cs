@@ -1,12 +1,15 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class Laundry : MonoBehaviour {
 	public GameObject VisitFriend,ShopItem, buyButton, QuestionBox, PopUp, PopUpClose;
 	public Text PopUpText;
 	public int openVisitCount;
-	bool IsAlreadyOpen;
+	bool IsAlreadyOpen, IsAlreadyShow;
+
+	public int EventExecuteVisit;
 
 	// Use this for initialization
 
@@ -16,6 +19,12 @@ public class Laundry : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+
+		if (VisitFriend.GetComponent<VisitFriend> ().VisitNumber >= EventExecuteVisit && !IsAlreadyShow) {
+			IsAlreadyShow = true;
+			SceneManager.LoadScene ("Owl Event");
+		}
+
 		if (VisitFriend.GetComponent<VisitFriend> ().VisitNumber >= openVisitCount) {
 			ShopItem.GetComponent<Button> ().enabled = true;
 			buyButton.GetComponent<Button> ().enabled = true;
@@ -32,9 +41,15 @@ public class Laundry : MonoBehaviour {
 
 	void save(){
 		PlayerPrefs.SetString("laundryOPEN",IsAlreadyOpen.ToString());
+		PlayerPrefs.SetString ("OwlEvent",IsAlreadyShow.ToString());
 	}
 
 	void load(){
+		if (PlayerPrefs.HasKey ("OwlEvent"))
+			IsAlreadyShow = (PlayerPrefs.GetString ("OwlEvent") == "True");
+		else
+			IsAlreadyShow = false;
+		
 		if(PlayerPrefs.HasKey("laundryOPEN"))
 			IsAlreadyOpen = (PlayerPrefs.GetString ("laundryOPEN") == "True");
 	}
