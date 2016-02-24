@@ -13,8 +13,8 @@ public class Item : MonoBehaviour {
 
 	public void Buy(){
 		if (ItemName == "soda") {
-			if (BoughtNumber > 2)
-				Debug.Log ("you already bought two times.");
+			if (BoughtNumber > 0 || soda.sodaBoughtTimes == 2)
+				Debug.Log ("you already have one OR bought two times.");
 			else {
 				if (MoneySystem.money >= ItemPrice) {
 					MoneySystem.money = MoneySystem.money - ItemPrice;
@@ -78,9 +78,12 @@ public class Item : MonoBehaviour {
 	void Update () {
 		if (BoughtNumber == 0)
 			BoughtImage.SetActive (false);
-		if(BoughtNumber >0 && ItemName!="soda" && ItemName!="banana" && ItemName!="Table" && ItemName!="Cushion" && ItemName!="laundry" && ItemName!="gompang" && ItemName!="mug" && ItemName!="plate" && ItemName!="cake")
-			HavingNumber.text = SetActiveObject2.GetComponent<StrawberryMilk>().RemainTime.Hours.ToString() + "시간 " + SetActiveObject2.GetComponent<StrawberryMilk>().RemainTime.Minutes.ToString() + "분 남음" ;
-		else if(ItemName== "soda" || ItemName == "banana")HavingNumber.text = BoughtNumber+"개 보유";
+		if (BoughtNumber > 0 && ItemName != "soda" && ItemName != "banana" && ItemName != "Table" && ItemName != "Cushion" && ItemName != "laundry" && ItemName != "gompang" && ItemName != "mug" && ItemName != "plate" && ItemName != "cake")
+			HavingNumber.text = SetActiveObject2.GetComponent<StrawberryMilk> ().RemainTime.Hours.ToString () + "시간 " + SetActiveObject2.GetComponent<StrawberryMilk> ().RemainTime.Minutes.ToString () + "분 남음";
+		else if (ItemName == "banana")
+			HavingNumber.text = BoughtNumber + "개 보유";
+		else if (ItemName == "soda" && soda.sodaBoughtTimes == 2)
+			HavingNumber.text = "구매 불가";
 	}
 
 	public bool haveItem(){

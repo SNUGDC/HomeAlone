@@ -1,11 +1,14 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class soda : MonoBehaviour {
 	public GameObject VisitFriend, ShopItem, buyButton, QuestionBox, PopUp, PopUpClose;
+	public Image Penguin;
 	public Text PopUpText;
 	public int openVisitCount;
+	public static int sodaBoughtTimes;
 	bool IsAlreadyOpen;
 
 	// Use this for initialization
@@ -16,6 +19,13 @@ public class soda : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		//soda event
+		ShopItem.GetComponent<Item> ().load();
+		if (ShopItem.GetComponent<Item> ().haveItem () && Penguin.enabled && sodaBoughtTimes < 2) {
+			ShopItem.GetComponent<Item> ().decreaseItem ();
+			sodaBoughtTimes++;
+			SceneManager.LoadScene ("Penguin Event");
+		}
 		if (VisitFriend.GetComponent<VisitFriend> ().VisitNumber >= openVisitCount) {
 			buyButton.GetComponent<Button> ().enabled = true;
 			ShopItem.GetComponent<Button> ().enabled = true;
@@ -32,9 +42,11 @@ public class soda : MonoBehaviour {
 
 	void save(){
 		PlayerPrefs.SetString("sodaOPEN",IsAlreadyOpen.ToString());
+		PlayerPrefs.SetInt("sodaBoughtTimes",sodaBoughtTimes);
 	}
 
 	void load(){
+		sodaBoughtTimes = PlayerPrefs.GetInt("sodaBoughtTimes");
 		if(PlayerPrefs.HasKey("sodaOPEN"))
 			IsAlreadyOpen = (PlayerPrefs.GetString ("sodaOPEN") == "True");
 	}

@@ -32,14 +32,21 @@ public class LivingPoint : MonoBehaviour {
 			QuestionBox [1].SetActive (false);
 			Value [1].text = "잡은 횟수: " + BigDustController.BigDustCatch;
 		}
-		/*
-		if (StockingController.StockingDustCatch > 0) {
+
+		if (BlackStockingController.DefaultBlackStockingCatch > 0) {
 			Dust[2].SetActive (true);
 			Dust [2].GetComponent<Button> ().enabled = true;
 			QuestionBox [2].SetActive (false);
-			Value [2].text = "잡은 횟수: " + StockingController.StockingDustCatch;
+			Value [2].text = "잡은 횟수: " + BlackStockingController.DefaultBlackStockingCatch;
 		}
-		*/
+
+		if (IvoryStockingController.DefaultIvoryStockingCatch > 0) {
+			Dust[3].SetActive (true);
+			Dust [3].GetComponent<Button> ().enabled = true;
+			QuestionBox [3].SetActive (false);
+			Value [3].text = "잡은 횟수: " + IvoryStockingController.DefaultIvoryStockingCatch;
+		}
+
 	}
 
 }
