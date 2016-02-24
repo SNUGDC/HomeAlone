@@ -3,7 +3,8 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class TalkBalloon : MonoBehaviour {
-	public string[] Text, TextSubject, SavedValue;
+	public string[] Text, TextSubject;
+	public string NameTalk;
 	public int[] TextProbability;	// same size to Text & SUM is 100
 	public Text PanelText;
 	private int RandomNumber, saveNumber;
@@ -50,13 +51,13 @@ public class TalkBalloon : MonoBehaviour {
 
 	private void save(){
 		for (int i = 0; i < Text.Length; i++) {
-			PlayerPrefs.SetString(SavedValue[i],IsAlreadyShow[i].ToString());
+			PlayerPrefs.SetString(NameTalk + i.ToString(),IsAlreadyShow[i].ToString());
 		}
 	}
 
 	public void load(){
 		for (int i = 0; i < Text.Length; i++) {
-			IsAlreadyShow [i] = (PlayerPrefs.GetString(SavedValue [i]) == "True");
+			IsAlreadyShow [i] = (PlayerPrefs.GetString(NameTalk + i.ToString()) == "True");
 		}
 	}
 }
