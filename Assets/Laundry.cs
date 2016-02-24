@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class banana : MonoBehaviour {
+public class Laundry : MonoBehaviour {
 	public GameObject VisitFriend, buyButton, QuestionBox, PopUp, PopUpClose;
 	public Text PopUpText;
 	public int openVisitCount;
@@ -20,7 +20,7 @@ public class banana : MonoBehaviour {
 			buyButton.GetComponent<Button> ().enabled = true;
 			QuestionBox.SetActive (false);
 			if (!IsAlreadyOpen) {
-				PopUpText.text = "이제 상점에서 <바나나>를 구입할 수 있습니다!";
+				PopUpText.text = "이제 상점에서 <빨래건조대>를 구입할 수 있습니다!";
 				PopUpClose.SetActive (true);
 				PopUp.SetActive (true);
 				IsAlreadyOpen = true;
@@ -30,11 +30,11 @@ public class banana : MonoBehaviour {
 	}
 
 	void save(){
-		PlayerPrefs.SetString("bananaOPEN",IsAlreadyOpen.ToString());
+		PlayerPrefs.SetString("laundryOPEN",IsAlreadyOpen.ToString());
 	}
 
 	void load(){
-		if(PlayerPrefs.HasKey("bananaOPEN"))
-			IsAlreadyOpen = (PlayerPrefs.GetString ("bananaOPEN") == "True");
+		if(PlayerPrefs.HasKey("laundryOPEN"))
+			IsAlreadyOpen = (PlayerPrefs.GetString ("laundryOPEN") == "True");
 	}
 }
