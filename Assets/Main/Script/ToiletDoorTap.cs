@@ -6,32 +6,31 @@ using System;
 
 public class ToiletDoorTap : MonoBehaviour
 {
+    public static bool IsSuccess;
+    public GameObject button;
+
     bool Haskey;
     DateTime SysTime;
     DateTime UpdatedTime;
+
+    void Start()
+    {
+        UpdatedTime = DateTime.Now;
+    }
 
     void Update()
     {
         GetComponent<Slider>().value -= 1;
         SysTime = DateTime.Now;
 
-        if (GetComponent<Slider>().value > 800)
+        if(SysTime - UpdatedTime > new TimeSpan(0, 0, 10))
         {
-            if (Haskey) return;
-            else
-            {
-                UpdatedTime = DateTime.Now;
-                Haskey = true;
-            }
-        }
-        else if (GetComponent<Slider>().value <= 800)
-        {
-            Haskey = false;
-        }
+            if (GetComponent<Slider>().value > 800)
+                IsSuccess = true;
+            else IsSuccess = false;
 
-        if (SysTime - UpdatedTime > new TimeSpan(0, 0, 5) && Haskey)
-        {
-            Debug.Log("Success!!");
+            PenguinEventText.ClickedTime_PenguinEvent = 12;
+            button.SetActive(true);
         }
     }
 
