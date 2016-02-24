@@ -87,6 +87,9 @@ public class PenguinEventText : MonoBehaviour
                 case 16:
                     text.text = "(펭귄은 부끄러워하며 웃었다.)";
                     break;
+                case 17:
+                    SceneManager.LoadScene("Main");
+                    break;
                 default:
                     break;
             }
@@ -110,6 +113,9 @@ public class PenguinEventText : MonoBehaviour
                     break;
                 case 16:
                     text.text = "(그렇게 밤새도록 화장실을 사용할 수 없었다...)";
+                    break;
+                case 17:
+                    SceneManager.LoadScene("Main");
                     break;
                 default:
                     break;
