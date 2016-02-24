@@ -39,6 +39,15 @@ public class TalkBalloon : MonoBehaviour {
 
 	}
 
+	public int NumberOfTalk(){
+		int result=0;
+		for (int i = 0; i < Text.Length; i++) {
+			if (IsAlreadyShow [i])
+				result++;
+		}
+		return result;
+	}
+
 	private void save(){
 		for (int i = 0; i < Text.Length; i++) {
 			PlayerPrefs.SetString(SavedValue[i],IsAlreadyShow[i].ToString());
