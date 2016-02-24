@@ -22,6 +22,7 @@ public class DustController : MonoBehaviour
     {
         DustRend.enabled = false;
         EXPRend.enabled = true;
+        GetComponent<Collider2D>().enabled = false;
         EXPEffect();
         DustAmount = PlayerPrefs.GetInt("DustAmount");
         DustAmount = DustAmount - 1;

@@ -4,6 +4,8 @@ using System;
 
 public class RandomMovement : MonoBehaviour
 {
+    public string FieldName;
+
     float ran1;
     float ran2;
     bool IsOut;
@@ -31,12 +33,16 @@ public class RandomMovement : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D Coll)
     {
-        IsOut = false;
+        if(Coll.name == FieldName)
+            IsOut = false;
     }
 
     void OnTriggerExit2D(Collider2D Coll)
     {
-        IsOut = true;
-        GetComponent<Rigidbody2D>().velocity = new Vector2(-GetComponent<Rigidbody2D>().velocity.x, -GetComponent<Rigidbody2D>().velocity.y);
+        if (Coll.name == FieldName)
+        {
+            IsOut = true;
+            GetComponent<Rigidbody2D>().velocity = new Vector2(-GetComponent<Rigidbody2D>().velocity.x, -GetComponent<Rigidbody2D>().velocity.y);
+        }
     }
 }
