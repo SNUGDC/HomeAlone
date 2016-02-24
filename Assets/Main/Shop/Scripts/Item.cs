@@ -83,6 +83,21 @@ public class Item : MonoBehaviour {
 		else if(ItemName== "soda" || ItemName == "banana")HavingNumber.text = BoughtNumber+"개 보유";
 	}
 
+	public bool haveItem(){
+		if (BoughtNumber > 0)
+			return true;
+		else
+			return false;
+	}
+
+	public void decreaseItem(){
+		if (haveItem())
+			BoughtNumber--;
+		else
+			Debug.Log ("you don't have item");
+		save ();
+	}
+
 	public void save(){
 		PlayerPrefs.SetInt(ItemName + "BoughtNumber",BoughtNumber);
 		PlayerPrefs.SetString (ItemName + "HavingNumber",HavingNumber.text);
