@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class Hagendaz : MonoBehaviour {
-	public GameObject VisitFriend, buyButton1, buyButton2, QuestionBox1, QuestionBox2, PopUp, PopUpClose;
+	public GameObject VisitFriend, ShopItem1, ShopItem2, buyButton1, buyButton2, QuestionBox1, QuestionBox2, PopUp, PopUpClose;
 	public Text PopUpText;
 	public int openVisitCount;
 	bool IsAlreadyOpen;
@@ -17,6 +17,8 @@ public class Hagendaz : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (VisitFriend.GetComponent<VisitFriend> ().VisitNumber >= openVisitCount) {
+			ShopItem1.GetComponent<Button> ().enabled = true;
+			ShopItem2.GetComponent<Button> ().enabled = true;
 			buyButton1.GetComponent<Button> ().enabled = true;
 			buyButton2.GetComponent<Button> ().enabled = true;
 			QuestionBox1.SetActive (false);

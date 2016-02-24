@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class mug : MonoBehaviour {
-	public GameObject VisitFriend, buyButton, QuestionBox, PopUp, PopUpClose;
+	public GameObject VisitFriend,ShopItem, buyButton, QuestionBox, PopUp, PopUpClose;
 	public Text PopUpText;
 	public int openVisitCount;
 	bool IsAlreadyOpen;
@@ -17,6 +17,7 @@ public class mug : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (VisitFriend.GetComponent<VisitFriend> ().VisitNumber >= openVisitCount) {
+			ShopItem.GetComponent<Button> ().enabled = true;
 			buyButton.GetComponent<Button> ().enabled = true;
 			QuestionBox.SetActive (false);
 			if (!IsAlreadyOpen) {

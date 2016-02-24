@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class CushionOpen : MonoBehaviour {
-	public GameObject VisitFriend, buyButton, QuestionBox, PopUp, PopUpClose;
+	public GameObject VisitFriend, ShopItem, buyButton, QuestionBox, PopUp, PopUpClose;
 	public Text PopUpText;
 	public int openVisitCount;
 	bool IsAlreadyOpen;
@@ -18,6 +18,7 @@ public class CushionOpen : MonoBehaviour {
 	void Update () {
 		if (VisitFriend.GetComponent<VisitFriend> ().VisitNumber >= openVisitCount) {
 			buyButton.GetComponent<Button> ().enabled = true;
+			ShopItem.GetComponent<Button> ().enabled = true;
 			QuestionBox.SetActive (false);
 			if (!IsAlreadyOpen) {
 				PopUpText.text = "이제 상점에서 <쿠션>을 구입할 수 있습니다!";
