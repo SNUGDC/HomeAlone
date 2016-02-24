@@ -7,12 +7,29 @@ public class Item : MonoBehaviour {
 	public int ItemPrice;
 	public string ItemName;
 	public int BoughtNumber = 0;
-	public GameObject SetActiveObject;
+	public GameObject SetActiveObject, SetActiveObject2;	// SetActiveObject1 is friend.
 	public GameObject BoughtImage;
 	public Text HavingNumber;
 
 	public void Buy(){
-		if (MoneySystem.money >= ItemPrice) {
+		if (ItemName == "Table" || ItemName == "Cushion" || ItemName == "laundry" || ItemName == "gompang" || ItemName == "mug" || ItemName == "plate" || ItemName == "cake") {
+			if (BoughtNumber > 0)
+				Debug.Log ("you have already one!");
+			else {
+				if (MoneySystem.money >= ItemPrice) {
+					MoneySystem.money = MoneySystem.money - ItemPrice;
+					MoneySystem.MoneyOut = true;
+					MoneySystem.remainder = MoneySystem.money;
+					SetActiveObject.SetActive (true);
+					SetActiveObject2.SetActive (true);
+					BoughtImage.SetActive (true);
+					BoughtNumber++;
+					save ();
+					Debug.Log ("Buy!");
+				}
+			}
+		}
+		else if (MoneySystem.money >= ItemPrice) {
 				MoneySystem.money = MoneySystem.money - ItemPrice;
 				MoneySystem.MoneyOut = true;
 //				MoneySystem.ContentsName = ItemName;
@@ -20,9 +37,9 @@ public class Item : MonoBehaviour {
 				MoneySystem.remainder = MoneySystem.money;
 				//SetActiveObject.GetComponent<Image> ().enabled = true;
 				SetActiveObject.SetActive(true);
+				SetActiveObject2.SetActive(true);
 				BoughtImage.SetActive (true);
 				BoughtNumber++;
-				HavingNumber.text = BoughtNumber + "개 보유";
 				save ();
 				Debug.Log ("Buy!");
 			}
@@ -42,6 +59,11 @@ public class Item : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+		if (BoughtNumber == 0)
+			BoughtImage.SetActive (false);
+		if(BoughtNumber >0 && ItemName!="soda" && ItemName!="banana" && ItemName!="Table" && ItemName!="Cushion" && ItemName!="laundry" && ItemName!="gompang" && ItemName!="mug" && ItemName!="plate" && ItemName!="cake")
+			HavingNumber.text = SetActiveObject2.GetComponent<StrawberryMilk>().RemainTime.Hours.ToString() + "시간 " + SetActiveObject2.GetComponent<StrawberryMilk>().RemainTime.Minutes.ToString() + "분 남음" ;
+		else if(ItemName== "soda" || ItemName == "banana")HavingNumber.text = "아직 구현 안함";
 	}
 
 	public void save(){

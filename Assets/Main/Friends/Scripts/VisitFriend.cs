@@ -364,8 +364,7 @@ public class VisitFriend : MonoBehaviour {
 		FriendList.VisitorNum++;
 		VisitNumber++;
 		Debug.Log (FriendList.VisitorNum);
-		VisitItem[n].GetComponent<Item> ().BoughtNumber--;
-		VisitItem[n].GetComponent<Item>().HavingNumber.text = VisitItem[n].GetComponent<Item>().BoughtNumber + "개 보유";
+		//VisitItem[n].GetComponent<Item> ().BoughtNumber--;
 		VisitItem [n].GetComponent<Item> ().save ();
 		VisitCounter.text = VisitNumber.ToString();
 	}

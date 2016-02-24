@@ -145,7 +145,7 @@ public class player : MonoBehaviour {
 				break;
 			}
 		}
-		FriendList.showBool ();
+		//FriendList.showBool ();
 	}
 	
 	// Update is called once per frame
@@ -217,7 +217,7 @@ public class player : MonoBehaviour {
 			PlayerPrefs.SetString ("PlayerPos", myPos);
 //		PlayerPrefs.SetInt ("PlayerPosNumber", posNumber);
 
-			FriendList.showBool ();
+			//FriendList.showBool ();
 		}
 	}
 
