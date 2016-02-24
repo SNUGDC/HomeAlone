@@ -58,6 +58,8 @@ public class CreateStocking : MonoBehaviour
         k = UnityEngine.Random.Range(1, 5);
         SysTime = System.DateTime.Now;
 
+        Debug.Log(StockingAmount);
+
         if (TimeOver() && StockingAmount < MaxStocking)
         {
             UpdatedTime = SysTime;
