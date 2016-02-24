@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class StockingController : MonoBehaviour
+public class BlackStockingController : MonoBehaviour
 {
     public GameObject ObjectEXP;
     public AudioClip ClickStocking;
