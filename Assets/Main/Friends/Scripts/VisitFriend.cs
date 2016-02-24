@@ -42,14 +42,11 @@ public class VisitFriend : MonoBehaviour {
 		sheep = GameObject.Find ("Sheep_f");
 		bear = GameObject.Find ("bear_f");
 
-
-		Debug.Log ("load");
 		load ();
 	}
 
 	void Start () {
 		if (!FriendList.Sleeping) {
-			Debug.Log ("Visit Start");
 			Delta = new TimeSpan (0, 0, 2);		// friends visit,back per 5 second 
 			Delta2 = new TimeSpan (0, 0, 5);	// save during 1 minute.
 			SysTime = System.DateTime.Now;
@@ -117,10 +114,8 @@ public class VisitFriend : MonoBehaviour {
 			if (TimeCheck.TimeOver (Delta2)) {
 				if (FriendImage.GetComponent<Image> ().enabled == false && ItemCheck ()) {
 					visit ();
-					Debug.Log ("tryvisit");
 				} else if (FriendImage.GetComponent<Image> ().enabled) {
 					back ();
-					Debug.Log ("tryback");
 				}
 			}
 		}
@@ -157,7 +152,6 @@ public class VisitFriend : MonoBehaviour {
 					if (!FriendList.bed1) {
 						if (ThisObject.GetComponent<VisitFriend> ().FriendNameVisit == "crocodileVisit" && !FriendList.bed2) {
 							ThisObject.transform.position = posBed1;
-							Debug.Log ("bed1 true");
 							FriendList.bed1 = true;
 							myPos = "bed1";
 							EnableImage ();
@@ -166,7 +160,6 @@ public class VisitFriend : MonoBehaviour {
 							posNumber = i;
 						} else {
 							ThisObject.transform.position = posBed1;
-							Debug.Log ("bed1 true");
 							FriendList.bed1 = true;
 							myPos = "bed1";
 							FriendImage.sprite = SeatImage [i].sprite;
@@ -192,7 +185,6 @@ public class VisitFriend : MonoBehaviour {
 							cushion.transform.position = posFloor1;
 							cushion.GetComponent<Image>().enabled = true;
 						}
-						Debug.Log ("floor1 true");
 						FriendList.floor1 = true;
 						ThisObject.transform.position = posFloor1;
 						myPos = "floor1";
@@ -210,7 +202,6 @@ public class VisitFriend : MonoBehaviour {
 							cushion.GetComponent<Image>().enabled = true;
 						}
 						ThisObject.transform.position = posFloor2;
-						Debug.Log ("floor2 true");
 						FriendList.floor2 = true;
 						myPos = "floor2";
 						FriendImage.sprite = SeatImage [i].sprite;
@@ -224,7 +215,6 @@ public class VisitFriend : MonoBehaviour {
 					if (!FriendList.desk) {
 						if (ThisObject.GetComponent<VisitFriend> ().FriendNameVisit == "crocodileVisit") {
 							ThisObject.transform.position = posDesk;
-							Debug.Log ("desk true");
 							FriendList.desk = true;
 							myPos = "desk";
 							EnableImage ();
@@ -233,7 +223,6 @@ public class VisitFriend : MonoBehaviour {
 							posNumber = i;
 						} else {
 							ThisObject.transform.position = posDesk;
-							Debug.Log ("desk true");
 							FriendList.desk = true;
 							myPos = "desk";
 							FriendImage.sprite = SeatImage [i].sprite;
@@ -247,7 +236,6 @@ public class VisitFriend : MonoBehaviour {
 				case("laundry"):				// only lion!
 					if (!FriendList.laundry) {
 						ThisObject.transform.position = posLaundry;
-						Debug.Log ("laundry true");
 						Laundry.SetActive (false);
 						FriendList.laundry = true;
 						myPos = "laundry";
