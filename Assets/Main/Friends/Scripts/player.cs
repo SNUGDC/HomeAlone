@@ -163,6 +163,7 @@ public class player : MonoBehaviour {
 				playerObject.GetComponent<Image> ().enabled = false;
 				bed2.GetComponent<Image> ().enabled = true;
 //			playerObject.transform.position = posBed2;
+				FriendList.bed2 = true;		
 				myPos = "bed2";
 				Debug.Log ("****PlayerPos : " + myPos);
 			} else {
@@ -230,6 +231,7 @@ public class player : MonoBehaviour {
 				break;
 
 			case("bed2"):
+				FriendList.bed2 = false;
 				bed2.GetComponent<Image> ().enabled = false;
 				break;
 

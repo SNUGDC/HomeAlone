@@ -339,7 +339,7 @@ public class VisitFriend : MonoBehaviour {
 		PlayerPrefs.SetInt (FriendNameVisit + "posNumber" , posNumber);
 		PlayerPrefs.SetString(FriendNameVisit + "myPos", myPos);
 		PlayerPrefs.SetString("bed1",FriendList.bed1.ToString());
-//		PlayerPrefs.SetString("bed2",FriendList.bed2.ToString());
+		PlayerPrefs.SetString("bed2",FriendList.bed2.ToString());
 		PlayerPrefs.SetString("floor1",FriendList.floor1.ToString());
 		PlayerPrefs.SetString("floor2",FriendList.floor2.ToString());
 		PlayerPrefs.SetString("desk",FriendList.desk.ToString());
@@ -351,7 +351,7 @@ public class VisitFriend : MonoBehaviour {
 		if(PlayerPrefs.HasKey(FriendNameVisit + "myPos"))
 			myPos = PlayerPrefs.GetString (FriendNameVisit + "myPos");
 		FriendList.bed1 = (PlayerPrefs.GetString("bed1") == "True");
-//		FriendList.bed2 = (PlayerPrefs.GetString("bed2") == "True");
+		FriendList.bed2 = (PlayerPrefs.GetString("bed2") == "True");
 		FriendList.floor1 = (PlayerPrefs.GetString("floor1") == "True");
 		FriendList.floor2 = (PlayerPrefs.GetString("floor2") == "True");
 		FriendList.desk = (PlayerPrefs.GetString("desk") == "True");
