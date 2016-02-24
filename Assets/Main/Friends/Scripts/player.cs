@@ -106,6 +106,7 @@ public class player : MonoBehaviour {
 			PlayerPrefs.SetString("laundry",FriendList.laundry.ToString());
 
 			// after party, laundry setactive
+			LaundryItem.GetComponent<Item> ().load();
 			if (LaundryItem.GetComponent<Item> ().BoughtNumber > 0)
 				LaundryImage.SetActive (true);
 		}

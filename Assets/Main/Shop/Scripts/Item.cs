@@ -87,6 +87,7 @@ public class Item : MonoBehaviour {
 	}
 
 	public bool haveItem(){
+		load ();
 		if (BoughtNumber > 0)
 			return true;
 		else
