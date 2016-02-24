@@ -55,7 +55,8 @@ public class VisitFriend : MonoBehaviour {
 
 			switch (myPos) {
 			case("bed1"):
-				if (ThisObject.GetComponent<VisitFriend> ().FriendNameVisit == "crocodileVisit" && !FriendList.bed2){
+				// not bed2 option...
+				if (ThisObject.GetComponent<VisitFriend> ().FriendNameVisit == "crocodileVisit"){
 					ThisObject.transform.position = posBed1;
 					crocobed.SetActive (true);
 				}
@@ -151,7 +152,8 @@ public class VisitFriend : MonoBehaviour {
 				switch(Seat[i]){
 				case("bed1"):
 					if (!FriendList.bed1) {
-						if (ThisObject.GetComponent<VisitFriend> ().FriendNameVisit == "crocodileVisit" && !FriendList.bed2) {
+						// !bed2 option..
+						if (ThisObject.GetComponent<VisitFriend> ().FriendNameVisit == "crocodileVisit") {
 							ThisObject.transform.position = posBed1;
 							FriendList.bed1 = true;
 							myPos = "bed1";
