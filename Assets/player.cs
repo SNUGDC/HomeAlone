@@ -37,7 +37,41 @@ public class player : MonoBehaviour {
 			FriendList.floor2 = false;
 			FriendList.desk = false;
 			FriendList.laundry = false;
+			FriendList.VisitorNum = 0;
 
+			if (VisitFriend.penguin != null) {
+				VisitFriend.penguin.GetComponent<VisitFriend> ().myPos = "";
+				PlayerPrefs.SetString ("PenguinVisitmyPos", "");
+			}
+			if (VisitFriend.sheep != null) {
+				VisitFriend.sheep.GetComponent<VisitFriend> ().myPos = "";
+				PlayerPrefs.SetString ("SheepVisitmyPos", "");
+			}
+			if (VisitFriend.bear != null) {
+				VisitFriend.bear.GetComponent<VisitFriend> ().myPos = "";
+				PlayerPrefs.SetString ("bearVisitmyPos", "");
+			}
+			if (VisitFriend.snake != null) {
+				VisitFriend.snake.GetComponent<VisitFriend> ().myPos = "";
+				PlayerPrefs.SetString ("snakeVisitmyPos", "");
+			}
+			if (VisitFriend.owl != null) {
+				VisitFriend.owl.GetComponent<VisitFriend> ().myPos = "";
+				PlayerPrefs.SetString ("owlVisitmyPos", "");
+			}
+			if (VisitFriend.ammonite != null) {
+				VisitFriend.ammonite.GetComponent<VisitFriend> ().myPos = "";
+				PlayerPrefs.SetString ("ammoniteVisitmyPos", "");
+			}
+			if (VisitFriend.crocodile != null) {
+				VisitFriend.crocodile.GetComponent<VisitFriend> ().myPos = "";
+				PlayerPrefs.SetString ("crocodileVisitmyPos", "");
+			}
+			if (VisitFriend.lion != null) {
+				VisitFriend.lion.GetComponent<VisitFriend> ().myPos = "";
+				PlayerPrefs.SetString ("lionVisitmyPos", "");
+			}
+			
 			if (PlayerPrefs.HasKey ("PlayerPos"))
 				myPos = PlayerPrefs.GetString ("PlayerPos");
 			

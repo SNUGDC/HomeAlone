@@ -15,7 +15,7 @@ public class VisitFriend : MonoBehaviour {
 	public int VisitProbability;
 	public int BackProbability;
 	int VisitNumber, n, posNumber;
-	string myPos;
+	public string myPos;
 
 	public static Vector3 posBed1 = new Vector3(-5,0,0);
 //	Vector3 posBed2 = new Vector3(270,210,0);
@@ -25,7 +25,7 @@ public class VisitFriend : MonoBehaviour {
 	public static Vector3 posLaundry = new Vector3(0,-2,0);
 
 	public GameObject Laundry, table, cushion, crocobed, crocodesk;
-	public static GameObject snake, sheep, bear;
+	public static GameObject penguin, lion, crocodile, ammonite, owl, snake, sheep, bear;
 
 	DateTime SysTime;
 	DateTime UpdatedTime;
@@ -33,6 +33,11 @@ public class VisitFriend : MonoBehaviour {
 
 	void Awake()
 	{
+		penguin = GameObject.Find ("Penguin_f");
+		lion = GameObject.Find ("lion_f");
+		crocodile = GameObject.Find ("crocodile_f");
+		ammonite = GameObject.Find ("ammonite_f");
+		owl = GameObject.Find ("owl_f");
 		snake = GameObject.Find ("snake_f");
 		sheep = GameObject.Find ("Sheep_f");
 		bear = GameObject.Find ("bear_f");
