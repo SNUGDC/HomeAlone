@@ -109,6 +109,9 @@ public class SheepEventText : MonoBehaviour
             case 22:
                 text.text = "결국 인스턴트 떡볶이를 먹을 수 밖에 없었다...";
                 break;
+            case 23:
+                SceneManager.LoadScene("Main");
+                break;
             default:
                 break;
         }
