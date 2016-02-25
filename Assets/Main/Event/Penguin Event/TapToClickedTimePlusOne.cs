@@ -15,7 +15,7 @@ public class TapToClickedTimePlusOne : MonoBehaviour
         }
     }
 
-    void OnMouseDown()
+    void OnMouseUp()
     {
         PenguinEventText.ClickedTime_PenguinEvent = ShowTime + 1;
         GetComponent<SpriteRenderer>().enabled = false;
