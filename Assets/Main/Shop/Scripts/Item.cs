@@ -26,9 +26,11 @@ public class Item : MonoBehaviour {
 		if (ItemName == "soda") {
 			if (BoughtNumber > 0 || soda.sodaBoughtTimes == 2) {
 				//already have
-				Text1.GetComponent<Text>().enabled = true;
-				Notice1.GetComponent<Image>().enabled = true;
-				Notice1.GetComponent<FadeOut>().enabled = true;
+				if (Text1 != null && Notice1 != null) {
+					Text1.GetComponent<Text> ().enabled = true;
+					Notice1.GetComponent<Image> ().enabled = true;
+					Notice1.GetComponent<FadeOut> ().enabled = true;
+				}
 				Debug.Log ("you already have one OR bought two times.");
 			}
 			else {
@@ -41,23 +43,29 @@ public class Item : MonoBehaviour {
 					BoughtImage.SetActive (true);
 					BoughtNumber++;
 					save ();
-					Text3.GetComponent<Text>().enabled = true;
-					Notice3.GetComponent<Image>().enabled = true;
-					Notice3.GetComponent<FadeOut>().enabled = true;
+					if (Text3 != null && Notice3 != null) {
+						Text3.GetComponent<Text> ().enabled = true;
+						Notice3.GetComponent<Image> ().enabled = true;
+						Notice3.GetComponent<FadeOut> ().enabled = true;
+					}
 					Debug.Log ("Buy!");
 				} else {
-					Text2.GetComponent<Text>().enabled = true;
-					Notice2.GetComponent<Image>().enabled = true;
-					Notice2.GetComponent<FadeOut>().enabled = true;
+					if (Text2 != null && Notice2 != null) {
+						Text2.GetComponent<Text> ().enabled = true;
+						Notice2.GetComponent<Image> ().enabled = true;
+						Notice2.GetComponent<FadeOut> ().enabled = true;
+					}
 					//not enough money
 				}
 			}
 		} else if (ItemName == "Table" || ItemName == "Cushion" || ItemName == "laundry" || ItemName == "gompang" || ItemName == "mug" || ItemName == "plate" || ItemName == "cake") {
 			if (BoughtNumber > 0) {
 				//already have
-				Text1.GetComponent<Text>().enabled = true;
-				Notice1.GetComponent<Image>().enabled = true;
-				Notice1.GetComponent<FadeOut>().enabled = true;
+				if (Text1 != null && Notice1 != null) {
+					Text1.GetComponent<Text> ().enabled = true;
+					Notice1.GetComponent<Image> ().enabled = true;
+					Notice1.GetComponent<FadeOut> ().enabled = true;
+				}
 				Debug.Log ("you have already one!");
 			} else {
 				if (MoneySystem.money >= ItemPrice) {
@@ -69,15 +77,19 @@ public class Item : MonoBehaviour {
 					BoughtImage.SetActive (true);
 					BoughtNumber++;
 					save ();
-					Text3.GetComponent<Text>().enabled = true;
-					Notice3.GetComponent<Image>().enabled = true;
-					Notice3.GetComponent<FadeOut>().enabled = true;
+					if (Text3 != null && Notice3 != null) {
+						Text3.GetComponent<Text> ().enabled = true;
+						Notice3.GetComponent<Image> ().enabled = true;
+						Notice3.GetComponent<FadeOut> ().enabled = true;
+					}
 					Debug.Log ("Buy!");
 				} else {
 					//not enough money
-					Text2.GetComponent<Text>().enabled = true;
-					Notice2.GetComponent<Image>().enabled = true;
-					Notice2.GetComponent<FadeOut>().enabled = true;
+					if (Text2 != null && Notice2 != null) {
+						Text2.GetComponent<Text> ().enabled = true;
+						Notice2.GetComponent<Image> ().enabled = true;
+						Notice2.GetComponent<FadeOut> ().enabled = true;
+					}
 				}
 			}
 		} else {	// basic item
@@ -93,15 +105,19 @@ public class Item : MonoBehaviour {
 				BoughtImage.SetActive (true);
 				BoughtNumber++;
 				save ();
-				Text3.GetComponent<Text>().enabled = true;
-				Notice3.GetComponent<Image>().enabled = true;
-				Notice3.GetComponent<FadeOut>().enabled = true;
+				if (Text3 != null && Notice3 != null) {
+					Text3.GetComponent<Text> ().enabled = true;
+					Notice3.GetComponent<Image> ().enabled = true;
+					Notice3.GetComponent<FadeOut> ().enabled = true;
+				}
 				Debug.Log ("Buy!");
 			} else {
 				//not enough money
-				Text2.GetComponent<Text>().enabled = true;
-				Notice2.GetComponent<Image>().enabled = true;
-				Notice2.GetComponent<FadeOut>().enabled = true;
+				if (Text2 != null && Notice2 != null) {
+					Text2.GetComponent<Text> ().enabled = true;
+					Notice2.GetComponent<Image> ().enabled = true;
+					Notice2.GetComponent<FadeOut> ().enabled = true;
+				}
 				Debug.Log ("Be short of money");
 			}
 		}
