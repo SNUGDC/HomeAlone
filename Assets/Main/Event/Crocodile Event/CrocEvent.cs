@@ -14,7 +14,7 @@ public class CrocEvent : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (text.text == "(바나나를 머리에 올린 악어의 모습)") {
+		if (text.text == "....") {
 			banana.SetActive (true);
 			This.GetComponent<SpriteRenderer>().enabled = false;
 		}

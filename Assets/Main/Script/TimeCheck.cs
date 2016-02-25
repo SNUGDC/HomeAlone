@@ -7,6 +7,8 @@ public class TimeCheck : MonoBehaviour {
 	public static string LoadTime;
 	public static DateTime SysTime, UpdateTime, LoadDateTime;
 	public static TimeSpan Deltazero;
+	public GameObject Milk;
+	bool GetMilk;
 
 	// Use this for initialization
 	void Awake () {
@@ -19,9 +21,21 @@ public class TimeCheck : MonoBehaviour {
 		} else
 			LoadDateTime = SysTime;
 	}
-	
+
+	void Start(){
+		if (PlayerPrefs.HasKey ("GetMilk"))
+			GetMilk = (PlayerPrefs.GetString ("GetMilk") == "True");
+		else
+			GetMilk = false;
+	}
 	// Update is called once per frame
 	void Update () {
+		if (!GetMilk) {
+//			MoneySystem.money += 1200;
+//			Milk.GetComponent<Item> ().Buy ();
+			GetMilk = true;
+			PlayerPrefs.SetString ("GetMilk", GetMilk.ToString ());
+		}
 		UpdateTime = System.DateTime.Now;
 		PlayerPrefs.SetString("TimeSave", UpdateTime.ToString());
 	}
