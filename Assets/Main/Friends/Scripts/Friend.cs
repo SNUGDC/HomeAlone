@@ -9,7 +9,7 @@ public class Friend : MonoBehaviour {
 	public int IntVisitCount;
 	private Button myButton;
 
-	void Start () {
+	void Awake () {
 		myButton = GetComponent<Button>();
 	}
 		

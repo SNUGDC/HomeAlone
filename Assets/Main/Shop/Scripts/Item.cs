@@ -11,11 +11,26 @@ public class Item : MonoBehaviour {
 	public GameObject BoughtImage;
 	public Text HavingNumber;
 
+	static GameObject Notice1, Notice2, Notice3, Text1, Text2, Text3;
+
+	void Awake () {
+		Notice1 = GameObject.Find ("Notice1");
+		Notice2 = GameObject.Find ("Notice2");
+		Notice3 = GameObject.Find ("Notice3");
+		Text1 = GameObject.Find ("N_Text1");
+		Text2 = GameObject.Find ("N_Text2");
+		Text3 = GameObject.Find ("N_Text3");
+	}
+
 	public void Buy(){
 		if (ItemName == "soda") {
-			if (BoughtNumber > 0 || soda.sodaBoughtTimes == 2)
+			if (BoughtNumber > 0 || soda.sodaBoughtTimes == 2) {
 				//already have
+				Text1.GetComponent<Text>().enabled = true;
+				Notice1.GetComponent<Image>().enabled = true;
+				Notice1.GetComponent<FadeOut>().enabled = true;
 				Debug.Log ("you already have one OR bought two times.");
+			}
 			else {
 				if (MoneySystem.money >= ItemPrice) {
 					MoneySystem.money = MoneySystem.money - ItemPrice;
@@ -26,14 +41,23 @@ public class Item : MonoBehaviour {
 					BoughtImage.SetActive (true);
 					BoughtNumber++;
 					save ();
+					Text3.GetComponent<Text>().enabled = true;
+					Notice3.GetComponent<Image>().enabled = true;
+					Notice3.GetComponent<FadeOut>().enabled = true;
 					Debug.Log ("Buy!");
 				} else {
+					Text2.GetComponent<Text>().enabled = true;
+					Notice2.GetComponent<Image>().enabled = true;
+					Notice2.GetComponent<FadeOut>().enabled = true;
 					//not enough money
 				}
 			}
 		} else if (ItemName == "Table" || ItemName == "Cushion" || ItemName == "laundry" || ItemName == "gompang" || ItemName == "mug" || ItemName == "plate" || ItemName == "cake") {
 			if (BoughtNumber > 0) {
 				//already have
+				Text1.GetComponent<Text>().enabled = true;
+				Notice1.GetComponent<Image>().enabled = true;
+				Notice1.GetComponent<FadeOut>().enabled = true;
 				Debug.Log ("you have already one!");
 			} else {
 				if (MoneySystem.money >= ItemPrice) {
@@ -45,12 +69,18 @@ public class Item : MonoBehaviour {
 					BoughtImage.SetActive (true);
 					BoughtNumber++;
 					save ();
+					Text3.GetComponent<Text>().enabled = true;
+					Notice3.GetComponent<Image>().enabled = true;
+					Notice3.GetComponent<FadeOut>().enabled = true;
 					Debug.Log ("Buy!");
 				} else {
 					//not enough money
+					Text2.GetComponent<Text>().enabled = true;
+					Notice2.GetComponent<Image>().enabled = true;
+					Notice2.GetComponent<FadeOut>().enabled = true;
 				}
 			}
-		} else {
+		} else {	// basic item
 			if (MoneySystem.money >= ItemPrice) {
 				MoneySystem.money = MoneySystem.money - ItemPrice;
 				MoneySystem.MoneyOut = true;
@@ -63,9 +93,15 @@ public class Item : MonoBehaviour {
 				BoughtImage.SetActive (true);
 				BoughtNumber++;
 				save ();
+				Text3.GetComponent<Text>().enabled = true;
+				Notice3.GetComponent<Image>().enabled = true;
+				Notice3.GetComponent<FadeOut>().enabled = true;
 				Debug.Log ("Buy!");
 			} else {
 				//not enough money
+				Text2.GetComponent<Text>().enabled = true;
+				Notice2.GetComponent<Image>().enabled = true;
+				Notice2.GetComponent<FadeOut>().enabled = true;
 				Debug.Log ("Be short of money");
 			}
 		}
