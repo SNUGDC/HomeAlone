@@ -31,8 +31,8 @@ public class TimeCheck : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (!GetMilk) {
-//			MoneySystem.money += 1200;
-//			Milk.GetComponent<Item> ().Buy ();
+			MoneySystem.money += 1200;
+			Milk.GetComponent<Item> ().Buy ();
 			GetMilk = true;
 			PlayerPrefs.SetString ("GetMilk", GetMilk.ToString ());
 		}
