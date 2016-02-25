@@ -73,6 +73,8 @@ public class PenguinEventText : MonoBehaviour
             {
                 case 12:
                     UI_ToiletEvent.SetActive(false);
+                    Penguin.GetComponent<SpriteRenderer>().enabled = true;
+                    PenguinForText.GetComponent<SpriteRenderer>().enabled = true;
                     text.text = "으음....아! 미안해, 미안해....";
                     break;
                 case 13:
