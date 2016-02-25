@@ -25,7 +25,7 @@ public class VisitFriend : MonoBehaviour {
 	public static Vector3 posDesk = new Vector3(1,1,0);
 	public static Vector3 posLaundry = new Vector3(0,-2,0);
 
-	public GameObject Laundry, table, cushion, crocobed, crocodesk;
+	public GameObject ShopLaundry, Laundry, table, cushion, crocobed, crocodesk;
 	public static GameObject penguin, lion, crocodile, ammonite, owl, snake, sheep, bear;
 
 	DateTime SysTime;
@@ -47,9 +47,11 @@ public class VisitFriend : MonoBehaviour {
 	}
 
 	void Start () {
+		load ();
+
 		if (!FriendList.Sleeping) {
-			Delta = new TimeSpan (0, 0, 8);		// friends visit,back per 5 second 
-			Delta2 = new TimeSpan (0, 0, 8);	// save during 1 minute.
+			Delta = new TimeSpan (0, 0, 15);		// friends visit,back per 5 second 
+			Delta2 = new TimeSpan (0, 0, 15);	// save during 1 minute.
 			SysTime = System.DateTime.Now;
 			UpdatedTime = SysTime;
 
@@ -268,10 +270,6 @@ public class VisitFriend : MonoBehaviour {
 				disableImage ();
 				break;
 
-//			case("bed2"):
-//				FriendList.bed2 = false;
-//				break;
-
 			case("floor1"):
 				if (ThisObject.GetComponent<VisitFriend> ().FriendNameVisit == "ammoniteVisit") {
 					cushion.GetComponent<Image>().enabled = false;
@@ -296,8 +294,14 @@ public class VisitFriend : MonoBehaviour {
 				break;
 
 			case("laundry"):
-				Laundry.SetActive (true);
+				if(ShopLaundry.GetComponent<Item>().BoughtNumber > 0)
+					Laundry.SetActive (true);
 				FriendList.laundry = false;
+				disableImage ();
+				break;
+
+			case(""):
+				//bug!!
 				disableImage ();
 				break;
 			}
@@ -335,17 +339,6 @@ public class VisitFriend : MonoBehaviour {
 			};
 		}
 		return false;
-	}
-
-	public int levelCheck(){
-		if ((1 <= VisitNumber) && (VisitNumber < 10))
-			return 1;
-		else if ((10 <= VisitNumber) && (VisitNumber < 40))
-			return 2;
-		else if (40 <= VisitNumber)
-			return 3;
-		else
-			return 0;
 	}
 
 	void save(){
