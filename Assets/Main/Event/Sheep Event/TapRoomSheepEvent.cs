@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TapRoom : MonoBehaviour
+public class TapRoomSheepEvent : MonoBehaviour
 {
     public GameObject button;
 
