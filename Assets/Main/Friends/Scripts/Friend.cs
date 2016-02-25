@@ -18,7 +18,7 @@ public class Friend : MonoBehaviour {
 		AlbumUpdate ();
 	}
 
-	void AlbumUpdate(){
+	public void AlbumUpdate(){
 		switch(IntVisitCount){
 		case 0:
 			QuestionBox.SetActive (true);

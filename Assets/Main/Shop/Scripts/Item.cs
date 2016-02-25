@@ -14,6 +14,7 @@ public class Item : MonoBehaviour {
 	public void Buy(){
 		if (ItemName == "soda") {
 			if (BoughtNumber > 0 || soda.sodaBoughtTimes == 2)
+				//already have
 				Debug.Log ("you already have one OR bought two times.");
 			else {
 				if (MoneySystem.money >= ItemPrice) {
@@ -26,13 +27,15 @@ public class Item : MonoBehaviour {
 					BoughtNumber++;
 					save ();
 					Debug.Log ("Buy!");
+				} else {
+					//not enough money
 				}
 			}
-		}
-		else if (ItemName == "Table" || ItemName == "Cushion" || ItemName == "laundry" || ItemName == "gompang" || ItemName == "mug" || ItemName == "plate" || ItemName == "cake") {
-			if (BoughtNumber > 0)
+		} else if (ItemName == "Table" || ItemName == "Cushion" || ItemName == "laundry" || ItemName == "gompang" || ItemName == "mug" || ItemName == "plate" || ItemName == "cake") {
+			if (BoughtNumber > 0) {
+				//already have
 				Debug.Log ("you have already one!");
-			else {
+			} else {
 				if (MoneySystem.money >= ItemPrice) {
 					MoneySystem.money = MoneySystem.money - ItemPrice;
 					MoneySystem.MoneyOut = true;
@@ -43,26 +46,28 @@ public class Item : MonoBehaviour {
 					BoughtNumber++;
 					save ();
 					Debug.Log ("Buy!");
+				} else {
+					//not enough money
 				}
 			}
-		}
-		else if (MoneySystem.money >= ItemPrice) {
+		} else {
+			if (MoneySystem.money >= ItemPrice) {
 				MoneySystem.money = MoneySystem.money - ItemPrice;
 				MoneySystem.MoneyOut = true;
 //				MoneySystem.ContentsName = ItemName;
 //				MoneySystem.outcome = -ItemPrice;
 				MoneySystem.remainder = MoneySystem.money;
 				//SetActiveObject.GetComponent<Image> ().enabled = true;
-				SetActiveObject.SetActive(true);
-				SetActiveObject2.SetActive(true);
+				SetActiveObject.SetActive (true);
+				SetActiveObject2.SetActive (true);
 				BoughtImage.SetActive (true);
 				BoughtNumber++;
 				save ();
 				Debug.Log ("Buy!");
+			} else {
+				//not enough money
+				Debug.Log ("Be short of money");
 			}
-
-		else {
-			Debug.Log ("Be short of money");
 		}
 	}
 
