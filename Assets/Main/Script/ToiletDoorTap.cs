@@ -26,7 +26,9 @@ public class ToiletDoorTap : MonoBehaviour
         if(SysTime - UpdatedTime > new TimeSpan(0, 0, 10))
         {
             if (GetComponent<Slider>().value > 800)
+            {
                 IsSuccess = true;
+            }
             else IsSuccess = false;
 
             PenguinEventText.ClickedTime_PenguinEvent = 12;
