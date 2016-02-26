@@ -49,7 +49,7 @@ public class TutorialDustController : MonoBehaviour
     {
         if (Order == 5)
         {
-            TutorialText.ClickedTime = 6;
+            TutorialText.ClickedTime = 7;
             button.SetActive(true);
         }
         else return;

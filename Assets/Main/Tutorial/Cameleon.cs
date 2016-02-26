@@ -3,7 +3,8 @@ using System.Collections;
 
 public class Cameleon : MonoBehaviour
 {
-    public Sprite CameleonSprite;
+    public Sprite ChameleonSprite;
+    public Sprite ChameleonMalk;
 
     int ClickedTime;
 
@@ -11,9 +12,13 @@ public class Cameleon : MonoBehaviour
     {
         ClickedTime = TutorialText.ClickedTime;
 
-        if(ClickedTime == 2)
+        if(ClickedTime == 3)
         {
-            GetComponent<SpriteRenderer>().sprite = CameleonSprite;
+            GetComponent<SpriteRenderer>().sprite = ChameleonSprite;
+        }
+        if(ClickedTime == 9)
+        {
+            GetComponent<SpriteRenderer>().sprite = ChameleonMalk;
         }
     }
 }
