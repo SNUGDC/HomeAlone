@@ -105,18 +105,24 @@ public class PenguinEventText : MonoBehaviour
                     text.text = "....";
                     break;
                 case 13:
-                    text.text = "...zzZZZ....";
+                    button.SetActive(false);
                     break;
                 case 14:
-                    text.text = "...zzzZZZ....zzz......zzzZZZ.....";
+                    text.text = "...zzZZZ....";
                     break;
                 case 15:
-                    text.text = "(펭귄이 화장실 안에서 문을 잠근 채 잠들어버렸다.)";
+                    button.SetActive(false);
                     break;
                 case 16:
-                    text.text = "(그렇게 밤새도록 화장실을 사용할 수 없었다...)";
+                    text.text = "...zzzZZZ....zzz......zzzZZZ.....";
                     break;
                 case 17:
+                    text.text = "(펭귄이 화장실 안에서 문을 잠근 채 잠들어버렸다.)";
+                    break;
+                case 18:
+                    text.text = "(그렇게 밤새도록 화장실을 사용할 수 없었다...)";
+                    break;
+                case 19:
                     SceneManager.LoadScene("Main");
                     break;
                 default:
