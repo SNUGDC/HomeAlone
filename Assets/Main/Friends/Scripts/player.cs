@@ -9,6 +9,9 @@ public class player : MonoBehaviour {
 	public static string myPos;
 	public GameObject LaundryItem, LaundryImage;
 	public GameObject crocoBed, crocoDesk;
+
+	public static GameObject RoomBed;
+	public int sleepValue;
 //	static int posNumber;
 
 	// Use this for initialization
@@ -21,9 +24,10 @@ public class player : MonoBehaviour {
 		floor1 = GameObject.Find("player_floor1");
 		floor2 = GameObject.Find("player_floor2");
 		desk = GameObject.Find("player_desk");
+		RoomBed = GameObject.Find ("Room_bed");
 
 		int n = Random.Range (1, 100);
-		if (n <= 7)	// 7 percent sleeping
+		if (n <= sleepValue)	// probability sleeping
 			FriendList.Sleeping = true;
 		else
 			FriendList.Sleeping = false;
@@ -33,7 +37,7 @@ public class player : MonoBehaviour {
 		if (FriendList.Sleeping) {
 			playerObject.GetComponent<Image> ().enabled = false;
 			bed1.GetComponent<Image> ().enabled = true;
-
+			RoomBed.SetActive (false);
 			// back friend
 			backFriends();
 		}

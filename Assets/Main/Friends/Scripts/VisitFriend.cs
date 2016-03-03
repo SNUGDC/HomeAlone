@@ -61,6 +61,7 @@ public class VisitFriend : MonoBehaviour {
 				if (ThisObject.GetComponent<VisitFriend> ().FriendNameVisit == "crocodileVisit"){
 					ThisObject.transform.position = posBed1;
 					crocobed.SetActive (true);
+					player.RoomBed.SetActive (false);
 				}
 				else {
 					FriendImage.sprite = SeatImage [posNumber].sprite;
@@ -161,6 +162,7 @@ public class VisitFriend : MonoBehaviour {
 							myPos = "bed1";
 							EnableImage ();
 							crocobed.SetActive (true);
+							player.RoomBed.SetActive (false);
 							player.playerPos ();
 							posNumber = i;
 						} else {
@@ -264,8 +266,10 @@ public class VisitFriend : MonoBehaviour {
 		if (UnityEngine.Random.Range (1, 100) <= BackProbability) {
 			switch (myPos) {
 			case("bed1"):
-				if (crocobed.activeSelf)
+				if (crocobed.activeSelf) {
 					crocobed.SetActive (false);
+					player.RoomBed.SetActive (true);
+				}
 				FriendList.bed1 = false;
 				disableImage ();
 				break;
