@@ -18,7 +18,7 @@ public class DustController : MonoBehaviour
         EXPRend = ObjectEXP.GetComponent<Renderer>();
     }
 
-    void OnMouseDown()
+    void OnMouseEnter()
     {
         DustRend.enabled = false;
         EXPRend.enabled = true;

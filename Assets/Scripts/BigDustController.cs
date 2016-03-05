@@ -4,13 +4,14 @@ using System.Collections;
 public class BigDustController : MonoBehaviour
 {
     public GameObject EXP;
+    public AudioClip CatchBigDust;
     public AudioClip ClickBigDust;
 
     Renderer DustRend;
     Renderer EXPRend;
 
     int BigDustAmount;
-    public int MouseDownTime = 0;
+    int MouseDownTime = 0;
 	public static int BigDustCatch;
 
     void Start()
@@ -32,6 +33,7 @@ public class BigDustController : MonoBehaviour
     void OnMouseDown()
     {
         MouseDownTime = MouseDownTime + 1;
+        GetComponent<AudioSource>().PlayOneShot(ClickBigDust);
     }
 
     void DestroyFunction()
@@ -45,7 +47,7 @@ public class BigDustController : MonoBehaviour
 		BigDustCatch++;
         PlayerPrefs.SetInt("BigDustAmount", BigDustAmount);
 		PlayerPrefs.SetInt("BigDustCatch", BigDustCatch);
-        GetComponent<AudioSource>().PlayOneShot(ClickBigDust);
+        GetComponent<AudioSource>().PlayOneShot(CatchBigDust);
         Destroy(gameObject, 1);
     }
 
