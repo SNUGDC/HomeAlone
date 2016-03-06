@@ -21,13 +21,15 @@ public class Dialog : MonoBehaviour {
 	}
 
 	public void OnMouseDown(){
-		LineNumber++;
-		if (conversation != null) {
-			if (LineNumber < conversation.Length) {
-				myText.text = conversation [LineNumber];
-			} else {
-				ThisEventMessage.SetActive (false);
-				LineNumber = 0;
+		if (ThisEventMessage.activeSelf) {
+			LineNumber++;
+			if (conversation != null) {
+				if (LineNumber < conversation.Length) {
+					myText.text = conversation [LineNumber];
+				} else {
+					ThisEventMessage.SetActive (false);
+					LineNumber = 0;
+				}
 			}
 		}
 	}

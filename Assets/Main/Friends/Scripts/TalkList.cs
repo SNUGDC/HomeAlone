@@ -19,7 +19,11 @@ public class TalkList : MonoBehaviour {
 	}
 
 	public void OnMouseDown(int i){
-		PanelText.text = text[i];
+		string panelString = null;
+		string[] dialogString = splitText (text [i]);
+		for(int n=0;n<dialogString.Length;n++)
+			panelString += dialogString [n];
+		PanelText.text = panelString;
 	}
 
 	public void SetTalkList(GameObject TalkBalloon){
@@ -36,5 +40,12 @@ public class TalkList : MonoBehaviour {
 				ButtonList [i].enabled = true;
 			}
 		}
+	}
+
+	private string[] splitText(string text){
+		string[] sp = new string[] { "// " };
+		string[] spstring = text.Split (sp,System.StringSplitOptions.None);
+
+		return spstring;
 	}
 }

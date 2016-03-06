@@ -3,10 +3,12 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class TalkBalloon : MonoBehaviour {
+	public GameObject TalkPanel, DialogWindow;
 	public string[] Text, TextSubject;
 	public string NameTalk;
 	public int[] TextProbability;	// same size to Text & SUM is 100
 	public Text PanelText;
+	public Text DialogText;
 	private int RandomNumber, saveNumber;
 
 	public bool[] IsAlreadyShow = {false};
@@ -23,16 +25,42 @@ public class TalkBalloon : MonoBehaviour {
 
 	public void SendTextToPanel(){
 		saveNumber = RandomNumber;
+
+		// case : first text
 		if (saveNumber <= TextProbability [0]) {
-			PanelText.text = Text [0];
-			IsAlreadyShow [0] = true;
+			string[] dialogString = splitText (Text [0]);
+
+			if (IsAlreadyShow [0]) {
+				TalkPanel.SetActive (true);
+				string panelString = null;
+				for(int i=0;i<dialogString.Length;i++)
+					panelString += dialogString [i];
+				PanelText.text = panelString;
+			} else {
+				DialogWindow.SetActive (true);
+				IsAlreadyShow [0] = true;
+				Dialog.AssignText (dialogString);
+				DialogText.text = dialogString [0];
+			}
 			save ();
 		}
 
 		else for (int i = 1; i < TextProbability.Length; i++) {
 				if ((TextProbability [i - 1] < saveNumber) && (saveNumber <= TextProbability [i])) {
-					PanelText.text = Text [i];
-					IsAlreadyShow [i] = true;
+					string[] dialogString = splitText (Text [i]);
+
+					if (IsAlreadyShow [i]) {
+						TalkPanel.SetActive (true);
+						string panelString = null;
+						for(int n=0;n<dialogString.Length;n++)
+							panelString += dialogString [n];
+						PanelText.text = panelString;
+					} else {
+						DialogWindow.SetActive (true);
+						IsAlreadyShow [i] = true;
+						Dialog.AssignText (dialogString);
+						DialogText.text = dialogString [0];
+					}
 					save ();
 					break;
 				}
@@ -47,6 +75,13 @@ public class TalkBalloon : MonoBehaviour {
 				result++;
 		}
 		return result;
+	}
+
+	private string[] splitText(string text){
+		string[] sp = new string[] { "// " };
+		string[] spstring = text.Split (sp,System.StringSplitOptions.None);
+
+		return spstring;
 	}
 
 	private void save(){
