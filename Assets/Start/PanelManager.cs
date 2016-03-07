@@ -6,11 +6,11 @@ public class PanelManager : MonoBehaviour
 {
 
     public GameObject Panel;
-	// Use this for initialization
-	void Start ()
+
+    public void CallPanel()
     {
-        Panel.SetActive(false);
-	}
+        Panel.SetActive(true);
+    }
 
     public void ResetGame()
     {
