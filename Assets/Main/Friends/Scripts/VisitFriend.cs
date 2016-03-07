@@ -6,7 +6,7 @@ using System;
 public class VisitFriend : MonoBehaviour {
 	public GameObject ThisObject;
 	public Image FriendImage;
-	public GameObject TalkBalloonImage;
+	public GameObject TalkBalloonImage,TalkBalloonImage2;
 	public string FriendNameVisit;
 	public Text VisitCounter;
 	public GameObject[] VisitItem;
@@ -27,6 +27,8 @@ public class VisitFriend : MonoBehaviour {
 
 	public GameObject ShopLaundry, Laundry, table, cushion, crocobed, crocodesk;
 	public static GameObject penguin, lion, crocodile, ammonite, owl, snake, sheep, bear;
+
+	private int RandomNumber, saveNumber;
 
 	DateTime SysTime;
 	DateTime UpdatedTime;
@@ -128,6 +130,7 @@ public class VisitFriend : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+		RandomNumber = UnityEngine.Random.Range (1, 100);
 		if (!FriendList.Sleeping) {
 			SysTime = System.DateTime.Now;
 			if (TimeOver ()) {
@@ -369,9 +372,22 @@ public class VisitFriend : MonoBehaviour {
 	}
 
 	void EnableImage(){
-		Debug.Log (FriendNameVisit + " : " + myPos);
+		TalkBalloonImage.GetComponent<TalkBalloon> ().load();
+		TalkBalloonImage2.GetComponent<TalkBalloon> ().load();
+		saveNumber = RandomNumber;
+		int talkNumber = TalkBalloonImage.GetComponent<TalkBalloon> ().whatTalk (saveNumber);
 		FriendImage.GetComponent<Image>().enabled = true;
-		TalkBalloonImage.SetActive (true);
+		if (IsAlreadyShow (saveNumber)) {
+			TalkBalloonImage.SetActive (true);
+			TalkBalloonImage.GetComponent<TalkBalloon> ().SaveTalkNumber = talkNumber;
+			TalkBalloonImage.GetComponent<TalkBalloon> ().save();
+			Debug.Log (FriendNameVisit + " VisitTalkNumber SAVE : " + talkNumber);
+		} else {
+			TalkBalloonImage2.SetActive (true);
+			TalkBalloonImage2.GetComponent<TalkBalloon> ().SaveTalkNumber = talkNumber;
+			TalkBalloonImage2.GetComponent<TalkBalloon> ().save();
+			Debug.Log (FriendNameVisit + " VisitTalkNumber SAVE : " + talkNumber);
+		}
 		FriendList.VisitorNum++;
 		VisitNumber++;
 		Debug.Log (FriendList.VisitorNum);
@@ -385,6 +401,7 @@ public class VisitFriend : MonoBehaviour {
 		Debug.Log (FriendNameVisit + "back");
 		FriendImage.GetComponent<Image>().enabled = false;
 		TalkBalloonImage.SetActive (false);
+		TalkBalloonImage2.SetActive (false);
 		FriendList.VisitorNum--;
 	}
 
@@ -400,5 +417,10 @@ public class VisitFriend : MonoBehaviour {
 			return table.activeSelf && bear.GetComponent<Image> ().enabled && sheep.GetComponent<Image> ().enabled;
 		else
 			return false;
+	}
+
+	bool IsAlreadyShow(int randNum){
+		int talkNum = TalkBalloonImage.GetComponent<TalkBalloon> ().whatTalk (randNum);
+		return TalkBalloonImage.GetComponent<TalkBalloon> ().alreadyShow (talkNum);
 	}
 }

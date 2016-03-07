@@ -9,7 +9,8 @@ public class TalkBalloon : MonoBehaviour {
 	public int[] TextProbability;	// same size to Text & SUM is 100
 	public Text PanelText;
 	public Text DialogText;
-	private int RandomNumber, saveNumber;
+	public int SaveTalkNumber;
+	//private int RandomNumber, saveNumber;
 
 	public bool[] IsAlreadyShow = {false};
 
@@ -20,11 +21,49 @@ public class TalkBalloon : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		RandomNumber = UnityEngine.Random.Range (1, 100);
+//		PlayerPrefs.SetInt (NameTalk + "TalkNum",SaveTalkNumber);
+//		RandomNumber = UnityEngine.Random.Range (1, 100);
 	}
 
+	public int whatTalk(int saveNumber){
+		if (saveNumber <= TextProbability [0])
+			return 0;
+		else {
+			for (int i = 1; i < TextProbability.Length; i++) {
+				if ((TextProbability [i - 1] < saveNumber) && (saveNumber <= TextProbability [i]))
+					return i;
+			}
+		}
+		return 100;
+	}
+
+	public bool alreadyShow(int talkNumber){
+		return IsAlreadyShow [talkNumber];
+	}
+
+
 	public void SendTextToPanel(){
-		saveNumber = RandomNumber;
+		string[] dialogString = splitText (Text [SaveTalkNumber]);
+		Debug.Log (SaveTalkNumber);
+		if (IsAlreadyShow [SaveTalkNumber]) {
+				TalkPanel.SetActive (true);
+				string panelString = null;
+				for(int i=0;i<dialogString.Length;i++)
+					panelString += dialogString [i];
+				PanelText.text = panelString;
+			} else {
+				DialogWindow.SetActive (true);
+				IsAlreadyShow [SaveTalkNumber] = true;
+				Dialog.AssignText (dialogString);
+				DialogText.text = dialogString [0];
+			}
+			save ();
+
+	}
+
+	/*
+	public void SendTextToPanel(){
+		int saveNumber = SaveTalkNumber;
 
 		// case : first text
 		if (saveNumber <= TextProbability [0]) {
@@ -36,11 +75,13 @@ public class TalkBalloon : MonoBehaviour {
 				for(int i=0;i<dialogString.Length;i++)
 					panelString += dialogString [i];
 				PanelText.text = panelString;
+				Debug.Log (NameTalk + "TalkBalloon : 0");
 			} else {
 				DialogWindow.SetActive (true);
 				IsAlreadyShow [0] = true;
 				Dialog.AssignText (dialogString);
 				DialogText.text = dialogString [0];
+				Debug.Log (NameTalk + "TalkBalloon : 0");
 			}
 			save ();
 		}
@@ -55,11 +96,13 @@ public class TalkBalloon : MonoBehaviour {
 						for(int n=0;n<dialogString.Length;n++)
 							panelString += dialogString [n];
 						PanelText.text = panelString;
+						Debug.Log (NameTalk + "TalkBalloon : " + i);
 					} else {
 						DialogWindow.SetActive (true);
 						IsAlreadyShow [i] = true;
 						Dialog.AssignText (dialogString);
 						DialogText.text = dialogString [0];
+						Debug.Log (NameTalk + "TalkBalloon : " + i);
 					}
 					save ();
 					break;
@@ -67,6 +110,7 @@ public class TalkBalloon : MonoBehaviour {
 		}
 
 	}
+	*/
 
 	public int NumberOfTalk(){
 		int result=0;
@@ -84,13 +128,15 @@ public class TalkBalloon : MonoBehaviour {
 		return spstring;
 	}
 
-	private void save(){
+	public void save(){
+		PlayerPrefs.SetInt (NameTalk + "TalkNum",SaveTalkNumber);
 		for (int i = 0; i < Text.Length; i++) {
 			PlayerPrefs.SetString(NameTalk + i.ToString(),IsAlreadyShow[i].ToString());
 		}
 	}
 
 	public void load(){
+		SaveTalkNumber = PlayerPrefs.GetInt (NameTalk + "TalkNum");
 		for (int i = 0; i < Text.Length; i++) {
 			IsAlreadyShow [i] = (PlayerPrefs.GetString(NameTalk + i.ToString()) == "True");
 		}
