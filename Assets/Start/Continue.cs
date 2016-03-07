@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class Continue : MonoBehaviour
 {
-    void OnMouseDown()
+    public void TransferToMain()
     {
         SceneManager.LoadScene("Main");
     }
