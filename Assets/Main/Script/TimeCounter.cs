@@ -10,6 +10,7 @@ public class TimeCounter : MonoBehaviour
     public int Year, Month, Day, Hour, Min;
     public delegate void GetTime(int Time);
     public float TimeFasterValue;
+    public string StringMonth;
 
     void Start ()
     {
@@ -31,6 +32,7 @@ public class TimeCounter : MonoBehaviour
         Load();
         GameSec += Time.deltaTime * TimeFasterValue;
         SetCurrentTime();
+        MonthIntToString();
         Save();
     }
 
@@ -103,6 +105,49 @@ public class TimeCounter : MonoBehaviour
         {
             Day = 1;
             ++Month;
+        }
+    }
+
+    public void MonthIntToString()
+    {
+        switch(Month)
+        {
+            case 1:
+                StringMonth = "Feb";
+                break;
+            case 2:
+                StringMonth = "Jan";
+                break;
+            case 3:
+                StringMonth = "Mar";
+                break;
+            case 4:
+                StringMonth = "Apr";
+                break;
+            case 5:
+                StringMonth = "May";
+                break;
+            case 6:
+                StringMonth = "June";
+                break;
+            case 7:
+                StringMonth = "July";
+                break;
+            case 8:
+                StringMonth = "Aug";
+                break;
+            case 9:
+                StringMonth = "Sep";
+                break;
+            case 10:
+                StringMonth = "Oct";
+                break;
+            case 11:
+                StringMonth = "Nov";
+                break;
+            case 12:
+                StringMonth = "Dec";
+                break;
         }
     }
 
