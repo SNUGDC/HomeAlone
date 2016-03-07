@@ -3,7 +3,8 @@ using System.Collections;
 
 public class ChangeStartScene : MonoBehaviour
 {
-	void start(){
+	void Start()
+    {
         // screen direction fix
         Screen.orientation = ScreenOrientation.Landscape;
 	}
