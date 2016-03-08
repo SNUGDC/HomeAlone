@@ -8,7 +8,7 @@ public class player : MonoBehaviour {
 	public static GameObject bed1, bed2,floor1, floor2, desk;
 	public static string myPos;
 	public GameObject LaundryItem, LaundryImage;
-	public GameObject crocoBed, crocoDesk;
+	public GameObject crocoBed, crocoDesk, playerbed;
 
 	public static GameObject RoomBed;
 	public int sleepValue;
@@ -215,51 +215,63 @@ public class player : MonoBehaviour {
 			VisitFriend.penguin.GetComponent<Image> ().enabled = false;
 			VisitFriend.penguin.GetComponent<VisitFriend> ().myPos = "";
 			VisitFriend.penguin.GetComponent<VisitFriend> ().TalkBalloonImage.SetActive(false);
+			VisitFriend.penguin.GetComponent<VisitFriend> ().TalkBalloonImage2.SetActive(false);
 			PlayerPrefs.SetString ("PenguinVisitmyPos", "");
 		}
 		if (VisitFriend.sheep != null) {
 			VisitFriend.sheep.GetComponent<Image> ().enabled = false;
 			VisitFriend.sheep.GetComponent<VisitFriend> ().myPos = "";
 			VisitFriend.sheep.GetComponent<VisitFriend> ().TalkBalloonImage.SetActive(false);
+			VisitFriend.sheep.GetComponent<VisitFriend> ().TalkBalloonImage2.SetActive(false);
 			PlayerPrefs.SetString ("SheepVisitmyPos", "");
 		}
 		if (VisitFriend.bear != null) {
 			VisitFriend.bear.GetComponent<Image> ().enabled = false;
 			VisitFriend.bear.GetComponent<VisitFriend> ().myPos = "";
 			VisitFriend.bear.GetComponent<VisitFriend> ().TalkBalloonImage.SetActive(false);
+			VisitFriend.bear.GetComponent<VisitFriend> ().TalkBalloonImage2.SetActive(false);
 			PlayerPrefs.SetString ("bearVisitmyPos", "");
 		}
 		if (VisitFriend.snake != null) {
 			VisitFriend.snake.GetComponent<Image> ().enabled = false;
 			VisitFriend.snake.GetComponent<VisitFriend> ().myPos = "";
 			VisitFriend.snake.GetComponent<VisitFriend> ().TalkBalloonImage.SetActive(false);
+			VisitFriend.snake.GetComponent<VisitFriend> ().TalkBalloonImage2.SetActive(false);
 			PlayerPrefs.SetString ("snakeVisitmyPos", "");
 		}
 		if (VisitFriend.owl != null) {
 			VisitFriend.owl.GetComponent<Image> ().enabled = false;
 			VisitFriend.owl.GetComponent<VisitFriend> ().myPos = "";
 			VisitFriend.owl.GetComponent<VisitFriend> ().TalkBalloonImage.SetActive(false);
+			VisitFriend.owl.GetComponent<VisitFriend> ().TalkBalloonImage2.SetActive(false);
 			PlayerPrefs.SetString ("owlVisitmyPos", "");
 		}
 		if (VisitFriend.ammonite != null) {
 			VisitFriend.ammonite.GetComponent<Image> ().enabled = false;
 			VisitFriend.ammonite.GetComponent<VisitFriend> ().myPos = "";
 			VisitFriend.ammonite.GetComponent<VisitFriend> ().TalkBalloonImage.SetActive(false);
+			VisitFriend.ammonite.GetComponent<VisitFriend> ().TalkBalloonImage2.SetActive(false);
 			PlayerPrefs.SetString ("ammoniteVisitmyPos", "");
 		}
 		if (VisitFriend.crocodile != null) {
 			VisitFriend.crocodile.GetComponent<Image> ().enabled = false;
 			VisitFriend.crocodile.GetComponent<VisitFriend> ().myPos = "";
 			VisitFriend.crocodile.GetComponent<VisitFriend> ().TalkBalloonImage.SetActive(false);
+			VisitFriend.crocodile.GetComponent<VisitFriend> ().TalkBalloonImage2.SetActive(false);
 			crocoBed.SetActive (false);
 			crocoDesk.SetActive (false);
+			playerbed.SetActive (true);
 			PlayerPrefs.SetString ("crocodileVisitmyPos", "");
 		}
 		if (VisitFriend.lion != null) {
 			VisitFriend.lion.GetComponent<Image> ().enabled = false;
 			VisitFriend.lion.GetComponent<VisitFriend> ().myPos = "";
 			VisitFriend.lion.GetComponent<VisitFriend> ().TalkBalloonImage.SetActive(false);
+			VisitFriend.lion.GetComponent<VisitFriend> ().TalkBalloonImage2.SetActive(false);
 			PlayerPrefs.SetString ("lionVisitmyPos", "");
+			LaundryItem.GetComponent<Item> ().load();
+			if (LaundryItem.GetComponent<Item> ().BoughtNumber > 0)
+				LaundryImage.SetActive (true);
 		}
 
 		if (PlayerPrefs.HasKey ("PlayerPos"))
