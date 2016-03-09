@@ -7,6 +7,7 @@ public class WasteBinController : MonoBehaviour
     public int FullOfTrash;
     public Sprite DirtyTrashCan;
     public Sprite CleanTrashCan;
+    public GameObject UI_WasteBin;
 
     int Ran;
     bool IsFull;
@@ -25,5 +26,21 @@ public class WasteBinController : MonoBehaviour
             IsFull = false;
             GetComponent<SpriteRenderer>().sprite = CleanTrashCan;
         }
+    }
+
+    void OnMouseUp()
+    {
+        if (IsFull)
+        {
+            UI_WasteBin.SetActive(true);
+        }
+        else return;
+    }
+
+    public void CleaningWasteBin()
+    {
+        IsFull = false;
+        GetComponent<SpriteRenderer>().sprite = CleanTrashCan;
+        UI_WasteBin.SetActive(false);
     }
 }
