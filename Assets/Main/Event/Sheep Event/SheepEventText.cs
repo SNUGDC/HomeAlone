@@ -24,7 +24,6 @@ public class SheepEventText : MonoBehaviour
         {
             case 0:
                 button.SetActive(true);
-                GetComponent<Text>().fontSize = 70;
                 text.text = "매번 얻어먹기만 하는 건 좀 눈치가 보여서 말야.";
                 break;
             case 1:

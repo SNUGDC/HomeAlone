@@ -28,7 +28,6 @@ public class OwlEventText : MonoBehaviour
         {
             case 0:
                 button.SetActive(true);
-                GetComponent<Text>().fontSize = 70;
                 text.text = "선배~~";
                 break;
             case 1:
