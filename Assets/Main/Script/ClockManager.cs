@@ -307,4 +307,9 @@ public class ClockManager : MonoBehaviour
                 break;
         }
     }
+
+	public void NextMonth(){
+		int month = PlayerPrefs.GetInt("Month");
+		PlayerPrefs.SetInt("Month", month+1);
+	}
 }

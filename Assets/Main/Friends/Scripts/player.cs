@@ -97,7 +97,7 @@ public class player : MonoBehaviour {
 //			playerObject.transform.position = posBed2;
 				FriendList.bed2 = true;		
 				myPos = "bed2";
-				Debug.Log ("****PlayerPos : " + myPos);
+//				Debug.Log ("****PlayerPos : " + myPos);
 			} else {
 				switch (n) {
 				case 1:
@@ -108,7 +108,7 @@ public class player : MonoBehaviour {
 						//playerObject.transform.position = VisitFriend.posDesk;
 						FriendList.desk = true;		
 						myPos = "desk";
-						Debug.Log ("****PlayerPos : " + myPos);
+//						Debug.Log ("****PlayerPos : " + myPos);
 					}
 				//else
 				//defaultOption ();
@@ -122,7 +122,7 @@ public class player : MonoBehaviour {
 						//playerObject.transform.position = VisitFriend.posFloor1;
 						FriendList.floor1 = true;		
 						myPos = "floor1";
-						Debug.Log ("****PlayerPos : " + myPos);
+//						Debug.Log ("****PlayerPos : " + myPos);
 					} else
 						defaultOption ();
 					break;
@@ -135,7 +135,7 @@ public class player : MonoBehaviour {
 						//playerObject.transform.position = VisitFriend.posFloor2;
 						FriendList.floor2 = true;		
 						myPos = "floor2";
-						Debug.Log ("****PlayerPos : " + myPos);
+//						Debug.Log ("****PlayerPos : " + myPos);
 					} else
 						defaultOption ();
 					break;
@@ -145,7 +145,7 @@ public class player : MonoBehaviour {
 					break;
 
 				}
-				Debug.Log ("switch");
+//				Debug.Log ("switch");
 			}
 			PlayerPrefs.SetString ("PlayerPos", myPos);
 //		PlayerPrefs.SetInt ("PlayerPosNumber", posNumber);
@@ -187,7 +187,7 @@ public class player : MonoBehaviour {
 
 	static void defaultOption(){
 		if (!FriendList.Sleeping) {
-			Debug.Log ("Default");
+//			Debug.Log ("Default");
 			if (!FriendList.desk) {
 //			posNumber = 1;
 				playerObject.GetComponent<Image> ().enabled = false;
@@ -195,7 +195,7 @@ public class player : MonoBehaviour {
 				//playerObject.transform.position = VisitFriend.posDesk;
 				FriendList.desk = true;		
 				myPos = "desk";
-				Debug.Log ("****PlayerPos : " + myPos);
+//				Debug.Log ("****PlayerPos : " + myPos);
 			}
 		}
 	}

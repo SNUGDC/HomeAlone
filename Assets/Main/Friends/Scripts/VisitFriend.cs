@@ -11,7 +11,7 @@ public class VisitFriend : MonoBehaviour {
 	public Text VisitCounter;
 	public GameObject[] VisitItem;
 	public string[] Seat;
-	public Image[] SeatImage;
+	public Image[] SeatImage, EventImage;
 	public int VisitProbability;
 	public int BackProbability;
 	public int VisitNumber;
@@ -30,12 +30,17 @@ public class VisitFriend : MonoBehaviour {
 
 	private int RandomNumber, saveNumber;
 
+	private static GameObject window;
+	private static bool windowCheck;
+
 	DateTime SysTime;
 	DateTime UpdatedTime;
 	TimeSpan Delta, Delta2;
 
 	void Awake()
 	{
+		window = GameObject.Find ("window");
+		windowCheck = false;
 		penguin = GameObject.Find ("Penguin_f");
 		lion = GameObject.Find ("lion_f");
 		crocodile = GameObject.Find ("crocodile_f");
@@ -130,6 +135,11 @@ public class VisitFriend : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+		if (!windowCheck) {
+			Debug.Log ("window check");
+			window.GetComponent<window> ().enabled = true;
+			windowCheck = true;
+		}
 		RandomNumber = UnityEngine.Random.Range (1, 100);
 		if (!FriendList.Sleeping) {
 			SysTime = System.DateTime.Now;
@@ -257,7 +267,7 @@ public class VisitFriend : MonoBehaviour {
 					break;
 				
 				default:
-					Debug.Log ("NULL!");
+//					Debug.Log ("NULL!");
 					break;
 				}
 			}
@@ -381,16 +391,16 @@ public class VisitFriend : MonoBehaviour {
 			TalkBalloonImage.SetActive (true);
 			TalkBalloonImage.GetComponent<TalkBalloon> ().SaveTalkNumber = talkNumber;
 			TalkBalloonImage.GetComponent<TalkBalloon> ().save();
-			Debug.Log (FriendNameVisit + " VisitTalkNumber SAVE : " + talkNumber);
+//			Debug.Log (FriendNameVisit + " VisitTalkNumber SAVE : " + talkNumber);
 		} else {
 			TalkBalloonImage2.SetActive (true);
 			TalkBalloonImage2.GetComponent<TalkBalloon> ().SaveTalkNumber = talkNumber;
 			TalkBalloonImage2.GetComponent<TalkBalloon> ().save();
-			Debug.Log (FriendNameVisit + " VisitTalkNumber SAVE : " + talkNumber);
+//			Debug.Log (FriendNameVisit + " VisitTalkNumber SAVE : " + talkNumber);
 		}
 		FriendList.VisitorNum++;
 		VisitNumber++;
-		Debug.Log (FriendList.VisitorNum);
+//		Debug.Log (FriendList.VisitorNum);
 		//VisitItem[n].GetComponent<Item> ().BoughtNumber--;
 		VisitItem [n].GetComponent<Item> ().save ();
 		VisitCounter.text = VisitNumber.ToString();
@@ -398,7 +408,7 @@ public class VisitFriend : MonoBehaviour {
 
 	void disableImage(){
 		myPos = "";
-		Debug.Log (FriendNameVisit + "back");
+//		Debug.Log (FriendNameVisit + "back");
 		FriendImage.GetComponent<Image>().enabled = false;
 		TalkBalloonImage.SetActive (false);
 		TalkBalloonImage2.SetActive (false);

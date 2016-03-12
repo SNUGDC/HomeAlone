@@ -42,7 +42,7 @@ public class TimeCheck : MonoBehaviour {
 
 	public static bool TimeOver(TimeSpan Delta){
 		if (SysTime - LoadDateTime > Delta) {
-			Debug.Log( SysTime - LoadDateTime);
+//			Debug.Log( SysTime - LoadDateTime);
 			return true;
 		} else {
 			return false;
