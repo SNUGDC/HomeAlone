@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 using System;
+using UnityEngine.SceneManagement;
 
 public class TimeCheck : MonoBehaviour {
 	public static string LoadTime;
@@ -51,5 +52,9 @@ public class TimeCheck : MonoBehaviour {
 
 	public static TimeSpan OFFtime(){
 		return SysTime - LoadDateTime;
+	}
+
+	public void ChangeScene(string SceneName){
+		SceneManager.LoadScene (SceneName);
 	}
 }
