@@ -3,8 +3,17 @@ using System.Collections;
 
 public class DragAndDrop : MonoBehaviour
 {
+    public static bool GotFriend;
+
     public Camera Cam;
+
     Vector3 MousePos;
+    Vector3 StartPos;
+
+    void Start()
+    {
+        StartPos = transform.position;
+    }
 
     void Update()
     {
@@ -14,17 +23,20 @@ public class DragAndDrop : MonoBehaviour
     void OnMouseDrag()
     {
         GetComponent<Transform>().position = Cam.ScreenToWorldPoint(MousePos);
+        GotFriend = true;
     }
 
     void OnMouseUp()
     {
-
-    }
-
-    void OnTriggerStay2D(Collider2D Coll)
-    {
-        Debug.Log("제발 반응좀 해줘ㅠㅠ");
-        if (Coll.name != null)
-            Debug.Log(Coll.name);
+        if (PutFriendIntoCloset.ReadyToPutFriend == false)
+        {
+            GetComponent<Transform>().position = StartPos;
+            GotFriend = false;
+        }
+        else
+        {
+            Destroy(gameObject);
+            PutFriendIntoCloset.HowManyFriendsAreInCloset += 1;
+        }
     }
 }
