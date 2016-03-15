@@ -6,7 +6,7 @@ public class Dialog : MonoBehaviour {
 	private static string[] conversation = null;
 	public Text myText;
 	public GameObject ThisEventMessage;
-	int LineNumber;
+	public int LineNumber;
 
 	void Start () {
 		LineNumber = 0;
