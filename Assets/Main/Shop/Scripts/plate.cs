@@ -1,21 +1,36 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class plate : MonoBehaviour {
 	public GameObject VisitFriend,ShopItem, buyButton, QuestionBox, PopUp, PopUpClose;
 	public Text PopUpText;
 	public int openVisitCount;
+	public int lionEventVisitNumber;
 	bool IsAlreadyOpen;
+	bool IsAlreadyShow;
 
 	// Use this for initialization
 
 	void Start () {
 		load ();
+		if (PlayerPrefs.HasKey ("LionEvent"))
+			IsAlreadyShow = (PlayerPrefs.GetString ("LionEvent") == "True");
+		else
+			IsAlreadyShow = false;
 	}
 
 	// Update is called once per frame
 	void Update () {
+		//event
+		if (VisitFriend.GetComponent<VisitFriend> ().VisitNumber >= lionEventVisitNumber && !IsAlreadyShow) {
+			IsAlreadyShow = true;
+			SceneManager.LoadScene ("Lion Event");
+			PlayerPrefs.SetString ("LionEvent",IsAlreadyShow.ToString());
+		}
+
+
 		if (VisitFriend.GetComponent<VisitFriend> ().VisitNumber >= openVisitCount) {
 			ShopItem.GetComponent<Button> ().enabled = true;
 			buyButton.GetComponent<Button> ().enabled = true;
