@@ -9,12 +9,14 @@ public class DragAndDrop : MonoBehaviour
     public string FriendName;
     public string Position;
 
+    int StartSortingOrder;
     Vector3 MousePos;
     Vector3 StartPos;
 
     void Start()
     {
         StartPos = transform.position;
+        StartSortingOrder = GetComponent<SpriteRenderer>().sortingOrder;
         Debug.Log(FriendName + PlayerPrefs.GetString(FriendName + "VisitmyPos"));
         if (Position != PlayerPrefs.GetString(FriendName + "VisitmyPos"))
             Destroy(gameObject);
@@ -28,6 +30,7 @@ public class DragAndDrop : MonoBehaviour
     void OnMouseDrag()
     {
         GetComponent<Transform>().position = Cam.ScreenToWorldPoint(MousePos);
+        GetComponent<SpriteRenderer>().sortingOrder = 1;
         GotFriend = true;
     }
 
@@ -35,10 +38,20 @@ public class DragAndDrop : MonoBehaviour
     {
         if (PutFriendIntoCloset.ReadyToPutFriend == false)
         {
-            GetComponent<Transform>().position = StartPos;
-            GotFriend = false;
+            if (PutFriendIntoBed.ReadyToPutFriend == false)
+            {
+                GetComponent<Transform>().position = StartPos;
+                GotFriend = false;
+                GetComponent<SpriteRenderer>().sortingOrder = StartSortingOrder;
+                return;
+            }
+            else if (PutFriendIntoBed.ReadyToPutFriend == true)
+            {
+                Destroy(gameObject);
+                PutFriendIntoBed.HowManyFriendsAreInBed += 1;
+            }
         }
-        else
+        else if(PutFriendIntoCloset.ReadyToPutFriend == true)
         {
             Destroy(gameObject);
             PutFriendIntoCloset.HowManyFriendsAreInCloset += 1;
