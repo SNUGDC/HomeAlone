@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TutorialDustController : MonoBehaviour
+public class TutorialDustController_Click : MonoBehaviour
 {
     public int Order;
     public static int OrderNow;
@@ -47,10 +47,11 @@ public class TutorialDustController : MonoBehaviour
 
     void FinishCleaningDust()
     {
-        if (Order == 5)
+        if (Order == 3)
         {
             TutorialText.ClickedTime = 7;
             button.SetActive(true);
+            TutorialDustController_Swipe.Tut_Swipe = true;
         }
         else return;
     }
