@@ -8,9 +8,13 @@ public class Friend : MonoBehaviour {
 	public GameObject[] heart;
 	public int IntVisitCount;
 	private Button myButton;
+	public int love1,love2,love3;
 
 	void Awake () {
 		myButton = GetComponent<Button>();
+		love1 = 1;
+		love2 = 10;
+		love3 = 40;
 	}
 		
 	void Update () {
@@ -27,11 +31,11 @@ public class Friend : MonoBehaviour {
 		default:
 			QuestionBox.SetActive (false);
 			myButton.enabled = true;
-			if (IntVisitCount >= 1)
+			if (IntVisitCount >= love1)
 				heart [0].SetActive (true);
-			if (IntVisitCount >= 10)
+			if (IntVisitCount >= love2)
 				heart [1].SetActive (true);
-			if (IntVisitCount >= 40)
+			if (IntVisitCount >= love3)
 				heart [2].SetActive (true);
 			break;
 		}
@@ -43,35 +47,46 @@ public class Friend : MonoBehaviour {
 
 	public void HeartToRed1(Image red){
 		red.enabled=false;
-		if (IntVisitCount >= 1)
+		if (IntVisitCount >= love1)
 			red.enabled=true;
 	}
 
 	public void HeartToRed2(Image red){
 		red.enabled=false;
-		if (IntVisitCount >= 10)
+		if (IntVisitCount >= love2)
 			red.enabled=true;
 	}
 
 	public void HeartToRed3(Image red){
 		red.enabled=false;
-		if (IntVisitCount >= 40)
+		if (IntVisitCount >= love3)
 			red.enabled=true;
 	}
 
 	public void EpisodeEnabled1(GameObject ep){
-		if (IntVisitCount >= 1)
+		if (IntVisitCount >= love1)
 			ep.SetActive (true);
 	}
 
 	public void EpisodeEnabled2(GameObject ep){
-		if (IntVisitCount >= 10)
+		if (IntVisitCount >= love2)
 			ep.SetActive (true);
 	}
 
 	public void EpisodeEnabled3(GameObject ep){
-		if (IntVisitCount >= 40)
+		if (IntVisitCount >= love3)
 			ep.SetActive (true);
+	}
+
+	public int HowFriendly(){
+		if (IntVisitCount < love1)
+			return 0;
+		else if (IntVisitCount < love2)
+			return 1;
+		else if (IntVisitCount < love3)
+			return 2;
+		else
+			return 3;
 	}
 
 }
