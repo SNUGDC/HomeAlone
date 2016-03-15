@@ -19,10 +19,12 @@ public class VisitFriend : MonoBehaviour {
 	public string myPos;
 
 	public static Vector3 posBed1 = new Vector3(-5,0,0);
+	public static Vector3 posCrocoBed = new Vector3(-7,1,0);
 //	Vector3 posBed2 = new Vector3(270,210,0);
 	public static Vector3 posFloor1 = new Vector3(-1,1,0);
 	public static Vector3 posFloor2 = new Vector3(2,-1,0);
 	public static Vector3 posDesk = new Vector3(1,1,0);
+	public static Vector3 posCrocoDesk = new Vector3(1,0,0);
 	public static Vector3 posLaundry = new Vector3(0,-2,0);
 
 	public GameObject ShopLaundry, Laundry, table, cushion, crocobed, crocodesk;
@@ -66,7 +68,7 @@ public class VisitFriend : MonoBehaviour {
 			case("bed1"):
 				// not bed2 option...
 				if (ThisObject.GetComponent<VisitFriend> ().FriendNameVisit == "crocodileVisit"){
-					ThisObject.transform.position = posBed1;
+					ThisObject.transform.position = posCrocoBed;
 					crocobed.SetActive (true);
 					player.RoomBed.SetActive (false);
 				}
@@ -100,7 +102,7 @@ public class VisitFriend : MonoBehaviour {
 
 			case("desk"):
 				if (ThisObject.GetComponent<VisitFriend> ().FriendNameVisit == "crocodileVisit") {
-					ThisObject.transform.position = posDesk;
+					ThisObject.transform.position = posCrocoDesk;
 					crocodesk.SetActive (true);
 				}
 				else {
@@ -170,7 +172,7 @@ public class VisitFriend : MonoBehaviour {
 					if (!FriendList.bed1) {
 						// !bed2 option..
 						if (ThisObject.GetComponent<VisitFriend> ().FriendNameVisit == "crocodileVisit") {
-							ThisObject.transform.position = posBed1;
+							ThisObject.transform.position = posCrocoBed;
 							FriendList.bed1 = true;
 							myPos = "bed1";
 							EnableImage ();
@@ -234,7 +236,7 @@ public class VisitFriend : MonoBehaviour {
 				case("desk"):
 					if (!FriendList.desk) {
 						if (ThisObject.GetComponent<VisitFriend> ().FriendNameVisit == "crocodileVisit") {
-							ThisObject.transform.position = posDesk;
+							ThisObject.transform.position = posCrocoDesk;
 							FriendList.desk = true;
 							myPos = "desk";
 							EnableImage ();
