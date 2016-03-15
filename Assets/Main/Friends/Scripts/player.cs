@@ -37,7 +37,8 @@ public class player : MonoBehaviour {
 		if (FriendList.Sleeping) {
 			playerObject.GetComponent<Image> ().enabled = false;
 			bed1.GetComponent<Image> ().enabled = true;
-			RoomBed.SetActive (false);
+			playerbed.SetActive (false);
+//			RoomBed.SetActive (false);
 			// back friend
 			backFriends();
 		}
@@ -260,7 +261,8 @@ public class player : MonoBehaviour {
 			VisitFriend.crocodile.GetComponent<VisitFriend> ().TalkBalloonImage2.SetActive(false);
 			crocoBed.SetActive (false);
 			crocoDesk.SetActive (false);
-			playerbed.SetActive (true);
+			if(!bed1.GetComponent<Image> ().enabled)
+				playerbed.SetActive (true);
 			PlayerPrefs.SetString ("crocodileVisitmyPos", "");
 		}
 		if (VisitFriend.lion != null) {
