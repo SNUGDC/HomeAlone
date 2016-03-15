@@ -11,11 +11,11 @@ public class MiniGameManager : MonoBehaviour
     public float waveWait;
     private float MiniGameSec;
     private float CollisionCount;
-    public GameObject Panel;
+    public GameObject WinPanel;
 
     void Start ()
     {
-        Panel.SetActive(false);
+        WinPanel.SetActive(false);
         StartCoroutine(SpawnWaves());
     }
 
@@ -23,7 +23,6 @@ public class MiniGameManager : MonoBehaviour
     {
         MiniGameSec += Time.deltaTime;
         GameOver();
-
     }
 
     IEnumerator SpawnWaves()
@@ -41,7 +40,6 @@ public class MiniGameManager : MonoBehaviour
             }
             yield return new WaitForSeconds(waveWait);
         }
-      
     }
 
     void GameOver()
@@ -49,7 +47,7 @@ public class MiniGameManager : MonoBehaviour
         if (MiniGameSec >= 10)
         {
             Debug.Log("Game Over");
-            Panel.SetActive(true);
+            WinPanel.SetActive(true);
         }
     }
 }
