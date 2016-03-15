@@ -8,6 +8,7 @@ public class CollisionController : MonoBehaviour {
     public GameObject TalkPanel;
     public Text PlayerHP;
     public GameObject Panel;
+
     int playerHP = 50;
 
 	// Use this for initialization
@@ -25,9 +26,14 @@ public class CollisionController : MonoBehaviour {
     void OnTriggerEnter(Collider other)
     {
         Debug.Log("Collision");
-        Instantiate<GameObject>(TalkPanel);
         playerHP -= 8;
         PlayerHP.text = "HP :" + playerHP;
+
+        Vector3 PanelPosition = new Vector3(0, 0, 0.0f);
+        Quaternion PanelRotation = new Quaternion();
+        Instantiate(TalkPanel, PanelPosition, PanelRotation);
+
+
     }
 
     void GameOver()
