@@ -32,29 +32,32 @@ public class DragAndDrop : MonoBehaviour
         GetComponent<Transform>().position = Cam.ScreenToWorldPoint(MousePos);
         GetComponent<SpriteRenderer>().sortingOrder = 1;
         GotFriend = true;
+        Debug.Log("PutFriendIntoBed.ReadyToPutFriend" + PutFriendIntoBed.ReadyToPutFriend);
     }
 
     void OnMouseUp()
     {
+        if (PutFriendIntoBed.ReadyToPutFriend == true)
+        {
+            PutFriendIntoBed.HowManyFriendsAreInBed += 1;
+            Destroy(gameObject);
+        }
+        if (PutFriendIntoCloset.ReadyToPutFriend == true)
+        {
+            PutFriendIntoCloset.HowManyFriendsAreInCloset += 1;
+            Destroy(gameObject);
+        }
         if (PutFriendIntoCloset.ReadyToPutFriend == false)
         {
-            if (PutFriendIntoBed.ReadyToPutFriend == false)
-            {
-                GetComponent<Transform>().position = StartPos;
-                GotFriend = false;
-                GetComponent<SpriteRenderer>().sortingOrder = StartSortingOrder;
-                return;
-            }
-            else if (PutFriendIntoBed.ReadyToPutFriend == true)
-            {
-                Destroy(gameObject);
-                PutFriendIntoBed.HowManyFriendsAreInBed += 1;
-            }
+            GetComponent<Transform>().position = StartPos;
+            GotFriend = false;
+            GetComponent<SpriteRenderer>().sortingOrder = StartSortingOrder;
         }
-        else if(PutFriendIntoCloset.ReadyToPutFriend == true)
+        if (PutFriendIntoBed.ReadyToPutFriend == false)
         {
-            Destroy(gameObject);
-            PutFriendIntoCloset.HowManyFriendsAreInCloset += 1;
+            GetComponent<Transform>().position = StartPos;
+            GotFriend = false;
+            GetComponent<SpriteRenderer>().sortingOrder = StartSortingOrder;
         }
     }
 }
