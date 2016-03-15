@@ -6,6 +6,8 @@ public class DragAndDrop : MonoBehaviour
     public static bool GotFriend;
 
     public Camera Cam;
+    public string FriendName;
+    public string Position;
 
     Vector3 MousePos;
     Vector3 StartPos;
@@ -13,6 +15,9 @@ public class DragAndDrop : MonoBehaviour
     void Start()
     {
         StartPos = transform.position;
+        Debug.Log(FriendName + PlayerPrefs.GetString(FriendName + "VisitmyPos"));
+        if (Position != PlayerPrefs.GetString(FriendName + "VisitmyPos"))
+            Destroy(gameObject);
     }
 
     void Update()
