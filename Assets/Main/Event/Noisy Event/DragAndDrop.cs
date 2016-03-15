@@ -32,13 +32,19 @@ public class DragAndDrop : MonoBehaviour
         GetComponent<Transform>().position = Cam.ScreenToWorldPoint(MousePos);
         GetComponent<SpriteRenderer>().sortingOrder = 1;
         GotFriend = true;
-        Debug.Log("PutFriendIntoBed.ReadyToPutFriend" + PutFriendIntoBed.ReadyToPutFriend);
     }
 
     void OnMouseUp()
     {
         if (PutFriendIntoBed.ReadyToPutFriend == true)
         {
+            if(gameObject.name == "croc")
+            {
+                PutFriendIntoBed.HowManyFriendsAreInBed = 3;
+                Destroy(gameObject);
+                return;
+            }
+
             PutFriendIntoBed.HowManyFriendsAreInBed += 1;
             Destroy(gameObject);
         }
