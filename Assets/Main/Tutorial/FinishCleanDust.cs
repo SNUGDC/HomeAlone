@@ -4,6 +4,7 @@ using System.Collections;
 public class FinishCleanDust : MonoBehaviour
 {
     public GameObject Button;
+    public GameObject MenuButton;
 
     GameObject IsThereDust;
 
@@ -13,7 +14,7 @@ public class FinishCleanDust : MonoBehaviour
         if(IsThereDust == null && TutorialText.ClickedTime == 8)
         {
             TutorialText.ClickedTime = 9;
-            Button.SetActive(true);
+            MenuButton.SetActive(true);
         }
     }
 }

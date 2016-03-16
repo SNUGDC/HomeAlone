@@ -43,7 +43,6 @@ public class TutorialText : MonoBehaviour
                 button.SetActive(false);
                 break;
             case 9:
-                MenuButton.SetActive(true);
                 button.SetActive(false);
                 //MenuButton.SetActive(false);
                 //text.text = "참... 오는 길에 딸기우유 사 왔어... 너 줄게...";
