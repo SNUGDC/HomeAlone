@@ -312,4 +312,9 @@ public class ClockManager : MonoBehaviour
 		int month = PlayerPrefs.GetInt("Month");
 		PlayerPrefs.SetInt("Month", month+1);
 	}
+
+	public void NextDay(){
+		int day = PlayerPrefs.GetInt("Day");
+		PlayerPrefs.SetInt("Day", day+1);
+	}
 }
