@@ -47,7 +47,7 @@ public class TutorialDustController_Click : MonoBehaviour
 
     void FinishCleaningDust()
     {
-        if (Order == 3)
+        if (Order == 4)
         {
             TutorialText.ClickedTime = 7;
             button.SetActive(true);
