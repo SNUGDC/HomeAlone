@@ -6,18 +6,24 @@ public class PenguinEpDialogueText : MonoBehaviour
 {
     public GameObject DialogueBox;
     public GameObject ChoicePanel;
+    public GameObject FadeOut;
+    public GameObject Photo;
+    public GameObject Room;
+    public Text DialogueText;
 
     static int ClickedTime_PenguinEp;
     static bool IsNeutralChoice_PenguinEp;
-    Text DialogueText;
     int NumberOfNegativeChoice;
+    Color FadeOutPanelColor;
 
     void Start()
     {
         ClickedTime_PenguinEp = 0;
-        DialogueText = GetComponent<Text>();
         DialogueBox.SetActive(true);
+        FadeOut.SetActive(false);
         ChoicePanel.SetActive(false);
+        Photo.SetActive(false);
+        Room.SetActive(true);  
     }
 
     public void ClickedButton()
@@ -27,7 +33,9 @@ public class PenguinEpDialogueText : MonoBehaviour
 
     void Update()
     {
-        switch(ClickedTime_PenguinEp)
+        FadeOutPanelColor = FadeOut.GetComponent<Image>().color;
+
+        switch (ClickedTime_PenguinEp)
         {
             case 0:
                 DialogueText.text = "음, 나, 있지, 궁금한 게 있어!";
@@ -77,6 +85,36 @@ public class PenguinEpDialogueText : MonoBehaviour
                 break;
             case 14:
                 DialogueText.text = "시내에 스티커사진 찍는 곳 있는데. 같이 가지 않을래?";
+                break;
+            case 15:
+                FadeOut.SetActive(true);
+                FadeOut.GetComponent<Image>().color = new Vector4(0, 0, 0, FadeOutPanelColor.a + 0.01f);
+                if(FadeOutPanelColor.a >1.0f)
+                    ClickedTime_PenguinEp = 16;
+                break;
+            case 16:
+                FadeOut.GetComponent<Image>().color = new Vector4(FadeOutPanelColor.r + 0.01f, FadeOutPanelColor.g + 0.01f, FadeOutPanelColor.b + 0.01f, 1);
+                if (FadeOutPanelColor.r > 1.0f)
+                    ClickedTime_PenguinEp = 17;
+                break;
+            case 17:
+                Photo.SetActive(true);
+                Room.SetActive(false);
+                DialogueText.text = "(스티커 사진을 찍었다.)";
+                FadeOut.GetComponent<Image>().color = new Vector4(1, 1, 1, FadeOutPanelColor.a - 0.02f);
+                if (FadeOutPanelColor.a < 0f)
+                    ClickedTime_PenguinEp = 18;
+                break;
+            case 18:
+                FadeOut.SetActive(false);
+                break;
+            case 19:
+                DialogueText.text = "(오랜만에 찍는 사진이라서 어색했다. )";
+                PlayerPrefs.SetInt("MiniPhotoOn", 1);
+                break;
+            case 20:
+                Photo.GetComponent<Collider2D>().enabled = true;
+                DialogueBox.SetActive(false);
                 break;
             default:
                 DialogueBox.SetActive(false);
