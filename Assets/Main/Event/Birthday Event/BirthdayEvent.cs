@@ -21,7 +21,10 @@ public class BirthdayEvent : MonoBehaviour {
 			IsAlreadyShow2 = (PlayerPrefs.GetString ("BirthdayEvent2") == "True");
 		else
 			IsAlreadyShow2 = false;
-
+	}
+	
+	// Update is called once per frame
+	void Update () {
 		if (month == 8 && day == 10 && !IsAlreadyShow1 && PenguinBirthday ()) {
 			// Penguin Birthday!!
 			SceneManager.LoadScene ("Penguin Birthday");
@@ -31,11 +34,6 @@ public class BirthdayEvent : MonoBehaviour {
 			SceneManager.LoadScene ("Lion Birthday");
 			Cake.GetComponent<Item> ().decreaseItem ();
 		}
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
 	}
 
 	private bool PenguinBirthday(){

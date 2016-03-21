@@ -4,12 +4,12 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 
 public class soda : MonoBehaviour {
-	public GameObject VisitFriend, ShopItem, buyButton, QuestionBox, PopUp, PopUpClose;
+	public GameObject VisitFriend, TalkBalloon_2, ShopItem, buyButton, QuestionBox, PopUp, PopUpClose;
 	public Image Penguin;
 	public Text PopUpText;
 	public int openVisitCount;
 	public static int sodaBoughtTimes;
-	bool IsAlreadyOpen;
+	bool IsAlreadyOpen, IsAlreadyOpen2;
 
 	// Use this for initialization
 
@@ -26,6 +26,8 @@ public class soda : MonoBehaviour {
 			sodaBoughtTimes++;
 			SceneManager.LoadScene ("Penguin Event");
 		}
+
+		//soda
 		if (VisitFriend.GetComponent<VisitFriend> ().VisitNumber >= openVisitCount) {
 			buyButton.GetComponent<Button> ().enabled = true;
 			ShopItem.GetComponent<Button> ().enabled = true;
@@ -37,11 +39,20 @@ public class soda : MonoBehaviour {
 				IsAlreadyOpen = true;
 			}
 		}
+
+		//Episode
+		if (TalkBalloon_2.GetComponent<TalkBalloon> ().NumberOfTalk() == 20) {
+			if (!IsAlreadyOpen2) {
+				SceneManager.LoadScene ("PenguinEp");
+			}
+		}
+
 		save ();
 	}
 
 	void save(){
 		PlayerPrefs.SetString("sodaOPEN",IsAlreadyOpen.ToString());
+		PlayerPrefs.SetString ("penguinEpisode", IsAlreadyOpen2.ToString ());
 		PlayerPrefs.SetInt("sodaBoughtTimes",sodaBoughtTimes);
 	}
 
@@ -49,5 +60,7 @@ public class soda : MonoBehaviour {
 		sodaBoughtTimes = PlayerPrefs.GetInt("sodaBoughtTimes");
 		if(PlayerPrefs.HasKey("sodaOPEN"))
 			IsAlreadyOpen = (PlayerPrefs.GetString ("sodaOPEN") == "True");
+		if(PlayerPrefs.HasKey("penguinEpisode"))
+			IsAlreadyOpen2 = (PlayerPrefs.GetString ("penguinEpisode") == "True");
 	}
 }

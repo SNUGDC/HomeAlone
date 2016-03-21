@@ -4,11 +4,11 @@ using System.Collections;
 
 public class Friend : MonoBehaviour {
 	public Text VisitCount;
-	public GameObject QuestionBox;
+	public GameObject QuestionBox, TalkBalloon_2;
 	public GameObject[] heart;
 	public int IntVisitCount;
 	private Button myButton;
-	public int love1,love2,love3;
+	public static int love1,love2,love3;
 
 	void Awake () {
 		myButton = GetComponent<Button>();
@@ -63,11 +63,21 @@ public class Friend : MonoBehaviour {
 			red.enabled=true;
 	}
 
-	public void EpisodeEnabled1(GameObject ep){
-		if (IntVisitCount >= love1)
+	public void EpisodeEnabled(GameObject ep){
+		if (TalkBalloon_2.GetComponent<TalkBalloon> ().NumberOfTalk () == 20)
 			ep.SetActive (true);
+		else
+			ep.SetActive (false);
 	}
 
+	public void EpisodeNotice(GameObject ep){
+		if (TalkBalloon_2.GetComponent<TalkBalloon> ().NumberOfTalk () < 20)
+			ep.SetActive (true);
+		else
+			ep.SetActive (false);
+	}
+
+	/*
 	public void EpisodeEnabled2(GameObject ep){
 		if (IntVisitCount >= love2)
 			ep.SetActive (true);
@@ -77,6 +87,7 @@ public class Friend : MonoBehaviour {
 		if (IntVisitCount >= love3)
 			ep.SetActive (true);
 	}
+	*/
 
 	public int HowFriendly(){
 		if (IntVisitCount < love1)
