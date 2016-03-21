@@ -46,7 +46,6 @@ public class BirthdayEvent : MonoBehaviour {
 		bool owl = (Owl.GetComponent<VisitFriend> ().VisitNumber > 0);
 		bool table = Table.GetComponent<Item> ().haveItem ();
 		bool cake = Table.GetComponent<Item> ().haveItem ();
-		Debug.Log (cake);
 		return penguin && crocodile && owl && table && cake ;
 	}
 
