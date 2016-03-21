@@ -29,10 +29,14 @@ public class BirthdayEvent : MonoBehaviour {
 			// Penguin Birthday!!
 			SceneManager.LoadScene ("Penguin Birthday");
 			Cake.GetComponent<Item> ().decreaseItem ();
+			IsAlreadyShow1 = true;
+			PlayerPrefs.SetString ("BirthdayEvent1", IsAlreadyShow1.ToString ());
 		} else if (month == 9 && day == 6 && !IsAlreadyShow2 && LionBirthday ()) {
 			// Lion Birthday!
 			SceneManager.LoadScene ("Lion Birthday");
 			Cake.GetComponent<Item> ().decreaseItem ();
+			IsAlreadyShow2 = true;
+			PlayerPrefs.SetString ("BirthdayEvent2", IsAlreadyShow2.ToString ());
 		}
 	}
 
@@ -42,7 +46,7 @@ public class BirthdayEvent : MonoBehaviour {
 		bool owl = (Owl.GetComponent<VisitFriend> ().VisitNumber > 0);
 		bool table = Table.GetComponent<Item> ().haveItem ();
 		bool cake = Table.GetComponent<Item> ().haveItem ();
-
+		Debug.Log (cake);
 		return penguin && crocodile && owl && table && cake ;
 	}
 
