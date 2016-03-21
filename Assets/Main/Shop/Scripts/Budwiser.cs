@@ -19,7 +19,7 @@ public class Budwiser : MonoBehaviour {
 	void Update () {
 		hour = PlayerPrefs.GetInt("Hour");
 	//	hour = PlayerPrefs.GetInt("Min");
-		if ((StartHour <= hour) && (hour < EndHour)) {
+		if ((StartHour <= hour) || (hour < EndHour)) {
 			buyButton.GetComponent<Button> ().enabled = true;
 			ShopItem.GetComponent<Button> ().enabled = true;
 			QuestionBox.SetActive (false);
