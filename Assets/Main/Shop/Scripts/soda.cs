@@ -44,6 +44,7 @@ public class soda : MonoBehaviour {
 		if (TalkBalloon_2.GetComponent<TalkBalloon> ().NumberOfTalk() == 20) {
 			if (!IsAlreadyOpen2) {
 				SceneManager.LoadScene ("PenguinEp");
+				IsAlreadyOpen2 = true;
 			}
 		}
 
