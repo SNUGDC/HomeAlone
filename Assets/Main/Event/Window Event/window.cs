@@ -6,7 +6,7 @@ using System;
 
 public class window : MonoBehaviour {
 	public static bool open;
-	public GameObject openedImage, closedImage;
+	public GameObject openedImage, yellowdustImage, beautifulImage, rainImage, dustImage, snowImage;
 	public GameObject[] Friends;
 	public int yellowdust, beautiful, rain, dust, snow;
 	private int month, random;
@@ -15,7 +15,6 @@ public class window : MonoBehaviour {
 	void Start () {
 		load ();
 		openedImage.SetActive (open);
-		closedImage.SetActive (!open);
 		random = UnityEngine.Random.Range (1, 100);
 		if (open) {
 			if ((month == 3) || (month == 4))
@@ -50,7 +49,6 @@ public class window : MonoBehaviour {
 		//close
 		if (open) {
 			openedImage.SetActive (false);
-			closedImage.SetActive (true);
 			open = false;
 			save ();
 		}
@@ -58,7 +56,6 @@ public class window : MonoBehaviour {
 		//open
 		else {
 			openedImage.SetActive (true);
-			closedImage.SetActive (false);
 			open = true;
 			save ();
 		}
@@ -67,6 +64,7 @@ public class window : MonoBehaviour {
 	//Event #0
 	void YellowDust(int probability){
 		if (random <= probability){
+			yellowdustImage.SetActive (true);
 			Debug.Log ("yellowDust Event");
 			changeImage (0);			// #0
 		}
@@ -87,6 +85,7 @@ public class window : MonoBehaviour {
 
 		// code here
 		if (random <= probability){
+			beautifulImage.SetActive (true);
 			Debug.Log ("beautifulScene Event");
 			SceneManager.LoadScene ("beautifulScene Event");
 		}
@@ -95,6 +94,7 @@ public class window : MonoBehaviour {
 	//event #1
 	void Rain(int probability){
 		if (random <= probability){
+			rainImage.SetActive (true);
 			Debug.Log ("rain Event");
 			changeImage (1);			// #1
 		}
@@ -103,6 +103,7 @@ public class window : MonoBehaviour {
 	//event #2
 	void Dust(int probability){
 		if (random <= probability){
+			dustImage.SetActive (true);
 			Debug.Log ("dust Event");
 			changeImage (2);			// #2
 		}
@@ -111,6 +112,7 @@ public class window : MonoBehaviour {
 	//event #3
 	void Snow(int probability){
 		if (random <= probability){
+			snowImage.SetActive (true);
 			Debug.Log ("snow Event");
 			changeImage (3);			// #3
 		}

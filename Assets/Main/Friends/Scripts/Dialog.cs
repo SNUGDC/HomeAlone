@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class Dialog : MonoBehaviour {
 	private static string[] conversation = null;
@@ -32,5 +33,10 @@ public class Dialog : MonoBehaviour {
 				}
 			}
 		}
+	}
+
+	public void GoToMain(int EndLineNumber){
+		if(LineNumber == EndLineNumber)
+			SceneManager.LoadScene ("Main");
 	}
 }
