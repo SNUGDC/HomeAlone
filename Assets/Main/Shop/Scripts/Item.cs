@@ -157,6 +157,14 @@ public class Item : MonoBehaviour {
 		save ();
 	}
 
+	public void increaseItem(){
+		SetActiveObject.SetActive (true);
+		SetActiveObject2.SetActive (true);
+		BoughtImage.SetActive (true);
+		BoughtNumber++;
+		save ();
+	}
+
 	public void save(){
 		PlayerPrefs.SetInt(ItemName + "BoughtNumber",BoughtNumber);
 		PlayerPrefs.SetString (ItemName + "HavingNumber",HavingNumber.text);

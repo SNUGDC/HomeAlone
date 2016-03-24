@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 
 public class SheepEvent : MonoBehaviour {
-	public GameObject VisitSheep;
+	public GameObject VisitSheep, tteok;
 	public int ExcuteVisitNumber;
 	int SheepVisitNumber;
 	bool IsAlreadyShow;
@@ -25,6 +25,8 @@ public class SheepEvent : MonoBehaviour {
 			IsAlreadyShow = true;
 			SceneManager.LoadScene ("Sheep Event");
 			PlayerPrefs.SetString ("SheepEvent",IsAlreadyShow.ToString());
+			tteok.GetComponent<Item> ().increaseItem ();
+			PlayerPrefs.SetString("Tteok","True");
 		}
 	}
 }

@@ -10,6 +10,7 @@ public class SheepEventText : MonoBehaviour
     public GameObject Sheep_Normal;
     public GameObject Sheep_CantCook;
     public GameObject SheepForText;
+	public GameObject player1, player2, player3;
 
     public static int ClickedTime_SheepEvent;
 
@@ -46,14 +47,18 @@ public class SheepEventText : MonoBehaviour
             case 6:
                 button.SetActive(false);
                 break;
-            case 7:
-                text.text = "냄ㅂ...";
+			case 7:
+				text.text = "냄ㅂ...";
+				player1.SetActive (false);
+				player2.SetActive (true);
                 break;
             case 8:
                 button.SetActive(false);
                 break;
             case 9:
                 text.text = "냄비..냄비에...";
+				player2.SetActive (false);
+				player3.SetActive (true);
                 break;
             case 10:
                 text.text = "물을..받아야...하는데...";
