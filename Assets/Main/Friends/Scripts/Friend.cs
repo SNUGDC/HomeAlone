@@ -13,8 +13,8 @@ public class Friend : MonoBehaviour {
 	void Awake () {
 		myButton = GetComponent<Button>();
 		love1 = 1;
-		love2 = 10;
-		love3 = 40;
+		love2 = 10; // 10
+		love3 = 40; // 40
 	}
 		
 	void Update () {
