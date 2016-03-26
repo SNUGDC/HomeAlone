@@ -44,14 +44,27 @@ public class PenguinEpDialogueText : MonoBehaviour
                 DialogueText.text = "왜 네 방에는 사진이나 액자같은 게 아무것도 없어?";
                 break;
             case 2:
-                DialogueBox.SetActive(false);
-                ChoicePanel.SetActive(true);
+                if (PlayerPrefs.HasKey("AlreadySeePenguinEp"))
+                {
+                    ClickedTime_PenguinEp = 4;
+                }
+                else
+                {
+                    DialogueBox.SetActive(false);
+                    ChoicePanel.SetActive(true);
+                }
                 break;
             case 3:
-                if(IsNeutralChoice_PenguinEp)
+                if (IsNeutralChoice_PenguinEp)
+                {
                     DialogueText.text = "그치? 역시 약간 허전하지 않아?";
+                    PlayerPrefs.SetInt("AlreadySeePenguinEp", 1);
+                }
                 else
+                {
                     DialogueText.text = "아...그래...? 사진같은 거 별로 안 좋아하나보다. 음...";
+                    PlayerPrefs.SetInt("AlreadySeePenguinEp", 1);
+                }
                 break;
             case 4:
                 DialogueText.text = "어... 우리 같이 스티커사진 찍으러가지 않을래...?";
