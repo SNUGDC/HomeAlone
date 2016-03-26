@@ -8,9 +8,11 @@ public class Dialog : MonoBehaviour {
 	public Text myText;
 	public GameObject ThisEventMessage;
 	public int LineNumber;
+	private int NumberOfNegativeChoice;
 
 	void Start () {
 		LineNumber = 0;
+		NumberOfNegativeChoice = PlayerPrefs.GetInt ("NumberOfNegativeChoice");
 	}
 
 	void Update () {
@@ -38,5 +40,17 @@ public class Dialog : MonoBehaviour {
 	public void GoToMain(int EndLineNumber){
 		if(LineNumber == EndLineNumber)
 			SceneManager.LoadScene ("Main");
+	}
+
+
+	// ** SaveYes SaveName = SaveNo SaveName
+	public void SaveYes(string SaveName){
+		PlayerPrefs.SetString (SaveName, "True");
+	}
+
+	public void SaveNo(string SaveName){
+		PlayerPrefs.SetString (SaveName, "False");
+		NumberOfNegativeChoice++;
+		PlayerPrefs.SetInt ("NumberOfNegativeChoice", NumberOfNegativeChoice);
 	}
 }

@@ -45,8 +45,9 @@ public class GoToEpisode : MonoBehaviour {
 
 		else if ((lionChat.GetComponent<TalkBalloon> ().NumberOfTalk() == 20) && !lionEpShow) {
 			SceneManager.LoadScene ("LionEp");
-			lionEpShow = true;
-			PlayerPrefs.SetString ("lionEpShow",lionEpShow.ToString());
+			// lionEpShow = true;
+			// PlayerPrefs.SetString ("lionEpShow",lionEpShow.ToString());
+			// save: in episode
 		}
 
 		else if ((ammoniteChat.GetComponent<TalkBalloon> ().NumberOfTalk() == 20) && !ammoEpShow) {
@@ -57,14 +58,16 @@ public class GoToEpisode : MonoBehaviour {
 
 		else if ((bearChat.GetComponent<TalkBalloon> ().NumberOfTalk() == 20) && !bearEpShow) {
 			SceneManager.LoadScene ("BearEp");
-			bearEpShow = true;
-			PlayerPrefs.SetString ("bearEpShow",bearEpShow.ToString());
+			// bearEpShow = true;
+			// PlayerPrefs.SetString ("bearEpShow",bearEpShow.ToString());
+			// save: in episode
 		}
 
 		else if ((snakeChat.GetComponent<TalkBalloon> ().NumberOfTalk() == 20) && !snakeEpShow) {
 			SceneManager.LoadScene ("SnakeEp");
-			snakeEpShow = true;
-			PlayerPrefs.SetString ("snakeEpShow",snakeEpShow.ToString());
+			// snakeEpShow = true;
+			// PlayerPrefs.SetString ("snakeEpShow",snakeEpShow.ToString());
+			// save: in episode
 		}
 	}
 }

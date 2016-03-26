@@ -64,7 +64,7 @@ public class Friend : MonoBehaviour {
 	}
 
 	public void EpisodeEnabled(GameObject ep){
-		if (TalkBalloon_2.GetComponent<TalkBalloon> ().NumberOfTalk () == 20)
+		if (TalkBalloon_2.GetComponent<TalkBalloon> ().NumberOfTalk () >= 20)
 			ep.SetActive (true);
 		else
 			ep.SetActive (false);
