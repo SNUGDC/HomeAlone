@@ -6,7 +6,7 @@ using System;
 
 public class window : MonoBehaviour {
 	public static bool open;
-	public GameObject openedImage, yellowdustImage, beautifulImage, rainImage, dustImage, snowImage;
+	public GameObject openedImage, yellowdustImage, yellowdust2, beautifulImage, rainImage, dustImage, snowImage;
 	public GameObject[] Friends;
 	public int yellowdust, beautiful, rain, dust, snow;
 	private int month, random;
@@ -65,8 +65,9 @@ public class window : MonoBehaviour {
 	void YellowDust(int probability){
 		if (random <= probability){
 			yellowdustImage.SetActive (true);
+			yellowdust2.SetActive (true);
 			Debug.Log ("yellowDust Event");
-			changeImage (0);			// #0
+//			changeImage (0);			// #0
 		}
 	}
 
@@ -96,7 +97,7 @@ public class window : MonoBehaviour {
 		if (random <= probability){
 			rainImage.SetActive (true);
 			Debug.Log ("rain Event");
-			changeImage (1);			// #1
+//			changeImage (1);			// #1
 		}
 	}
 
@@ -105,7 +106,7 @@ public class window : MonoBehaviour {
 		if (random <= probability){
 			dustImage.SetActive (true);
 			Debug.Log ("dust Event");
-			changeImage (2);			// #2
+//			changeImage (2);			// #2
 		}
 	}
 
@@ -114,10 +115,10 @@ public class window : MonoBehaviour {
 		if (random <= probability){
 			snowImage.SetActive (true);
 			Debug.Log ("snow Event");
-			changeImage (3);			// #3
+//			changeImage (3);			// #3
 		}
 	}
-
+	/*
 	void changeImage(int EventNumber){
 		for (int i = 0; i < Friends.Length; i++) {
 			// if visit, change the image
@@ -130,5 +131,6 @@ public class window : MonoBehaviour {
 			}
 		}
 	}
+	*/
 
 }
