@@ -85,6 +85,7 @@ public class SelfReproachText : MonoBehaviour
                 Text.GetComponent<Text>().fontSize = 80;
                 FadeOut();
                 EndingSound.SetActive(true);
+                PlayerPrefs.SetInt("SeeRealEnding", 1);
                 break;
             default:
                 break;
