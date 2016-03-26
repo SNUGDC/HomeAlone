@@ -5,12 +5,20 @@ using UnityEngine.UI;
 public class RealEndingDialogueText : MonoBehaviour
 {
     public Text DialogueText;
+    public GameObject DialogueBox;
+    public GameObject SelfReproachPanel;
 
     int ClickedTime_RealEnd;
 
     public void ClickedButton()
     {
         ClickedTime_RealEnd += 1;
+    }
+
+    void Start()
+    {
+        SelfReproachPanel.SetActive(false);
+        ClickedTime_RealEnd = 0;
     }
 
     void Update()
@@ -25,6 +33,22 @@ public class RealEndingDialogueText : MonoBehaviour
                 break;
             case 2:
                 DialogueText.text = "앞으로도 많은 사랑 부탁드립니다.";
+                break;
+            case 3:
+                DialogueText.text = "...";
+                break;
+            case 4:
+                DialogueText.text = ".........";
+                break;
+            case 5:
+                SelfReproachPanel.SetActive(true);
+                DialogueBox.SetActive(false);
+                break;
+            case 6:
+                DialogueText.text = "";
+                break;
+            case 7:
+                DialogueText.text = "";
                 break;
             default:
                 break;
