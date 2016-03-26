@@ -119,13 +119,6 @@ public class VisitFriend : MonoBehaviour {
 				break;
 			}
 
-
-
-			if (PlayerPrefs.HasKey (FriendNameVisit)) {
-				VisitCounter.text = PlayerPrefs.GetString (FriendNameVisit);
-				VisitNumber = IntParseFast (VisitCounter.text);
-			}
-
 			if (TimeCheck.TimeOver (Delta2)) {
 				if (FriendImage.GetComponent<Image> ().enabled == false && ItemCheck ()) {
 					visit ();
@@ -133,6 +126,11 @@ public class VisitFriend : MonoBehaviour {
 					back ();
 				}
 			}
+		}
+
+		if (PlayerPrefs.HasKey (FriendNameVisit)) {
+			VisitCounter.text = PlayerPrefs.GetString (FriendNameVisit);
+			VisitNumber = IntParseFast (VisitCounter.text);
 		}
 	}
 
