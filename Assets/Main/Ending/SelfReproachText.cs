@@ -8,6 +8,15 @@ public class SelfReproachText : MonoBehaviour
     public GameObject Text;
     public GameObject RealEndingPicture;
 
+    public GameObject Penguin;
+    public GameObject Owl;
+    public GameObject Lion;
+    public GameObject Bear;
+    public GameObject SheepAndCroc;
+    public GameObject Ammo;
+    public GameObject Snake;
+    public GameObject EndingSound;
+
     int Stage;
     int TextStage;
     bool IsRecord;
@@ -33,40 +42,49 @@ public class SelfReproachText : MonoBehaviour
         switch(TextStage)
         {
             case 0:
-                ShowText();
+                ShowText(Penguin);
                 break;
             case 1:
                 Text.GetComponent<Text>().text = "성적이 높다는 이유로 따돌림당했다.";
-                ShowText();
+                ShowText(Owl);
                 break;
             case 2:
                 Text.GetComponent<Text>().text = "남자애들과 어울린다는 이유로 소외당했다.";
-                ShowText();
+                ShowText(Lion);
                 break;
             case 3:
                 Text.GetComponent<Text>().text = "차가웠던 날의 감촉";
-                ShowText();
+                ShowText(Bear);
                 break;
             case 4:
                 Text.GetComponent<Text>().text = "사랑하는 사람으로부터 버림받았다.";
-                ShowText();
+                ShowText(SheepAndCroc);
                 break;
             case 5:
                 Text.GetComponent<Text>().text = "의미없는 휴학, 늦은 졸업";
-                ShowText();
+                ShowText(Ammo);
                 break;
             case 6:
+                GetComponent<Image>().color = new Vector4(1, 1, 1, GetComponent<Image>().color.a);
                 Text.GetComponent<Text>().text = "열등감 덩어리, 부모님의 실패작";
-                ShowText();
+                ShowText(Snake);
                 break;
             case 7:
+                GetComponent<Image>().color = new Vector4(0, 0, 0, GetComponent<Image>().color.a);
                 Text.GetComponent<Text>().text = "나잖아, 전부.";
-                
-                ShowText();
+                ShowText(Snake);
                 break;
             case 8:
                 RealEndingPicture.SetActive(true);
                 RealEndingPicture.GetComponent<SpriteRenderer>().color = new Vector4(1, 1, 1, RealEndingPicture.GetComponent<SpriteRenderer>().color.a + 0.02f);
+                if (RealEndingPicture.GetComponent<SpriteRenderer>().color.a > 4)
+                    TextStage = 9;
+                break;
+            case 9:
+                Text.GetComponent<Text>().text = "Home Alone";
+                Text.GetComponent<Text>().fontSize = 80;
+                FadeOut();
+                EndingSound.SetActive(true);
                 break;
             default:
                 break;
@@ -75,15 +93,15 @@ public class SelfReproachText : MonoBehaviour
 
     void FadeOut()
     {
-        GetComponent<Image>().color = new Vector4(0, 0, 0, GetComponent<Image>().color.a + 0.02f);
+        GetComponent<Image>().color = new Vector4(GetComponent<Image>().color.r, GetComponent<Image>().color.g, GetComponent<Image>().color.b, GetComponent<Image>().color.a + 0.02f);
     }
 
     void FadeIn()
     {
-        GetComponent<Image>().color = new Vector4(0, 0, 0, GetComponent<Image>().color.a - 0.02f);
+        GetComponent<Image>().color = new Vector4(GetComponent<Image>().color.r, GetComponent<Image>().color.g, GetComponent<Image>().color.b, GetComponent<Image>().color.a - 0.02f);
     }
 
-    void ShowText()
+    void ShowText(GameObject Object)
     {
         if (GetComponent<Image>().color.a > 2)
             FadeOutFinish = true;
@@ -100,7 +118,11 @@ public class SelfReproachText : MonoBehaviour
                 GetComponent<Image>().color = new Vector4(0, 0, 0, 0);
                 return;
             }
-            else FadeIn();
+            else
+            {
+                Object.SetActive(true);
+                FadeIn();
+            }
         }
         else FadeOut();
     }
