@@ -6,6 +6,8 @@ public class Continue : MonoBehaviour
 {
     public void TransferToMain()
     {
-        SceneManager.LoadScene("Main");
+        if (PlayerPrefs.GetInt("SeeRealEnding") == 1 || PlayerPrefs.GetInt("SeeRealEnding") == 2)
+            SceneManager.LoadScene("AfterRealEnding");
+        else SceneManager.LoadScene("Main");
     }
 }

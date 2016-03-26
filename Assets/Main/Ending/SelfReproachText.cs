@@ -66,7 +66,7 @@ public class SelfReproachText : MonoBehaviour
                 break;
             case 6:
                 GetComponent<Image>().color = new Vector4(1, 1, 1, GetComponent<Image>().color.a);
-                Text.GetComponent<Text>().text = "열등감 덩어리, 부모님의 실패작";
+                Text.GetComponent<Text>().text = "열등감 덩어리";
                 ShowText(Snake);
                 break;
             case 7:
