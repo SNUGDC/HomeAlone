@@ -7,20 +7,24 @@ public class VisibleItem : MonoBehaviour {
 	// List order: penguin - sheep - bear - croco - ammo - owl - lion - snake
 	public GameObject ThisPosition, desk, bed;
 	public GameObject[] FriendList;
-	public List<GameObject> VisitingFriend = new List<GameObject>();
+	private List<GameObject> VisitingFriend = new List<GameObject>();
+	private bool OK;
 
 	private GameObject VisibleFriend;
 
 	void Start () {
-		
+		OK = true;
 	}
 
 	void Update () {
+		OK = true;
 		ListUpdate (VisitingFriend);
 		ImageChange (VisitingFriend);
-		BackCheck ();
-		desk.SetActive (true);
-		bed.SetActive (true);
+		if (OK) {
+			BackCheck ();
+			desk.SetActive (true);
+			bed.SetActive (true);
+		}
 	}
 
 	//static?? 
@@ -44,23 +48,30 @@ public class VisibleItem : MonoBehaviour {
 		// choose friend: list[n-1]
 		int n = UnityEngine.Random.Range (1, list.Count);
 		if (list [n - 1] != null && !list [n - 1].GetComponent<VisitFriend> ().itemVisible) {
-			list [n - 1].GetComponent<VisitFriend> ().itemVisible = true;
-			ThisPosition.GetComponent<Image>().enabled = true;
-			VisibleFriend = list [n - 1];
-
-			// choose item: list[n-1].GetComponent<VisitFriend>().VisitItem[k]
-			int k = 0;
-			for (int i = 0; i < list [n - 1].GetComponent<VisitFriend> ().VisitItem.Length; i++) {
-				if (list [n - 1].GetComponent<VisitFriend> ().VisitItem [k].GetComponent<Item> ().haveItem ()) {
-					k = i;
-					break;
-				}
+			if (list [n - 1].GetComponent<VisitFriend> ().FriendNameVisit == "crocodileVisit" && !list [n - 1].GetComponent<VisitFriend> ().crocobed.activeSelf) {
+				//exception
+				OK = false;
 			}
 
-			GameObject item = list [n - 1].GetComponent<VisitFriend> ().VisitItem [k].GetComponent<Item> ().SetActiveObject2; 
-			ThisPosition.GetComponent<Image> ().sprite = item.GetComponent<Image> ().sprite;
-			RectTransform rt = item.GetComponent<RectTransform> ();
-			ThisPosition.GetComponent<RectTransform> ().sizeDelta = new Vector2 (rt.rect.width, rt.rect.height);
+			if (OK) {
+				list [n - 1].GetComponent<VisitFriend> ().itemVisible = true;
+				ThisPosition.GetComponent<Image> ().enabled = true;
+				VisibleFriend = list [n - 1];
+
+				// choose item: list[n-1].GetComponent<VisitFriend>().VisitItem[k]
+				int k = 0;
+				for (int i = 0; i < list [n - 1].GetComponent<VisitFriend> ().VisitItem.Length; i++) {
+					if (list [n - 1].GetComponent<VisitFriend> ().VisitItem [k].GetComponent<Item> ().haveItem ()) {
+						k = i;
+						break;
+					}
+				}
+
+				GameObject item = list [n - 1].GetComponent<VisitFriend> ().VisitItem [k].GetComponent<Item> ().SetActiveObject2; 
+				ThisPosition.GetComponent<Image> ().sprite = item.GetComponent<Image> ().sprite;
+				RectTransform rt = item.GetComponent<RectTransform> ();
+				ThisPosition.GetComponent<RectTransform> ().sizeDelta = new Vector2 (rt.rect.width, rt.rect.height);
+			}
 		}
 	}
 

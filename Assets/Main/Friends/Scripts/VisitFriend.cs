@@ -29,12 +29,12 @@ public class VisitFriend : MonoBehaviour {
 	public static Vector3 posCrocoDesk = new Vector3(1,0,0);
 	public static Vector3 posLaundry = new Vector3(0,-2,0);
 
-	public GameObject ShopLaundry, Laundry, table, cushion, crocobed, crocodesk;
+	public GameObject ShopLaundry, hagendaz, Laundry, table, cushion, crocobed, crocodesk;
 	public static GameObject penguin, lion, crocodile, ammonite, owl, snake, sheep, bear;
 
 	private int RandomNumber, saveNumber;
 
-	private static GameObject window;
+	private static GameObject window, crocohagen;
 	private static bool windowCheck;
 
 	DateTime SysTime;
@@ -43,6 +43,7 @@ public class VisitFriend : MonoBehaviour {
 
 	void Awake()
 	{
+		crocohagen = GameObject.Find ("desk_hagen");
 		window = GameObject.Find ("window");
 		windowCheck = false;
 		penguin = GameObject.Find ("Penguin_f");
@@ -106,7 +107,10 @@ public class VisitFriend : MonoBehaviour {
 			case("desk"):
 				if (ThisObject.GetComponent<VisitFriend> ().FriendNameVisit == "crocodileVisit") {
 					ThisObject.transform.position = posCrocoDesk;
-					crocodesk.SetActive (true);
+					if (PlayerPrefs.GetInt ("hagendazBoughtNumber") == 0)
+						crocodesk.SetActive (true);
+					else
+						crocohagen.GetComponent<Image> ().enabled = true;
 				}
 				else {
 					FriendImage.sprite = SeatImage [posNumber].sprite;
@@ -241,7 +245,11 @@ public class VisitFriend : MonoBehaviour {
 							FriendList.desk = true;
 							myPos = "desk";
 							EnableImage ();
-							crocodesk.SetActive (true);
+							//crocodesk.SetActive (true);
+							if (hagendaz.GetComponent<Item> ().BoughtNumber == 0)
+								crocodesk.SetActive (true);
+							else
+								crocohagen.GetComponent<Image> ().enabled = true;
 							player.playerPos ();
 							posNumber = i;
 						} else {
@@ -309,6 +317,8 @@ public class VisitFriend : MonoBehaviour {
 			case("desk"):
 				if (crocodesk.activeSelf)
 					crocodesk.SetActive (false);
+				if (crocohagen.GetComponent<Image> ().enabled)
+					crocohagen.GetComponent<Image> ().enabled = false;
 				FriendList.desk = false;
 				disableImage ();
 				break;
