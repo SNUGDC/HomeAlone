@@ -4,8 +4,8 @@ using UnityEngine.SceneManagement;
 
 public class GoToEpisode : MonoBehaviour {
 	public GameObject sheepChat, crocodileChat, owlChat, lionChat, ammoniteChat, bearChat, snakeChat, bear;
-	private bool BearEventShow, sheepEpShow, crocoEpShow, owlEpShow, lionEpShow, ammoEpShow, snakeEpShow, bearEpShow;
-
+	private bool BearEventShow, sheepEpShow, crocoEpShow, owlEpShow, lionEpShow, ammoEpShow, snakeEpShow, bearEpShow, OwnerEventShow;
+	private int month, day, AmmoMonth, AmmoDay;
 	void Start () {
 		BearEventShow = (PlayerPrefs.GetString ("BearEvent") == "True");
 		sheepEpShow = (PlayerPrefs.GetString ("sheepEpShow") == "True");
@@ -15,10 +15,22 @@ public class GoToEpisode : MonoBehaviour {
 		ammoEpShow = (PlayerPrefs.GetString ("ammoEpShow") == "True");
 		snakeEpShow = (PlayerPrefs.GetString ("snakeEpShow") == "True");
 		bearEpShow = (PlayerPrefs.GetString ("bearEpShow") == "True");
+		OwnerEventShow = (PlayerPrefs.GetString ("OwnerEventShow") == "True");
+
+		month = PlayerPrefs.GetInt ("Month");
+		day = PlayerPrefs.GetInt ("Day");
+		AmmoMonth = PlayerPrefs.GetInt ("AmmoMonth");
+		AmmoDay = PlayerPrefs.GetInt ("AmmoDay");
+		//Owner Event
+		if(((month > AmmoMonth) || ((month == AmmoMonth) && (day >= (AmmoDay + 7)))) && !OwnerEventShow){
+			OwnerEventShow = true;
+			SceneManager.LoadScene ("Owner Event");
+			PlayerPrefs.SetString ("OwnerEventShow",OwnerEventShow.ToString());
+		}
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update () {			
 		if ((bear.GetComponent<VisitFriend>().VisitNumber >= 40) && !BearEventShow) {
 			BearEventShow = true;
 			SceneManager.LoadScene ("Bear Event");

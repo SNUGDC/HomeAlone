@@ -37,6 +37,8 @@ public class VisitFriend : MonoBehaviour {
 	private static GameObject window, crocohagen;
 	private static bool windowCheck;
 
+	private static bool AmmoOpened;
+
 	DateTime SysTime;
 	DateTime UpdatedTime;
 	TimeSpan Delta, Delta2;
@@ -59,6 +61,17 @@ public class VisitFriend : MonoBehaviour {
 	}
 
 	void Start () {
+		AmmoOpened = (PlayerPrefs.GetString ("AmmoOpened") == "True");
+		if (ThisObject.GetComponent<VisitFriend> ().FriendNameVisit == "ammoniteVisit" && !AmmoOpened) {
+			AmmoOpened = true;
+			PlayerPrefs.SetString ("AmmoOpened", "True");
+
+			int month = PlayerPrefs.GetInt ("Month");
+			int day = PlayerPrefs.GetInt ("Day");
+			PlayerPrefs.SetInt ("AmmoMonth", month);
+			PlayerPrefs.SetInt ("AmmoDay", day);
+		}
+
 		load ();
 
 		if (!FriendList.Sleeping) {
