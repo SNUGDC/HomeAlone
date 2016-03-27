@@ -24,8 +24,9 @@ public class FriendList : MonoBehaviour {
 			PlayerPrefs.SetString(FriendName[i],FriendArray[i].activeSelf.ToString());
 			PlayerPrefs.SetString(FriendName[i] + "image",FriendArray[i].GetComponent<Image>().enabled.ToString());
 		}
-		for(int i=0;i<TalkBalloonName.Length;i++)
-			PlayerPrefs.SetString(TalkBalloonName[i],TalkBalloonArray[i].activeSelf.ToString());
+		for (int i = 0; i < TalkBalloonName.Length; i++) {
+			PlayerPrefs.SetString (TalkBalloonName [i], TalkBalloonArray [i].activeSelf.ToString ());
+		}
 		
 		PlayerPrefs.SetInt("MaxVisitorNum", MaxVisitorNum);
 		PlayerPrefs.SetInt("VisitorNum", VisitorNum);
@@ -40,8 +41,10 @@ public class FriendList : MonoBehaviour {
 		}
 
 		if (!FriendList.Sleeping) {
-			for (int i = 0; i < TalkBalloonName.Length; i++)
+			for (int i = 0; i < TalkBalloonName.Length; i++) {
+				TalkBalloonArray [i].SetActive (true);
 				TalkBalloonArray [i].SetActive ((PlayerPrefs.GetString (TalkBalloonName [i]) == "True"));
+			}
 		}
 		
 //		if (PlayerPrefs.HasKey ("MaxVisitorNum"))
