@@ -17,6 +17,20 @@ public class CameleonDialogueText : MonoBehaviour
         ClickedTime_CamEv += 1;
     }
 
+    public void MoveTo5()
+    {
+        ClickedTime_CamEv = 5;
+        ChoicePanel.SetActive(false);
+        DialogueBox.SetActive(true);
+    }
+
+    public void MoveTo7()
+    {
+        ClickedTime_CamEv = 7;
+        ChoicePanel.SetActive(false);
+        DialogueBox.SetActive(true);
+    }
+
     void Start()
     {
         Cam_Sorry.SetActive(false);
@@ -28,6 +42,7 @@ public class CameleonDialogueText : MonoBehaviour
         switch(ClickedTime_CamEv)
         {
             case 0:
+                FadeIn(Cam_OnWall, 2);
                 DialogueText.text = "앗... 들켰다...";
                 break;
             case 1:
@@ -46,22 +61,36 @@ public class CameleonDialogueText : MonoBehaviour
                 DialogueBox.SetActive(false);
                 break;
             case 5:
+                Cam_OnWall.SetActive(true);
+                Cam_Sorry.SetActive(false);
                 DialogueText.text = "고마워...";
+                FadeOut(Cam_OnWall, 2);
                 break;
             case 6:
+                DialogueBox.SetActive(false);
                 break;
             case 7:
+                DialogueText.text = "그동안 고마웠어... 안녕...";
                 break;
             case 8:
+                Cam_Sorry.SetActive(false);
+                DialogueText.text = "카멜레온은 조용히 방을 나갔다.";
                 break;
             case 9:
-                break;
-            case 10:
-                break;
-            case 11:
+                DialogueBox.SetActive(false);
                 break;
             default:
                 break;
         }
+    }
+
+    void FadeOut(GameObject Object)
+    {
+        Object.GetComponent<Image>().color = new Vector4(GetComponent<Image>().color.r, GetComponent<Image>().color.g, GetComponent<Image>().color.b, GetComponent<Image>().color.a + 0.02f);
+    }
+
+    void FadeIn(GameObject Object)
+    {
+        Object.GetComponent<Image>().color = new Vector4(GetComponent<Image>().color.r, GetComponent<Image>().color.g, GetComponent<Image>().color.b, GetComponent<Image>().color.a - 0.02f);
     }
 }
