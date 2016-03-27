@@ -42,7 +42,7 @@ public class CameleonDialogueText : MonoBehaviour
         switch(ClickedTime_CamEv)
         {
             case 0:
-                FadeIn(Cam_OnWall, 2);
+                FadeIn(Cam_OnWall);
                 DialogueText.text = "앗... 들켰다...";
                 break;
             case 1:
@@ -64,7 +64,7 @@ public class CameleonDialogueText : MonoBehaviour
                 Cam_OnWall.SetActive(true);
                 Cam_Sorry.SetActive(false);
                 DialogueText.text = "고마워...";
-                FadeOut(Cam_OnWall, 2);
+                FadeOut(Cam_OnWall);
                 break;
             case 6:
                 DialogueBox.SetActive(false);
