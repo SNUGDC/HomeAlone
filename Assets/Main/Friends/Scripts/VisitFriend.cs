@@ -56,6 +56,10 @@ public class VisitFriend : MonoBehaviour {
 	}
 
 	void Start () {
+		TalkBalloonImage.SetActive (true);
+		TalkBalloonImage.SetActive (false);
+		TalkBalloonImage2.SetActive (true);
+		TalkBalloonImage2.SetActive (false);
 		load ();
 
 		if (!FriendList.Sleeping) {

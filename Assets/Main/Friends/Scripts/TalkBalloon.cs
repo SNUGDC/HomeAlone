@@ -15,8 +15,13 @@ public class TalkBalloon : MonoBehaviour {
 	public bool[] IsAlreadyShow = {false};
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		load ();
+		if (NameTalk == "ammoTalk") {
+			for (int i = 13; i < 20;i++)
+				IsAlreadyShow [i] = true;
+		}
+		Debug.Log (NameTalk + " load?");
 	}
 	
 	// Update is called once per frame
