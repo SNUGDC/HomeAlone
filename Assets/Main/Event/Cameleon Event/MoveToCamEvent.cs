@@ -6,6 +6,7 @@ public class MoveToCamEvent : MonoBehaviour
 {
     public void MoveToEvent()
     {
+		PlayerPrefs.SetString ("CameleonEventShow","True");
         SceneManager.LoadScene("Cameleon Event");
     }
 }

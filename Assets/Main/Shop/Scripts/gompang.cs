@@ -3,9 +3,9 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class gompang : MonoBehaviour {
-	public GameObject ShopItem, buyButton, QuestionBox, PopUp, PopUpClose;
+	public GameObject ShopItem, buyButton, QuestionBox, PopUp, PopUpClose, Wall_gompang;
 	public Text PopUpText;
-	bool IsAlreadyOpen;
+	bool IsAlreadyOpen, CameleonEventShow;
 	public int StartMonth, EndMonth;
 	int month;
 
@@ -13,11 +13,18 @@ public class gompang : MonoBehaviour {
 
 	void Start () {
 		load ();
+		CameleonEventShow = (PlayerPrefs.GetString ("CameleonEventShow") == "True");
 	}
 
 	// Update is called once per frame
 	void Update () {
 		month = PlayerPrefs.GetInt("Month");
+
+		CameleonEventShow = (PlayerPrefs.GetString ("CameleonEventShow") == "True");
+		if ((ShopItem.GetComponent<Item>().haveItem()) && !CameleonEventShow) {
+			Wall_gompang.GetComponent<Image>().enabled = true;
+			Wall_gompang.GetComponent<Button> ().enabled = true;
+		}
 
 		//	hour = PlayerPrefs.GetInt("Min");
 		if ((StartMonth <= month) && (month < EndMonth)) {
