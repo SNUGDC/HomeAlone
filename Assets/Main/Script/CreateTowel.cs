@@ -44,7 +44,6 @@ public class CreateTowel : MonoBehaviour
         {
             LoadTowel();
 
-            k = UnityEngine.Random.Range(1, 3);
             SysTime = System.DateTime.Now;
 
             if (TimeOver() && TowelAmount < MaxTowel)

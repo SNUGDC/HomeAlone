@@ -44,7 +44,6 @@ public class CreateTShirt : MonoBehaviour
         {
             LoadTShirt();
 
-            k = UnityEngine.Random.Range(1, 3);
             SysTime = System.DateTime.Now;
 
             if (TimeOver() && TShirtAmount < MaxTShirt)
