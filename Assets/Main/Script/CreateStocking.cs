@@ -4,6 +4,7 @@ using System;
 
 public class CreateStocking : MonoBehaviour
 {
+    public GameObject ShopLaudary;
     public GameObject Stocking_Black;
     public GameObject Stocking_Ivory;
     public int StockingRespawnTimeGap;
@@ -19,73 +20,73 @@ public class CreateStocking : MonoBehaviour
 
     void Start()
     {
-        SysTime = System.DateTime.Now;
-        Delta = new TimeSpan(0, 0, StockingRespawnTimeGap);
-        UpdatedTime = SysTime;
-
-        if (PlayerPrefs.HasKey("StockingAmount"))
-            LoadStocking();
-        else StockingAmount = 0;
-
-        FixingStockingAmount();
-        Debug.Log(StockingAmount);
-
-        TimeGap = TimeCheck.OFFtime();
-
-        for (TimeSpan Gap = TimeGap; Gap >= Delta && StockingAmount <= MaxStocking; Gap -= Delta)
+        if(ShopLaudary.GetComponent<Item>().haveItem())
         {
-            StockingAmount = StockingAmount + 1;
-        }
+            SysTime = System.DateTime.Now;
+            Delta = new TimeSpan(0, 0, StockingRespawnTimeGap);
+            UpdatedTime = SysTime;
 
-        for (int i = 0; i <= StockingAmount; i++)
-        {
-            int a = i % 2;
-            switch (a)
+            TimeGap = TimeCheck.OFFtime();
+
+            for (TimeSpan Gap = TimeGap; Gap >= Delta && StockingAmount < MaxStocking; Gap -= Delta)
             {
-                case 0:
-                    Instantiate(Stocking_Black);
-                    break;
-                case 1:
-                    Instantiate(Stocking_Ivory);
-                    break;
-                default:
-                    Instantiate(Stocking_Black);
-                    break;
+                StockingAmount = StockingAmount + 1;
+                Debug.Log("StockingAmount is " + StockingAmount);
             }
-        }
 
-        SaveStocking();
+            for (int i = 0; i < StockingAmount; i++)
+            {
+                int a = i % 2;
+                switch (a)
+                {
+                    case 0:
+                        Instantiate(Stocking_Black);
+                        break;
+                    case 1:
+                        Instantiate(Stocking_Ivory);
+                        break;
+                    default:
+                        Instantiate(Stocking_Black);
+                        break;
+                }
+            }
+            SaveStocking();
+        }
     }
 
     void Update()
     {
-        LoadStocking();
-        FixingStockingAmount();
-
-        k = UnityEngine.Random.Range(1, 2);
-        SysTime = System.DateTime.Now;
-
-        if (TimeOver() && StockingAmount < MaxStocking)
+        if (ShopLaudary.GetComponent<Item>().haveItem())
         {
-            UpdatedTime = SysTime;
-            Debug.Log(StockingAmount);
-            switch (k)
+            LoadStocking();
+
+            k = UnityEngine.Random.Range(1, 3);
+            SysTime = System.DateTime.Now;
+
+            if (TimeOver() && StockingAmount < MaxStocking)
             {
-                case 1:
-                    Instantiate(Stocking_Black);
-                    StockingAmount = StockingAmount + 1;
-                    break;
-                case 2:
-                    Instantiate(Stocking_Ivory);
-                    StockingAmount = StockingAmount + 1;
-                    break;
-                default:
-                    Instantiate(Stocking_Ivory);
-                    StockingAmount = StockingAmount + 1;
-                    break;
+                UpdatedTime = SysTime;
+                switch (k)
+                {
+                    case 1:
+                        Instantiate(Stocking_Black);
+                        StockingAmount = StockingAmount + 1;
+                        Debug.Log("k is " + k);
+                        break;
+                    case 2:
+                        Instantiate(Stocking_Ivory);
+                        StockingAmount = StockingAmount + 1;
+                        Debug.Log("k is " + k);
+                        break;
+                    default:
+                        Instantiate(Stocking_Ivory);
+                        StockingAmount = StockingAmount + 1;
+                        break;
+                }
+                Debug.Log(("StockingAmount is " + StockingAmount));
             }
+            SaveStocking();
         }
-        SaveStocking();
     }
 
     bool TimeOver()
@@ -105,16 +106,6 @@ public class CreateStocking : MonoBehaviour
     void LoadStocking()
     {
         StockingAmount = PlayerPrefs.GetInt("StockingAmount");
-    }
-
-    void FixingStockingAmount()
-    {
-        LoadStocking();
-        if (StockingAmount < 0)
-            StockingAmount = 0;
-        else if (StockingAmount > 5)
-            StockingAmount = 4;
-        SaveStocking();
     }
 }
 /*{
