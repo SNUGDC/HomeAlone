@@ -13,6 +13,8 @@ public class OwlEventText : MonoBehaviour
     public GameObject Choice2;
     public GameObject ChicksImage;
     public GameObject[] ChickenForText;
+    public AudioClip ChickSound;
+    public AudioClip GoatSound;
 
     public static int ClickedTime_OwlEvent;
 
@@ -97,22 +99,26 @@ public class OwlEventText : MonoBehaviour
             case 18:
                 ChickenForText[1].GetComponent<SpriteRenderer>().enabled = false;
                 ChickenForText[2].GetComponent<SpriteRenderer>().enabled = true;
+                GetComponent<AudioSource>().PlayOneShot(ChickSound);
                 button.SetActive(false);
                 break;
             case 19:
                 ChickenForText[2].GetComponent<SpriteRenderer>().enabled = false;
                 ChickenForText[3].GetComponent<SpriteRenderer>().enabled = true;
+                GetComponent<AudioSource>().PlayOneShot(ChickSound);
                 button.SetActive(false);
                 break;
             case 20:
                 ChickenForText[3].GetComponent<SpriteRenderer>().enabled = false;
                 ChickenForText[4].GetComponent<SpriteRenderer>().enabled = true;
+                GetComponent<AudioSource>().PlayOneShot(GoatSound);
                 button.SetActive(false);
                 break;
             case 21:
                 text.text = "아, 실수...";
                 break;
             case 22:
+                GetComponent<AudioSource>().PlayOneShot(ChickSound);
                 button.SetActive(false);
                 break;
             case 23:
@@ -123,11 +129,13 @@ public class OwlEventText : MonoBehaviour
             case 24:
                 ChickenForText[5].GetComponent<SpriteRenderer>().enabled = false;
                 ChickenForText[6].GetComponent<SpriteRenderer>().enabled = true;
+                GetComponent<AudioSource>().PlayOneShot(ChickSound);
                 button.SetActive(false);
                 break;
             case 25:
                 ChickenForText[6].GetComponent<SpriteRenderer>().enabled = false;
                 ChickenForText[7].GetComponent<SpriteRenderer>().enabled = true;
+                GetComponent<AudioSource>().PlayOneShot(ChickSound);
                 button.SetActive(false);
                 break;
             case 26:
