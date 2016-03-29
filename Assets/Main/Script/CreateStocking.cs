@@ -31,7 +31,6 @@ public class CreateStocking : MonoBehaviour
             for (TimeSpan Gap = TimeGap; Gap >= Delta && StockingAmount < MaxStocking; Gap -= Delta)
             {
                 StockingAmount = StockingAmount + 1;
-                Debug.Log("StockingAmount is " + StockingAmount);
             }
 
             for (int i = 0; i < StockingAmount; i++)
@@ -83,7 +82,6 @@ public class CreateStocking : MonoBehaviour
                         StockingAmount = StockingAmount + 1;
                         break;
                 }
-                Debug.Log(("StockingAmount is " + StockingAmount));
             }
             SaveStocking();
         }
