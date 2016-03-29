@@ -19,7 +19,7 @@ public class CreateBlueGompang : MonoBehaviour
 
     void Start()
     {
-        if (GompangCleaner.GetComponent<Item>().haveItem())
+        if (GompangCleaner.GetComponent<Item>().haveItem() && PlayerPrefs.GetInt("Month") <= 9 && PlayerPrefs.GetInt("Month") >= 7)
         {
             SysTime = System.DateTime.Now;
             Delta = new TimeSpan(0, 0, BlueGompangRespawnTimeGap);
@@ -38,7 +38,7 @@ public class CreateBlueGompang : MonoBehaviour
 
     void Update()
     {
-        if (GompangCleaner.GetComponent<Item>().haveItem())
+        if (GompangCleaner.GetComponent<Item>().haveItem() && PlayerPrefs.GetInt("Month") <= 9 && PlayerPrefs.GetInt("Month") >= 7)
         {
             LoadBlueGompang();
 

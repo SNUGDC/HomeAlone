@@ -70,12 +70,10 @@ public class CreateStocking : MonoBehaviour
                     case 1:
                         Instantiate(Stocking_Black);
                         StockingAmount = StockingAmount + 1;
-                        Debug.Log("k is " + k);
                         break;
                     case 2:
                         Instantiate(Stocking_Ivory);
                         StockingAmount = StockingAmount + 1;
-                        Debug.Log("k is " + k);
                         break;
                     default:
                         Instantiate(Stocking_Ivory);
