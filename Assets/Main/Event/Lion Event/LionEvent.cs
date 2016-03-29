@@ -7,17 +7,6 @@ public class LionEvent : MonoBehaviour {
 	public GameObject lion1, lion2, lion3;
 	public GameObject Dialog;
 
-	// Use this for initialization
-
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
 	public void ImageChange(){
 		if (Dialog.GetComponent<Dialog> ().LineNumber == 2) {
 			lion1.GetComponent<Image> ().enabled = false;
@@ -43,6 +32,6 @@ public class LionEvent : MonoBehaviour {
 	}
 
 	void GoToMain(){
-		SceneManager.LoadScene ("Main");
+		SceneManager.LoadScene("Main");
 	}
 }
