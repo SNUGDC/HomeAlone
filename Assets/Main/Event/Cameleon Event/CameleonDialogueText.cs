@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class CameleonDialogueText : MonoBehaviour
 {
@@ -10,7 +11,8 @@ public class CameleonDialogueText : MonoBehaviour
     public GameObject Cam_OnWall;
     public GameObject Cam_Sorry;
 
-    int ClickedTime_CamEv;
+    static public int ClickedTime_CamEv;
+    int Answer;
 
     public void ClickedButton()
     {
@@ -20,6 +22,7 @@ public class CameleonDialogueText : MonoBehaviour
     public void MoveTo5()
     {
         ClickedTime_CamEv = 5;
+        PlayerPrefs.SetInt("AnswerOfCamEvent", 0);
         ChoicePanel.SetActive(false);
         DialogueBox.SetActive(true);
     }
@@ -27,6 +30,7 @@ public class CameleonDialogueText : MonoBehaviour
     public void MoveTo7()
     {
         ClickedTime_CamEv = 7;
+        PlayerPrefs.SetInt("AnswerOfCamEvent", 1);
         ChoicePanel.SetActive(false);
         DialogueBox.SetActive(true);
     }
@@ -42,7 +46,6 @@ public class CameleonDialogueText : MonoBehaviour
         switch(ClickedTime_CamEv)
         {
             case 0:
-                FadeIn(Cam_OnWall);
                 DialogueText.text = "앗... 들켰다...";
                 break;
             case 1:
@@ -57,17 +60,31 @@ public class CameleonDialogueText : MonoBehaviour
                 DialogueText.text = "좀 더 지내게 해주면 안 되겠니...?";
                 break;
             case 4:
-                ChoicePanel.SetActive(true);
-                DialogueBox.SetActive(false);
+                if(PlayerPrefs.HasKey("AnswerOfCamEvent"))
+                {
+                    if (PlayerPrefs.GetInt("AnswerOfCamEvent") == 0)
+                    {
+                        ClickedTime_CamEv = 5;
+                    }
+                    else if (PlayerPrefs.GetInt("AnswerOfCamEvent") == 1)
+                    {
+                        ClickedTime_CamEv = 7;
+                    }
+                }
+                else
+                {
+                    ChoicePanel.SetActive(true);
+                    DialogueBox.SetActive(false);
+                }
                 break;
             case 5:
                 Cam_OnWall.SetActive(true);
                 Cam_Sorry.SetActive(false);
                 DialogueText.text = "고마워...";
-                FadeOut(Cam_OnWall);
                 break;
             case 6:
                 DialogueBox.SetActive(false);
+                SceneManager.LoadScene("Main");
                 break;
             case 7:
                 DialogueText.text = "그동안 고마웠어... 안녕...";
@@ -78,19 +95,10 @@ public class CameleonDialogueText : MonoBehaviour
                 break;
             case 9:
                 DialogueBox.SetActive(false);
+                SceneManager.LoadScene("Main");
                 break;
             default:
                 break;
         }
-    }
-
-    void FadeOut(GameObject Object)
-    {
-        Object.GetComponent<Image>().color = new Vector4(GetComponent<Image>().color.r, GetComponent<Image>().color.g, GetComponent<Image>().color.b, GetComponent<Image>().color.a + 0.02f);
-    }
-
-    void FadeIn(GameObject Object)
-    {
-        Object.GetComponent<Image>().color = new Vector4(GetComponent<Image>().color.r, GetComponent<Image>().color.g, GetComponent<Image>().color.b, GetComponent<Image>().color.a - 0.02f);
     }
 }
