@@ -19,6 +19,10 @@ public class CameleonDialogueText : MonoBehaviour
         ClickedTime_CamEv += 1;
     }
 
+	public void YesAnswerSave(){
+		PlayerPrefs.SetString ("CameleonAnswer", "True");
+	}
+
     public void MoveTo5()
     {
         ClickedTime_CamEv = 5;

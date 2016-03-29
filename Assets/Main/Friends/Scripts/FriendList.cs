@@ -19,7 +19,7 @@ public class FriendList : MonoBehaviour {
 		save ();
 	}
 
-	void save(){
+	public void save(){
 		for (int i = 0; i < FriendArray.Length; i++) {
 			PlayerPrefs.SetString(FriendName[i],FriendArray[i].activeSelf.ToString());
 			PlayerPrefs.SetString(FriendName[i] + "image",FriendArray[i].GetComponent<Image>().enabled.ToString());

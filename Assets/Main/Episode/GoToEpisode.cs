@@ -19,13 +19,15 @@ public class GoToEpisode : MonoBehaviour {
 
 		month = PlayerPrefs.GetInt ("Month");
 		day = PlayerPrefs.GetInt ("Day");
-		AmmoMonth = PlayerPrefs.GetInt ("AmmoMonth");
-		AmmoDay = PlayerPrefs.GetInt ("AmmoDay");
-		//Owner Event
-		if(((month > AmmoMonth) || ((month == AmmoMonth) && (day >= (AmmoDay + 7)))) && !OwnerEventShow){
-			OwnerEventShow = true;
-			SceneManager.LoadScene ("Owner Event");
-			PlayerPrefs.SetString ("OwnerEventShow",OwnerEventShow.ToString());
+		if (PlayerPrefs.HasKey ("AmmoMonth")) {
+			AmmoMonth = PlayerPrefs.GetInt ("AmmoMonth");
+			AmmoDay = PlayerPrefs.GetInt ("AmmoDay");
+			//Owner Event
+			if (((month > AmmoMonth) || ((month == AmmoMonth) && (day >= (AmmoDay + 7)))) && !OwnerEventShow) {
+				OwnerEventShow = true;
+				SceneManager.LoadScene ("Owner Event");
+				PlayerPrefs.SetString ("OwnerEventShow", OwnerEventShow.ToString ());
+			}
 		}
 	}
 	
