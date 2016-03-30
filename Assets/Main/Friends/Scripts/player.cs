@@ -8,7 +8,7 @@ public class player : MonoBehaviour {
 	public static GameObject bed1, bed2,floor1, floor2, desk;
 	public static string myPos;
 	public GameObject LaundryItem, LaundryImage;
-	public GameObject crocoBed, crocoDesk, playerbed;
+	public GameObject crocoBed, crocoDesk, crocoHaegndaz, playerbed;
 
 	public static GameObject RoomBed;
 	public int sleepValue;
@@ -261,6 +261,7 @@ public class player : MonoBehaviour {
 			VisitFriend.crocodile.GetComponent<VisitFriend> ().TalkBalloonImage2.SetActive(false);
 			crocoBed.SetActive (false);
 			crocoDesk.SetActive (false);
+			crocoHaegndaz.GetComponent<Image>().enabled = false;
 			if(!bed1.GetComponent<Image> ().enabled)
 				playerbed.SetActive (true);
 			PlayerPrefs.SetString ("crocodileVisitmyPos", "");
