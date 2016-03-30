@@ -20,6 +20,9 @@ public class CreateStocking : MonoBehaviour
 
     void Start()
     {
+        if (!(PlayerPrefs.HasKey("StockingAmount")))
+            PlayerPrefs.SetInt("StockingAmount", 0);
+
         if(ShopLaudary.GetComponent<Item>().haveItem())
         {
             SysTime = System.DateTime.Now;

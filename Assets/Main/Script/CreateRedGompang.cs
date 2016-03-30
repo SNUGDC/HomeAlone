@@ -19,6 +19,9 @@ public class CreateRedGompang : MonoBehaviour
 
     void Start()
     {
+        if (!(PlayerPrefs.HasKey("RedGompangAmount")))
+            PlayerPrefs.SetInt("RedGompangAmount", 0);
+
         if (GompangCleaner.GetComponent<Item>().haveItem() && PlayerPrefs.GetInt("Month") <= 9 && PlayerPrefs.GetInt("Month") >= 7)
         {
             SysTime = System.DateTime.Now;

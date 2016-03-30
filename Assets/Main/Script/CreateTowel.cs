@@ -21,6 +21,9 @@ public class CreateTowel : MonoBehaviour
 
     void Start()
     {
+        if (!(PlayerPrefs.HasKey("TowelAmount")))
+            PlayerPrefs.SetInt("TowelAmount", 0);
+
         if (ShopLaudary.GetComponent<Item>().haveItem() && Sheep.GetComponent<Friend>().HowFriendly() > 1 && Croco.GetComponent<Friend>().HowFriendly() > 1)
         {
             SysTime = System.DateTime.Now;
