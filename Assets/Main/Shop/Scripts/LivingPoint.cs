@@ -18,7 +18,26 @@ public class LivingPoint : MonoBehaviour {
 	
 	}
 
+	private void SetDust(int catchNumber, int i){
+		if (catchNumber > 0) {
+			Dust[i].SetActive (true);
+			Dust [i].GetComponent<Button> ().enabled = true;
+			QuestionBox [i].SetActive (false);
+			Value [i].text = "잡은 횟수: " + catchNumber;
+		}
+	}
 	public void DustUpdate(){
+		SetDust (DustController.DefaultDustCatch, 0);	//default
+		SetDust (HairballController.DefaultHairballCatch, 1);	//hair
+		SetDust (BigDustController.BigDustCatch, 2);	//big
+		SetDust (BlackStockingController.DefaultBlackStockingCatch, 3);	//black stocking
+		SetDust (IvoryStockingController.DefaultIvoryStockingCatch, 4);	//ivory stocking
+		SetDust (TowelController.DefaultTowelCatch, 5);	//towel
+		SetDust (TShirtController.DefaultTShirtCatch, 6);	//tshirt
+		SetDust (DishController.DefaultDishCatch, 7);	//plate
+		SetDust (BlueGompangController.DefaultBlueGompangCatch, 8);	//blue gompang
+		SetDust (RedGompangController.DefaultRedGompangCatch, 9);	//red gompang
+		/*
 		if (DustController.DefaultDustCatch > 0) {
 			Dust[0].SetActive (true);
 			Dust [0].GetComponent<Button> ().enabled = true;
@@ -46,6 +65,7 @@ public class LivingPoint : MonoBehaviour {
 			QuestionBox [3].SetActive (false);
 			Value [3].text = "잡은 횟수: " + IvoryStockingController.DefaultIvoryStockingCatch;
 		}
+		*/
 
 	}
 

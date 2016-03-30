@@ -4,17 +4,15 @@ using System.Collections;
 
 public class Friend : MonoBehaviour {
 	public Text VisitCount;
+	public string FriendNameVisit;
 	public GameObject QuestionBox, TalkBalloon_2;
 	public GameObject[] heart;
 	public int IntVisitCount;
 	private Button myButton;
-	public static int love1,love2,love3;
+	public static int love1=1,love2=10,love3=40;
 
 	void Awake () {
 		myButton = GetComponent<Button>();
-		love1 = 1;
-		love2 = 10; // 10
-		love3 = 40; // 40
 	}
 		
 	void Update () {
@@ -90,6 +88,7 @@ public class Friend : MonoBehaviour {
 	*/
 
 	public int HowFriendly(){
+		IntVisitCount = VisitFriend.IntParseFast (PlayerPrefs.GetString (FriendNameVisit));
 		if (IntVisitCount < love1)
 			return 0;
 		else if (IntVisitCount < love2)

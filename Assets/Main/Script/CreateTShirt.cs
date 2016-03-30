@@ -21,6 +21,8 @@ public class CreateTShirt : MonoBehaviour
 
     void Start()
     {
+		Debug.Log (Sheep.GetComponent<Friend> ().HowFriendly ());
+		Debug.Log (Croco.GetComponent<Friend> ().HowFriendly ());
         if (ShopLaudary.GetComponent<Item>().haveItem() && Sheep.GetComponent<Friend>().HowFriendly() > 1 && Croco.GetComponent<Friend>().HowFriendly() > 1)
         {
             SysTime = System.DateTime.Now;

@@ -345,6 +345,13 @@ public class VisitFriend : MonoBehaviour {
 
 			case(""):
 				//bug!!
+				if (ThisObject.GetComponent<VisitFriend> ().FriendNameVisit == "ammoniteVisit") {
+					cushion.GetComponent<Image> ().enabled = false;
+				}
+				if (ThisObject.GetComponent<VisitFriend> ().FriendNameVisit == "crocodileVisit") {
+					crocodesk.SetActive (false);
+					crocohagen.GetComponent<Image> ().enabled = false;
+				}
 				disableImage ();
 				break;
 			}
