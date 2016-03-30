@@ -11,7 +11,7 @@ public class ObjectSpawnController : MonoBehaviour
     void Start()
     {
         k = UnityEngine.Random.Range(0, 100);
-        if (k > Probability || ObjectConditionObject.GetComponent<Item>().haveItem())
+        if (k > Probability || !(ObjectConditionObject.GetComponent<Item>().haveItem()))
             Destroy(gameObject);
     }
 }
