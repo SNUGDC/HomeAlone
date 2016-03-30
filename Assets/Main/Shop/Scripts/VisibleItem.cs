@@ -61,8 +61,7 @@ public class VisibleItem : MonoBehaviour {
 				// choose item: list[n-1].GetComponent<VisitFriend>().VisitItem[k]
 				int k = 0;
 				for (int i = 0; i < list [n - 1].GetComponent<VisitFriend> ().VisitItem.Length; i++) {
-					if (list [n - 1].GetComponent<VisitFriend> ().VisitItem [k].GetComponent<Item> ().haveItem ()) {
-						k = i;
+					if (list [n - 1].GetComponent<VisitFriend> ().VisitItem [i].GetComponent<Item> ().haveItem ()) {
 						break;
 					}
 				}
