@@ -29,7 +29,7 @@ public class VisitFriend : MonoBehaviour {
 	public static Vector3 posCrocoDesk = new Vector3(1,0,0);
 	public static Vector3 posLaundry = new Vector3(0,-2,0);
 
-	public GameObject ShopLaundry, hagendaz, Laundry, table, cushion, crocobed, crocodesk;
+	public GameObject ShopLaundry, hagendaz, Laundry, LaundryFold, table, cushion, crocobed, crocodesk;
 	public static GameObject penguin, lion, crocodile, ammonite, owl, snake, sheep, bear;
 
 	private int RandomNumber, saveNumber;
@@ -133,6 +133,8 @@ public class VisitFriend : MonoBehaviour {
 
 			case("laundry"):
 				Laundry.SetActive (false);
+				if(ShopLaundry.GetComponent<Item>().BoughtNumber > 0)
+					LaundryFold.SetActive (true);
 				FriendImage.sprite = SeatImage [posNumber].sprite;
 				ThisObject.transform.position = posLaundry;
 				break;
@@ -281,6 +283,8 @@ public class VisitFriend : MonoBehaviour {
 					if (!FriendList.laundry) {
 						ThisObject.transform.position = posLaundry;
 						Laundry.SetActive (false);
+						if(ShopLaundry.GetComponent<Item>().BoughtNumber > 0)
+							LaundryFold.SetActive (true);
 						FriendList.laundry = true;
 						myPos = "laundry";
 						FriendImage.sprite = SeatImage [i].sprite;
@@ -337,8 +341,10 @@ public class VisitFriend : MonoBehaviour {
 				break;
 
 			case("laundry"):
-				if(ShopLaundry.GetComponent<Item>().BoughtNumber > 0)
+				if(ShopLaundry.GetComponent<Item>().BoughtNumber > 0){
 					Laundry.SetActive (true);
+					LaundryFold.SetActive (false);
+				}
 				FriendList.laundry = false;
 				disableImage ();
 				break;

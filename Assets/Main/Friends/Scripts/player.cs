@@ -7,7 +7,7 @@ public class player : MonoBehaviour {
 	public static GameObject playerObject;
 	public static GameObject bed1, bed2,floor1, floor2, desk;
 	public static string myPos;
-	public GameObject LaundryItem, LaundryImage;
+	public GameObject LaundryItem, LaundryImage, LaundryFold;
 	public GameObject crocoBed, crocoDesk, crocoHaegndaz, playerbed;
 
 	public static GameObject RoomBed;
@@ -273,8 +273,10 @@ public class player : MonoBehaviour {
 			VisitFriend.lion.GetComponent<VisitFriend> ().TalkBalloonImage2.SetActive(false);
 			PlayerPrefs.SetString ("lionVisitmyPos", "");
 			LaundryItem.GetComponent<Item> ().load();
-			if (LaundryItem.GetComponent<Item> ().BoughtNumber > 0)
+			if (LaundryItem.GetComponent<Item> ().BoughtNumber > 0) {
 				LaundryImage.SetActive (true);
+				LaundryFold.SetActive (false);
+			}
 		}
 
 		if (PlayerPrefs.HasKey ("PlayerPos"))
@@ -311,8 +313,9 @@ public class player : MonoBehaviour {
 
 		// after party, laundry setactive
 		LaundryItem.GetComponent<Item> ().load();
-		if (LaundryItem.GetComponent<Item> ().BoughtNumber > 0)
+		if (LaundryItem.GetComponent<Item> ().BoughtNumber > 0) {
 			LaundryImage.SetActive (true);
-		
+			LaundryFold.SetActive (false);
+		}
 	}
 }
