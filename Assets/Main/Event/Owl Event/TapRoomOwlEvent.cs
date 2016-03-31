@@ -29,12 +29,12 @@ public class TapRoomOwlEvent : MonoBehaviour
                 OwlEventText.ClickedTime_OwlEvent = 23;
                 button.SetActive(true);
                 break;
-            case 25:
-                OwlEventText.ClickedTime_OwlEvent = 26;
+            case 24:
+                OwlEventText.ClickedTime_OwlEvent = 25;
                 button.SetActive(true);
                 break;
-            case 26:
-                OwlEventText.ClickedTime_OwlEvent = 27;
+            case 25:
+                OwlEventText.ClickedTime_OwlEvent = 26;
                 button.SetActive(true);
                 break;
             default:

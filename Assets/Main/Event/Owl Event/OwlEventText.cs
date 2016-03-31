@@ -120,34 +120,31 @@ public class OwlEventText : MonoBehaviour
                 text.text = "아, 실수...";
                 break;
             case 22:
-                GetComponent<AudioSource>().PlayOneShot(ChickSound1);
-                Debug.Log("됌?");
+                ChickenForText[4].SetActive(false);
+                ChickenForText[9].SetActive(true);
                 button.SetActive(false);                
                 break;
             case 23:
-                
-                break;
-            case 24:
-                ChickenForText[4].SetActive(false);
+                ChickenForText[9].SetActive(false);
                 ChickenForText[5].SetActive(true);
                 text.text = "zzzZZZ....zzz.....";
                 break;
-            case 25:
+            case 24:
                 ChickenForText[5].SetActive(false);
                 ChickenForText[6].SetActive(true);
                 button.SetActive(false);
                 break;
-            case 26:
+            case 25:
                 ChickenForText[6].SetActive(false);
                 ChickenForText[7].SetActive(true);
                 button.SetActive(false);
                 break;
-            case 27:
+            case 26:
                 ChickenForText[7].SetActive(false);
                 ChickenForText[8].SetActive(true);
                 text.text = "누나 이뻐오 이다음에 커서 누나랑 결혼하고시퍼오 ";
                 break;
-            case 28:
+            case 27:
                 SceneManager.LoadScene("Main");
                 break;
             default:
