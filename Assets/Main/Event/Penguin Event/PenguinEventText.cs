@@ -24,7 +24,7 @@ public class PenguinEventText : MonoBehaviour
         {
             case 0:
                 button.SetActive(true);
-                text.text = "우왕! 이게 뭐야? 색깔 예쁘다";
+                text.text = "우왕! 이게 뭐야? 색깔 예쁘다.";
                 break;
             case 1:
                 text.text = "형제...소다? 신제품인가보다. 처음 봐. 맛있어보여!";
