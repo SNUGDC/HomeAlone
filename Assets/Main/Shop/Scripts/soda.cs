@@ -4,7 +4,7 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 
 public class soda : MonoBehaviour {
-	public GameObject VisitFriend, TalkBalloon_2, ShopItem, buyButton, QuestionBox, PopUp, PopUpClose;
+	public GameObject DialogPanel, VisitFriend, TalkBalloon_2, ShopItem, buyButton, QuestionBox, PopUp, PopUpClose;
 	public Image Penguin;
 	public Text PopUpText;
 	public int openVisitCount;
@@ -19,35 +19,36 @@ public class soda : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		//soda event
-		ShopItem.GetComponent<Item> ().load();
-		if (ShopItem.GetComponent<Item> ().haveItem () && Penguin.enabled && sodaBoughtTimes < 2) {
-			ShopItem.GetComponent<Item> ().decreaseItem ();
-			sodaBoughtTimes++;
-			SceneManager.LoadScene ("Penguin Event");
-		}
+		if (!DialogPanel.activeSelf) {
+			//soda event
+			ShopItem.GetComponent<Item> ().load ();
+			if (ShopItem.GetComponent<Item> ().haveItem () && Penguin.enabled && sodaBoughtTimes < 2) {
+				ShopItem.GetComponent<Item> ().decreaseItem ();
+				sodaBoughtTimes++;
+				SceneManager.LoadScene ("Penguin Event");
+			}
 
-		//soda
-		if (VisitFriend.GetComponent<VisitFriend> ().VisitNumber >= openVisitCount) {
-			buyButton.GetComponent<Button> ().enabled = true;
-			ShopItem.GetComponent<Button> ().enabled = true;
-			QuestionBox.SetActive (false);
-			if (!IsAlreadyOpen) {
-				PopUpText.text = "이제 상점에서 <형제소다>를 구입할 수 있습니다!";
-				PopUpClose.SetActive (true);
-				PopUp.SetActive (true);
-				IsAlreadyOpen = true;
+			//soda
+			if (VisitFriend.GetComponent<VisitFriend> ().VisitNumber >= openVisitCount) {
+				buyButton.GetComponent<Button> ().enabled = true;
+				ShopItem.GetComponent<Button> ().enabled = true;
+				QuestionBox.SetActive (false);
+				if (!IsAlreadyOpen) {
+					PopUpText.text = "이제 상점에서 <형제소다>를 구입할 수 있습니다!";
+					PopUpClose.SetActive (true);
+					PopUp.SetActive (true);
+					IsAlreadyOpen = true;
+				}
+			}
+
+			//Episode
+			if (TalkBalloon_2.GetComponent<TalkBalloon> ().NumberOfTalk () == 20) {
+				if (!IsAlreadyOpen2) {
+					SceneManager.LoadScene ("PenguinEp");
+					IsAlreadyOpen2 = true;
+				}
 			}
 		}
-
-		//Episode
-		if (TalkBalloon_2.GetComponent<TalkBalloon> ().NumberOfTalk() == 20) {
-			if (!IsAlreadyOpen2) {
-				SceneManager.LoadScene ("PenguinEp");
-				IsAlreadyOpen2 = true;
-			}
-		}
-
 		save ();
 	}
 

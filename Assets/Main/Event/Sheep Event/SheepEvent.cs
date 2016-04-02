@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 
 public class SheepEvent : MonoBehaviour {
-	public GameObject VisitSheep, tteok;
+	public GameObject DialogPanel, VisitSheep, tteok;
 	public int ExcuteVisitNumber;
 	int SheepVisitNumber;
 	bool IsAlreadyShow;
@@ -21,7 +21,7 @@ public class SheepEvent : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		SheepVisitNumber = VisitSheep.GetComponent<VisitFriend> ().VisitNumber;
-		if (SheepVisitNumber >= ExcuteVisitNumber && !IsAlreadyShow) {
+		if (SheepVisitNumber >= ExcuteVisitNumber && !IsAlreadyShow && !DialogPanel.activeSelf) {
 			IsAlreadyShow = true;
 			SceneManager.LoadScene ("Sheep Event");
 			PlayerPrefs.SetString ("SheepEvent",IsAlreadyShow.ToString());
