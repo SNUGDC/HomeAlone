@@ -20,7 +20,7 @@ public class VisitFriend : MonoBehaviour {
 
 	public bool itemVisible;
 
-	public static Vector3 posBed1 = new Vector3(-5,0,0);
+	public static Vector3 posBed1 = new Vector3(-5.2f,0.0f,0.5f);
 	public static Vector3 posCrocoBed = new Vector3(-7,1,0);
 //	Vector3 posBed2 = new Vector3(270,210,0);
 	public static Vector3 posFloor1 = new Vector3(-1,1,0);
