@@ -8,7 +8,7 @@ public class LionEvent : MonoBehaviour {
 	public GameObject Dialog;
 
 	public void ImageChange(){
-		if (Dialog.GetComponent<Dialog> ().LineNumber == 2) {
+		if (Dialog.GetComponent<Dialog> ().LineNumber == 1) {
 			lion1.GetComponent<Image> ().enabled = false;
 			lion2.GetComponent<Image> ().enabled = true;
 		} else if (Dialog.GetComponent<Dialog> ().LineNumber == 3) {
