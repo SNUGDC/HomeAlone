@@ -20,12 +20,12 @@ public class VisitFriend : MonoBehaviour {
 
 	public bool itemVisible;
 
-	public static Vector3 posBed1 = new Vector3(-5.2f,0.0f,0.5f);
+	public static Vector3 posBed1 = new Vector3(-5,0,0);
 	public static Vector3 posCrocoBed = new Vector3(-7,1,0);
 //	Vector3 posBed2 = new Vector3(270,210,0);
 	public static Vector3 posFloor1 = new Vector3(-1,1,0);
 	public static Vector3 posFloor2 = new Vector3(2,-1,0);
-	public static Vector3 posDesk = new Vector3(1,1,0);
+	public static Vector3 posDesk = new Vector3(0.6f,0.6f,0);
 	public static Vector3 posCrocoDesk = new Vector3(1,0,0);
 	public static Vector3 posLaundry = new Vector3(0,-2,0);
 
