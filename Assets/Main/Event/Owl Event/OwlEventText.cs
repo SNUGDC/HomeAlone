@@ -12,12 +12,6 @@ public class OwlEventText : MonoBehaviour
     public GameObject Choice1;
     public GameObject Choice2;
     public GameObject ChicksImage;
-    public GameObject[] ChickenForText;
-    public AudioClip ChickSound1;
-    public AudioClip ChickSound2;
-    public AudioClip ChickSound3;
-    public AudioClip ChickSound4;
-    public AudioClip GoatSound;
 
     public static int ClickedTime_OwlEvent;
 
@@ -90,64 +84,9 @@ public class OwlEventText : MonoBehaviour
                 OwlForText.GetComponent<Image>().enabled = true;
                 text.text = "조카들이 좀 많죠...? 헤헤.";
                 break;
-            case 16:
-                OwlForText.GetComponent<Image>().enabled = false;
-                ChickenForText[0].SetActive(true);
-                text.text = "안녕하새오 병아리애오 놀러오게 해줘서 고마워오";
-                break;
-            case 17:
-                ChickenForText[0].SetActive(false);
-                ChickenForText[1].SetActive(true);
-                text.text = "안녕하새오 부엉이 언니랑 하나도 안 달마따는 소리 많이 들어오 익숙해오";
-                break;
-            case 18:
-                ChickenForText[1].SetActive(false);
-                ChickenForText[2].SetActive(true);
-                button.SetActive(false);
-                break;
-            case 19:
-                ChickenForText[2].SetActive(false);
-                ChickenForText[3].SetActive(true);
-                button.SetActive(false);
-                break;
-            case 20:
-                ChickenForText[3].SetActive(false);
-                ChickenForText[4].SetActive(true);
-                GetComponent<AudioSource>().PlayOneShot(GoatSound);
-                button.SetActive(false);
-                break;
-            case 21:
-                text.text = "아, 실수...";
-                break;
-            case 22:
-                ChickenForText[4].SetActive(false);
-                ChickenForText[9].SetActive(true);
-                button.SetActive(false);                
-                break;
-            case 23:
-                ChickenForText[9].SetActive(false);
-                ChickenForText[5].SetActive(true);
-                text.text = "zzzZZZ....zzz.....";
-                break;
-            case 24:
-                ChickenForText[5].SetActive(false);
-                ChickenForText[6].SetActive(true);
-                button.SetActive(false);
-                break;
-            case 25:
-                ChickenForText[6].SetActive(false);
-                ChickenForText[7].SetActive(true);
-                button.SetActive(false);
-                break;
-            case 26:
-                ChickenForText[7].SetActive(false);
-                ChickenForText[8].SetActive(true);
-                text.text = "누나 이뻐오 이다음에 커서 누나랑 결혼하고시퍼오 ";
-                break;
-            case 27:
-                SceneManager.LoadScene("Main");
-                break;
             default:
+                button.SetActive(false);
+                OwlForText.SetActive(false);
                 break;
         }
     }
