@@ -10,7 +10,7 @@ public class ClickChick : MonoBehaviour
     public string ChickText;
     public bool TurnOnDialogueBox;
 
-    void OnMouseDown()
+    void OnMouseUp()
     {
         Debug.Log("Clicked");
         GetComponent<AudioSource>().PlayOneShot(ChickSound);

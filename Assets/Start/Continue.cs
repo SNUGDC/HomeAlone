@@ -8,6 +8,12 @@ public class Continue : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("SeeRealEnding") == 1 || PlayerPrefs.GetInt("SeeRealEnding") == 2)
             SceneManager.LoadScene("AfterRealEnding");
-        else SceneManager.LoadScene("Main");
+        else
+        {
+            if(PlayerPrefs.GetInt("HowMuchTimePass") <= 10)
+                SceneManager.LoadScene("Owl Event");
+            else
+                SceneManager.LoadScene("Main");
+        }
     }
 }
