@@ -13,7 +13,6 @@ public class CreateBigDust : MonoBehaviour
     {
         BigDustAmount = PlayerPrefs.GetInt("BigDustAmount");
         TimeGap = TimeCheck.OFFtime();
-        Debug.Log(TimeGap);
 
         if (TimeGap < new TimeSpan(10, 0, 0) && BigDustAmount < 1)
         {

@@ -23,7 +23,6 @@ public class OwlEventText : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(ClickedTime_OwlEvent);
         switch (ClickedTime_OwlEvent)
         {
             case 0:
