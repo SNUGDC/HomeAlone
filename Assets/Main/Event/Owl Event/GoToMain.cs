@@ -14,7 +14,7 @@ public class GoToMain : MonoBehaviour
         if (!(PlayerPrefs.HasKey("HowMuchTimePass")))
             PlayerPrefs.SetInt("HowMuchTimePass", 0);
         else
-            PlayerPrefs.SetFloat("HowMuchTimePass", PlayerPrefs.GetInt("HowMuchTimePass") + TimeCheck.OFFtime().Minutes);
+            PlayerPrefs.SetInt("HowMuchTimePass", PlayerPrefs.GetInt("HowMuchTimePass") + TimeCheck.OFFtime().Minutes);
         NowTime = DateTime.Now;
     }
 
@@ -23,6 +23,6 @@ public class GoToMain : MonoBehaviour
         if (PlayerPrefs.GetInt("HowMuchTimePass") > 10)
             SceneManager.LoadScene("Main");
         PassTime = DateTime.Now - NowTime;
-        PlayerPrefs.SetFloat("HowMuchTimePass", PlayerPrefs.GetInt("HowMuchTimePass") + PassTime.Minutes);
+        PlayerPrefs.SetInt("HowMuchTimePass", PlayerPrefs.GetInt("HowMuchTimePass") + PassTime.Minutes);
     }
 }

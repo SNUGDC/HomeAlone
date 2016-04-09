@@ -2,18 +2,20 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class ClickChick : MonoBehaviour
+public class ClickChickForChick5 : MonoBehaviour
 {
     public GameObject DialogueBox;
+    public AudioClip CowSound;
     public AudioClip ChickSound;
-    public Text DialogueText;
-    public string ChickText;
-    public bool TurnOnDialogueBox;
 
     void OnMouseUp()
     {
+        GetComponent<AudioSource>().PlayOneShot(CowSound);
+        DialogueBox.SetActive(true);
+    }
+
+    public void PlaySoundChick1()
+    {
         GetComponent<AudioSource>().PlayOneShot(ChickSound);
-        DialogueBox.SetActive(TurnOnDialogueBox);
-        DialogueText.text = ChickText;
     }
 }
