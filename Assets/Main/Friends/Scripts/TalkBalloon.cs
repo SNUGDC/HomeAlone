@@ -10,7 +10,6 @@ public class TalkBalloon : MonoBehaviour {
 	public Text PanelText;
 	public Text DialogText;
 	public int SaveTalkNumber;
-	//private int RandomNumber, saveNumber;
 
 	public bool[] IsAlreadyShow;
 
@@ -25,8 +24,6 @@ public class TalkBalloon : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-//		PlayerPrefs.SetInt (NameTalk + "TalkNum",SaveTalkNumber);
-//		RandomNumber = UnityEngine.Random.Range (1, 100);
 	}
 
 	public int whatTalk(int saveNumber){
@@ -64,57 +61,6 @@ public class TalkBalloon : MonoBehaviour {
 			save ();
 
 	}
-
-	/*
-	public void SendTextToPanel(){
-		int saveNumber = SaveTalkNumber;
-
-		// case : first text
-		if (saveNumber <= TextProbability [0]) {
-			string[] dialogString = splitText (Text [0]);
-
-			if (IsAlreadyShow [0]) {
-				TalkPanel.SetActive (true);
-				string panelString = null;
-				for(int i=0;i<dialogString.Length;i++)
-					panelString += dialogString [i];
-				PanelText.text = panelString;
-				Debug.Log (NameTalk + "TalkBalloon : 0");
-			} else {
-				DialogWindow.SetActive (true);
-				IsAlreadyShow [0] = true;
-				Dialog.AssignText (dialogString);
-				DialogText.text = dialogString [0];
-				Debug.Log (NameTalk + "TalkBalloon : 0");
-			}
-			save ();
-		}
-
-		else for (int i = 1; i < TextProbability.Length; i++) {
-				if ((TextProbability [i - 1] < saveNumber) && (saveNumber <= TextProbability [i])) {
-					string[] dialogString = splitText (Text [i]);
-
-					if (IsAlreadyShow [i]) {
-						TalkPanel.SetActive (true);
-						string panelString = null;
-						for(int n=0;n<dialogString.Length;n++)
-							panelString += dialogString [n];
-						PanelText.text = panelString;
-						Debug.Log (NameTalk + "TalkBalloon : " + i);
-					} else {
-						DialogWindow.SetActive (true);
-						IsAlreadyShow [i] = true;
-						Dialog.AssignText (dialogString);
-						DialogText.text = dialogString [0];
-						Debug.Log (NameTalk + "TalkBalloon : " + i);
-					}
-					save ();
-					break;
-				}
-		}
-
-	}
-	*/
 
 	public int NumberOfTalk(){
 		int result=0;
