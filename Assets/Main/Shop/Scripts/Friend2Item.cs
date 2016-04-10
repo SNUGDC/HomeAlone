@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class Friend2Item : MonoBehaviour {
-	public GameObject Balloon, ShopItem1, ShopItem2, buyButton1,buyButton2, QuestionBox1,QuestionBox2, PopUp, PopUpClose;
+	public GameObject DialogPanel, Balloon, ShopItem1, ShopItem2, buyButton1,buyButton2, QuestionBox1,QuestionBox2, PopUp, PopUpClose;
 	public Text PopUpText;
 	public int NeedTalkCount;
 	public string ItemName1, ItemName2, SaveName;
@@ -18,7 +18,7 @@ public class Friend2Item : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if ((Balloon.GetComponent<TalkBalloon> ().NumberOfTalk() >= NeedTalkCount)) {
+		if ((Balloon.GetComponent<TalkBalloon> ().NumberOfTalk() >= NeedTalkCount) && !DialogPanel.activeSelf) {
 			ShopItem1.GetComponent<Button> ().enabled = true;
 			ShopItem2.GetComponent<Button> ().enabled = true;
 			buyButton1.GetComponent<Button> ().enabled = true;

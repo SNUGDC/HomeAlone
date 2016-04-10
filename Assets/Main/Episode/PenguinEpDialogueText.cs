@@ -106,7 +106,7 @@ public class PenguinEpDialogueText : MonoBehaviour
                     ClickedTime_PenguinEp = 16;
                 break;
             case 16:
-                FadeOut.GetComponent<Image>().color = new Vector4(FadeOutPanelColor.r + 0.01f, FadeOutPanelColor.g + 0.01f, FadeOutPanelColor.b + 0.01f, 1);
+                FadeOut.GetComponent<Image>().color = new Vector4(FadeOutPanelColor.r + 0.02f, FadeOutPanelColor.g + 0.02f, FadeOutPanelColor.b + 0.02f, 1);
                 if (FadeOutPanelColor.r > 1.0f)
                     ClickedTime_PenguinEp = 17;
                 break;
@@ -114,7 +114,7 @@ public class PenguinEpDialogueText : MonoBehaviour
                 Photo.SetActive(true);
                 Room.SetActive(false);
                 DialogueText.text = "(스티커 사진을 찍었다.)";
-                FadeOut.GetComponent<Image>().color = new Vector4(1, 1, 1, FadeOutPanelColor.a - 0.02f);
+                FadeOut.GetComponent<Image>().color = new Vector4(1, 1, 1, FadeOutPanelColor.a - 0.03f);
                 if (FadeOutPanelColor.a < 0f)
                     ClickedTime_PenguinEp = 18;
                 break;
@@ -147,6 +147,7 @@ public class PenguinEpDialogueText : MonoBehaviour
 
         DialogueBox.SetActive(true);
         ChoicePanel.SetActive(false);
+        IsNeutralChoice_PenguinEp = false;
         ClickedTime_PenguinEp = 3;
     }
 
@@ -154,6 +155,7 @@ public class PenguinEpDialogueText : MonoBehaviour
     {
         DialogueBox.SetActive(true);
         ChoicePanel.SetActive(false);
+        IsNeutralChoice_PenguinEp = true;
         ClickedTime_PenguinEp = 3;
     }
 }

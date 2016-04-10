@@ -18,7 +18,7 @@ public class IvoryStockingController : MonoBehaviour
         EXPRend = ObjectEXP.GetComponent<Renderer>();
     }
 
-    void OnMouseDown()
+    void OnMouseEnter()
     {
         StockingRend.enabled = false;
         EXPRend.enabled = true;

@@ -13,6 +13,25 @@ public class ClockManager : MonoBehaviour
     public Sprite Number7;
     public Sprite Number8;
     public Sprite Number9;
+    public Sprite A;
+    public Sprite B;
+    public Sprite C;
+    public Sprite D;
+    public Sprite E;
+    public Sprite F;
+    public Sprite G;
+    public Sprite J;
+    public Sprite L;
+    public Sprite M;
+    public Sprite N;
+    public Sprite O;
+    public Sprite P;
+    public Sprite R;
+    public Sprite S;
+    public Sprite T;
+    public Sprite U;
+    public Sprite V;
+    public Sprite Y;
 
     public GameObject Hour1;
     public GameObject Hour2;
@@ -22,6 +41,7 @@ public class ClockManager : MonoBehaviour
     public GameObject Day2;
     public GameObject Month1;
     public GameObject Month2;
+    public GameObject Month3;
     public GameObject Year1;
     public GameObject Year2;
 
@@ -210,50 +230,68 @@ public class ClockManager : MonoBehaviour
     void ShowMonthNumber()
     {
         int k = PlayerPrefs.GetInt("Month");
-        int month2 = k % 10;
-        int month1 = k / 10;
 
-        switch (month1)
+        switch (k)
         {
-            case 0:
-                Month1.GetComponent<SpriteRenderer>().sprite = Number0;
-                break;
             case 1:
-                Month1.GetComponent<SpriteRenderer>().sprite = Number1;
-                break;
-        }
-
-        switch (month2)
-        {
-            case 0:
-                Month2.GetComponent<SpriteRenderer>().sprite = Number0;
-                break;
-            case 1:
-                Month2.GetComponent<SpriteRenderer>().sprite = Number1;
+                Month1.GetComponent<SpriteRenderer>().sprite = J;
+                Month2.GetComponent<SpriteRenderer>().sprite = A;
+                Month3.GetComponent<SpriteRenderer>().sprite = N;
                 break;
             case 2:
-                Month2.GetComponent<SpriteRenderer>().sprite = Number2;
+                Month1.GetComponent<SpriteRenderer>().sprite = F;
+                Month2.GetComponent<SpriteRenderer>().sprite = E;
+                Month3.GetComponent<SpriteRenderer>().sprite = B;
                 break;
             case 3:
-                Month2.GetComponent<SpriteRenderer>().sprite = Number3;
+                Month1.GetComponent<SpriteRenderer>().sprite = M;
+                Month2.GetComponent<SpriteRenderer>().sprite = A;
+                Month3.GetComponent<SpriteRenderer>().sprite = R;
                 break;
             case 4:
-                Month2.GetComponent<SpriteRenderer>().sprite = Number4;
+                Month1.GetComponent<SpriteRenderer>().sprite = A;
+                Month2.GetComponent<SpriteRenderer>().sprite = P;
+                Month3.GetComponent<SpriteRenderer>().sprite = R;
                 break;
             case 5:
-                Month2.GetComponent<SpriteRenderer>().sprite = Number5;
+                Month1.GetComponent<SpriteRenderer>().sprite = M;
+                Month2.GetComponent<SpriteRenderer>().sprite = A;
+                Month3.GetComponent<SpriteRenderer>().sprite = Y;
                 break;
             case 6:
-                Month2.GetComponent<SpriteRenderer>().sprite = Number6;
+                Month1.GetComponent<SpriteRenderer>().sprite = J;
+                Month2.GetComponent<SpriteRenderer>().sprite = U;
+                Month3.GetComponent<SpriteRenderer>().sprite = N;
                 break;
             case 7:
-                Month2.GetComponent<SpriteRenderer>().sprite = Number7;
+                Month1.GetComponent<SpriteRenderer>().sprite = J;
+                Month2.GetComponent<SpriteRenderer>().sprite = U;
+                Month3.GetComponent<SpriteRenderer>().sprite = L;
                 break;
             case 8:
-                Month2.GetComponent<SpriteRenderer>().sprite = Number8;
+                Month1.GetComponent<SpriteRenderer>().sprite = A;
+                Month2.GetComponent<SpriteRenderer>().sprite = U;
+                Month3.GetComponent<SpriteRenderer>().sprite = G;
                 break;
             case 9:
-                Month2.GetComponent<SpriteRenderer>().sprite = Number9;
+                Month1.GetComponent<SpriteRenderer>().sprite = S;
+                Month2.GetComponent<SpriteRenderer>().sprite = E;
+                Month3.GetComponent<SpriteRenderer>().sprite = P;
+                break;
+            case 10:
+                Month1.GetComponent<SpriteRenderer>().sprite = O;
+                Month2.GetComponent<SpriteRenderer>().sprite = C;
+                Month3.GetComponent<SpriteRenderer>().sprite = T;
+                break;
+            case 11:
+                Month1.GetComponent<SpriteRenderer>().sprite = N;
+                Month2.GetComponent<SpriteRenderer>().sprite = O;
+                Month3.GetComponent<SpriteRenderer>().sprite = V;
+                break;
+            case 12:
+                Month1.GetComponent<SpriteRenderer>().sprite = D;
+                Month2.GetComponent<SpriteRenderer>().sprite = E;
+                Month3.GetComponent<SpriteRenderer>().sprite = C;
                 break;
         }
     }

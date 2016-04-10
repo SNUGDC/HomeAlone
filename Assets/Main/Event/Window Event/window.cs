@@ -10,6 +10,7 @@ public class window : MonoBehaviour {
 	public GameObject[] Friends;
 	public int yellowdust, beautiful, rain, dust, snow;
 	private int month, random;
+	private string weather;
 
 
 	void Start () {
@@ -20,8 +21,8 @@ public class window : MonoBehaviour {
 			if ((month == 3) || (month == 4))
 				YellowDust (yellowdust);
 			else if ((month == 5) || (month == 6))
-				//Beautiful (beautiful);
-				StartCoroutine(Beautiful(beautiful, 3));
+				Beautiful (beautiful);
+				//StartCoroutine(Beautiful(beautiful, 3));
 			else if ((7 <= month) && (month <= 9))
 				Rain (rain);
 			else if ((month == 10) || (month == 11))
@@ -50,6 +51,31 @@ public class window : MonoBehaviour {
 		if (open) {
 			openedImage.SetActive (false);
 			open = false;
+
+			switch (weather) {
+
+			case("YellowDust"):
+				yellowdustImage.SetActive (false);
+				yellowdust2.SetActive (false);
+				break;
+
+			case("Beautiful"):
+				beautifulImage.SetActive (false);
+				break;
+
+			case("Rain"):
+				rainImage.SetActive (false);
+				break;
+
+			case("Dust"):
+				dustImage.SetActive (false);
+				break;
+
+			case("Snow"):
+				snowImage.SetActive (false);
+				break;
+			}
+
 			save ();
 		}
 
@@ -57,6 +83,30 @@ public class window : MonoBehaviour {
 		else {
 			openedImage.SetActive (true);
 			open = true;
+			switch (weather) {
+
+			case("YellowDust"):
+				yellowdustImage.SetActive (true);
+				yellowdust2.SetActive (true);
+				break;
+
+			case("Beautiful"):
+				beautifulImage.SetActive (true);
+				break;
+
+			case("Rain"):
+				rainImage.SetActive (true);
+				break;
+
+			case("Dust"):
+				dustImage.SetActive (true);
+				break;
+
+			case("Snow"):
+				snowImage.SetActive (true);
+				break;
+			}
+
 			save ();
 		}
 	}
@@ -64,6 +114,7 @@ public class window : MonoBehaviour {
 	//Event #0
 	void YellowDust(int probability){
 		if (random <= probability){
+			weather = "YellowDust";
 			yellowdustImage.SetActive (true);
 			yellowdust2.SetActive (true);
 			Debug.Log ("yellowDust Event");
@@ -72,29 +123,35 @@ public class window : MonoBehaviour {
 	}
 
 	/*
-	void Beautiful(int probability){
-		if (random <= probability){
-			Debug.Log ("beautifulScene Event");
-			SceneManager.LoadScene ("beautifulScene Event");
-		}
-	}
-	*/
-
+	only one time!!!!!!!
 	IEnumerator Beautiful(int probability, float delay)
 	{
 		yield return new WaitForSeconds(delay);
 
 		// code here
 		if (random <= probability){
+			weather = "Beautiful";
 			beautifulImage.SetActive (true);
 			Debug.Log ("beautifulScene Event");
 			SceneManager.LoadScene ("beautifulScene Event");
+		}
+	}
+	*/
+
+
+	// code here
+	void Beautiful(int probability){
+		if (random <= probability) {
+			weather = "Beautiful";
+			beautifulImage.SetActive (true);
+			Debug.Log ("beautifulScene Event");
 		}
 	}
 
 	//event #1
 	void Rain(int probability){
 		if (random <= probability){
+			weather = "Rain";
 			rainImage.SetActive (true);
 			Debug.Log ("rain Event");
 //			changeImage (1);			// #1
@@ -104,6 +161,7 @@ public class window : MonoBehaviour {
 	//event #2
 	void Dust(int probability){
 		if (random <= probability){
+			weather = "Dust";
 			dustImage.SetActive (true);
 			Debug.Log ("dust Event");
 //			changeImage (2);			// #2
@@ -113,6 +171,7 @@ public class window : MonoBehaviour {
 	//event #3
 	void Snow(int probability){
 		if (random <= probability){
+			weather = "Snow";
 			snowImage.SetActive (true);
 			Debug.Log ("snow Event");
 //			changeImage (3);			// #3

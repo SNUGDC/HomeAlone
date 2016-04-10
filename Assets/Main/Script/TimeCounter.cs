@@ -12,10 +12,19 @@ public class TimeCounter : MonoBehaviour
     public float TimeFasterValue;
     public string StringMonth;
 
+    private TimeSpan OffTime;
+
     void Start ()
     {
         if (PlayerPrefs.HasKey("Min"))
+        {
             Load();
+            OffTime = TimeCheck.OFFtime();
+            OffTime = OffTime + OffTime + OffTime;
+            PlayerPrefs.SetInt("Day", Day + OffTime.Days);
+            PlayerPrefs.SetInt("Hour", Hour + OffTime.Hours);
+            PlayerPrefs.SetInt("Min", Min + OffTime.Minutes);
+        }
         else
         {
             PlayerPrefs.SetInt("Year", 16);
@@ -62,7 +71,7 @@ public class TimeCounter : MonoBehaviour
         }
         if (Month > 12)
         {
-            Month = 1;
+            Month = Month - 12;
             ++Year;
         }
     }
@@ -73,19 +82,19 @@ public class TimeCounter : MonoBehaviour
 
         if (Sec >= 60)
         {
-            GameSec = 0;
+            GameSec = GameSec - 60;
             ++Min;
         }
 
         if (Min >= 60)
         {
-            Min = 0;
+            Min = Min - 60;
             ++Hour;
         }
 
         if (Hour >= 24)
         {
-            Hour = 0;
+            Hour = Hour - 24;
             ++Day;
         }
     }
@@ -94,7 +103,7 @@ public class TimeCounter : MonoBehaviour
     {
         if (Day > 30)
         {
-            Day = 1;
+            Day = Day - 30;
             ++Month;
         }
     }   
@@ -103,7 +112,7 @@ public class TimeCounter : MonoBehaviour
     {
         if (Day > 31)
         {
-            Day = 1;
+            Day = Day - 31;
             ++Month;
         }
     }
