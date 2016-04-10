@@ -1,12 +1,15 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 
 public class TalkBalloon : MonoBehaviour {
 	public GameObject TalkPanel, DialogWindow;
 	public string[] Text, TextSubject;
 	public string NameTalk;
-	public int[] TextProbability;	// same size to Text & SUM is 100
+//	public int[] TextProbability;	// same size to Text & SUM is 100
+	public List<int> EnableTalkList = new List<int>();
+	public int[] howFriendly;
 	public Text PanelText;
 	public Text DialogText;
 	public int SaveTalkNumber;
@@ -26,6 +29,7 @@ public class TalkBalloon : MonoBehaviour {
 	void Update () {
 	}
 
+	/*
 	public int whatTalk(int saveNumber){
 		if (saveNumber <= TextProbability [0])
 			return 0;
@@ -37,6 +41,7 @@ public class TalkBalloon : MonoBehaviour {
 		}
 		return 100;
 	}
+	*/
 
 	public bool alreadyShow(int talkNumber){
 		return IsAlreadyShow [talkNumber];

@@ -162,7 +162,7 @@ public class VisitFriend : MonoBehaviour {
 			window.GetComponent<window> ().enabled = true;
 			windowCheck = true;
 		}
-		RandomNumber = UnityEngine.Random.Range (1, 100);
+//		RandomNumber = UnityEngine.Random.Range (0, TalkBalloonImage.GetComponent<TalkBalloon>().EnableTalkList.Count-1);
 		if (!FriendList.Sleeping) {
 			SysTime = System.DateTime.Now;
 			if (TimeOver ()) {
@@ -423,17 +423,23 @@ public class VisitFriend : MonoBehaviour {
 	void EnableImage(){
 		TalkBalloonImage.GetComponent<TalkBalloon> ().load();
 		TalkBalloonImage2.GetComponent<TalkBalloon> ().load();
-		saveNumber = RandomNumber;
-		int talkNumber = TalkBalloonImage.GetComponent<TalkBalloon> ().whatTalk (saveNumber);
+		SetEnableTalkList ();
+		if (TalkBalloonImage.GetComponent<TalkBalloon> ().EnableTalkList.Count > 0) {
+			RandomNumber = UnityEngine.Random.Range (0, TalkBalloonImage.GetComponent<TalkBalloon> ().EnableTalkList.Count);
+			Debug.Log (TalkBalloonImage.GetComponent<TalkBalloon> ().EnableTalkList.Count);
+			saveNumber = TalkBalloonImage.GetComponent<TalkBalloon> ().EnableTalkList [RandomNumber];
+		} else
+			saveNumber = 0;
+//		int talkNumber = TalkBalloonImage.GetComponent<TalkBalloon> ().whatTalk (saveNumber);
 		FriendImage.GetComponent<Image>().enabled = true;
 		if (IsAlreadyShow (saveNumber)) {
 			TalkBalloonImage.SetActive (true);
-			TalkBalloonImage.GetComponent<TalkBalloon> ().SaveTalkNumber = talkNumber;
+			TalkBalloonImage.GetComponent<TalkBalloon> ().SaveTalkNumber = saveNumber;
 			TalkBalloonImage.GetComponent<TalkBalloon> ().save();
 //			Debug.Log (FriendNameVisit + " VisitTalkNumber SAVE : " + talkNumber);
 		} else {
 			TalkBalloonImage2.SetActive (true);
-			TalkBalloonImage2.GetComponent<TalkBalloon> ().SaveTalkNumber = talkNumber;
+			TalkBalloonImage2.GetComponent<TalkBalloon> ().SaveTalkNumber = saveNumber;
 			TalkBalloonImage2.GetComponent<TalkBalloon> ().save();
 //			Debug.Log (FriendNameVisit + " VisitTalkNumber SAVE : " + talkNumber);
 		}
@@ -469,7 +475,36 @@ public class VisitFriend : MonoBehaviour {
 	}
 
 	bool IsAlreadyShow(int randNum){
-		int talkNum = TalkBalloonImage.GetComponent<TalkBalloon> ().whatTalk (randNum);
-		return TalkBalloonImage.GetComponent<TalkBalloon> ().alreadyShow (talkNum);
+		//int talkNum = TalkBalloonImage.GetComponent<TalkBalloon> ().whatTalk (randNum);
+		return TalkBalloonImage.GetComponent<TalkBalloon> ().alreadyShow (randNum);
 	}
+
+	void SetEnableTalkList(){
+		//clear
+		TalkBalloonImage.GetComponent<TalkBalloon> ().EnableTalkList.Clear ();
+		TalkBalloonImage2.GetComponent<TalkBalloon> ().EnableTalkList.Clear ();
+
+		int friendly = HowFriendly ();
+		Debug.Log (FriendNameVisit+" Friendly : " + friendly);
+		// i = index
+		// insert EnableTalkList
+		for (int i = 0; i < TalkBalloonImage.GetComponent<TalkBalloon> ().howFriendly.Length; i++) {
+			if (TalkBalloonImage.GetComponent<TalkBalloon> ().howFriendly [i] <= friendly) {
+				TalkBalloonImage.GetComponent<TalkBalloon> ().EnableTalkList.Add (i);
+				TalkBalloonImage2.GetComponent<TalkBalloon> ().EnableTalkList.Add (i);
+			}
+		}
+	}
+
+	public int HowFriendly(){
+		if (VisitNumber < 1)
+			return 0;
+		else if (VisitNumber < 10)
+			return 1;
+		else if (VisitNumber < 40)
+			return 2;
+		else
+			return 3;
+	}
+
 }
