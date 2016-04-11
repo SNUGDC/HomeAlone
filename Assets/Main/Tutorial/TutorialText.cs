@@ -8,6 +8,7 @@ public class TutorialText : MonoBehaviour
     public Text text;
     public GameObject button;
     public GameObject MenuButton;
+    public GameObject ExplainDust;
     public GameObject TapToProgress;
 
 
@@ -35,6 +36,7 @@ public class TutorialText : MonoBehaviour
                 text.text = "채광도 좋고, 마트도 가까이 있고... 집 되게 잘 얻었구나...";
                 break;
             case 6:
+                ExplainDust.SetActive(true);
                 TutorialDustController_Click.OrderNow = 1;
                 button.SetActive(false);
                 break;
