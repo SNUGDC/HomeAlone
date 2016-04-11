@@ -485,7 +485,6 @@ public class VisitFriend : MonoBehaviour {
 		TalkBalloonImage2.GetComponent<TalkBalloon> ().EnableTalkList.Clear ();
 
 		int friendly = HowFriendly ();
-		Debug.Log (FriendNameVisit+" Friendly : " + friendly);
 		// i = index
 		// insert EnableTalkList
 		for (int i = 0; i < TalkBalloonImage.GetComponent<TalkBalloon> ().howFriendly.Length; i++) {
