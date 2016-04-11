@@ -6,10 +6,16 @@ public class TurotialShopExplain : MonoBehaviour
 {
     static int ShopTextClickedTime = 0;
     public Text text;
+    public GameObject MenuArrow;
     public GameObject ShopExplainButton;
     public GameObject BackArrow;
     public GameObject ShopArrow;
     public GameObject AlbumArrow;
+
+    void Start()
+    {
+        MenuArrow.SetActive(false);
+    }
 
     public void IncreaseShopTextClickedTime()
     {

@@ -9,7 +9,9 @@ public class PanelManager : MonoBehaviour
 
     public void CallPanel()
     {
-        Panel.SetActive(true);
+        if(PlayerPrefs.HasKey("Is Tutorial Finish"))
+            Panel.SetActive(true);
+        else SceneManager.LoadScene("Tutorial");
     }
 
     public void ResetGame()
