@@ -11,7 +11,11 @@ public class PanelManager : MonoBehaviour
     {
         if(PlayerPrefs.HasKey("Is Tutorial Finish"))
             Panel.SetActive(true);
-        else SceneManager.LoadScene("Tutorial");
+        else
+        {
+            SceneManager.LoadScene("Tutorial");
+            PlayerPrefs.DeleteAll();
+        }
     }
 
     public void ResetGame()
