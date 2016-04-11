@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class Budwiser : MonoBehaviour {
-	public GameObject DialogPanel, ShopItem, buyButton, QuestionBox, PopUp, PopUpClose;
+	public GameObject Ammonite, DialogPanel, ShopItem, buyButton, QuestionBox, PopUp, PopUpClose;
 	public Text PopUpText;
 	bool IsAlreadyOpen;
 	public int StartHour, EndHour;
@@ -19,17 +19,19 @@ public class Budwiser : MonoBehaviour {
 	void Update () {
 		hour = PlayerPrefs.GetInt("Hour");
 	//	hour = PlayerPrefs.GetInt("Min");
-		if (!DialogPanel.activeSelf) {
+
+		if (!DialogPanel.activeSelf && (Ammonite.GetComponent<Friend>().HowFriendly() >= 1)) {
+			if (!IsAlreadyOpen) {
+				PopUpText.text = "이제 상점에서 <버드미사일>을 구입할 수 있습니다!";
+				PopUpClose.SetActive (true);
+				PopUp.SetActive (true);
+				IsAlreadyOpen = true;
+			}
+
 			if ((StartHour <= hour) || (hour < EndHour)) {
 				buyButton.GetComponent<Button> ().enabled = true;
 				ShopItem.GetComponent<Button> ().enabled = true;
 				QuestionBox.SetActive (false);
-				if (!IsAlreadyOpen) {
-					PopUpText.text = "늦은 시간에만 구입할 수 있는 <버드미사일>! 지금 상점에서 구입할 수 있습니다.";
-					PopUpClose.SetActive (true);
-					PopUp.SetActive (true);
-					IsAlreadyOpen = true;
-				}
 			} else {
 				buyButton.GetComponent<Button> ().enabled = false;
 				if (IsAlreadyOpen) {
