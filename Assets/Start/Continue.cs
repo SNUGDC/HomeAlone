@@ -19,7 +19,7 @@ public class Continue : MonoBehaviour
                 SceneManager.LoadScene("AfterRealEnding");
             else
             {
-                if (PlayerPrefs.GetInt("HowMuchTimePass") <= 10)
+                if (PlayerPrefs.HasKey("HowMuchTimePass") && PlayerPrefs.GetInt("HowMuchTimePass") <= 10)
                     SceneManager.LoadScene("Owl Event");
                 else
                     SceneManager.LoadScene("Main");
