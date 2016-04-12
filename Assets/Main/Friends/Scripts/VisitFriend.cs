@@ -75,8 +75,8 @@ public class VisitFriend : MonoBehaviour {
 
 		if (!FriendList.Sleeping) {
 			//default: 0,0,7
-			Delta = new TimeSpan (0, 0, 5);		// friends visit,back per 5 second 
-			Delta2 = new TimeSpan (0, 0, 5);	// save during 1 minute.
+			Delta = new TimeSpan (0, 2, 0);		// friends visit,back per 5 second 
+			Delta2 = new TimeSpan (0, 2, 0);	// save during 1 minute.
 			SysTime = System.DateTime.Now;
 			UpdatedTime = SysTime;
 
