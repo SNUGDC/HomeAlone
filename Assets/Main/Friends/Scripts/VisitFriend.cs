@@ -22,7 +22,6 @@ public class VisitFriend : MonoBehaviour {
 
 	public static Vector3 posBed1 = new Vector3(-5,0,0);
 	public static Vector3 posCrocoBed = new Vector3(-7,1,0);
-//	Vector3 posBed2 = new Vector3(270,210,0);
 	public static Vector3 posFloor1 = new Vector3(-1,1,0);
 	public static Vector3 posFloor2 = new Vector3(2,-1,0);
 	public static Vector3 posDesk = new Vector3(0.6f,0.6f,0);
@@ -76,8 +75,8 @@ public class VisitFriend : MonoBehaviour {
 
 		if (!FriendList.Sleeping) {
 			//default: 0,0,7
-			Delta = new TimeSpan (0, 0, 7);		// friends visit,back per 5 second 
-			Delta2 = new TimeSpan (0, 0, 7);	// save during 1 minute.
+			Delta = new TimeSpan (0, 0, 5);		// friends visit,back per 5 second 
+			Delta2 = new TimeSpan (0, 0, 5);	// save during 1 minute.
 			SysTime = System.DateTime.Now;
 			UpdatedTime = SysTime;
 
@@ -498,9 +497,9 @@ public class VisitFriend : MonoBehaviour {
 	public int HowFriendly(){
 		if (VisitNumber < 1)
 			return 0;
-		else if (VisitNumber < 10)
+		else if (VisitNumber < 20)
 			return 1;
-		else if (VisitNumber < 40)
+		else if (VisitNumber < 45)
 			return 2;
 		else
 			return 3;

@@ -9,7 +9,7 @@ public class Friend : MonoBehaviour {
 	public GameObject[] heart;
 	public int IntVisitCount;
 	private Button myButton;
-	public static int love1=1,love2=10,love3=40;
+	public static int love1=1,love2=20,love3=45;
 
 	void Awake () {
 		myButton = GetComponent<Button>();

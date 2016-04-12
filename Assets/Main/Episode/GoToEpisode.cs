@@ -34,7 +34,7 @@ public class GoToEpisode : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {			
 		if (!DialogPanel.activeSelf) {
-			if ((bear.GetComponent<VisitFriend> ().VisitNumber >= 40) && !BearEventShow) {
+			if ((bear.GetComponent<VisitFriend> ().VisitNumber >= 45) && !BearEventShow) {
 				BearEventShow = true;
 				SceneManager.LoadScene ("Bear Event");
 				PlayerPrefs.SetString ("BearEvent", BearEventShow.ToString ());
