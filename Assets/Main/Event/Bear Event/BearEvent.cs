@@ -3,7 +3,7 @@ using System.Collections;
 
 public class BearEvent : MonoBehaviour {
 	public GameObject Dialog;
-	public GameObject bear1, bear2, bear3, bear4, bear5, bear6, bear7, bear8, bear9;
+	public GameObject player_doubt, bear1, bear2, bear3, bear4, bear5, bear6, bear7, bear8, bear9;
 	// Use this for initialization
 	void Start () {
 	
@@ -34,6 +34,7 @@ public class BearEvent : MonoBehaviour {
 		else if (Dialog.GetComponent<Dialog> ().LineNumber == 7) {
 			bear5.SetActive (false);
 			bear6.SetActive (true);
+			player_doubt.SetActive (true);
 		}
 		else if (Dialog.GetComponent<Dialog> ().LineNumber == 8) {
 			bear6.SetActive (false);
@@ -42,6 +43,7 @@ public class BearEvent : MonoBehaviour {
 		else if (Dialog.GetComponent<Dialog> ().LineNumber == 9) {
 			bear7.SetActive (false);
 			bear8.SetActive (true);
+			player_doubt.SetActive (false);
 		}
 		else if (Dialog.GetComponent<Dialog> ().LineNumber == 10) {
 			bear8.SetActive (false);
