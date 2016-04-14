@@ -8,19 +8,21 @@ public class Friend : MonoBehaviour {
 	public GameObject QuestionBox, TalkBalloon_2;
 	public GameObject[] heart;
 	public int IntVisitCount;
-	private Button myButton;
+	public Button myButton;
 	public static int love1=1,love2=20,love3=45;
 
 	void Awake () {
-		myButton = GetComponent<Button>();
+		//myButton = GetComponent<Button>();
+		IntVisitCount = VisitFriend.IntParseFast (VisitCount.text);
 	}
 		
 	void Update () {
 		IntVisitCount = VisitFriend.IntParseFast (VisitCount.text);
-		AlbumUpdate ();
+//		AlbumUpdate ();
 	}
 
 	public void AlbumUpdate(){
+		IntVisitCount = VisitFriend.IntParseFast (VisitCount.text);
 		switch(IntVisitCount){
 		case 0:
 			QuestionBox.SetActive (true);
