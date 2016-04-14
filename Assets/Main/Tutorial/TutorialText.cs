@@ -59,6 +59,10 @@ public class TutorialText : MonoBehaviour
                 text.text = "(참, 친구들이 너무 오랫동안 방을 떠나지 않는 것 같다면, 최후의 수단으로 소화기를 사용하세요!)";
                 break;
             case 12:
+                MoneySystem.money = 5000;
+                ClickedTime = 13;
+                break;
+            case 13:
                 PlayerPrefs.SetString("Is Tutorial Finish", "Yes");
                 SceneManager.LoadScene("Main");
                 break;
