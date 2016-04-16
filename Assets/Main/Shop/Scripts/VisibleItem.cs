@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class VisibleItem : MonoBehaviour {
 	// List order: penguin - sheep - bear - croco - ammo - owl - lion - snake
-	public GameObject ThisPosition, desk, bed;
+	public GameObject ThisPosition, desk, lion, bed;
 	public GameObject[] FriendList;
 	private List<GameObject> VisitingFriend = new List<GameObject>();
 	private bool OK;
@@ -23,6 +23,7 @@ public class VisibleItem : MonoBehaviour {
 		if (OK) {
 			BackCheck ();
 			desk.SetActive (true);
+			lion.SetActive (true);
 			bed.SetActive (true);
 		}
 	}
