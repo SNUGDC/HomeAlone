@@ -104,7 +104,7 @@ public class VisitFriend : MonoBehaviour {
 				}
 				else {
 					//FriendImage.sprite = SeatImage [posNumber].sprite;
-					FriendImage.sprite = seat_image [rowOfSeatImage].Image [colOfSeatImage].sprite;
+					sprite();
 					ThisObject.transform.position = posBed1;
 				}
 				break;
@@ -115,7 +115,7 @@ public class VisitFriend : MonoBehaviour {
 					cushion.GetComponent<Image>().enabled = true;
 				}
 				//FriendImage.sprite = SeatImage [posNumber].sprite;
-				FriendImage.sprite = seat_image [rowOfSeatImage].Image [colOfSeatImage].sprite;
+				sprite();
 				ThisObject.transform.position = posFloor1;
 				break;
 
@@ -125,7 +125,7 @@ public class VisitFriend : MonoBehaviour {
 					cushion.GetComponent<Image>().enabled = true;
 				}
 				//FriendImage.sprite = SeatImage [posNumber].sprite;
-				FriendImage.sprite = seat_image [rowOfSeatImage].Image [colOfSeatImage].sprite;
+				sprite();
 				ThisObject.transform.position = posFloor2;
 				break;
 
@@ -139,7 +139,7 @@ public class VisitFriend : MonoBehaviour {
 				}
 				else {
 					//FriendImage.sprite = SeatImage [posNumber].sprite;
-					FriendImage.sprite = seat_image [rowOfSeatImage].Image [colOfSeatImage].sprite;
+					sprite();
 					ThisObject.transform.position = posDesk;
 				}
 				break;
@@ -149,7 +149,7 @@ public class VisitFriend : MonoBehaviour {
 				if(ShopLaundry.GetComponent<Item>().BoughtNumber > 0)
 					LaundryFold.SetActive (true);
 				//FriendImage.sprite = SeatImage [posNumber].sprite;
-				FriendImage.sprite = seat_image [rowOfSeatImage].Image [colOfSeatImage].sprite;
+				sprite();
 				ThisObject.transform.position = posLaundry;
 				break;
 			}
@@ -167,6 +167,12 @@ public class VisitFriend : MonoBehaviour {
 			VisitCounter.text = PlayerPrefs.GetString (FriendNameVisit);
 			VisitNumber = IntParseFast (VisitCounter.text);
 		}
+	}
+
+	void sprite(){
+		RectTransform rt = seat_image [rowOfSeatImage].Image [colOfSeatImage].GetComponent<RectTransform> ();
+		FriendImage.GetComponent<RectTransform> ().sizeDelta = new Vector2 (rt.rect.width, rt.rect.height);
+		FriendImage.sprite = seat_image [rowOfSeatImage].Image [colOfSeatImage].sprite;
 	}
 
 	// Update is called once per frame
@@ -443,8 +449,11 @@ public class VisitFriend : MonoBehaviour {
 		/////change emotion!_ except Ammonite & crocodile///
 		colOfSeatImage = GetEmotionNumber (saveNumber);	//get column of SeatImage
 		rowOfSeatImage = posNumber;
-		if(!(ThisObject.GetComponent<VisitFriend> ().FriendNameVisit == "crocodileVisit") && !(ThisObject.GetComponent<VisitFriend> ().FriendNameVisit == "ammoniteVisit"))
+		if (!(ThisObject.GetComponent<VisitFriend> ().FriendNameVisit == "crocodileVisit") && !(ThisObject.GetComponent<VisitFriend> ().FriendNameVisit == "ammoniteVisit")) {
+			RectTransform rt = seat_image [rowOfSeatImage].Image [colOfSeatImage].GetComponent<RectTransform> ();
+			FriendImage.GetComponent<RectTransform> ().sizeDelta = new Vector2 (rt.rect.width, rt.rect.height);
 			FriendImage.sprite = seat_image [rowOfSeatImage].Image [colOfSeatImage].sprite;
+		}
 		////////////////////////////////////////////////////
 
 
