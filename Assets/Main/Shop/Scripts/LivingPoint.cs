@@ -32,7 +32,7 @@ public class LivingPoint : MonoBehaviour {
 		SetDust (PlayerPrefs.GetInt ("BigDustCatch"), 2);	//big
 		SetDust (PlayerPrefs.GetInt("DefaultBlackStockingCatch"), 3);	//black stocking
 		SetDust (PlayerPrefs.GetInt("DefaultIvoryStockingCatch"), 4);	//ivory stocking
-		SetDust (PlayerPrefs.GetInt("DefaultDustCatch"), 5);	//towel
+		SetDust (PlayerPrefs.GetInt("DefaultTowelCatch"), 5);	//towel
 		SetDust (PlayerPrefs.GetInt("DefaultTShirtCatch"), 6);	//tshirt
 		SetDust (PlayerPrefs.GetInt("DefaultDishCatch"), 7);	//plate
 		SetDust (PlayerPrefs.GetInt("DefaultBlueGompangCatch"), 8);	//blue gompang

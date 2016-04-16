@@ -19,7 +19,19 @@ public class Continue : MonoBehaviour
                 SceneManager.LoadScene("AfterRealEnding");
             else
             {
-                if (PlayerPrefs.HasKey("HowMuchTimePass") && PlayerPrefs.GetInt("HowMuchTimePass") <= 10)
+				//Ending!
+				if (IsEnding()) {
+					int NumberOfNegativeChoice = PlayerPrefs.GetInt ("NumberOfNegativeChoice");
+					bool SnakeAnswer = (PlayerPrefs.GetString("SnakeAnswer") != "False");
+				//Happy Ending
+					if(SnakeAnswer || (NumberOfNegativeChoice < 2))
+						SceneManager.LoadScene("HappyEnding");
+				//Real Ending
+					else
+						SceneManager.LoadScene("RealEnding");
+				}
+
+                else if (PlayerPrefs.HasKey("HowMuchTimePass") && PlayerPrefs.GetInt("HowMuchTimePass") <= 10)
                     SceneManager.LoadScene("Owl Event");
                 else
                     SceneManager.LoadScene("Main");
@@ -27,4 +39,19 @@ public class Continue : MonoBehaviour
         }
         else CannotContinuePanel.SetActive(true);
     }
+
+	private bool IsEnding(){
+		bool PenguinEpShow, sheepEpShow, crocoEpShow, owlEpShow, lionEpShow, ammoEpShow, snakeEpShow, bearEpShow;
+
+		PenguinEpShow = PlayerPrefs.HasKey ("MiniPhotoOn");
+		sheepEpShow = (PlayerPrefs.GetString ("sheepEpShow") == "True");
+		crocoEpShow = (PlayerPrefs.GetString ("crocoEpShow") == "True");
+		owlEpShow = (PlayerPrefs.GetString ("owlEpShow") == "True");
+		lionEpShow = (PlayerPrefs.GetString ("lionEpShow") == "True");
+		ammoEpShow = (PlayerPrefs.GetString ("ammoEpShow") == "True");
+		snakeEpShow = (PlayerPrefs.GetString ("snakeEpShow") == "True");
+		bearEpShow = (PlayerPrefs.GetString ("bearEpShow") == "True");
+
+		return PenguinEpShow && sheepEpShow && crocoEpShow && owlEpShow && lionEpShow && ammoEpShow && snakeEpShow && bearEpShow;
+	}
 }
