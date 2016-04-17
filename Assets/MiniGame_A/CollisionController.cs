@@ -29,7 +29,7 @@ public class CollisionController : MonoBehaviour {
     void OnTriggerEnter(Collider other)
     {
         Debug.Log("Collision");
-        playerHP -= 8;
+        playerHP -= 5;
         if (playerHP < 0)
         {
             playerHP = 0;
@@ -38,6 +38,8 @@ public class CollisionController : MonoBehaviour {
       
         CollisionEffect.Play();
 
+		GameObject panel_ = GameObject.FindWithTag ("ammoMiniPanel");
+		Destroy (panel_);
         Vector3 PanelPosition = new Vector3(0, 0, 0.0f);
         Quaternion PanelRotation = new Quaternion();
         Instantiate(TalkPanel, PanelPosition, PanelRotation);

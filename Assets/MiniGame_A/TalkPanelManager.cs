@@ -24,7 +24,10 @@ public class TalkPanelManager : MonoBehaviour
 
     void Start ()
     {
+		transform.tag = "ammoMiniPanel";
+		text.horizontalOverflow = HorizontalWrapMode.Overflow;
         text.text = Text[Random.Range(0, 10)];
+		text.fontSize = 30;
 	}
 
 }
