@@ -16,7 +16,7 @@ public class BGMManager : MonoBehaviour {
         yield return new WaitForSeconds(introDelay);
         for(int i=0; i<times; i++)
         {
-            GetComponent<AudioSource>().PlayOneShot(bgm, introDelay);
+            GetComponent<AudioSource>().PlayOneShot(bgm, 0.7f);
             yield return new WaitForSeconds(bgm.length);
         }
     }
