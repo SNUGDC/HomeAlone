@@ -38,7 +38,8 @@ public class CheatPanel : MonoBehaviour
     {
         for(int i=0; i<timeHandler.Length; i++)
         {
-            timeHandler[i].Delta = new TimeSpan(0, 0, (int)timeSlider.value);            
+            timeHandler[i].Delta = new TimeSpan(0, 0, (int)timeSlider.value);
+            timeHandler[i].Delta2 = new TimeSpan(0, 0, (int)timeSlider.value);             
         }
         
         int targetMoney;
