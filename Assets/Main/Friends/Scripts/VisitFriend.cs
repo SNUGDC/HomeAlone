@@ -443,8 +443,13 @@ public class VisitFriend : MonoBehaviour {
 		TalkBalloonImage2.GetComponent<TalkBalloon> ().load();
 		SetEnableTalkList ();
 		if (TalkBalloonImage.GetComponent<TalkBalloon> ().EnableTalkList.Count > 0) {
-			RandomNumber = UnityEngine.Random.Range (0, TalkBalloonImage.GetComponent<TalkBalloon> ().EnableTalkList.Count);
-			saveNumber = TalkBalloonImage.GetComponent<TalkBalloon> ().EnableTalkList [RandomNumber];
+			
+            bool isKnown;
+            do {
+                RandomNumber = UnityEngine.Random.Range (0, TalkBalloonImage.GetComponent<TalkBalloon> ().EnableTalkList.Count);
+                isKnown = TalkBalloonImage.GetComponent<TalkBalloon> ().alreadyShow(RandomNumber) && RandomNumber < PrevTalkNum();
+            } while (isKnown);
+            saveNumber = TalkBalloonImage.GetComponent<TalkBalloon> ().EnableTalkList [RandomNumber];
 		} else
 			saveNumber = 0;
 
@@ -530,7 +535,16 @@ public class VisitFriend : MonoBehaviour {
 		else
 			return 3;
 	}
-
+    
+    private int PrevTalkNum () {
+        if (VisitNumber < 20)
+            return 0;
+        else if (VisitNumber < 45)
+            return 11;
+        else
+            return 16;
+    }
+    
 	public int GetEmotionNumber(int saveN){
 		int i;
 		for(i=0; i<emotion.Length;i++){
