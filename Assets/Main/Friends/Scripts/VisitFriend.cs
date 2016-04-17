@@ -38,7 +38,9 @@ public class VisitFriend : MonoBehaviour {
 	public static Vector3 posBed1 = new Vector3(-5,0,0);
 	public static Vector3 posCrocoBed = new Vector3(-7,1,0);
 	public static Vector3 posFloor1 = new Vector3(-1,1,0);
+	public static Vector3 posAmmoFloor1 = new Vector3(-1,-0.7f,0);
 	public static Vector3 posFloor2 = new Vector3(2,-1,0);
+	public static Vector3 posAmmoFloor2 = new Vector3(2.5f,-2,0);
 	public static Vector3 posDesk = new Vector3(0.6f,0.6f,0);
 	public static Vector3 posCrocoDesk = new Vector3(1,0,0);
 	public static Vector3 posLaundry = new Vector3(0,-2,0);
@@ -110,23 +112,23 @@ public class VisitFriend : MonoBehaviour {
 				break;
 
 			case("floor1"):
-				if (ThisObject.GetComponent<VisitFriend> ().FriendNameVisit == "ammoniteVisit") {
-					cushion.transform.position = posFloor1;
-					cushion.GetComponent<Image>().enabled = true;
-				}
 				//FriendImage.sprite = SeatImage [posNumber].sprite;
 				sprite();
 				ThisObject.transform.position = posFloor1;
+				if (ThisObject.GetComponent<VisitFriend> ().FriendNameVisit == "ammoniteVisit") {
+					ThisObject.transform.position = posAmmoFloor1;
+					cushion.GetComponent<Image>().enabled = true;
+				}
 				break;
 
 			case("floor2"):
-				if (ThisObject.GetComponent<VisitFriend> ().FriendNameVisit == "ammoniteVisit") {
-					cushion.transform.position = posFloor2;
-					cushion.GetComponent<Image>().enabled = true;
-				}
 				//FriendImage.sprite = SeatImage [posNumber].sprite;
 				sprite();
 				ThisObject.transform.position = posFloor2;
+				if (ThisObject.GetComponent<VisitFriend> ().FriendNameVisit == "ammoniteVisit") {
+					ThisObject.transform.position = posAmmoFloor2;
+					cushion.GetComponent<Image>().enabled = true;
+				}
 				break;
 
 			case("desk"):
@@ -234,12 +236,12 @@ public class VisitFriend : MonoBehaviour {
 
 				case("floor1"):
 					if (!FriendList.floor1) {
-						if (ThisObject.GetComponent<VisitFriend> ().FriendNameVisit == "ammoniteVisit") {
-							cushion.transform.position = posFloor1;
-							cushion.GetComponent<Image>().enabled = true;
-						}
 						FriendList.floor1 = true;
 						ThisObject.transform.position = posFloor1;
+						if (ThisObject.GetComponent<VisitFriend> ().FriendNameVisit == "ammoniteVisit") {
+							ThisObject.transform.position = posAmmoFloor1;
+							cushion.GetComponent<Image>().enabled = true;
+						}
 						myPos = "floor1";
 						FriendImage.sprite = SeatImage [i].sprite;
 						posNumber = i;
@@ -251,11 +253,11 @@ public class VisitFriend : MonoBehaviour {
 
 				case("floor2"):
 					if (!FriendList.floor2) {
+						ThisObject.transform.position = posFloor2;
 						if (ThisObject.GetComponent<VisitFriend> ().FriendNameVisit == "ammoniteVisit") {
-							cushion.transform.position = posFloor2;
+							ThisObject.transform.position = posAmmoFloor2;
 							cushion.GetComponent<Image>().enabled = true;
 						}
-						ThisObject.transform.position = posFloor2;
 						FriendList.floor2 = true;
 						myPos = "floor2";
 						FriendImage.sprite = SeatImage [i].sprite;
