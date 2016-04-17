@@ -9,6 +9,7 @@ public class CollisionController : MonoBehaviour {
     public GameObject TalkPanel;
     public Text PlayerHP;
     public GameObject Panel;
+    public GameObject WinPanel;
     public AudioSource CollisionEffect;
 
     int playerHP = 50;
@@ -29,7 +30,12 @@ public class CollisionController : MonoBehaviour {
     {
         Debug.Log("Collision");
         playerHP -= 8;
+        if (playerHP < 0)
+        {
+            playerHP = 0;
+        }
         PlayerHP.text = "HP :" + playerHP;
+      
         CollisionEffect.Play();
 
         Vector3 PanelPosition = new Vector3(0, 0, 0.0f);
@@ -45,6 +51,7 @@ public class CollisionController : MonoBehaviour {
         {
             Panel.SetActive(true);
             Destroy(Player);
+            Destroy(WinPanel);
         }
     }
 }
