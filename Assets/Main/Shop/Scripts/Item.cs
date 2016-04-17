@@ -137,7 +137,7 @@ public class Item : MonoBehaviour {
 			BoughtImage.SetActive (false);
 		if (BoughtNumber > 0 && ItemName != "soda" && ItemName != "Table" && ItemName != "Cushion" && ItemName != "laundry" && ItemName != "gompang" && ItemName != "mug" && ItemName != "plate" && ItemName != "cake") {
 			BoughtImage.SetActive (true);
-			HavingNumber.text = SetActiveObject2.GetComponent<StrawberryMilk> ().RemainTime.Hours.ToString () + "시간 " + SetActiveObject2.GetComponent<StrawberryMilk> ().RemainTime.Minutes.ToString () + "분 남음";
+			HavingNumber.text = ((int)SetActiveObject2.GetComponent<StrawberryMilk> ().RemainTime.TotalHours).ToString () + "시간 " + SetActiveObject2.GetComponent<StrawberryMilk> ().RemainTime.Minutes.ToString () + "분 남음";
 		}
 		else if (ItemName == "soda" && soda.sodaBoughtTimes == 2)
 			HavingNumber.text = "구매 불가";
