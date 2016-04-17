@@ -484,7 +484,7 @@ public class VisitFriend : MonoBehaviour {
 	}
 
 	bool snakeOK(){
-		if (PlayerPrefs.HasKey ("snakeEpShow") && PlayerPrefs.GetString("snakeEpShow") == "True")
+		if (PlayerPrefs.HasKey ("snakeEpShow") && PlayerPrefs.GetString("snakeEpShow") == "True" && ThisObject.GetComponent<VisitFriend> ().FriendNameVisit == "snakeVisit")
 			return false;
 		else if (snake != null)
 			return (ThisObject.GetComponent<VisitFriend> ().FriendNameVisit == "snakeVisit" && FriendList.VisitorNum == 0) || ((!snake.GetComponent<Image> ().enabled) && ThisObject.GetComponent<VisitFriend> ().FriendNameVisit != "snakeVisit");
