@@ -96,8 +96,8 @@ public class VisitFriend : MonoBehaviour {
         
 		if (!FriendList.Sleeping) {
 			//default: 0,0,7
-			Delta = new TimeSpan (0, 2, 0);		// friends visit,back per 5 second 
-			Delta2 = new TimeSpan (0, 2, 0);	// save during 1 minute.
+			Delta = new TimeSpan (0, 0, 30);		// friends visit,back per 5 second 
+			Delta2 = new TimeSpan (0, 0, 30);	// save during 1 minute.
 			SysTime = System.DateTime.Now;
 			UpdatedTime = SysTime;
 
@@ -487,13 +487,16 @@ public class VisitFriend : MonoBehaviour {
 			TalkBalloonImage2.GetComponent<TalkBalloon> ().save();
 		}
 		FriendList.VisitorNum++;
-		VisitNumber++;
-		VisitItem [n].GetComponent<Item> ().save ();
-		VisitCounter.text = VisitNumber.ToString();
+		// VisitNumber++;
+		// VisitItem [n].GetComponent<Item> ().save ();
+		// VisitCounter.text = VisitNumber.ToString();
 	}
 
 	void disableImage(){
 		myPos = "";
+        VisitNumber++;
+		VisitItem [n].GetComponent<Item> ().save ();
+		VisitCounter.text = VisitNumber.ToString();
 		FriendImage.GetComponent<Image>().enabled = false;
 		TalkBalloonImage.SetActive (false);
 		TalkBalloonImage2.SetActive (false);
