@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class Birthday : MonoBehaviour {
 	public GameObject Friend1, Friend2, Friend3, Dialog;
@@ -66,4 +67,15 @@ public class Birthday : MonoBehaviour {
 			Friend3.SetActive (true);
 		}
 	}
+
+	public void ChangeScene(int n){
+		if (Dialog.GetComponent<Dialog> ().LineNumber == n) {
+			Invoke ("GoToMain", 10);
+		}
+	}
+
+	void GoToMain(){
+		SceneManager.LoadScene("Main");
+	}
+
 }

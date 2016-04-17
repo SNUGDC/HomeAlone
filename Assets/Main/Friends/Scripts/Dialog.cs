@@ -42,7 +42,6 @@ public class Dialog : MonoBehaviour {
 			SceneManager.LoadScene ("Main");
 	}
 
-
 	// ** SaveYes SaveName = SaveNo SaveName
 	public void SaveYes(string SaveName){
 		PlayerPrefs.SetString (SaveName, "True");

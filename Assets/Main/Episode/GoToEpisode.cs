@@ -8,6 +8,9 @@ public class GoToEpisode : MonoBehaviour {
 	private int month, day, AmmoMonth, AmmoDay;
 	void Start () {
 		BearEventShow = (PlayerPrefs.GetString ("BearEvent") == "True");
+		OwnerEventShow = (PlayerPrefs.GetString ("OwnerEventShow") == "True");
+
+//		PenguinEpShow = PlayerPrefs.HasKey ("MiniPhotoOn");
 		sheepEpShow = (PlayerPrefs.GetString ("sheepEpShow") == "True");
 		crocoEpShow = (PlayerPrefs.GetString ("crocoEpShow") == "True");
 		owlEpShow = (PlayerPrefs.GetString ("owlEpShow") == "True");
@@ -15,7 +18,7 @@ public class GoToEpisode : MonoBehaviour {
 		ammoEpShow = (PlayerPrefs.GetString ("ammoEpShow") == "True");
 		snakeEpShow = (PlayerPrefs.GetString ("snakeEpShow") == "True");
 		bearEpShow = (PlayerPrefs.GetString ("bearEpShow") == "True");
-		OwnerEventShow = (PlayerPrefs.GetString ("OwnerEventShow") == "True");
+
 
 		month = PlayerPrefs.GetInt ("Month");
 		day = PlayerPrefs.GetInt ("Day");
@@ -34,7 +37,7 @@ public class GoToEpisode : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {			
 		if (!DialogPanel.activeSelf) {
-			if ((bear.GetComponent<VisitFriend> ().VisitNumber >= 40) && !BearEventShow) {
+			if ((bear.GetComponent<VisitFriend> ().VisitNumber >= 45) && !BearEventShow) {
 				BearEventShow = true;
 				SceneManager.LoadScene ("Bear Event");
 				PlayerPrefs.SetString ("BearEvent", BearEventShow.ToString ());

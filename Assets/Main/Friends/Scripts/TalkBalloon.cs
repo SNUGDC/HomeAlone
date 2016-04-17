@@ -19,10 +19,6 @@ public class TalkBalloon : MonoBehaviour {
 	// Use this for initialization
 	void Awake () {
 		load ();
-		if (NameTalk == "ammoTalk") {
-			for (int i = 13; i < 20;i++)
-				IsAlreadyShow [i] = true;
-		}
 	}
 	
 	// Update is called once per frame
@@ -84,10 +80,6 @@ public class TalkBalloon : MonoBehaviour {
 	}
 
 	public void save(){
-		if (NameTalk == "ammoTalk") {
-			for (int i = 13; i < 20;i++)
-				IsAlreadyShow [i] = true;
-		}
 		PlayerPrefs.SetInt (NameTalk + "TalkNum",SaveTalkNumber);
 		for (int i = 0; i < Text.Length; i++) {
 			PlayerPrefs.SetString(NameTalk + i.ToString(),IsAlreadyShow[i].ToString());

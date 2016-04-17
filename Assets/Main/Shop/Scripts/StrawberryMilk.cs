@@ -41,6 +41,7 @@ public class StrawberryMilk : MonoBehaviour {
 		AllTime = TimeSpan.FromTicks(ItemHour.Ticks * BoughtNumber);
 		PassedTime = UpdatedTime - StartTime;
 		RemainTime = AllTime - PassedTime;
+//		RemainHour = RemainTime.Days * 24 + RemainTime.Hours;
 
 		if (RemainTime <= zeroTimeSpan) {
 			PlayerPrefs.SetString (ItemName + "StartTime", zeroTime.ToString ());

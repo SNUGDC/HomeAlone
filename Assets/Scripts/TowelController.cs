@@ -13,7 +13,7 @@ public class TowelController : MonoBehaviour
 
     void Start()
     {
-        DefaultTowelCatch = PlayerPrefs.GetInt("DefaultDustCatch");
+		DefaultTowelCatch = PlayerPrefs.GetInt("DefaultTowelCatch");
         TowelRend = GetComponent<Renderer>();
         EXPRend = ObjectEXP.GetComponent<Renderer>();
     }

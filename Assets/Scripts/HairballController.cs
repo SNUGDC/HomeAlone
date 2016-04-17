@@ -13,7 +13,7 @@ public class HairballController : MonoBehaviour
 
     void Start()
     {
-        DefaultHairballCatch = PlayerPrefs.GetInt("DefaultDustCatch");
+		DefaultHairballCatch = PlayerPrefs.GetInt("DefaultHairballCatch");
         HairballRend = GetComponent<Renderer>();
         EXPRend = ObjectEXP.GetComponent<Renderer>();
     }

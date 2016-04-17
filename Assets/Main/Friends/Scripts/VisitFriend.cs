@@ -3,7 +3,22 @@ using UnityEngine.UI;
 using System.Collections;
 using System;
 
+[System.Serializable]
+public class SeatImageArray 
+{ 
+	public Image[] Image;
+} 
+
+[System.Serializable]
+public class EmotionArray{
+	public int[] TalkNumber;
+}
+
+
 public class VisitFriend : MonoBehaviour {
+	public SeatImageArray[] seat_image;
+	public EmotionArray[] emotion;
+
 	public GameObject ThisObject;
 	public Image FriendImage;
 	public GameObject TalkBalloonImage,TalkBalloonImage2;
@@ -11,20 +26,21 @@ public class VisitFriend : MonoBehaviour {
 	public Text VisitCounter;
 	public GameObject[] VisitItem;
 	public string[] Seat;
-	public Image[] SeatImage, EventImage;
+	public Image[] SeatImage;
 	public int VisitProbability;
 	public int BackProbability;
 	public int VisitNumber;
-	int n, posNumber;
+	int n, posNumber, rowOfSeatImage, colOfSeatImage;
 	public string myPos;
 
 	public bool itemVisible;
 
 	public static Vector3 posBed1 = new Vector3(-5,0,0);
 	public static Vector3 posCrocoBed = new Vector3(-7,1,0);
-//	Vector3 posBed2 = new Vector3(270,210,0);
 	public static Vector3 posFloor1 = new Vector3(-1,1,0);
+	public static Vector3 posAmmoFloor1 = new Vector3(-1.05f,0.55f,0);
 	public static Vector3 posFloor2 = new Vector3(2,-1,0);
+	public static Vector3 posAmmoFloor2 = new Vector3(2.05f,-1.8f,0);
 	public static Vector3 posDesk = new Vector3(0.6f,0.6f,0);
 	public static Vector3 posCrocoDesk = new Vector3(1,0,0);
 	public static Vector3 posLaundry = new Vector3(0,-2,0);
@@ -76,45 +92,43 @@ public class VisitFriend : MonoBehaviour {
 
 		if (!FriendList.Sleeping) {
 			//default: 0,0,7
-			Delta = new TimeSpan (0, 0, 7);		// friends visit,back per 5 second 
-			Delta2 = new TimeSpan (0, 0, 7);	// save during 1 minute.
+			Delta = new TimeSpan (0, 0, 5);		// friends visit,back per 5 second 
+			Delta2 = new TimeSpan (0, 0, 5);	// save during 1 minute.
 			SysTime = System.DateTime.Now;
 			UpdatedTime = SysTime;
 
 			switch (myPos) {
 			case("bed1"):
-				// not bed2 option...
 				if (ThisObject.GetComponent<VisitFriend> ().FriendNameVisit == "crocodileVisit"){
 					ThisObject.transform.position = posCrocoBed;
 					crocobed.SetActive (true);
 					player.RoomBed.SetActive (false);
 				}
 				else {
-					FriendImage.sprite = SeatImage [posNumber].sprite;
+					//FriendImage.sprite = SeatImage [posNumber].sprite;
+					sprite();
 					ThisObject.transform.position = posBed1;
 				}
 				break;
 
-//		case("bed2"):
-//			ThisObject.transform.position = posBed2;
-//			break;
-
 			case("floor1"):
+				//FriendImage.sprite = SeatImage [posNumber].sprite;
+				sprite();
+				ThisObject.transform.position = posFloor1;
 				if (ThisObject.GetComponent<VisitFriend> ().FriendNameVisit == "ammoniteVisit") {
-					cushion.transform.position = posFloor1;
+					ThisObject.transform.position = posAmmoFloor1;
 					cushion.GetComponent<Image>().enabled = true;
 				}
-				FriendImage.sprite = SeatImage [posNumber].sprite;
-				ThisObject.transform.position = posFloor1;
 				break;
 
 			case("floor2"):
+				//FriendImage.sprite = SeatImage [posNumber].sprite;
+				sprite();
+				ThisObject.transform.position = posFloor2;
 				if (ThisObject.GetComponent<VisitFriend> ().FriendNameVisit == "ammoniteVisit") {
-					cushion.transform.position = posFloor2;
+					ThisObject.transform.position = posAmmoFloor2;
 					cushion.GetComponent<Image>().enabled = true;
 				}
-				FriendImage.sprite = SeatImage [posNumber].sprite;
-				ThisObject.transform.position = posFloor2;
 				break;
 
 			case("desk"):
@@ -126,7 +140,8 @@ public class VisitFriend : MonoBehaviour {
 						crocohagen.GetComponent<Image> ().enabled = true;
 				}
 				else {
-					FriendImage.sprite = SeatImage [posNumber].sprite;
+					//FriendImage.sprite = SeatImage [posNumber].sprite;
+					sprite();
 					ThisObject.transform.position = posDesk;
 				}
 				break;
@@ -135,7 +150,8 @@ public class VisitFriend : MonoBehaviour {
 				Laundry.SetActive (false);
 				if(ShopLaundry.GetComponent<Item>().BoughtNumber > 0)
 					LaundryFold.SetActive (true);
-				FriendImage.sprite = SeatImage [posNumber].sprite;
+				//FriendImage.sprite = SeatImage [posNumber].sprite;
+				sprite();
 				ThisObject.transform.position = posLaundry;
 				break;
 			}
@@ -153,6 +169,12 @@ public class VisitFriend : MonoBehaviour {
 			VisitCounter.text = PlayerPrefs.GetString (FriendNameVisit);
 			VisitNumber = IntParseFast (VisitCounter.text);
 		}
+	}
+
+	void sprite(){
+		RectTransform rt = seat_image [rowOfSeatImage].Image [colOfSeatImage].GetComponent<RectTransform> ();
+		FriendImage.GetComponent<RectTransform> ().sizeDelta = new Vector2 (rt.rect.width, rt.rect.height);
+		FriendImage.sprite = seat_image [rowOfSeatImage].Image [colOfSeatImage].sprite;
 	}
 
 	// Update is called once per frame
@@ -195,61 +217,53 @@ public class VisitFriend : MonoBehaviour {
 							ThisObject.transform.position = posCrocoBed;
 							FriendList.bed1 = true;
 							myPos = "bed1";
+							posNumber = i;
 							EnableImage ();
 							crocobed.SetActive (true);
 							player.RoomBed.SetActive (false);
 							player.playerPos ();
-							posNumber = i;
 						} else {
 							ThisObject.transform.position = posBed1;
 							FriendList.bed1 = true;
 							myPos = "bed1";
 							FriendImage.sprite = SeatImage [i].sprite;
+							posNumber = i;
 							EnableImage ();
 							player.playerPos ();
-							posNumber = i;
 						}
 					}
 					break;
 
-//				case("bed2"):
-//					if (!FriendList.bed2) {
-//						ThisObject.transform.position = posBed2;
-//						FriendList.bed2 = true;
-//						myPos = "bed2";
-//						EnableImage ();
-//					}
-//					break;
-
 				case("floor1"):
 					if (!FriendList.floor1) {
-						if (ThisObject.GetComponent<VisitFriend> ().FriendNameVisit == "ammoniteVisit") {
-							cushion.transform.position = posFloor1;
-							cushion.GetComponent<Image>().enabled = true;
-						}
 						FriendList.floor1 = true;
 						ThisObject.transform.position = posFloor1;
+						if (ThisObject.GetComponent<VisitFriend> ().FriendNameVisit == "ammoniteVisit") {
+							ThisObject.transform.position = posAmmoFloor1;
+							cushion.GetComponent<Image>().enabled = true;
+						}
 						myPos = "floor1";
 						FriendImage.sprite = SeatImage [i].sprite;
+						posNumber = i;
 						EnableImage ();
 						player.playerPos();
-						posNumber = i;
+
 					}
 					break;
 
 				case("floor2"):
 					if (!FriendList.floor2) {
+						ThisObject.transform.position = posFloor2;
 						if (ThisObject.GetComponent<VisitFriend> ().FriendNameVisit == "ammoniteVisit") {
-							cushion.transform.position = posFloor2;
+							ThisObject.transform.position = posAmmoFloor2;
 							cushion.GetComponent<Image>().enabled = true;
 						}
-						ThisObject.transform.position = posFloor2;
 						FriendList.floor2 = true;
 						myPos = "floor2";
 						FriendImage.sprite = SeatImage [i].sprite;
+						posNumber = i;
 						EnableImage ();
 						player.playerPos();
-						posNumber = i;
 					}
 					break;
 
@@ -259,6 +273,7 @@ public class VisitFriend : MonoBehaviour {
 							ThisObject.transform.position = posCrocoDesk;
 							FriendList.desk = true;
 							myPos = "desk";
+							posNumber = i;
 							EnableImage ();
 							//crocodesk.SetActive (true);
 							if (hagendaz.GetComponent<Item> ().BoughtNumber == 0)
@@ -266,15 +281,14 @@ public class VisitFriend : MonoBehaviour {
 							else
 								crocohagen.GetComponent<Image> ().enabled = true;
 							player.playerPos ();
-							posNumber = i;
 						} else {
 							ThisObject.transform.position = posDesk;
 							FriendList.desk = true;
 							myPos = "desk";
 							FriendImage.sprite = SeatImage [i].sprite;
+							posNumber = i;
 							EnableImage ();
 							player.playerPos ();
-							posNumber = i;
 						}
 					}
 					break;
@@ -288,9 +302,9 @@ public class VisitFriend : MonoBehaviour {
 						FriendList.laundry = true;
 						myPos = "laundry";
 						FriendImage.sprite = SeatImage [i].sprite;
+						posNumber = i;
 						EnableImage ();
 						player.playerPos();
-						posNumber = i;
 					}
 					break;
 				
@@ -399,6 +413,8 @@ public class VisitFriend : MonoBehaviour {
 
 	void save(){
 		PlayerPrefs.SetInt (FriendNameVisit + "posNumber" , posNumber);
+		PlayerPrefs.SetInt (FriendNameVisit + "rowOfSeatImage" , rowOfSeatImage);
+		PlayerPrefs.SetInt (FriendNameVisit + "colOfSeatImage" , colOfSeatImage);
 		PlayerPrefs.SetString(FriendNameVisit + "myPos", myPos);
 		PlayerPrefs.SetString("bed1",FriendList.bed1.ToString());
 		PlayerPrefs.SetString("bed2",FriendList.bed2.ToString());
@@ -410,6 +426,8 @@ public class VisitFriend : MonoBehaviour {
 
 	void load(){
 		posNumber = PlayerPrefs.GetInt (FriendNameVisit + "posNumber");
+		rowOfSeatImage = PlayerPrefs.GetInt (FriendNameVisit + "rowOfSeatImage");
+		colOfSeatImage = PlayerPrefs.GetInt (FriendNameVisit + "colOfSeatImage");
 		if(PlayerPrefs.HasKey(FriendNameVisit + "myPos"))
 			myPos = PlayerPrefs.GetString (FriendNameVisit + "myPos");
 		FriendList.bed1 = (PlayerPrefs.GetString("bed1") == "True");
@@ -426,34 +444,39 @@ public class VisitFriend : MonoBehaviour {
 		SetEnableTalkList ();
 		if (TalkBalloonImage.GetComponent<TalkBalloon> ().EnableTalkList.Count > 0) {
 			RandomNumber = UnityEngine.Random.Range (0, TalkBalloonImage.GetComponent<TalkBalloon> ().EnableTalkList.Count);
-			Debug.Log (TalkBalloonImage.GetComponent<TalkBalloon> ().EnableTalkList.Count);
 			saveNumber = TalkBalloonImage.GetComponent<TalkBalloon> ().EnableTalkList [RandomNumber];
 		} else
 			saveNumber = 0;
-//		int talkNumber = TalkBalloonImage.GetComponent<TalkBalloon> ().whatTalk (saveNumber);
+
+		/////change emotion!_ except Ammonite & crocodile///
+		colOfSeatImage = GetEmotionNumber (saveNumber);	//get column of SeatImage
+		rowOfSeatImage = posNumber;
+		if (!(ThisObject.GetComponent<VisitFriend> ().FriendNameVisit == "crocodileVisit") && !(ThisObject.GetComponent<VisitFriend> ().FriendNameVisit == "ammoniteVisit")) {
+			RectTransform rt = seat_image [rowOfSeatImage].Image [colOfSeatImage].GetComponent<RectTransform> ();
+			FriendImage.GetComponent<RectTransform> ().sizeDelta = new Vector2 (rt.rect.width, rt.rect.height);
+			FriendImage.sprite = seat_image [rowOfSeatImage].Image [colOfSeatImage].sprite;
+		}
+		////////////////////////////////////////////////////
+
+
 		FriendImage.GetComponent<Image>().enabled = true;
 		if (IsAlreadyShow (saveNumber)) {
 			TalkBalloonImage.SetActive (true);
 			TalkBalloonImage.GetComponent<TalkBalloon> ().SaveTalkNumber = saveNumber;
 			TalkBalloonImage.GetComponent<TalkBalloon> ().save();
-//			Debug.Log (FriendNameVisit + " VisitTalkNumber SAVE : " + talkNumber);
 		} else {
 			TalkBalloonImage2.SetActive (true);
 			TalkBalloonImage2.GetComponent<TalkBalloon> ().SaveTalkNumber = saveNumber;
 			TalkBalloonImage2.GetComponent<TalkBalloon> ().save();
-//			Debug.Log (FriendNameVisit + " VisitTalkNumber SAVE : " + talkNumber);
 		}
 		FriendList.VisitorNum++;
 		VisitNumber++;
-//		Debug.Log (FriendList.VisitorNum);
-		//VisitItem[n].GetComponent<Item> ().BoughtNumber--;
 		VisitItem [n].GetComponent<Item> ().save ();
 		VisitCounter.text = VisitNumber.ToString();
 	}
 
 	void disableImage(){
 		myPos = "";
-//		Debug.Log (FriendNameVisit + "back");
 		FriendImage.GetComponent<Image>().enabled = false;
 		TalkBalloonImage.SetActive (false);
 		TalkBalloonImage2.SetActive (false);
@@ -461,7 +484,9 @@ public class VisitFriend : MonoBehaviour {
 	}
 
 	bool snakeOK(){
-		if (snake != null)
+		if (PlayerPrefs.HasKey ("snakeEpShow") && PlayerPrefs.GetString("snakeEpShow") == "True" && ThisObject.GetComponent<VisitFriend> ().FriendNameVisit == "snakeVisit")
+			return false;
+		else if (snake != null)
 			return (ThisObject.GetComponent<VisitFriend> ().FriendNameVisit == "snakeVisit" && FriendList.VisitorNum == 0) || ((!snake.GetComponent<Image> ().enabled) && ThisObject.GetComponent<VisitFriend> ().FriendNameVisit != "snakeVisit");
 		else
 			return true;
@@ -498,12 +523,23 @@ public class VisitFriend : MonoBehaviour {
 	public int HowFriendly(){
 		if (VisitNumber < 1)
 			return 0;
-		else if (VisitNumber < 10)
+		else if (VisitNumber < 20)
 			return 1;
-		else if (VisitNumber < 40)
+		else if (VisitNumber < 45)
 			return 2;
 		else
 			return 3;
 	}
+
+	public int GetEmotionNumber(int saveN){
+		int i;
+		for(i=0; i<emotion.Length;i++){
+			int TalkNumberIndex = Array.IndexOf (emotion [i].TalkNumber, saveN);
+			if (TalkNumberIndex != -1)
+				break;
+		}
+		return i;
+	}
+
 
 }
