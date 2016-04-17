@@ -16,6 +16,7 @@ public class EmotionArray{
 
 
 public class VisitFriend : MonoBehaviour {
+    public bool isShown = false;
 	public SeatImageArray[] seat_image;
 	public EmotionArray[] emotion;
 
@@ -89,7 +90,10 @@ public class VisitFriend : MonoBehaviour {
 		}
 
 		load ();
-
+        
+        if (!isShown)
+            Invoke("visit", 3.0f);
+        
 		if (!FriendList.Sleeping) {
 			//default: 0,0,7
 			Delta = new TimeSpan (0, 2, 0);		// friends visit,back per 5 second 
@@ -222,6 +226,7 @@ public class VisitFriend : MonoBehaviour {
 							crocobed.SetActive (true);
 							player.RoomBed.SetActive (false);
 							player.playerPos ();
+                            isShown = true;
 						} else {
 							ThisObject.transform.position = posBed1;
 							FriendList.bed1 = true;
@@ -230,6 +235,7 @@ public class VisitFriend : MonoBehaviour {
 							posNumber = i;
 							EnableImage ();
 							player.playerPos ();
+                            isShown = true;
 						}
 					}
 					break;
@@ -247,7 +253,7 @@ public class VisitFriend : MonoBehaviour {
 						posNumber = i;
 						EnableImage ();
 						player.playerPos();
-
+                        isShown = true;
 					}
 					break;
 
@@ -264,6 +270,7 @@ public class VisitFriend : MonoBehaviour {
 						posNumber = i;
 						EnableImage ();
 						player.playerPos();
+                        isShown = true;
 					}
 					break;
 
@@ -281,6 +288,7 @@ public class VisitFriend : MonoBehaviour {
 							else
 								crocohagen.GetComponent<Image> ().enabled = true;
 							player.playerPos ();
+                            isShown = true;
 						} else {
 							ThisObject.transform.position = posDesk;
 							FriendList.desk = true;
@@ -289,6 +297,7 @@ public class VisitFriend : MonoBehaviour {
 							posNumber = i;
 							EnableImage ();
 							player.playerPos ();
+                            isShown = true;
 						}
 					}
 					break;
@@ -305,6 +314,7 @@ public class VisitFriend : MonoBehaviour {
 						posNumber = i;
 						EnableImage ();
 						player.playerPos();
+                        isShown = true;
 					}
 					break;
 				
@@ -412,6 +422,7 @@ public class VisitFriend : MonoBehaviour {
 	}
 
 	void save(){
+        PlayerPrefs.SetString (FriendNameVisit + "isShown" , isShown.ToString());
 		PlayerPrefs.SetInt (FriendNameVisit + "posNumber" , posNumber);
 		PlayerPrefs.SetInt (FriendNameVisit + "rowOfSeatImage" , rowOfSeatImage);
 		PlayerPrefs.SetInt (FriendNameVisit + "colOfSeatImage" , colOfSeatImage);
@@ -425,6 +436,7 @@ public class VisitFriend : MonoBehaviour {
 	}
 
 	void load(){
+        isShown = (PlayerPrefs.GetString (FriendNameVisit + "isShown") == "True");
 		posNumber = PlayerPrefs.GetInt (FriendNameVisit + "posNumber");
 		rowOfSeatImage = PlayerPrefs.GetInt (FriendNameVisit + "rowOfSeatImage");
 		colOfSeatImage = PlayerPrefs.GetInt (FriendNameVisit + "colOfSeatImage");
