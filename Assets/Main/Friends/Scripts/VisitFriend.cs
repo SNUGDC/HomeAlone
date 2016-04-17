@@ -38,7 +38,7 @@ public class VisitFriend : MonoBehaviour {
 	public static Vector3 posBed1 = new Vector3(-5,0,0);
 	public static Vector3 posCrocoBed = new Vector3(-7,1,0);
 	public static Vector3 posFloor1 = new Vector3(-1,1,0);
-	public static Vector3 posAmmoFloor1 = new Vector3(-1.2f,0.4f,0);
+	public static Vector3 posAmmoFloor1 = new Vector3(-1.05f,0.55f,0);
 	public static Vector3 posFloor2 = new Vector3(2,-1,0);
 	public static Vector3 posAmmoFloor2 = new Vector3(2.2f,-2,0);
 	public static Vector3 posDesk = new Vector3(0.6f,0.6f,0);
