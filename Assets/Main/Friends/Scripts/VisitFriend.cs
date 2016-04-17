@@ -58,7 +58,7 @@ public class VisitFriend : MonoBehaviour {
 
 	DateTime SysTime;
 	DateTime UpdatedTime;
-	TimeSpan Delta, Delta2;
+	public TimeSpan Delta, Delta2;
 
 	void Awake()
 	{
