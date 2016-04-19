@@ -57,12 +57,12 @@ public class PenguinEpDialogueText : MonoBehaviour
             case 3:
                 if (IsNeutralChoice_PenguinEp)
                 {
-                    DialogueText.text = "그치? 역시 약간 허전하지 않아?";
+                    DialogueText.text = "아...그래...? 사진같은 거 별로 안 좋아하나보다. 음...";
                     PlayerPrefs.SetInt("AlreadySeePenguinEp", 1);
                 }
                 else
                 {
-                    DialogueText.text = "아...그래...? 사진같은 거 별로 안 좋아하나보다. 음...";
+                    DialogueText.text = "그치? 역시 약간 허전하지 않아?";
                     PlayerPrefs.SetInt("AlreadySeePenguinEp", 1);
                 }
                 break;
