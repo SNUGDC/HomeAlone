@@ -487,16 +487,16 @@ public class VisitFriend : MonoBehaviour {
 			TalkBalloonImage2.GetComponent<TalkBalloon> ().save();
 		}
 		FriendList.VisitorNum++;
-		// VisitNumber++;
-		// VisitItem [n].GetComponent<Item> ().save ();
-		// VisitCounter.text = VisitNumber.ToString();
+		VisitNumber++;
+		VisitItem [n].GetComponent<Item> ().save ();
+		VisitCounter.text = VisitNumber.ToString();
 	}
 
 	void disableImage(){
 		myPos = "";
-        VisitNumber++;
-		VisitItem [n].GetComponent<Item> ().save ();
-		VisitCounter.text = VisitNumber.ToString();
+//        VisitNumber++;
+//		VisitItem [n].GetComponent<Item> ().save ();
+//		VisitCounter.text = VisitNumber.ToString();
 		FriendImage.GetComponent<Image>().enabled = false;
 		TalkBalloonImage.SetActive (false);
 		TalkBalloonImage2.SetActive (false);
