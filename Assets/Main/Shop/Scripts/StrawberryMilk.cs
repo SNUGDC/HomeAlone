@@ -47,6 +47,7 @@ public class StrawberryMilk : MonoBehaviour {
 			PlayerPrefs.SetString (ItemName + "StartTime", zeroTime.ToString ());
 			ShopObject.GetComponent<Item> ().BoughtNumber = 0;
 			PlayerPrefs.SetInt (ItemName + "BoughtNumber", 0);
+			RemainTime = zeroTimeSpan;
 			ThisObject.SetActive (false);
 		}
 	}

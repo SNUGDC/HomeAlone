@@ -169,11 +169,11 @@ public class Item : MonoBehaviour {
 
 	public void save(){
 		PlayerPrefs.SetInt(ItemName + "BoughtNumber",BoughtNumber);
-		PlayerPrefs.SetString (ItemName + "HavingNumber",HavingNumber.text);
+//		PlayerPrefs.SetString (ItemName + "HavingNumber",HavingNumber.text);
 	}
 
 	public void load(){
 		BoughtNumber = PlayerPrefs.GetInt (ItemName + "BoughtNumber");
-		HavingNumber.text = PlayerPrefs.GetString (ItemName + "HavingNumber");
+//		HavingNumber.text = PlayerPrefs.GetString (ItemName + "HavingNumber");
 	}
 }
