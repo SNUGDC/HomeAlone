@@ -9,6 +9,9 @@ public class CreateDust : MonoBehaviour
     public GameObject Dust3;
     public GameObject Dust4;
     public GameObject Dust5;
+    public GameObject Dust6;
+    public GameObject Dust7;
+    public GameObject Dust8;
     public int DustRespawnTimeGap;
     public int MaxDust;
 
