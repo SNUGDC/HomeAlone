@@ -46,6 +46,8 @@ public class MiniGameManager : MonoBehaviour
     {
         if (MiniGameSec >= 30)
         {
+            if (WinPanel == null)
+                return;
             Debug.Log("Game Over");
             WinPanel.SetActive(true);
         }
