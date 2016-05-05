@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class LionEp : MonoBehaviour {
-	public GameObject dialogwindow, dialog, choose, YesDialog, NoDialog;
+	public GameObject dialogwindow, dialog, choose, YesDialog, yesdia, NoDialog, nodia, player, playernorm, playersad;
 	public string IsAlreadyShowSaveName, AnswerSaveName;
 	private bool IsAlreadyShow, SaveAnswer;
 
@@ -16,7 +16,7 @@ public class LionEp : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+        CheckState();
 	}
 
 	public void OpenChoose(int line){
@@ -42,4 +42,23 @@ public class LionEp : MonoBehaviour {
 			}
 		}
 	}
+
+    public void CheckState()
+    {
+        if(yesdia.GetComponent<Dialog>().LineNumber == 9)
+        {
+            player.SetActive(false);
+            playersad.SetActive(true);
+        }
+        if (nodia.GetComponent<Dialog>().LineNumber == 1)
+        {
+            player.SetActive(false);
+            playernorm.SetActive(true);
+        }
+        else if (nodia.GetComponent<Dialog>().LineNumber == 11)
+        {
+            playernorm.SetActive(false);
+            playersad.SetActive(true);
+        }
+    }
 }

@@ -7,6 +7,8 @@ public class DestroyByContact : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        Destroy(Enemy);
+		if (other.gameObject.tag != "ammoMiniEnemy") {
+			Destroy (Enemy);
+		}
     }
 }

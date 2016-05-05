@@ -4,7 +4,7 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 
 public class HappyEnding : MonoBehaviour {
-	public Text text;
+	public Image TextImage;
 	// Use this for initialization
 	void Start () {
 	
@@ -12,7 +12,7 @@ public class HappyEnding : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (!text.enabled)
+		if (!TextImage.enabled)
 			GoToStart ();
 	}
 

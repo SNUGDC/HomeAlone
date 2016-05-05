@@ -33,9 +33,9 @@ public class MoneySystem : MonoBehaviour {
 
 	public void Deposit () {
 		ContentsName = "allowance";
-		money += 100000;
+		money += 0;
 		MoneyIn = true;
-		income = +100000;
+		income = 0;
 		remainder = money;
 		save ();
 	}

@@ -16,6 +16,7 @@ public class EmotionArray{
 
 
 public class VisitFriend : MonoBehaviour {
+    public bool isShown = false;
 	public SeatImageArray[] seat_image;
 	public EmotionArray[] emotion;
 
@@ -89,11 +90,14 @@ public class VisitFriend : MonoBehaviour {
 		}
 
 		load ();
-
+        
+        if (!isShown)
+            Invoke("visit", 3.0f);
+        
 		if (!FriendList.Sleeping) {
 			//default: 0,0,7
-			Delta = new TimeSpan (0, 0, 5);		// friends visit,back per 5 second 
-			Delta2 = new TimeSpan (0, 0, 5);	// save during 1 minute.
+			Delta = new TimeSpan (0, 0, 20);		// friends visit,back per 5 second 
+			Delta2 = new TimeSpan (0, 0, 20);	// save during 1 minute.
 			SysTime = System.DateTime.Now;
 			UpdatedTime = SysTime;
 
@@ -222,6 +226,7 @@ public class VisitFriend : MonoBehaviour {
 							crocobed.SetActive (true);
 							player.RoomBed.SetActive (false);
 							player.playerPos ();
+                            isShown = true;
 						} else {
 							ThisObject.transform.position = posBed1;
 							FriendList.bed1 = true;
@@ -230,6 +235,7 @@ public class VisitFriend : MonoBehaviour {
 							posNumber = i;
 							EnableImage ();
 							player.playerPos ();
+                            isShown = true;
 						}
 					}
 					break;
@@ -247,7 +253,7 @@ public class VisitFriend : MonoBehaviour {
 						posNumber = i;
 						EnableImage ();
 						player.playerPos();
-
+                        isShown = true;
 					}
 					break;
 
@@ -264,6 +270,7 @@ public class VisitFriend : MonoBehaviour {
 						posNumber = i;
 						EnableImage ();
 						player.playerPos();
+                        isShown = true;
 					}
 					break;
 
@@ -281,6 +288,7 @@ public class VisitFriend : MonoBehaviour {
 							else
 								crocohagen.GetComponent<Image> ().enabled = true;
 							player.playerPos ();
+                            isShown = true;
 						} else {
 							ThisObject.transform.position = posDesk;
 							FriendList.desk = true;
@@ -289,6 +297,7 @@ public class VisitFriend : MonoBehaviour {
 							posNumber = i;
 							EnableImage ();
 							player.playerPos ();
+                            isShown = true;
 						}
 					}
 					break;
@@ -305,6 +314,7 @@ public class VisitFriend : MonoBehaviour {
 						posNumber = i;
 						EnableImage ();
 						player.playerPos();
+                        isShown = true;
 					}
 					break;
 				
@@ -412,6 +422,7 @@ public class VisitFriend : MonoBehaviour {
 	}
 
 	void save(){
+        PlayerPrefs.SetString (FriendNameVisit + "isShown" , isShown.ToString());
 		PlayerPrefs.SetInt (FriendNameVisit + "posNumber" , posNumber);
 		PlayerPrefs.SetInt (FriendNameVisit + "rowOfSeatImage" , rowOfSeatImage);
 		PlayerPrefs.SetInt (FriendNameVisit + "colOfSeatImage" , colOfSeatImage);
@@ -425,6 +436,7 @@ public class VisitFriend : MonoBehaviour {
 	}
 
 	void load(){
+        isShown = (PlayerPrefs.GetString (FriendNameVisit + "isShown") == "True");
 		posNumber = PlayerPrefs.GetInt (FriendNameVisit + "posNumber");
 		rowOfSeatImage = PlayerPrefs.GetInt (FriendNameVisit + "rowOfSeatImage");
 		colOfSeatImage = PlayerPrefs.GetInt (FriendNameVisit + "colOfSeatImage");
@@ -443,8 +455,13 @@ public class VisitFriend : MonoBehaviour {
 		TalkBalloonImage2.GetComponent<TalkBalloon> ().load();
 		SetEnableTalkList ();
 		if (TalkBalloonImage.GetComponent<TalkBalloon> ().EnableTalkList.Count > 0) {
-			RandomNumber = UnityEngine.Random.Range (0, TalkBalloonImage.GetComponent<TalkBalloon> ().EnableTalkList.Count);
-			saveNumber = TalkBalloonImage.GetComponent<TalkBalloon> ().EnableTalkList [RandomNumber];
+			
+            bool isKnown;
+            do {
+                RandomNumber = UnityEngine.Random.Range (0, TalkBalloonImage.GetComponent<TalkBalloon> ().EnableTalkList.Count);
+                isKnown = TalkBalloonImage.GetComponent<TalkBalloon> ().alreadyShow(RandomNumber) && RandomNumber < PrevTalkNum();
+            } while (isKnown);
+            saveNumber = TalkBalloonImage.GetComponent<TalkBalloon> ().EnableTalkList [RandomNumber];
 		} else
 			saveNumber = 0;
 
@@ -477,6 +494,9 @@ public class VisitFriend : MonoBehaviour {
 
 	void disableImage(){
 		myPos = "";
+//        VisitNumber++;
+//		VisitItem [n].GetComponent<Item> ().save ();
+//		VisitCounter.text = VisitNumber.ToString();
 		FriendImage.GetComponent<Image>().enabled = false;
 		TalkBalloonImage.SetActive (false);
 		TalkBalloonImage2.SetActive (false);
@@ -530,7 +550,16 @@ public class VisitFriend : MonoBehaviour {
 		else
 			return 3;
 	}
-
+    
+    private int PrevTalkNum () {
+        if (VisitNumber < 20)
+            return 0;
+        else if (VisitNumber < 45)
+            return 11;
+        else
+            return 16;
+    }
+    
 	public int GetEmotionNumber(int saveN){
 		int i;
 		for(i=0; i<emotion.Length;i++){
