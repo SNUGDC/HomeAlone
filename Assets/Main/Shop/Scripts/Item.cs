@@ -24,7 +24,7 @@ public class Item : MonoBehaviour {
 
 	public void Buy(){
 		if (ItemName == "soda") {
-			if (BoughtNumber > 0 || soda.sodaBoughtTimes == 2) {
+			if (BoughtNumber > 0 || soda.sodaBoughtTimes == 1) {
 				//already have
 				if (Text1 != null && Notice1 != null) {
 					Text1.GetComponent<Text> ().enabled = true;

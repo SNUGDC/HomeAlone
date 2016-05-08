@@ -22,7 +22,7 @@ public class soda : MonoBehaviour {
 		if (!DialogPanel.activeSelf) {
 			//soda event
 			ShopItem.GetComponent<Item> ().load ();
-			if (ShopItem.GetComponent<Item> ().haveItem () && Penguin.enabled && sodaBoughtTimes < 2) {
+			if (ShopItem.GetComponent<Item> ().haveItem () && Penguin.enabled && sodaBoughtTimes < 1) {
 				ShopItem.GetComponent<Item> ().decreaseItem ();
 				sodaBoughtTimes++;
 				SceneManager.LoadScene ("Penguin Event");
