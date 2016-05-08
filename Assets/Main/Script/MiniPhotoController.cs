@@ -4,6 +4,8 @@ using UnityEngine.SceneManagement;
 
 public class MiniPhotoController : MonoBehaviour
 {
+    public GameObject PhotoButton;
+
     void Start()
     {
         if (PlayerPrefs.HasKey("MiniPhotoOn"))
@@ -17,6 +19,6 @@ public class MiniPhotoController : MonoBehaviour
 
     void OnMouseUp()
     {
-        SceneManager.LoadScene("PenguinEp_Photo");
+        PhotoButton.SetActive(true);
     }
 }
