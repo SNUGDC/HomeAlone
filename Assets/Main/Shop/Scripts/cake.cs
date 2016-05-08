@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class cake : MonoBehaviour {
-	public GameObject DialogPanel, ShopItem, buyButton, QuestionBox, PopUp, PopUpClose;
+	public GameObject Cake, DialogPanel, ShopItem, buyButton, QuestionBox, PopUp, PopUpClose;
 	public Text PopUpText;
 	bool IsAlreadyOpen;
 	public int StartMonth1,StartMonth2, StartDay1,StartDay2, EndMonth1,EndMonth2,EndDay1,EndDay2;
@@ -19,8 +19,13 @@ public class cake : MonoBehaviour {
 	void Update () {
 		month = PlayerPrefs.GetInt("Month");
 		day = PlayerPrefs.GetInt("Day");
+
+		if (IsAlreadyOpen)
+			Cake.SetActive (true);
+		
 		if (!DialogPanel.activeSelf) {
 			if (((StartMonth1 <= month) && (StartDay1 <= day) && (month <= EndMonth1) && (day <= EndDay1)) || ((StartMonth2 <= month) && (StartDay2 <= day) && (month <= EndMonth2) && (day <= EndDay2))) {
+				Cake.SetActive (true);
 				buyButton.GetComponent<Button> ().enabled = true;
 				ShopItem.GetComponent<Button> ().enabled = true;
 				QuestionBox.SetActive (false);
