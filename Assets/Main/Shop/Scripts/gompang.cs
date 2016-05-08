@@ -6,8 +6,8 @@ public class gompang : MonoBehaviour {
 	public GameObject DialogPanel, ShopItem, buyButton, QuestionBox, PopUp, PopUpClose, Wall_gompang;
 	public Text PopUpText;
 	bool IsAlreadyOpen, CameleonEventShow;
-	public int StartMonth, EndMonth;
-	int month;
+	public int StartMonth, Startday, EndMonth;
+	int month, day;
 
 	// Use this for initialization
 
@@ -18,6 +18,7 @@ public class gompang : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+		day = PlayerPrefs.GetInt("Day");
 		month = PlayerPrefs.GetInt("Month");
 		if (!DialogPanel.activeSelf) {
 			CameleonEventShow = (PlayerPrefs.GetString ("CameleonEventShow") == "True");
@@ -27,7 +28,7 @@ public class gompang : MonoBehaviour {
 			}
 
 			//	hour = PlayerPrefs.GetInt("Min");
-			if ((StartMonth <= month) && (month < EndMonth)) {
+			if (((StartMonth == month) && (day >= Startday)) || ((month > StartMonth) && (month < EndMonth))) {
 				buyButton.GetComponent<Button> ().enabled = true;
 				ShopItem.GetComponent<Button> ().enabled = true;
 				QuestionBox.SetActive (false);

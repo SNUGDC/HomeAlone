@@ -28,7 +28,7 @@ public class TimeCounter : MonoBehaviour
         else
         {
             PlayerPrefs.SetInt("Year", 16);
-            PlayerPrefs.SetInt("Month", 6);
+            PlayerPrefs.SetInt("Month", 7);
             PlayerPrefs.SetInt("Day", 20);
             PlayerPrefs.SetInt("Hour", 9);
             PlayerPrefs.SetInt("Min", 0);
