@@ -9,6 +9,8 @@ public class Continue : MonoBehaviour
     void Start()
     {
         CannotContinuePanel.SetActive(false);
+        if(IsEnding())
+            PlayerPrefs.SetString("IsEnding", "True");
     }
 
     public void TransferToMain()
@@ -25,7 +27,7 @@ public class Continue : MonoBehaviour
 					bool SnakeAnswer = (PlayerPrefs.GetString("SnakeAnswer") != "False");
 				//Happy Ending
 					if(SnakeAnswer || (NumberOfNegativeChoice < 2))
-						SceneManager.LoadScene("HappyEnding");
+						SceneManager.LoadScene("Main");
 				//Real Ending
 					else
 						SceneManager.LoadScene("RealEnding");
