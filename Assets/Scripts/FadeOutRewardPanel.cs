@@ -13,6 +13,9 @@ public class FadeOutRewardPanel : MonoBehaviour
     {
         time = time + Time.deltaTime;
         if (time > 1)
+        {
             gameObject.SetActive(false);
+            time = 0;
+        }
     }
 }

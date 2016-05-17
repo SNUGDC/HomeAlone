@@ -24,6 +24,8 @@ public class UnityAdsHelper : MonoBehaviour
                 MoneySystem.money += 1000;
                 RewardPanel.SetActive(true);
                 FailedPanel.SetActive(false);
+                PlayerPrefs.SetString("Ads","Off");
+                PlayerPrefs.SetInt("AdsTimer", 0);
                 // YOUR CODE TO REWARD THE GAMER
                 // Give coins etc.
                 break;
