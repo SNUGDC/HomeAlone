@@ -9,7 +9,7 @@ public class window : MonoBehaviour {
 	public GameObject openedImage, yellowdustImage, yellowdust2, beautifulImage, rainImage, dustImage, snowImage;
 	public GameObject[] Friends;
 	public int yellowdust, beautiful, rain, dust, snow;
-	private int month, random;
+	private int month, hour, random;
 	private string weather;
 
 
@@ -44,6 +44,7 @@ public class window : MonoBehaviour {
 	void load(){
 		open = (PlayerPrefs.GetString ("window") == "True");
 		month = PlayerPrefs.GetInt("Month");
+		hour = PlayerPrefs.GetInt("Hour");
 	}
 
 	public void toggle(){
@@ -141,7 +142,7 @@ public class window : MonoBehaviour {
 
 	// code here
 	void Beautiful(int probability){
-		if (random <= probability) {
+		if (random <= probability && 9 <= hour && hour < 15) {
 			weather = "Beautiful";
 			beautifulImage.SetActive (true);
 			Debug.Log ("beautifulScene Event");
