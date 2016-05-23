@@ -25,12 +25,18 @@ public class Continue : MonoBehaviour
 				if (IsEnding()) {
 					int NumberOfNegativeChoice = PlayerPrefs.GetInt ("NumberOfNegativeChoice");
 					bool SnakeAnswer = (PlayerPrefs.GetString("SnakeAnswer") != "False");
-				//Happy Ending
-					if(SnakeAnswer || (NumberOfNegativeChoice < 2))
-						SceneManager.LoadScene("Main");
-				//Real Ending
-					else
-						SceneManager.LoadScene("RealEnding");
+                    //Happy Ending
+                    if (SnakeAnswer || (NumberOfNegativeChoice < 2))
+                    {
+                        SceneManager.LoadScene("Main");
+                        PlayerPrefs.SetString("WhatIsEnd", "HappyEnding");
+                    }
+                    //Real Ending
+                    else
+                    {
+                        SceneManager.LoadScene("Main");
+                        PlayerPrefs.SetString("WhatIsEnd", "RealEnding");
+                    }
 				}
 
                 else if (PlayerPrefs.HasKey("HowMuchTimePass") && PlayerPrefs.GetInt("HowMuchTimePass") <= 10)

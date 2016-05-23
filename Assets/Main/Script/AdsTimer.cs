@@ -13,7 +13,6 @@ public class AdsTimer : MonoBehaviour
     {
         if (PlayerPrefs.GetString("Ads") == "On")
             Debug.Log("On");
-        else Debug.Log(PlayerPrefs.GetInt("AdsTimer"));
 
         if (PlayerPrefs.GetString("Ads") == "Off" && TimerStart == false)
         {

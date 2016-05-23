@@ -17,7 +17,7 @@ public class ReadingLetter : MonoBehaviour
 
     void Update()
     {
-        if (GetComponent<Transform>().position.x > 7.28)
+        if (GetComponent<Transform>().position.x > 0.45)
         {
             GetComponent<Transform>().position = new Vector3(GetComponent<Transform>().position.x - 0.4f, GetComponent<Transform>().position.y, GetComponent<Transform>().position.z);
         }
