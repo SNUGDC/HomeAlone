@@ -30,7 +30,7 @@ public class AdsTimer : MonoBehaviour
             }
         }
 
-        if (PlayerPrefs.GetInt("AdsTimer") > 2)
+        if (PlayerPrefs.GetInt("AdsTimer") > 0)
         {
             PlayerPrefs.SetString("Ads", "On");
             TimerStart = false;
