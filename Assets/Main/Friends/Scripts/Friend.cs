@@ -9,6 +9,12 @@ public class Friend : MonoBehaviour {
 	public GameObject[] heart;
 	public int IntVisitCount;
 	public Button myButton;
+
+	public Button[] eventButton;
+	public Text[] eventText;
+	public string[] eventTitle;
+	public string[] eventSave;
+
 	public static int love1=1,love2=20,love3=45;
 
 	void Awake () {
@@ -77,17 +83,14 @@ public class Friend : MonoBehaviour {
 			ep.SetActive (false);
 	}
 
-	/*
-	public void EpisodeEnabled2(GameObject ep){
-		if (IntVisitCount >= love2)
-			ep.SetActive (true);
+	public void EventEnabled(){
+		for (int i = 0; i < eventButton.Length; i++) {
+			if (PlayerPrefs.GetString (eventSave[i]) == "True") {
+				eventButton [i].enabled = true;
+				eventText [i].text = eventTitle [i];
+			}
+		}
 	}
-
-	public void EpisodeEnabled3(GameObject ep){
-		if (IntVisitCount >= love3)
-			ep.SetActive (true);
-	}
-	*/
 
 	public int HowFriendly(){
 		IntVisitCount = VisitFriend.IntParseFast (PlayerPrefs.GetString (FriendNameVisit));

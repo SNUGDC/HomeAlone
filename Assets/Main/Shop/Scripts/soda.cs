@@ -25,6 +25,7 @@ public class soda : MonoBehaviour {
 			if (ShopItem.GetComponent<Item> ().haveItem () && Penguin.enabled && sodaBoughtTimes < 1) {
 				ShopItem.GetComponent<Item> ().decreaseItem ();
 				sodaBoughtTimes++;
+				PlayerPrefs.SetString ("SodaEventShow", "True");		// show event save.
 				SceneManager.LoadScene ("Penguin Event");
 			}
 
