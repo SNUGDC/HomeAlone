@@ -20,7 +20,10 @@ public class CameleonDialogueText : MonoBehaviour
     }
 
 	public void YesAnswerSave(){
-		PlayerPrefs.SetString ("CameleonAnswer", "True");
+		if (!(PlayerPrefs.HasKey ("CemeleonAnswer")))
+			PlayerPrefs.SetString ("CameleonAnswer", "True");
+		else
+			Debug.Log ("You Already Answer.");
 	}
 
     public void MoveTo5()
