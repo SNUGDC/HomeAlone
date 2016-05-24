@@ -8,7 +8,7 @@ public class SnakeEp : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		IsAlreadyShow = (PlayerPrefs.GetString (IsAlreadyShowSaveName) == "False");
+		IsAlreadyShow = (PlayerPrefs.GetString (IsAlreadyShowSaveName) == "True");
 		PlayerPrefs.SetString (IsAlreadyShowSaveName, "True");
 		SaveAnswer = (PlayerPrefs.GetString (AnswerSaveName) == "True");
 		Debug.Log ("Save Answer : " + SaveAnswer);
