@@ -7,9 +7,9 @@ public class plate : MonoBehaviour {
 	public GameObject DialogPanel, VisitFriend,ShopItem, buyButton, QuestionBox, PopUp, PopUpClose;
 	public Text PopUpText;
 	public int openVisitCount;
-	public int lionEventVisitNumber;
+	public int lionEventVisitNumber,lionEventVisitNumber2;
 	bool IsAlreadyOpen;
-	bool IsAlreadyShow;
+	bool IsAlreadyShow,IsAlreadyShow2;
 
 	// Use this for initialization
 
@@ -19,6 +19,8 @@ public class plate : MonoBehaviour {
 			IsAlreadyShow = (PlayerPrefs.GetString ("LionEvent") == "True");
 		else
 			IsAlreadyShow = false;
+		
+		IsAlreadyShow2 = (PlayerPrefs.GetString ("SheepEvent2") == "True");
 	}
 
 	// Update is called once per frame
@@ -31,6 +33,11 @@ public class plate : MonoBehaviour {
 				PlayerPrefs.SetString ("LionEvent", IsAlreadyShow.ToString ());
 			}
 
+			//event2 - sheep&lion
+			else if (VisitFriend.GetComponent<VisitFriend> ().VisitNumber >= lionEventVisitNumber2 && !IsAlreadyShow2) {
+				IsAlreadyShow2 = true;
+				SceneManager.LoadScene ("Sheep Event2");
+			}
 
 			if (VisitFriend.GetComponent<VisitFriend> ().VisitNumber >= openVisitCount) {
 				ShopItem.GetComponent<Button> ().enabled = true;

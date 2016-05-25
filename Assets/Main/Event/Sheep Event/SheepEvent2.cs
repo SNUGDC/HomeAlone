@@ -7,7 +7,7 @@ public class SheepEvent2 : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
+		PlayerPrefs.SetString ("SheepEvent2", "True");
 	}
 	
 	// Update is called once per frame
