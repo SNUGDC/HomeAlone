@@ -8,8 +8,8 @@ public class OpenThreeItem : MonoBehaviour {
 	public Text PopUpText;
 	public string text, text2;
 	public string savename;
-	public int openVisitCount,openVisitCount2;
-	bool IsAlreadyOpen,IsAlreadyOpen2, IsAlreadyShow;
+	public int openVisitCount,openVisitCount2, eventVisitCount;
+	bool IsAlreadyOpen,IsAlreadyOpen2, IsAlreadyShow, IsAlreadyShow2;
 
 	// Use this for initialization
 
@@ -24,6 +24,12 @@ public class OpenThreeItem : MonoBehaviour {
 		if (ShopItem3.GetComponent<Item> ().haveItem() && VisitFriend.GetComponent<Image>().enabled && !IsAlreadyShow) {
 			IsAlreadyShow = true;
 			SceneManager.LoadScene ("Crocodile Event");
+		}
+
+		// crocodile event2
+		if (VisitFriend.GetComponent<VisitFriend> ().VisitNumber >= eventVisitCount && VisitFriend.GetComponent<Image>().enabled && !IsAlreadyShow2) {
+			IsAlreadyShow2 = true;
+			SceneManager.LoadScene ("Crocodile Event2");
 		}
 
 
@@ -74,6 +80,8 @@ public class OpenThreeItem : MonoBehaviour {
 			IsAlreadyShow = (PlayerPrefs.GetString ("CrocoEvent") == "True");
 		else
 			IsAlreadyShow = false;
+
+		IsAlreadyShow2 = (PlayerPrefs.GetString ("CrocodileEvent2") == "True");
 		
 		if(PlayerPrefs.HasKey(savename+ "OPEN"))
 			IsAlreadyOpen = (PlayerPrefs.GetString (savename+ "OPEN") == "True");
