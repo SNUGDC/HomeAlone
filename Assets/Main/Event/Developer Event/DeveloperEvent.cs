@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class DeveloperEvent : MonoBehaviour {
 	public GameObject Dialog, croco, carrot, cookie, girim, EQ, cameleon1, cameleon2, Fade;
@@ -60,5 +61,12 @@ public class DeveloperEvent : MonoBehaviour {
 				button [i].GetComponent<Button> ().enabled = true;
 			Dialog.SetActive (false);
 		} 
+	}
+
+	public void GoToMain(){
+		if(PlayerPrefs.GetString("WhatIsEnd") == "HappyEnding")
+			SceneManager.LoadScene ("Main");
+		else if(PlayerPrefs.GetString("WhatIsEnd") == "RealEnding")
+			SceneManager.LoadScene ("AfterRealEnding");
 	}
 }

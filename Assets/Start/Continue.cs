@@ -17,12 +17,22 @@ public class Continue : MonoBehaviour
     {
         if (PlayerPrefs.HasKey("Is Tutorial Finish"))
         {
-            if (PlayerPrefs.GetInt("SeeRealEnding") == 1 || PlayerPrefs.GetInt("SeeRealEnding") == 2)
-                SceneManager.LoadScene("AfterRealEnding");
+			if (PlayerPrefs.GetInt ("SeeRealEnding") == 1 || PlayerPrefs.GetInt ("SeeRealEnding") == 2) {
+				// After real Ending + developer event
+				if (PlayerPrefs.GetString("DeveloperShow") == "True")
+					SceneManager.LoadScene ("AfterRealEnding");
+				else if((PlayerPrefs.GetString("SeeAfterReadlEnding") == "True"))
+					SceneManager.LoadScene ("Developer Event");
+				else SceneManager.LoadScene ("AfterRealEnding");
+			}
             else
             {
+				// Developer event of Happy Ending
+				if ((PlayerPrefs.GetString("WhatIsEnd") == "HappyEnding") && !(PlayerPrefs.GetString("DeveloperShow") == "True"))
+					SceneManager.LoadScene ("Developer Event");
+				
 				//Ending!
-				if (IsEnding()) {
+				else if (IsEnding()) {
 					int NumberOfNegativeChoice = PlayerPrefs.GetInt ("NumberOfNegativeChoice");
 					bool SnakeAnswer = (PlayerPrefs.GetString("SnakeAnswer") != "False");
                     //Happy Ending
