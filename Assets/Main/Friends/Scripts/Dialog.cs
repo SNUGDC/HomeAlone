@@ -42,6 +42,16 @@ public class Dialog : MonoBehaviour {
 			SceneManager.LoadScene ("Main");
 	}
 
+	public void Close(int EndLineNumber){
+		if (LineNumber == EndLineNumber)
+			ThisEventMessage.SetActive (false);
+	}
+
+	public void Reset(){
+		LineNumber = 0;
+		myText.text = conversation [LineNumber];
+	}
+
 	// ** SaveYes SaveName = SaveNo SaveName
 	public void SaveYes(string SaveName){
 		PlayerPrefs.SetString (SaveName, "True");
