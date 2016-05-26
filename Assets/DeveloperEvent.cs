@@ -20,6 +20,10 @@ public class DeveloperEvent : MonoBehaviour {
 		if (Dialog.GetComponent<Dialog> ().LineNumber == 1) {
 			// fade in
 			Fade.GetComponent<Fade>().enabled =true;
+
+			// audio
+			Fade.GetComponent<AudioSource>().enabled = false;
+			GetComponent<AudioSource> ().enabled = true;
 			croco.SetActive (true);
 		} else if (Dialog.GetComponent<Dialog> ().LineNumber == 2) {
 			croco.SetActive(false);
