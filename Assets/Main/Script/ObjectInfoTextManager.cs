@@ -8,10 +8,13 @@ public class ObjectInfoTextManager : MonoBehaviour
     public string[] Text;
 
     int i;
-
+    void Start()
+    {
+        InfoText.supportRichText = true;
+    }
     public void InfoNumber()
     {
-        i = Random.Range(0, 5);
+        i = Random.Range(0, Text.Length);
         InfoText.text = Text[i];
     }
 }
