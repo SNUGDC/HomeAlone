@@ -11,9 +11,6 @@ public class AdsTimer : MonoBehaviour
 
     void Update()
     {
-        if (PlayerPrefs.GetString("Ads") == "On")
-            Debug.Log("On");
-
         if (PlayerPrefs.GetString("Ads") == "Off" && TimerStart == false)
         {
             StartTime = DateTime.Now;
