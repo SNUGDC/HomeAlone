@@ -10,6 +10,8 @@ public class CameleonDialogueText : MonoBehaviour
     public GameObject ChoicePanel;
     public GameObject Cam_OnWall;
     public GameObject Cam_Sorry;
+    public GameObject Cam_OnWall_Smile;
+    public GameObject Cam_OnWall_NoExclaim;
 
     static public int ClickedTime_CamEv;
     int Answer;
@@ -85,7 +87,7 @@ public class CameleonDialogueText : MonoBehaviour
                 }
                 break;
             case 5:
-                Cam_OnWall.SetActive(true);
+                Cam_OnWall_Smile.SetActive(true);
                 Cam_Sorry.SetActive(false);
                 DialogueText.text = "고마워...";
                 break;
@@ -94,10 +96,12 @@ public class CameleonDialogueText : MonoBehaviour
                 SceneManager.LoadScene("Main");
                 break;
             case 7:
+                Cam_Sorry.SetActive(false);
+                Cam_OnWall_NoExclaim.SetActive(true);
                 DialogueText.text = "그동안 고마웠어... 안녕...";
                 break;
             case 8:
-                Cam_Sorry.SetActive(false);
+                Cam_OnWall_NoExclaim.SetActive(false);
                 DialogueText.text = "카멜레온은 조용히 방을 나갔다.";
                 break;
             case 9:
