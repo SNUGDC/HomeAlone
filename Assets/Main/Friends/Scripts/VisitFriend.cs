@@ -416,7 +416,7 @@ public class VisitFriend : MonoBehaviour {
 			if (VisitItem [i].GetComponent<Item> ().BoughtNumber > 0) {
 				n = i;
 				return true;
-			};
+			}
 		}
 		return false;
 	}
