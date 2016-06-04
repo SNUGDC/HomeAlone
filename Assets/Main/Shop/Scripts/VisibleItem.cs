@@ -7,8 +7,10 @@ public class VisibleItem : MonoBehaviour {
 	// List order: penguin - sheep - bear - croco - ammo - owl - lion - snake
 	public GameObject ThisPosition, desk, lion, bed;
 	public GameObject[] FriendList;
+
+	//현재 방문해 있는 친구들을 저장하는 리스트
 	private List<GameObject> VisitingFriend = new List<GameObject>();
-	private bool OK;
+	private bool OK; /*예외상황일 때는 동작하지 않게 하기 위함*/
 
 	private GameObject VisibleFriend;
 
@@ -18,9 +20,11 @@ public class VisibleItem : MonoBehaviour {
 
 	void Update () {
 		OK = true;
-		ListUpdate (VisitingFriend);
-		ImageChange (VisitingFriend);
+		ListUpdate (VisitingFriend); /*현재 방문해있는 친구들 목록 업데이트*/
+		ImageChange (VisitingFriend); /*방문중인 친구들 중 랜덤으로 골라 좋아하는 음식들 중 현재 보유중인 것을 보여준다*/
+
 		if (OK) {
+			//친구가 떠났을 경우 음식을 다시 안보이게
 			BackCheck ();
 			desk.SetActive (true);
 			lion.SetActive (true);
@@ -28,7 +32,6 @@ public class VisibleItem : MonoBehaviour {
 		}
 	}
 
-	//static?? 
 	private void ListUpdate(List<GameObject> list){
 		for (int i = 0; i < FriendList.Length; i++) {
 			if (FriendList [i].GetComponent<Image>().enabled && !FriendList [i].GetComponent<VisitFriend>().itemVisible && !list.Contains(FriendList[i]))
@@ -59,7 +62,7 @@ public class VisibleItem : MonoBehaviour {
 				ThisPosition.GetComponent<Image> ().enabled = true;
 				VisibleFriend = list [n - 1];
 
-				// choose item: list[n-1].GetComponent<VisitFriend>().VisitItem[k]
+				// choosed item: list[n-1].GetComponent<VisitFriend>().VisitItem[k]
 				int k = 0;
 				for (int i = 0; i < list [n - 1].GetComponent<VisitFriend> ().VisitItem.Length; i++) {
 					if (list [n - 1].GetComponent<VisitFriend> ().VisitItem [i].GetComponent<Item> ().haveItem ()) {
