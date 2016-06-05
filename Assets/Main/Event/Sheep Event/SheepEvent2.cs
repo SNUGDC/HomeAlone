@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class SheepEvent2 : MonoBehaviour {
-	public GameObject Dialog, Player, Sheep, Lion, event_sheep1, event_sheep3, event_lion1, event_lion2, event_lion3, dialog_player, dialog_sheep, dialog_lion;
+	public GameObject Dialog, Player, Sheep, Lion, event_sheep1, event_sheep3, event_lion1, event_lion2, event_lion3, dialog_player, dialog_sheep ,dialog_sheep1, dialog_sheep3, dialog_lion,dialog_lion1,dialog_lion2,dialog_lion3;
 
 	// Use this for initialization
 	void Start () {
@@ -32,83 +32,85 @@ public class SheepEvent2 : MonoBehaviour {
 			dialog_lion.SetActive (true);
 		} else if (Dialog.GetComponent<Dialog> ().LineNumber == 5) {
 			dialog_lion.SetActive (false);
-			dialog_sheep.SetActive (true);
+			dialog_sheep1.SetActive (true);
 			Sheep.SetActive (false);
 			Lion.SetActive (false);
 			event_sheep1.SetActive (true);
 			event_lion2.SetActive (true);
 		} else if (Dialog.GetComponent<Dialog> ().LineNumber == 6) {
-			dialog_sheep.SetActive (false);
-			dialog_lion.SetActive (true);
+			dialog_sheep1.SetActive (false);
+			dialog_lion2.SetActive (true);
 		} else if (Dialog.GetComponent<Dialog> ().LineNumber == 7) {
-			dialog_lion.SetActive (false);
-			dialog_sheep.SetActive (true);
+			dialog_lion2.SetActive (false);
+			dialog_sheep1.SetActive (true);
 		} else if (Dialog.GetComponent<Dialog> ().LineNumber == 8) {
+			dialog_sheep1.SetActive (false);
+			dialog_sheep3.SetActive (true);
 			event_sheep1.SetActive (false);
 			event_lion2.SetActive (false);
 			event_sheep3.SetActive (true);
 			event_lion3.SetActive (true);
 		} else if (Dialog.GetComponent<Dialog> ().LineNumber == 9) {
-			dialog_sheep.SetActive (false);
-			dialog_lion.SetActive (true);
+			dialog_sheep3.SetActive (false);
+			dialog_lion3.SetActive (true);
 		} else if (Dialog.GetComponent<Dialog> ().LineNumber == 10) {
-			dialog_lion.SetActive (false);
-			dialog_sheep.SetActive (true);
+			dialog_lion3.SetActive (false);
+			dialog_sheep1.SetActive (true);
 			event_sheep3.SetActive (false);
 			event_lion3.SetActive (false);
 			event_sheep1.SetActive (true);
 			event_lion1.SetActive (true);
 		} else if (Dialog.GetComponent<Dialog> ().LineNumber == 11) {
-			dialog_sheep.SetActive (false);
-			dialog_lion.SetActive (true);
+			dialog_sheep1.SetActive (false);
+			dialog_lion1.SetActive (true);
 		} else if (Dialog.GetComponent<Dialog> ().LineNumber == 12) {
-			dialog_lion.SetActive (false);
-			dialog_sheep.SetActive (true);
+			dialog_lion1.SetActive (false);
+			dialog_sheep3.SetActive (true);
 			event_sheep1.SetActive (false);
 			event_lion1.SetActive (false);
 			event_sheep3.SetActive (true);
 			event_lion3.SetActive (true);
 		} else if (Dialog.GetComponent<Dialog> ().LineNumber == 14) {
-			dialog_sheep.SetActive (false);
-			dialog_lion.SetActive (true);
+			dialog_sheep3.SetActive (false);
+			dialog_lion1.SetActive (true);
 			event_sheep3.SetActive (false);
 			event_lion3.SetActive (false);
 			event_sheep1.SetActive (true);
 			event_lion1.SetActive (true);
 		} else if (Dialog.GetComponent<Dialog> ().LineNumber == 15) {
-			dialog_lion.SetActive (false);
-			dialog_sheep.SetActive (true);
+			dialog_lion1.SetActive (false);
+			dialog_sheep3.SetActive (true);
 			event_sheep1.SetActive (false);
 			event_lion1.SetActive (false);
 			event_sheep3.SetActive (true);
 			event_lion3.SetActive (true);
 		} else if (Dialog.GetComponent<Dialog> ().LineNumber == 16) {
-			dialog_sheep.SetActive (false);
-			dialog_lion.SetActive (true);
+			dialog_sheep3.SetActive (false);
+			dialog_lion1.SetActive (true);
 			event_sheep3.SetActive (false);
 			event_lion3.SetActive (false);
 			event_sheep1.SetActive (true);
 			event_lion1.SetActive (true);
 		} else if (Dialog.GetComponent<Dialog> ().LineNumber == 18) {
-			dialog_lion.SetActive (false);
-			dialog_sheep.SetActive (true);
+			dialog_lion1.SetActive (false);
+			dialog_sheep3.SetActive (true);
 			event_sheep1.SetActive (false);
 			event_lion1.SetActive (false);
 			event_sheep3.SetActive (true);
 			event_lion3.SetActive (true);
 		} else if (Dialog.GetComponent<Dialog> ().LineNumber == 19) {
-			dialog_sheep.SetActive (false);
-			dialog_lion.SetActive (true);
+			dialog_sheep3.SetActive (false);
+			dialog_lion2.SetActive (true);
 			event_sheep3.SetActive (false);
 			event_lion3.SetActive (false);
 			event_sheep1.SetActive (true);
 			event_lion2.SetActive (true);
 		} else if (Dialog.GetComponent<Dialog> ().LineNumber == 20) {
-			dialog_lion.SetActive (false);
-			dialog_sheep.SetActive (true);
+			dialog_lion2.SetActive (false);
+			dialog_sheep1.SetActive (true);
 		} else if (Dialog.GetComponent<Dialog> ().LineNumber == 21) {
-			dialog_sheep.SetActive (false);
-			dialog_lion.SetActive (true);
+			dialog_sheep1.SetActive (false);
+			dialog_lion1.SetActive (true);
 			event_lion2.SetActive (false);
 			event_lion1.SetActive (true);
 		}
