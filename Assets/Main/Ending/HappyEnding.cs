@@ -7,7 +7,7 @@ public class HappyEnding : MonoBehaviour {
 	public Image TextImage;
 	// Use this for initialization
 	void Start () {
-	
+		PlayerPrefs.SetString("WhatIsEnd", "HappyEnding");
 	}
 	
 	// Update is called once per frame
