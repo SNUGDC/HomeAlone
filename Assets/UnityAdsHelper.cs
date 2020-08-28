@@ -5,7 +5,7 @@ public class UnityAdsHelper : MonoBehaviour
 {
     public GameObject RewardPanel;
     public GameObject FailedPanel;
-
+    /*
     public void ShowRewardedAd()
     {
         if (Advertisement.IsReady("rewardedVideo"))
@@ -40,5 +40,5 @@ public class UnityAdsHelper : MonoBehaviour
                 RewardPanel.SetActive(false);
                 break;
         }
-    }
+    }*/
 }
